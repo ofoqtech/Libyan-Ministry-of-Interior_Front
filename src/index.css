@@ -37,3 +37,6 @@ li {
   background-color: var(--main-color);
 }
 
+.global-container{
+  padding-bottom: 60px;
+}

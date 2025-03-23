@@ -1,0 +1,1 @@
+import './desicionDetails.css';

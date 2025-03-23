@@ -7,6 +7,8 @@ import "swiper/css/navigation";
 import { useEffect, useState } from "react";
 import MainTitle from "../../components/MainTitle/MainTitle";
 import CommonNewsBox from "../../components/CommonNewsBox/CommonNewsBox";
+import { Modal } from "react-bootstrap";
+
 
 const Home = () => {
   return (
@@ -15,6 +17,7 @@ const Home = () => {
       <CommonNews />
       <TodayNews />
       <PrimaryNews />
+      <NewsSliderBoxes />
     </>
   );
 };
@@ -370,7 +373,7 @@ function PrimaryNews() {
                 <iframe
                   width="100%"
                   height="400px"
-                  src="https://www.youtube.com/embed/NJjh9AwTBkY?si=LoYmP9K2RH5dIYU1"                  title="Video"
+                  src="https://www.youtube.com/embed/NJjh9AwTBkY?si=LoYmP9K2RH5dIYU1" title="Video"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
@@ -384,6 +387,102 @@ function PrimaryNews() {
   );
 }
 
+function NewsSliderBoxes() {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [currentVideo, setCurrentVideo] = useState("");
+
+  const newsData = [
+    {
+      title: "أبرز أخبار وزارة الداخلية في دقيقة",
+      time: "1:59",
+      videoUrl: "https://www.youtube.com/embed/videoID1",
+    },
+    {
+      title: "أخبار الحكومة الليبية من منصة الداخلية الاخبارية",
+      time: "1:59",
+      videoUrl: "https://www.youtube.com/embed/videoID2",
+    },
+    {
+      title: "الداخلية في دقيقة",
+      time: "1:59",
+      videoUrl: "https://www.youtube.com/embed/videoID3",
+    },
+  ];
+
+  const openModal = (videoUrl) => {
+    setCurrentVideo(videoUrl);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    setCurrentVideo("");
+  };
+
+  return (
+    <section className="news-slider-boxes py-5">
+      <div className="container">
+        <Swiper
+          spaceBetween={20}
+          slidesPerView={3}
+          breakpoints={{
+            640: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+        >
+          {newsData.map((news, index) => (
+            <SwiperSlide key={index}>
+              <div
+                className="news-box d-flex flex-column align-items-center justify-content-center p-3 border rounded"
+                style={{ cursor: "pointer" }}
+              >
+                <div
+                  className="youtube-logo mb-3"
+                  onClick={() => openModal(news.videoUrl)}
+                >
+                  <svg
+                    width="40"
+                    height="40"
+                    viewBox="0 0 80 80"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect width="80" height="80" rx="40" fill="#e9ecef" />
+                    <path
+                      d="M36.7399 48.6001C36.1712 48.573 35.7108 48.3834 35.3587 48.0313C34.9795 47.6522 34.7899 47.1918 34.7899 46.6501V32.3501C34.7899 31.8084 34.9795 31.348 35.3587 30.9688C35.7108 30.6168 36.1712 30.4272 36.7399 30.4001C37.092 30.4001 37.4305 30.4949 37.7555 30.6845L49.4555 37.8345C50.0514 38.2407 50.3628 38.7959 50.3899 39.5001C50.3628 40.2043 50.0514 40.7595 49.4555 41.1657L37.7555 48.3157C37.4305 48.5053 37.092 48.6001 36.7399 48.6001Z"
+                      fill="#495057"
+                    />
+                  </svg>
+                </div>
+                <h5 className="text-center">{news.title}</h5>
+                <p className="text-center text-muted">{news.time}</p>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+
+      {/* Modal */}
+      <Modal show={isModalOpen} onHide={closeModal} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Video</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <iframe
+            width="100%"
+            height="400"
+            src={currentVideo}
+            title="YouTube video"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </Modal.Body>
+      </Modal>
+    </section>
+  );
+}
 
 
 export default Home;
