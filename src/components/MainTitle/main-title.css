@@ -1,0 +1,27 @@
+.main-title {
+  display: flex;
+  align-items: center;
+  /* gap: 10px; */
+}
+.main-title .title {
+  font-size: 26px;
+  margin: 50px 0;
+  width: 250px;
+}
+.main-title .lines {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  width: 100%;
+}
+.main-title .lines .line {
+  display: block;
+  width: 100%;
+  height: 1px;
+  border: 1px dashed var(--grey1-color);
+}
+@media(max-width:900px){
+  .main-title .title {
+    font-size: 16px;
+  }
+}

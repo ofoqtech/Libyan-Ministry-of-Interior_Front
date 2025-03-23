@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+html,
+body,
+input,
+textarea,
+select {
+  direction: rtl;
+  font-family: "Alexandria", sans-serif;
+}
+html,body{
+  overflow-x: hidden;
+}
+:root {
+  --main-color: #003f9c;
+  --dark-color: #54595f;
+  --grey1-color: #b5b5b5;
+  --grey2-color: #efefef;
+  --white-color: #fff;
+  --black-color: #000;
+  --main-tran: 0.3s;
+  --sec-tran: 0.5s;
+}
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+::selection {
+  color: var(--white-color);
+  background-color: var(--main-color);
+}
+
