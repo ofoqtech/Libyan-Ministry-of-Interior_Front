@@ -266,7 +266,6 @@ function PrimaryNews() {
   };
 
   const handleBackdropClick = (e) => {
-    // Close the modal if the user clicks outside the modal content
     if (e.target.classList.contains("modal")) {
       closeModal();
     }
@@ -398,9 +397,14 @@ function NewsSliderBoxes() {
       videoUrl: "https://www.youtube.com/embed/videoID1",
     },
     {
-      title: "أخبار الحكومة الليبية من منصة الداخلية الاخبارية",
+      title: "أخبار الحكومة الليبية من منصة الداخلية",
       time: "1:59",
       videoUrl: "https://www.youtube.com/embed/videoID2",
+    },
+    {
+      title: "الداخلية في دقيقة",
+      time: "1:59",
+      videoUrl: "https://www.youtube.com/embed/videoID3",
     },
     {
       title: "الداخلية في دقيقة",
@@ -420,12 +424,20 @@ function NewsSliderBoxes() {
   };
 
   return (
-    <section className="news-slider-boxes py-5">
-      <div className="container">
+    <section className="news-slider-boxes">
+      <div className="container mb-5">
         <Swiper
           spaceBetween={20}
-          slidesPerView={3}
-          breakpoints={{
+          slidesPerView={1}
+          modules={[Navigation, Autoplay]}
+          navigation={{
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          }}
+
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          speed={500}
+          loop={true} breakpoints={{
             640: { slidesPerView: 1 },
             768: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
@@ -434,33 +446,51 @@ function NewsSliderBoxes() {
           {newsData.map((news, index) => (
             <SwiperSlide key={index}>
               <div
-                className="news-box d-flex flex-column align-items-center justify-content-center p-3 border rounded"
-                style={{ cursor: "pointer" }}
+                className="news-box d-flex align-items-center  py-3 px-2  rounded"
+                style={{ cursor: "pointer", height: "fit-content", border: "1px solid #003F9C" }}
               >
-                <div
-                  className="youtube-logo mb-3"
-                  onClick={() => openModal(news.videoUrl)}
-                >
-                  <svg
-                    width="40"
-                    height="40"
-                    viewBox="0 0 80 80"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
+                <div className="news-box-content  d-flex align-items-center ">
+                  <div
+                    className="youtube-logo my-4"
+                    onClick={() => openModal(news.videoUrl)}
                   >
-                    <rect width="80" height="80" rx="40" fill="#e9ecef" />
-                    <path
-                      d="M36.7399 48.6001C36.1712 48.573 35.7108 48.3834 35.3587 48.0313C34.9795 47.6522 34.7899 47.1918 34.7899 46.6501V32.3501C34.7899 31.8084 34.9795 31.348 35.3587 30.9688C35.7108 30.6168 36.1712 30.4272 36.7399 30.4001C37.092 30.4001 37.4305 30.4949 37.7555 30.6845L49.4555 37.8345C50.0514 38.2407 50.3628 38.7959 50.3899 39.5001C50.3628 40.2043 50.0514 40.7595 49.4555 41.1657L37.7555 48.3157C37.4305 48.5053 37.092 48.6001 36.7399 48.6001Z"
-                      fill="#495057"
-                    />
-                  </svg>
+
+                    <svg width="92" height="82" viewBox="0 0 92 82" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g filter="url(#filter0_d_138_2643)">
+                        <rect x="12" y="9" width="68" height="58" rx="12" fill="#B9C0C9" />
+                      </g>
+                      <path d="M58.3876 31.41C58.2442 30.8317 57.9626 30.304 57.5708 29.8795C57.1791 29.4549 56.6909 29.1484 56.1549 28.9904C54.1863 28.418 46.2889 28.418 46.2889 28.418C46.2889 28.418 38.3914 28.418 36.4228 28.9904C35.8868 29.1484 35.3986 29.4549 35.0069 29.8795C34.6151 30.304 34.3335 30.8317 34.1901 31.41C33.6621 33.5464 33.6621 37.9999 33.6621 37.9999C33.6621 37.9999 33.6621 42.4533 34.1901 44.5897C34.3334 45.1682 34.6149 45.6962 35.0066 46.121C35.3984 46.5457 35.8866 46.8525 36.4228 47.0106C38.3925 47.5818 46.2889 47.5818 46.2889 47.5818C46.2889 47.5818 54.1863 47.5818 56.1549 47.0106C56.6911 46.8525 57.1793 46.5457 57.5711 46.121C57.9628 45.6962 58.2444 45.1682 58.3876 44.5897C58.9156 42.4558 58.9156 37.9999 58.9156 37.9999C58.9156 37.9999 58.9156 33.5464 58.3876 31.41ZM43.7061 42.044V33.9569L50.3065 38.0011L43.7061 42.044Z" stroke="white" stroke-width="0.5" stroke-miterlimit="10" stroke-linejoin="round" />
+                      <defs>
+                        <filter id="filter0_d_138_2643" x="0" y="0" width="92" height="82" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                          <feOffset dy="3" />
+                          <feGaussianBlur stdDeviation="6" />
+                          <feComposite in2="hardAlpha" operator="out" />
+                          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0" />
+                          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_138_2643" />
+                          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_138_2643" result="shape" />
+                        </filter>
+                      </defs>
+                    </svg>
+
+                  </div>
+                  <div>
+                    <div>
+                      <h6>{news.title}</h6> 
+                      <p className="text-muted mb-0">{news.time}</p>
+                    </div>
+                  </div>
                 </div>
-                <h5 className="text-center">{news.title}</h5>
-                <p className="text-center text-muted">{news.time}</p>
               </div>
+
             </SwiperSlide>
+
           ))}
+
         </Swiper>
+        
+
       </div>
 
       {/* Modal */}
