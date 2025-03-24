@@ -34,7 +34,6 @@
 .header .container .left-header .lang .lang-menu {
   position: absolute;
   top: 30px;
-  left: 0;
   width: 120px;
   display: none;
   padding: 10px;
@@ -43,6 +42,21 @@
   border-radius: 8px;
   background-color: var(--white-color);
   box-shadow: 0 0 50px 15px #0000000d;
+}
+[dir="ltr"] .header .container .left-header .lang .lang-menu {
+  right: 0;
+}
+
+[dir="rtl"] .header .container .left-header .lang .lang-menu {
+  left: 0;
+}
+[dir="rtl"] ul, ol {
+  padding-left: 0 !important;
+}
+[dir="ltr"] ul, ol {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+
 }
 
 .header .container .left-header .lang:hover .lang-menu {

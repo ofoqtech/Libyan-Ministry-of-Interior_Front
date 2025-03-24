@@ -1,0 +1,70 @@
+.all-services .overlay2 {
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+@media(max-width:500px) {
+    .services-button {
+        width: 100% !important;
+        margin-top: 30px;
+    }
+}
+.pagination .page-item .page-link {
+    width: fit-content;
+    height: 40px;
+    margin: 0 5px;
+    border-radius: 8px;
+    border: 1px solid #DEE2E6;
+    background: transparent;
+    color: #003F9C;
+    text-align: center;
+    font-size: 12px;
+}
+
+.pagination .page-item.active .page-link {
+    background: #003F9C;
+    color: white;
+    border: none;
+}
+
+.pagination .page-item .page-link[style*="transparent"] {
+    border: none;
+    background: transparent;
+    color: #003F9C;
+}
+@media(max-width:576px) {
+    .service-apply{
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto ;
+        text-align: center;
+    }
+    .service-apply-btn{
+        justify-content: center;
+        align-items: center;
+    }
+}
+@media(max-width:481px){
+    .services-parent, .service-apply{
+        width: 100%;
+    }
+
+}
+@media(max-width:300px){
+    .list-group-item{
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .list-group-item a {
+        display: block;
+        margin: 0 auto;
+    }
+    .list-status-item{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

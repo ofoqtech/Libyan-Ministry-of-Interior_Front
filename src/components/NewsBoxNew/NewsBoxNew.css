@@ -3,6 +3,7 @@
     height: 140px;
     object-fit: cover;
 }
+
 .new-box-content .type {
     width: fit-content;
     display: block;
@@ -13,5 +14,13 @@
     font-size: 12px;
     color: var(--white-color);
     background-color: var(--main-color);
+
+}
+
+@media(max-width:280px) {
+    .news-box-new {
+        flex-wrap: wrap;
+
+    }
 
 }

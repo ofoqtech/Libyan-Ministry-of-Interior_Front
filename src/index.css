@@ -10,7 +10,6 @@ body,
 input,
 textarea,
 select {
-  direction: rtl;
   font-family: "Alexandria", sans-serif;
 }
 html,body{
@@ -42,4 +41,7 @@ li {
 }
 .modal.show{
   z-index: 1221;
+}
+.swiper{
+  direction: ltr;
 }

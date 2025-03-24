@@ -254,3 +254,25 @@
 .news-slider-boxes .news-box:hover p {
   color: var(--white-color) !important;
 }
+/************desicions and photos************/
+
+.desiscions-gallary img{
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  margin: 0 3px 8px;
+}
+@media(max-width:403px){
+  .desiscions-gallary img{
+    width: 100%;
+    margin: 0 auto 20px;
+  }
+
+}
+@media(max-width:600px){
+  .desiscions-gallary{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

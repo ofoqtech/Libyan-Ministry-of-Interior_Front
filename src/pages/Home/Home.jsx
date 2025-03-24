@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import MainTitle from "../../components/MainTitle/MainTitle";
 import CommonNewsBox from "../../components/CommonNewsBox/CommonNewsBox";
 import { Modal } from "react-bootstrap";
-import { NewsBoxNew } from "../../components/NewsBoxNew/NewsBoxNew";
+import { NewBoxContent, NewsBoxNew } from "../../components/NewsBoxNew/NewsBoxNew";
 
 
 const Home = () => {
@@ -20,6 +20,7 @@ const Home = () => {
       <PrimaryNews />
       <NewsSliderBoxes />
       <NewsInternalPlatform />
+      <DesitionsAndPhotos />
     </>
   );
 };
@@ -284,7 +285,7 @@ function PrimaryNews() {
           <div className="col-lg-9 col-md-9 col-sm-12">
             <div className="primary-news-content">
               <span className="type">الاخبار الرئيسيه</span>
-              <h1 className="text-white my-4">الداخليه في دقيقه</h1>
+              <h1 className="text-white my-4">الداخلية في دقيقة</h1>
               <div className="time">
                 <i className="uil uil-calendar-alt"></i>
                 <p>منذ يومين</p>
@@ -519,7 +520,7 @@ function NewsInternalPlatform() {
   return <section className="news-internal-platform">
     <div className="container">
       <MainTitle title={"اخبار الداخليه"} />
-      <div className="row">
+      <div className="row align-items-center">
         <div className="col-lg-8">
           <CommonNewsBox
             image={"/assets/home_3.png"}
@@ -529,54 +530,132 @@ function NewsInternalPlatform() {
             }
             time={"منذ يومين"}
           />
+          <div className="row">
+            <div className="col-lg-6 mb-2">
+              <div className="newBox mb-2">
+                <NewsBoxNew image={"/assets/home_2.png"}
+                  type={"فئة 1"}
+                  title={
+                    "وزير الداخلية يعقد اجتماعًا موسعًا لمناقشة الأوضاع الأمنية"
+                  }
+                  time={"منذ يومين"} />
+              </div>
+            </div>
+            <div className="col-lg-6 mb-2">
+              <div className="newBox mb-2">
+                <NewsBoxNew image={"/assets/home_2.png"}
+                  type={"فئة 1"}
+                  title={
+                    "وزير الداخلية يعقد اجتماعًا موسعًا لمناقشة الأوضاع الأمنية"
+                  }
+                  time={"منذ يومين"} />
+              </div>
+            </div>
+            <div className="col-lg-6 mb-2">
+              <div className="newBox mb-2">
+                <NewsBoxNew image={"/assets/home_2.png"}
+                  type={"فئة 1"}
+                  title={
+                    "وزير الداخلية يعقد اجتماعًا موسعًا لمناقشة الأوضاع الأمنية"
+                  }
+                  time={"منذ يومين"} />
+              </div>
+            </div>
+            <div className="col-lg-6 mb-2">
+              <div className="newBox mb-2">
+                <NewsBoxNew image={"/assets/home_2.png"}
+                  type={"فئة 1"}
+                  title={
+                    "وزير الداخلية يعقد اجتماعًا موسعًا لمناقشة الأوضاع الأمنية"
+                  }
+                  time={"منذ يومين"} />
+              </div>
+            </div>
 
+          </div>
         </div>
         <div className="col-lg-4">
-        <div className="newBox mb-2">
+          <div className="newBox mb-4">
             <NewsBoxNew image={"/assets/home_2.png"}
-            type={"فئة 1"}
-            title={
-              "وزير الداخلية يعقد اجتماعًا موسعًا لمناقشة الأوضاع الأمنية"
-            }
-            time={"منذ يومين"} />
-            </div>
-            <div className="newBox mb-2">
+              type={"فئة 1"}
+              title={
+                "وزير الداخلية يعقد اجتماعًا موسعًا لمناقشة الأوضاع الأمنية"
+              }
+              time={"منذ يومين"} />
+          </div>
+          <div className="newBox mb-4">
             <NewsBoxNew image={"/assets/home_2.png"}
-            type={"فئة 1"}
-            title={
-              "وزير الداخلية يعقد اجتماعًا موسعًا لمناقشة الأوضاع الأمنية"
-            }
-            time={"منذ يومين"} />
-            </div>
-            <div className="newBox mb-2">
+              type={"فئة 1"}
+              title={
+                "وزير الداخلية يعقد اجتماعًا موسعًا لمناقشة الأوضاع الأمنية"
+              }
+              time={"منذ يومين"} />
+          </div>
+          <div className="newBox mb-4">
             <NewsBoxNew image={"/assets/home_2.png"}
-            type={"فئة 1"}
-            title={
-              "وزير الداخلية يعقد اجتماعًا موسعًا لمناقشة الأوضاع الأمنية"
-            }
-            time={"منذ يومين"} />
-            </div>
-            <div className="newBox mb-2">
+              type={"فئة 1"}
+              title={
+                "وزير الداخلية يعقد اجتماعًا موسعًا لمناقشة الأوضاع الأمنية"
+              }
+              time={"منذ يومين"} />
+          </div>
+          <div className="newBox">
             <NewsBoxNew image={"/assets/home_2.png"}
-            type={"فئة 1"}
-            title={
-              "وزير الداخلية يعقد اجتماعًا موسعًا لمناقشة الأوضاع الأمنية"
-            }
-            time={"منذ يومين"} />
-            </div>
-            <div className="newBox mb-2">
-            <NewsBoxNew image={"/assets/home_2.png"}
-            type={"فئة 1"}
-            title={
-              "وزير الداخلية يعقد اجتماعًا موسعًا لمناقشة الأوضاع الأمنية"
-            }
-            time={"منذ يومين"} />
-            </div>
+              type={"فئة 1"}
+              title={
+                "وزير الداخلية يعقد اجتماعًا موسعًا لمناقشة الأوضاع الأمنية"
+              }
+              time={"منذ يومين"} />
+          </div>
         </div>
       </div>
 
     </div>
 
+  </section>
+}
+function DesitionsAndPhotos() {
+  return <section className="desitions-and-photos mb-5">
+    <div className="container">
+      <div className="row justify-content-between">
+        <div className="col-lg-5">
+          <MainTitle title={'القرارات'} />
+          <div className="new-box-content mb-3">
+            <NewBoxContent type={'فئه 1'} title={'وزير الداخلية يُقرر دمج عدد من مديريات الأمن التابعة للحكومة الليبية'} time={'منذ ساعتين'} />
+
+          </div>
+          <div className="new-box-content mb-3">
+            <NewBoxContent type={'فئه 1'} title={'وزير الداخلية يُقرر دمج عدد من مديريات الأمن التابعة للحكومة الليبية'} time={'منذ ساعتين'} />
+          </div>
+          <div className="new-box-content mb-3">
+            <NewBoxContent type={'فئه 1'} title={'وزير الداخلية يُقرر دمج عدد من مديريات الأمن التابعة للحكومة الليبية'} time={'منذ ساعتين'} />
+
+          </div>
+          <div className="new-box-content mb-3">
+            <NewBoxContent type={'فئه 1'} title={'وزير الداخلية يُقرر دمج عدد من مديريات الأمن التابعة للحكومة الليبية'} time={'منذ ساعتين'} />
+
+          </div>
+        </div>
+        <div className="col-lg-6">
+          <MainTitle title={'الصور'} />
+          <div className="desiscions-gallary">
+            <img src="/assets/home_1.png" alt="الوزاره الليبيه" />
+            <img src="/assets/home_2.png" alt="الوزاره الليبيه" />
+            <img src="/assets/home_3.png" alt="الوزاره الليبيه" />
+            <img src="/assets/home_4.png" alt="الوزاره الليبيه" />
+            <img src="/assets/home_1.png" alt="الوزاره الليبيه" />
+            <img src="/assets/home_2.png" alt="الوزاره الليبيه" />
+            <img src="/assets/home_3.png" alt="الوزاره الليبيه" />
+            <img src="/assets/home_4.png" alt="الوزاره الليبيه" />
+            <img src="/assets/home_2.png" alt="الوزاره الليبيه" />
+            <img src="/assets/home_1.png" alt="الوزاره الليبيه" />
+            <img src="/assets/home_1.png" alt="الوزاره الليبيه" />
+            <img src="/assets/home_1.png" alt="الوزاره الليبيه" />
+
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 }
 

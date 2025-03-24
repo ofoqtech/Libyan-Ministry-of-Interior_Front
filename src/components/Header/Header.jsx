@@ -1,19 +1,42 @@
 import { Link, NavLink } from "react-router-dom";
 import "./header.css";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import useLocalStorage from "use-local-storage";
 function Header() {
   const [mobHeader, setMobHeader] = useState(false);
 
+  const [t, i18n] = useTranslation("global");
+  const [lang, setLang] = useLocalStorage("lang", "ar");
+  const dir = i18n.dir();
+
+  const handleChange = (value) => {
+    setLang(value);
+    i18n.changeLanguage(value);
+    setMobHeader(false);
+  };
+
+  /* eslint-disable */
+  useEffect(() => {
+    i18n.changeLanguage(lang);
+    console.log(dir)
+    document.dir = dir;
+    document.title =
+      localStorage.getItem("lang") === `"ar"`
+        ? "الوزاره الداخلية بالحكومة الليبية"
+        : "Ministry of Interior of the Libyan government";
+  }, [dir, i18n, lang]);
+
+
   return (
     <>
-      <DesktopHeader mobHeader={mobHeader} setMobHeader={setMobHeader} />
-      <ModileHeader mobHeader={mobHeader} setMobHeader={setMobHeader} />
+      <DesktopHeader t={t} mobHeader={mobHeader} setMobHeader={setMobHeader} handleChange={handleChange} />
+      <ModileHeader t={t} mobHeader={mobHeader} setMobHeader={setMobHeader} handleChange={handleChange} />
     </>
   );
 }
 
-function DesktopHeader({ mobHeader, setMobHeader }) {
+function DesktopHeader({ mobHeader, setMobHeader, handleChange, t }) {
   return (
     <div className="header px-2">
       <div className="container px-2">
@@ -26,19 +49,19 @@ function DesktopHeader({ mobHeader, setMobHeader }) {
               <Link to={"/"}> الرئيسية</Link>
             </div>
             <div className="link menu">
-              <Link to={"/about"}>عن الوزارة</Link>
+              <Link to={"/"}>عن الوزارة</Link>
               <i className="uil uil-angle-down"></i>
             </div>
             <div className="link menu">
               <Link to={"/services"}>الخدمات</Link>
-              <i className="uil uil-angle-down"></i>
+
             </div>
             <div className="link menu">
               <Link to={"/"}>المكتب الاعلامي</Link>
               <i className="uil uil-angle-down"></i>
             </div>
             <div className="link">
-              <Link to={"/"}>تواصل معنا</Link>
+              <Link to={"/contact"}>تواصل معنا</Link>
             </div>
 
           </div>
@@ -46,8 +69,8 @@ function DesktopHeader({ mobHeader, setMobHeader }) {
             <i className="uil uil-globe"></i>
             <div className="lang-menu">
               <ul>
-                <li>العربية</li>
-                <li>الانجليزية</li>
+                <li className="w-100" onClick={() => handleChange("ar")}>{t('header.ar')}</li>
+                <li onClick={() => handleChange("en")}>{t('header.en')}</li>
               </ul>
             </div>
           </div>
@@ -60,7 +83,7 @@ function DesktopHeader({ mobHeader, setMobHeader }) {
   );
 }
 
-function ModileHeader({ mobHeader, setMobHeader }) {
+function ModileHeader({ mobHeader, setMobHeader, handleChange, t }) {
   return (
     <>
       <div
@@ -82,26 +105,26 @@ function ModileHeader({ mobHeader, setMobHeader }) {
         <ul>
           <li>
             <NavLink to={"/"} onClick={() => setMobHeader(false)}>
-               الرئيسية
+              الرئيسية
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/1"} onClick={() => setMobHeader(false)}>
+            <NavLink to={"/"} onClick={() => setMobHeader(false)}>
               عن الوزارة
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/2"} onClick={() => setMobHeader(false)}>
+            <NavLink to={"/services"} onClick={() => setMobHeader(false)}>
               الخدمات
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/3"} onClick={() => setMobHeader(false)}>
+            <NavLink to={"/"} onClick={() => setMobHeader(false)}>
               المكتب الاعلامي
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/4"} onClick={() => setMobHeader(false)}>
+            <NavLink to={"/contact"} onClick={() => setMobHeader(false)}>
               تواصل معنا
             </NavLink>
           </li>
@@ -118,14 +141,14 @@ function ModileHeader({ mobHeader, setMobHeader }) {
               اللغه
             </div>
             <ul className="dropdown-menu language-mob" aria-labelledby="dropdownMenuButton">
-              <li>
+              <li onClick={() => handleChange("ar")}>
                 <a className="dropdown-item" href="#">
-                  العربيه
+                {t('header.ar')}
                 </a>
               </li>
-              <li>
+              <li onClick={() => handleChange("en")}>
                 <a className="dropdown-item" href="#">
-                  English
+                {t('header.en')}
                 </a>
               </li>
             </ul>

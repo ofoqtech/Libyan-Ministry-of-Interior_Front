@@ -1,0 +1,22 @@
+footer{
+    padding: 60px 0;
+    height: fit-content;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.footer-logo{
+    width: 200px;
+    max-width: 100%;
+}
+footer ul li a {
+    color: white;
+    font-weight: 300;
+}
+footer ul li{
+    margin-bottom: 10px;
+}
+@media(max-width:210px){
+    footer .social-logos ul{
+        flex-wrap : wrap;
+    }
+}

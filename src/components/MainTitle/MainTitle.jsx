@@ -1,9 +1,9 @@
 import "./main-title.css";
 
-const MainTitle = ({ title }) => {
+const MainTitle = ({ title, sizing = '' }) => {
   return (
     <div className="main-title">
-      <h1 className="title">{title}</h1>
+      <h1 className="title" style={{fontSize : sizing}}>{title}</h1>
       
       <div className="lines">
         <span className="line"></span>
