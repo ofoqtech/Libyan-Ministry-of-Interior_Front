@@ -40,3 +40,6 @@ li {
 .global-container{
   padding-bottom: 60px;
 }
+.modal.show{
+  z-index: 1221;
+}

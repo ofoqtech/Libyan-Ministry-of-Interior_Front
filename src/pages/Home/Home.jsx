@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import MainTitle from "../../components/MainTitle/MainTitle";
 import CommonNewsBox from "../../components/CommonNewsBox/CommonNewsBox";
 import { Modal } from "react-bootstrap";
+import { NewsBoxNew } from "../../components/NewsBoxNew/NewsBoxNew";
 
 
 const Home = () => {
@@ -18,6 +19,7 @@ const Home = () => {
       <TodayNews />
       <PrimaryNews />
       <NewsSliderBoxes />
+      <NewsInternalPlatform />
     </>
   );
 };
@@ -477,7 +479,7 @@ function NewsSliderBoxes() {
                   </div>
                   <div>
                     <div>
-                      <h6>{news.title}</h6> 
+                      <h6>{news.title}</h6>
                       <p className="text-muted mb-0">{news.time}</p>
                     </div>
                   </div>
@@ -489,14 +491,14 @@ function NewsSliderBoxes() {
           ))}
 
         </Swiper>
-        
+
 
       </div>
 
       {/* Modal */}
       <Modal show={isModalOpen} onHide={closeModal} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Video</Modal.Title>
+          <Modal.Title></Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <iframe
@@ -512,6 +514,70 @@ function NewsSliderBoxes() {
       </Modal>
     </section>
   );
+}
+function NewsInternalPlatform() {
+  return <section className="news-internal-platform">
+    <div className="container">
+      <MainTitle title={"اخبار الداخليه"} />
+      <div className="row">
+        <div className="col-lg-8">
+          <CommonNewsBox
+            image={"/assets/home_3.png"}
+            type={"فئة 1"}
+            title={
+              "وزير الداخلية يعقد اجتماعًا موسعًا لمناقشة الأوضاع الأمنية"
+            }
+            time={"منذ يومين"}
+          />
+
+        </div>
+        <div className="col-lg-4">
+        <div className="newBox mb-2">
+            <NewsBoxNew image={"/assets/home_2.png"}
+            type={"فئة 1"}
+            title={
+              "وزير الداخلية يعقد اجتماعًا موسعًا لمناقشة الأوضاع الأمنية"
+            }
+            time={"منذ يومين"} />
+            </div>
+            <div className="newBox mb-2">
+            <NewsBoxNew image={"/assets/home_2.png"}
+            type={"فئة 1"}
+            title={
+              "وزير الداخلية يعقد اجتماعًا موسعًا لمناقشة الأوضاع الأمنية"
+            }
+            time={"منذ يومين"} />
+            </div>
+            <div className="newBox mb-2">
+            <NewsBoxNew image={"/assets/home_2.png"}
+            type={"فئة 1"}
+            title={
+              "وزير الداخلية يعقد اجتماعًا موسعًا لمناقشة الأوضاع الأمنية"
+            }
+            time={"منذ يومين"} />
+            </div>
+            <div className="newBox mb-2">
+            <NewsBoxNew image={"/assets/home_2.png"}
+            type={"فئة 1"}
+            title={
+              "وزير الداخلية يعقد اجتماعًا موسعًا لمناقشة الأوضاع الأمنية"
+            }
+            time={"منذ يومين"} />
+            </div>
+            <div className="newBox mb-2">
+            <NewsBoxNew image={"/assets/home_2.png"}
+            type={"فئة 1"}
+            title={
+              "وزير الداخلية يعقد اجتماعًا موسعًا لمناقشة الأوضاع الأمنية"
+            }
+            time={"منذ يومين"} />
+            </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
 }
 
 
