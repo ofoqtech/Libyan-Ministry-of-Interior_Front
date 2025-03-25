@@ -1,0 +1,28 @@
+.MainNewsDetalis .titledetalis{
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 35px;
+
+}
+
+.MainNewsDetalis .image-container {
+    text-align: center;
+}
+.MainNewsDetalis .image-container img {
+    width: 100%;
+    height: auto;
+}
+
+.MainNewsDetalis .type {
+    display: block;
+    padding: 10px 20px;
+    border-radius: 3px;
+    font-size: 16px;
+    color: var(--white-color);
+    background-color: var(--main-color);
+    width: fit-content;
+}
+
+.MainNewsDetalis .card{
+    border:none
+}

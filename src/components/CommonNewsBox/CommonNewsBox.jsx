@@ -5,6 +5,7 @@ const CommonNewsBox = ({ image, type, title, time, styling = '', sizing = '', li
     <div
       className="common-news-box"
       style={{ backgroundImage: `url(${image})`, height: styling }}
+     
     >
       <span className="type">{type}</span>
       <h2 className="title" style={{fontSize : sizing, lineHeight : lineHeight}}>{title}</h2>

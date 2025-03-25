@@ -41,29 +41,97 @@ function DesktopHeader({ mobHeader, setMobHeader, handleChange, t }) {
     <div className="header px-2">
       <div className="container px-2">
         <div className="logo">
-          <img src="/assets/logo.png" alt="Logo" />
+          <img src="/assets/logo.png" alt={t('header.logo_alt')} />
         </div>
         <div className="left-header">
           <div className="links">
             <div className="link">
-              <Link to={"/"}> الرئيسية</Link>
+              <Link to={"/"}>{t('header.home')}</Link>
             </div>
-            <div className="link menu">
-              <Link to={"/"}>عن الوزارة</Link>
-              <i className="uil uil-angle-down"></i>
+            <div className="nav-item dropdown">
+              <Link
+                to="#"
+                className="nav-link dropdown-toggle text-white"
+                id="aboutDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {t('header.about')}
+              </Link>
+              <ul className="dropdown-menu" aria-labelledby="aboutDropdown">
+                <li>
+                  <Link className="dropdown-item" to="/about/overview">
+                    {t('header.overview')}
+                  </Link>
+                </li>
+                <li>
+                  <Link className="dropdown-item" to="/about/Ministry-words">
+                    {t('header.ministryWords')}
+                  </Link>
+                </li>
+                <li>
+                  <Link className="dropdown-item" to="/about/desicions">
+                    {t('header.decisions')}
+                  </Link>
+                </li>
+                <li>
+                  <Link className="dropdown-item" to="/about/emergencyCases">
+                    {t('header.emergencyCases')}
+                  </Link>
+                </li>
+                <li>
+                  <Link className="dropdown-item" to="/about/developmentgoals">
+                    {t('header.developmentGoals')}
+                  </Link>
+                </li>
+                <li>
+                  <Link className="dropdown-item" to="/about/faq">
+                    {t('header.faq')}
+                  </Link>
+                </li>
+              </ul>
             </div>
-            <div className="link menu">
-              <Link to={"/services"}>الخدمات</Link>
 
-            </div>
             <div className="link menu">
-              <Link to={"/"}>المكتب الاعلامي</Link>
-              <i className="uil uil-angle-down"></i>
+              <Link to={"/services"}>{t('header.services')}</Link>
             </div>
+            <div className="nav-item dropdown">
+              <Link
+                to="#"
+                className="nav-link dropdown-toggle text-white"
+                id="mediaOfficeDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {t('header.media_office')}
+              </Link>
+              <ul className="dropdown-menu" aria-labelledby="mediaOfficeDropdown">
+                <li>
+                  <Link className="dropdown-item" to="/mediaOffice/allnews">
+                    {t('header.all_news')}
+                  </Link>
+                </li>
+
+                <li>
+                  <Link className="dropdown-item" to="/mediaOffice/allmeetings">
+                    {t('header.all_meetings')}
+                  </Link>
+                </li>
+
+                <li>
+                  <Link className="dropdown-item" to="/mediaOffice/alllibrary">
+                    {t('header.all_library')}
+                  </Link>
+                </li>
+
+              </ul>
+            </div>
+
             <div className="link">
-              <Link to={"/contact"}>تواصل معنا</Link>
+              <Link to={"/contact"}>{t('header.contact')}</Link>
             </div>
-
           </div>
           <div className="lang lang-desktop">
             <i className="uil uil-globe"></i>
@@ -95,7 +163,7 @@ function ModileHeader({ mobHeader, setMobHeader, handleChange, t }) {
         <div className="nav-header">
           <Link to="/" onClick={() => setMobHeader(false)}>
             <div className="logo">
-              <img src="/assets/logo.png" alt="شعار وزاره الداخليه بالحكومه الليبيه " />
+              <img src="/assets/logo.png" alt={t('header.logo_alt')} />
             </div>
           </Link>
           <button className="close-btn" onClick={() => setMobHeader(false)}>
@@ -105,59 +173,58 @@ function ModileHeader({ mobHeader, setMobHeader, handleChange, t }) {
         <ul>
           <li>
             <NavLink to={"/"} onClick={() => setMobHeader(false)}>
-              الرئيسية
+              {t('header.home')}
             </NavLink>
           </li>
           <li>
             <NavLink to={"/"} onClick={() => setMobHeader(false)}>
-              عن الوزارة
+              {t('header.about')}
             </NavLink>
           </li>
           <li>
             <NavLink to={"/services"} onClick={() => setMobHeader(false)}>
-              الخدمات
+              {t('header.services')}
             </NavLink>
           </li>
           <li>
             <NavLink to={"/"} onClick={() => setMobHeader(false)}>
-              المكتب الاعلامي
+              {t('header.media_office')}
             </NavLink>
           </li>
           <li>
             <NavLink to={"/contact"} onClick={() => setMobHeader(false)}>
-              تواصل معنا
+              {t('header.contact')}
             </NavLink>
           </li>
-
           <div className="dropdown">
             <div
-              className="dropdown-toggle" // Add this class
+              className="dropdown-toggle"
               type="button"
               id="dropdownMenuButton"
               data-bs-toggle="dropdown"
               aria-expanded="false"
-              style={{ padding: "10px", cursor: "pointer" }} // Add cursor pointer for better UX
+              style={{ padding: "10px", cursor: "pointer" }}
             >
-              اللغه
+              {t('header.language')}
             </div>
             <ul className="dropdown-menu language-mob" aria-labelledby="dropdownMenuButton">
               <li onClick={() => handleChange("ar")}>
                 <a className="dropdown-item" href="#">
-                {t('header.ar')}
+                  {t('header.ar')}
                 </a>
               </li>
               <li onClick={() => handleChange("en")}>
                 <a className="dropdown-item" href="#">
-                {t('header.en')}
+                  {t('header.en')}
                 </a>
               </li>
             </ul>
           </div>
-
         </ul>
       </div>
     </>
   );
 }
+
 
 export default Header;

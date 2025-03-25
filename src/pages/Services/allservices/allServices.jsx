@@ -7,18 +7,26 @@ import "swiper/css";
 import "swiper/css/navigation";
 import {  useState } from "react";
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 
 export function AllServicesPage() {
-    return <>
-        <GlobalContainer text='الخدمات الإلكترونية' header='الرئيسية  - الخدمات الالكترونية' />
-        <AllServicesDetails />
+    const [t, i18n] = useTranslation("global");
 
-    </>
+    return (
+        <>
+            <GlobalContainer 
+                text={t('allServices.eServices')} 
+                header={t('allServices.header')} 
+            />
+            <AllServicesDetails t={t} />
+        </>
+    );
 }
 
 
-function AllServicesDetails() {
+
+function AllServicesDetails({t}) {
     const [activeTab, setActiveTab] = useState(0);
     const [view, setView] = useState("form");
     const services = [

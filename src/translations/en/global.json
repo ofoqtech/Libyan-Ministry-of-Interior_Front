@@ -1,9 +1,151 @@
 {
-    "header": {
-        "home": "Home",
-        "contact": "Contact",
-        "about": "About",
-        "en": "English",
-        "ar": "Arabic"
+"header": {
+  "home": "Home",
+  "contact": "Contact Us",
+  "about": "About Ministry",
+  "all_news" : "News",
+  "all_meetings" : "Meetings",
+  "overview" : "Ministry Overview",
+  "ministryWords": "Minister's Speech",
+  "decisions": "Decisions",
+  "emergencyCases": "Emergency Cases",
+  "developmentGoals": "Development Goals",
+  "faq": "Frequently Asked Questions",
+  "all_library" : "Photo Library",
+  "services": "Services",
+  "media_office": "Media Office",
+  "minister_message": "Minister's Message",
+  "latest_news": "Latest News",
+  "news_article": {
+    "title": "Minister of Interior Holds a Broad Security Meeting at Al-Shati Security Directorate",
+    "date": "Two days ago",
+    "details": "Today, Thursday, His Excellency the Minister of Interior, Major General 'Essam Abu Zeriba,' held a broad meeting with security leaders at Al-Shati Security Directorate, in the presence of the Head of the Criminal Investigation Department, Major General 'Ahmed Al-Shamekh.'"
+},
+  "en": "English",
+  "ar": "Arabic",
+  "language": "Language"
+},
+"common_news": {
+  "title": "Common News",
+  "sample_title": "The Minister of Interior holds an extensive meeting to discuss security situations",
+  "category_1": "Category 1",
+  "2_days_ago": "2 days ago"
+},
+"today_news": {
+  "title": "Today's News",
+  "sample_title": "The Minister of Interior inspects security situations in the Municipality of Murzuq",
+  "category_1": "Category 1",
+  "2_days_ago": "2 days ago"
+},
+"primary_news": {
+  "title": "Primary News",
+  "subtitle": "Interior in a Minute",
+  "time": "2 days ago"
+},
+"news_slider_boxes": {
+  "title_1": "Key Ministry of Interior News in a Minute",
+  "title_2": "Libyan Government News from the Interior Platform",
+  "title_3": "Interior in a Minute",
+  "time": "1:59"
+},
+"news": {
+  "internal_title": "Ministry News",
+  "category_1": "Category 1",
+  "internal_meeting": "Extensive meeting to discuss security situations",
+  "two_days_ago": "2 days ago"
+},
+"decisions": {
+  "title": "Decisions",
+  "category_1": "Category 1",
+  "decision_merge": "Interior Minister decides to merge a number of security directorates of the Libyan government",
+  "two_hours_ago": "2 hours ago"
+},
+"photos": {
+  "title": "Photos",
+  "alt_text": "Image from decisions"
+},
+
+  "footer": {
+    "altLogo": "Ministry Logo",
+    "links": "Links",
+    "aboutMinistry": "About the Ministry",
+    "services": "Services",
+    "mediaOffice": "Media Office",
+    "contactUs": "Contact Us",
+    "followUs": "Follow Us",
+    "rights": "All rights reserved",
+    "programming": "Developed by Brmja Tech"
+  },
+  "allServices": {
+    "eServices": "Electronic Services",
+    "header": "Home - Electronic Services"
+  },
+  "contactUs": {
+    "contactUsText": "Contact Us",
+    "contactUsHeader": "Home - Contact Us",
+    "name": "Name",
+    "namePlaceholder": "Enter your name",
+    "phone": "Phone Number",
+    "phonePlaceholder": "Enter your phone number",
+    "email": "Email Address",
+    "emailPlaceholder": "Enter your email address",
+    "subject": "Subject",
+    "subjectPlaceholder": "Enter the subject",
+    "message": "Your Message",
+    "messagePlaceholder": "Enter your message",
+    "submitButton": "Submit"
+  },
+  "ministryWordsPage": {
+    "pageTitle": "Minister's Speech",
+    "breadcrumb": "Home - About the Ministry - Minister's Speech",
+    "mainHeading": "The Acting Minister of Interior, Major General Emad Mustafa Al-Trabelsi, participated today, Monday, in the 41st session of the Council of Arab Interior Ministers in Tunisia.",
+    "paragraph": "The Acting Minister of Interior, Major General Emad Mustafa Al-Trabelsi, participated today, Monday, in the 41st session of the Council of Arab Interior Ministers in Tunisia, in the presence of interior ministers of Arab countries, high-level security delegations, as well as representatives from the League of Arab States, the International Criminal Police Organization 'Interpol,' the United Nations Office on Counter-Terrorism, the United Nations Office on Drugs and Crime, Naif Arab University for Security Sciences, and the Arab Police Sports Federation. Among the key topics discussed during the session were the preparation of the 11th Arab Security Plan, the 9th Arab Media Plan for Security Awareness and Crime Prevention, and the 8th Interim Plan for the Arab Road Safety Strategy."
+  },
+  "decisionsPage": {
+    "pageTitle": "Decisions",
+    "breadcrumb": "Home - About the Ministry - Decisions",
+    "mainHeading": "The Minister of Interior decides to merge several security directorates affiliated with the Libyan government",
+    "paragraph": "The Minister of Interior, Major General Essam Abu Zariba, issued separate decisions to merge several security directorates affiliated with the Libyan government in the eastern, southeastern, and southwestern regions, reducing their number from 37 directorates to 16. According to the distribution of the directorates, the Benghazi Security Directorate includes (Benghazi, Suluq, Qaminis, Tokra, and Al-Abya.",
+    "readMore": "Read more.....",
+    "timeAgo": "2 days ago",
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next"
     }
+  },
+  "overview": {
+    "ministry_name": "Ministry of Interior, Government of Libya",
+    "ministry_description": "The Ministry of Interior of the Libyan government implements the legislations, laws, regulations, and decisions necessary to ensure the country's security, protect lives, honor, and property, and execute the policies, plans, and programs required for enforcing the legislations in the field of security and policing.",
+    "core_tasks_title": "Core Tasks and Responsibilities",
+    "task_1": "1 – Monitoring the implementation of the ministry's plans and policies and working to enhance security performance levels.",
+    "task_2": "2 – Participating in preparing financial estimates necessary for drafting the ministry's budget projects.",
+    "task_3": "3 – Maintaining security by taking the necessary measures and procedures to ensure its achievement.",
+    "task_4": "4 – Preparing studies and research on security and devising plans to ensure its achievement.",
+    "task_5": "5 – Taking actions related to expenditures from the ministry's budget in accordance with the applicable legislation.",
+    "task_6": "6 – Contracting for the implementation of projects specific to the ministry in accordance with the applicable legislation.",
+    "task_7": "7 – Preparing necessary plans and programs to prevent and address crimes and safeguard lives, honor, and property.",
+    "task_8": "8 – Handling personal status matters, protecting and securing tourists, tourist sites, and heritage sites, and guarding facilities, establishments, and critical objectives in accordance with applicable legislation.",
+    "task_9": "9 – Recruiting, training, and preparing qualified technical personnel to work in the police and training members of public security.",
+    "task_10": "10 – Conducting investigations, collecting evidence, identifying individuals, and examining crime scenes using scientific and technical methods to collect and preserve material evidence.",
+    "task_11": "11 – Developing and implementing civil defense plans and projects, combating fires, addressing general and natural disasters, training individuals on civil defense tasks, and forming air raid and fire monitoring teams.",
+    "task_12": "12 – Conducting minefield surveys, detecting and clearing bombs, and collecting, transporting, and disposing of explosives.",
+    "task_13": "13 – Carrying out land and sea rescue operations.",
+    "task_14": "14 – Handling traffic affairs on public roads, police aviation, road patrols (vehicular and pedestrian), and ensuring wired and wireless communication and operations room management.",
+    "task_15": "15 – Raising security awareness among citizens to address fires, natural disasters, and crime prevention through security media and issuing related publications.",
+    "task_16": "16 – Managing passports, nationality, ID cards, civil status matters, foreign residency, and immigration, and monitoring entry and exit movements through designated ports.",
+    "task_17": "17 – Handling public relations and international cooperation within the ministry's domain.",
+    "task_18": "18 – Managing Arab and international police affairs.",
+    "task_19": "19 – Supervising entities affiliated with the ministry.",
+    "task_20": "20 – Taking necessary measures to appoint officials for entities affiliated with the ministry in accordance with applicable legislation.",
+    "task_21": "21 – Issuing decisions on appointments, promotions, transfers, deputations, and loans in accordance with the ministry's budget and applicable legislation.",
+    "task_22": "22 – Preparing the ministry's final accounts.",
+    "task_23": "23 – Proposing programs and plans to improve the efficiency and performance level of ministry employees in coordination with relevant entities.",
+    "task_24": "24 – Exercising the competencies prescribed by applicable legislation."
+  },
+  "aboutMinistryPage": {
+    "pageTitle": "About the Ministry",
+    "breadcrumb": "Home - About the Ministry - About the Ministry"
+  }
+
+
 }

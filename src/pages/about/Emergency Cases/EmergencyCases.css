@@ -1,0 +1,40 @@
+.mainEmergencyCases .type{
+    display: block;
+    padding: 10px 20px;
+    border-radius: 3px;
+    font-size: 16px;
+    color: var(--white-color);
+    background-color: var(--main-color);
+    width: fit-content;
+}
+
+.mainEmergencyCases .btn-print{
+
+    background-color: #003F9C;
+    color: #fff;
+    padding: 6px 50px;
+
+}
+.mainEmergencyCases .btn-send{
+
+    background-color: #008000;
+    color: #fff;
+    padding: 6px 50px;
+
+}
+
+@media(max-width:320px){
+    .mainEmergencyCases .btn-print{
+
+     
+        padding: 6px 10px;
+    
+    }
+    .mainEmergencyCases .btn-send{
+    
+    
+        padding: 6px 10px;
+    
+    }
+}
+

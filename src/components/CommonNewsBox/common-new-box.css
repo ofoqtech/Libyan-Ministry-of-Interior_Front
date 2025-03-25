@@ -52,3 +52,10 @@
     line-height: 30px !important;
   }
 }
+[dir = "rtl"] .common-news-box  {
+  direction: rtl;
+}
+[dir = "ltr"] .common-news-box  {
+
+  direction: ltr;
+}

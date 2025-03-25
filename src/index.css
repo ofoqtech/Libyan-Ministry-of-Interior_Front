@@ -45,3 +45,17 @@ li {
 .swiper{
   direction: ltr;
 }
+[dir="rtl"] .accordion-button::after{
+  margin-left: 0 !important;
+margin-right: auto !important;
+}
+[dir="ltr"] .accordion-button::after{
+  margin-left: auto !important;
+  margin-right: 0 !important;
+
+  }
+@media(max-width:700px){
+  .not-found{
+    background-size: 100% 100% !important;
+  }
+}
