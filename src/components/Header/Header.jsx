@@ -110,7 +110,7 @@ function DesktopHeader({ mobHeader, setMobHeader, handleChange, t }) {
               <ul className="dropdown-menu" aria-labelledby="mediaOfficeDropdown">
                 <li>
                   <Link className="dropdown-item" to="/mediaOffice/allnews">
-                    {t('header.all_news')}
+                  {t('header.all_news')}
                   </Link>
                 </li>
 
@@ -176,26 +176,102 @@ function ModileHeader({ mobHeader, setMobHeader, handleChange, t }) {
               {t('header.home')}
             </NavLink>
           </li>
-          <li>
-            <NavLink to={"/"} onClick={() => setMobHeader(false)}>
+          <div className="dropdown">
+            <div
+              className="dropdown-toggle"
+              type="button"
+              id="dropdownMenuAbout"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              style={{ padding: "10px", cursor: "pointer" }}
+            >
               {t('header.about')}
-            </NavLink>
-          </li>
+            </div>
+            <ul
+              className="dropdown-menu dropdown-menu-end"
+              aria-labelledby="dropdownMenuAbout"
+              data-bs-popper="static"
+            >
+              <li>
+                <Link className="dropdown-item" to="/about/overview">
+                  {t('header.overview')}
+                </Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/about/Ministry-words">
+                  {t('header.ministryWords')}
+                </Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/about/desicions">
+                  {t('header.decisions')}
+                </Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/about/emergencyCases">
+                  {t('header.emergencyCases')}
+                </Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/about/developmentgoals">
+                  {t('header.developmentGoals')}
+                </Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/about/faq">
+                  {t('header.faq')}
+                </Link>
+              </li>
+            </ul>
+          </div>
           <li>
             <NavLink to={"/services"} onClick={() => setMobHeader(false)}>
               {t('header.services')}
             </NavLink>
           </li>
-          <li>
-            <NavLink to={"/"} onClick={() => setMobHeader(false)}>
-              {t('header.media_office')}
-            </NavLink>
-          </li>
+          <div className="dropdown">
+  <div
+    className="dropdown-toggle"
+    type="button"
+    id="dropdownMenuAbout"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+    style={{ padding: "10px", cursor: "pointer" }}
+  >
+  {t('header.media_office')}
+</div>
+  <ul
+    className="dropdown-menu dropdown-menu-end"
+    aria-labelledby="dropdownMenuAbout"
+    data-bs-popper="static"
+  >
+                <li>
+                  <Link className="dropdown-item" to="/mediaOffice/allnews">
+                  {t('header.all_news')}
+                  </Link>
+                </li>
+
+                <li>
+                  <Link className="dropdown-item" to="/mediaOffice/allmeetings">
+                    {t('header.all_meetings')}
+                  </Link>
+                </li>
+
+                <li>
+                  <Link className="dropdown-item" to="/mediaOffice/alllibrary">
+                    {t('header.all_library')}
+                  </Link>
+                </li>
+   
+  </ul>
+</div>
           <li>
             <NavLink to={"/contact"} onClick={() => setMobHeader(false)}>
               {t('header.contact')}
             </NavLink>
           </li>
+
+
           <div className="dropdown">
             <div
               className="dropdown-toggle"

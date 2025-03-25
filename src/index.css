@@ -37,10 +37,15 @@ li {
 }
 
 .global-container{
+  background-repeat: no-repeat;
+    background-size: 100% 100%;
   padding-bottom: 60px;
 }
 .modal.show{
   z-index: 1221;
+}
+.dropdown-menu li{
+  margin: 10px 0 !important;
 }
 .swiper{
   direction: ltr;
@@ -49,11 +54,7 @@ li {
   margin-left: 0 !important;
 margin-right: auto !important;
 }
-[dir="ltr"] .accordion-button::after{
-  margin-left: auto !important;
-  margin-right: 0 !important;
 
-  }
 @media(max-width:700px){
   .not-found{
     background-size: 100% 100% !important;

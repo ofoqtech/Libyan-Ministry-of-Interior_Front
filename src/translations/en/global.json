@@ -1,70 +1,69 @@
 {
-"header": {
-  "home": "Home",
-  "contact": "Contact Us",
-  "about": "About Ministry",
-  "all_news" : "News",
-  "all_meetings" : "Meetings",
-  "overview" : "Ministry Overview",
-  "ministryWords": "Minister's Speech",
-  "decisions": "Decisions",
-  "emergencyCases": "Emergency Cases",
-  "developmentGoals": "Development Goals",
-  "faq": "Frequently Asked Questions",
-  "all_library" : "Photo Library",
-  "services": "Services",
-  "media_office": "Media Office",
-  "minister_message": "Minister's Message",
-  "latest_news": "Latest News",
-  "news_article": {
-    "title": "Minister of Interior Holds a Broad Security Meeting at Al-Shati Security Directorate",
-    "date": "Two days ago",
-    "details": "Today, Thursday, His Excellency the Minister of Interior, Major General 'Essam Abu Zeriba,' held a broad meeting with security leaders at Al-Shati Security Directorate, in the presence of the Head of the Criminal Investigation Department, Major General 'Ahmed Al-Shamekh.'"
-},
-  "en": "English",
-  "ar": "Arabic",
-  "language": "Language"
-},
-"common_news": {
-  "title": "Common News",
-  "sample_title": "The Minister of Interior holds an extensive meeting to discuss security situations",
-  "category_1": "Category 1",
-  "2_days_ago": "2 days ago"
-},
-"today_news": {
-  "title": "Today's News",
-  "sample_title": "The Minister of Interior inspects security situations in the Municipality of Murzuq",
-  "category_1": "Category 1",
-  "2_days_ago": "2 days ago"
-},
-"primary_news": {
-  "title": "Primary News",
-  "subtitle": "Interior in a Minute",
-  "time": "2 days ago"
-},
-"news_slider_boxes": {
-  "title_1": "Key Ministry of Interior News in a Minute",
-  "title_2": "Libyan Government News from the Interior Platform",
-  "title_3": "Interior in a Minute",
-  "time": "1:59"
-},
-"news": {
-  "internal_title": "Ministry News",
-  "category_1": "Category 1",
-  "internal_meeting": "Extensive meeting to discuss security situations",
-  "two_days_ago": "2 days ago"
-},
-"decisions": {
-  "title": "Decisions",
-  "category_1": "Category 1",
-  "decision_merge": "Interior Minister decides to merge a number of security directorates of the Libyan government",
-  "two_hours_ago": "2 hours ago"
-},
-"photos": {
-  "title": "Photos",
-  "alt_text": "Image from decisions"
-},
-
+  "header": {
+    "home": "Home",
+    "contact": "Contact Us",
+    "about": "About Ministry",
+    "all_news": "News",
+    "all_meetings": "Meetings",
+    "overview": "Ministry Overview",
+    "ministryWords": "Minister's Speech",
+    "decisions": "Decisions",
+    "emergencyCases": "Emergency Cases",
+    "developmentGoals": "Development Goals",
+    "faq": "Frequently Asked Questions",
+    "all_library": "Photo Library",
+    "services": "Services",
+    "media_office": "Media Office",
+    "minister_message": "Minister's Message",
+    "latest_news": "Latest News",
+    "news_article": {
+      "title": "Minister of Interior Holds a Broad Security Meeting at Al-Shati Security Directorate",
+      "date": "Two days ago",
+      "details": "Today, Thursday, His Excellency the Minister of Interior, Major General 'Essam Abu Zeriba,' held a broad meeting with security leaders at Al-Shati Security Directorate, in the presence of the Head of the Criminal Investigation Department, Major General 'Ahmed Al-Shamekh.'"
+    },
+    "en": "English",
+    "ar": "Arabic",
+    "language": "Language"
+  },
+  "common_news": {
+    "title": "Common News",
+    "sample_title": "The Minister of Interior holds an extensive meeting to discuss security situations",
+    "category_1": "Category 1",
+    "2_days_ago": "2 days ago"
+  },
+  "today_news": {
+    "title": "Today's News",
+    "sample_title": "The Minister of Interior inspects security situations in the Municipality of Murzuq",
+    "category_1": "Category 1",
+    "2_days_ago": "2 days ago"
+  },
+  "primary_news": {
+    "title": "Primary News",
+    "subtitle": "Interior in a Minute",
+    "time": "2 days ago"
+  },
+  "news_slider_boxes": {
+    "title_1": "Key Ministry of Interior News in a Minute",
+    "title_2": "Libyan Government News from the Interior Platform",
+    "title_3": "Interior in a Minute",
+    "time": "1:59"
+  },
+  "news": {
+    "internal_title": "Ministry News",
+    "category_1": "Category 1",
+    "internal_meeting": "Extensive meeting to discuss security situations",
+    "two_days_ago": "2 days ago"
+  },
+  "decisions": {
+    "title": "Decisions",
+    "category_1": "Category 1",
+    "decision_merge": "Interior Minister decides to merge a number of security directorates of the Libyan government",
+    "two_hours_ago": "2 hours ago"
+  },
+  "photos": {
+    "title": "Photos",
+    "alt_text": "Image from decisions"
+  },
   "footer": {
     "altLogo": "Ministry Logo",
     "links": "Links",
@@ -75,10 +74,6 @@
     "followUs": "Follow Us",
     "rights": "All rights reserved",
     "programming": "Developed by Brmja Tech"
-  },
-  "allServices": {
-    "eServices": "Electronic Services",
-    "header": "Home - Electronic Services"
   },
   "contactUs": {
     "contactUsText": "Contact Us",
@@ -113,6 +108,46 @@
       "next": "Next"
     }
   },
+  "decisionDetailsPage": {
+    "pageTitle": "Decisions",
+    "breadcrumb": "Home - About the Ministry - Decisions - The Minister of Interior decides to merge several security directorates affiliated with the Libyan government",
+    "mainHeading": "The Minister of Interior decides to merge several security directorates affiliated with the Libyan government",
+    "timeAgo": "2 days ago",
+    "paragraph": "The Minister of Interior, Major General Essam Abu Zariba, issued separate decisions to merge several security directorates affiliated with the Libyan government in the eastern, southeastern, and southwestern regions, reducing their number from 37 directorates to 16. According to the distribution of the directorates, the Benghazi Security Directorate includes (Benghazi, Suluq, Qaminis, Tokra, and Al-Abya), the Butnan Directorate includes (Tobruk, Umm Sa'ad, and Bir Al-Ashhab), the Derna Security Directorate includes (Derna and Umm Al-Razam), the Quba Security Directorate includes (Quba, Al-Abrak, and Al-Qayqab), the Green Mountain Directorate includes (Shahat, Al-Bayda, Werdama, and part of the Coast Directorate), the Marj Directorate includes (Marj, Jardas Al-Abid, and part of the Coast Directorate), the Ajdabiya Directorate includes (Ajdabiya, Ras Lanuf, and the area up to Bishr Police Center), and so on. These measures aim to enhance security and public safety.",
+    "relatedArticles": "Related Articles"
+  },
+  "emergency_cases": {
+    "title": "Handling Emergency Cases",
+    "breadcrumb": "Home - About Ministry - Handling Emergency Cases",
+    "important_numbers": "Important Numbers",
+    "important_numbers_description": "In case of emergency, you can contact the following numbers from anywhere in Libya",
+    "call_police": "- 190 to contact the Police",
+    "call_ambulance": "- 998 to contact Ambulance",
+    "call_civil_defense": "- 997 to contact Civil Defense",
+    "traffic_accidents": "Traffic Accidents",
+    "traffic_accidents_description": "In case of an accident, call the police at the free emergency number 999 from anywhere in Libya and report the accident location and any injuries requiring an ambulance. Follow police instructions and remember that all accidents must be reported, no matter how minor. For minor traffic accidents, move your car to the side of the road if possible to avoid obstructing traffic.",
+    "fire": "When Fires Break Out",
+    "fire_instructions": {
+      "0": "Call the free emergency number (997) from anywhere in Libya and follow the instructions.",
+      "1": "Evacuate the area immediately and head to the nearest emergency exit.",
+      "2": "Move toward the exits calmly and do not rush.",
+      "3": "Do not stay to collect your belongings under any circumstances.",
+      "4": "If possible, close doors as you leave to prevent the fire from spreading.",
+      "5": "Do not use the elevator when leaving.",
+      "6": "If possible, try to extinguish the fire with available extinguishers without risking your life or others'.",
+      "7": "Do not return to the building until the police or civil defense declares it safe.",
+      "8": "Utilize smart protection and control systems, if available, to detect and prevent fires in commercial buildings and residential apartments."
+    },
+    "send_request": "Send Request",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "description": "Description",
+      "print": "Print",
+      "send": "Send"
+    }
+  },
   "overview": {
     "ministry_name": "Ministry of Interior, Government of Libya",
     "ministry_description": "The Ministry of Interior of the Libyan government implements the legislations, laws, regulations, and decisions necessary to ensure the country's security, protect lives, honor, and property, and execute the policies, plans, and programs required for enforcing the legislations in the field of security and policing.",
@@ -142,10 +177,188 @@
     "task_23": "23 – Proposing programs and plans to improve the efficiency and performance level of ministry employees in coordination with relevant entities.",
     "task_24": "24 – Exercising the competencies prescribed by applicable legislation."
   },
+  "page.decisions": "Decisions",
+  "page.header": "Home - About the Ministry - Decisions - The Minister of Interior Decides to Merge Several Security Directorates of the Libyan Government",
+  "details.title": "The Minister of Interior Decides to Merge Several Security Directorates of the Libyan Government",
+  "details.time_ago": "2 days ago",
+  "details.body": "The Minister of Interior, Major General Essam Abu Zreiba, issued separate decisions to merge several security directorates of the Libyan government in the eastern, southeastern, and southwestern regions, reducing their number from 37 directorates to 16...",
+  "gallery.image_alt": "Image",
+  "related.title": "Related Articles",
+  "related.article_title": "The Minister of Interior Inspects Security Conditions in the Municipality of Murzuq",
+  "related.time_ago": "2 days ago",
   "aboutMinistryPage": {
     "pageTitle": "About the Ministry",
     "breadcrumb": "Home - About the Ministry - About the Ministry"
-  }
-
-
+  },
+  "page.faq.title": "Frequently Asked Questions",
+  "page.faq.header": "Home - About the Ministry - Frequently Asked Questions",
+  "faq.section.title": "Frequently Asked Questions",
+  "faq.item1.question": "The applicant submitted a request for a visitor's permit but has not yet received approval.",
+  "faq.item1.answer": "Please file a complaint on the Ministry of Interior's platforms to investigate the reason for the delay:",
+  "faq.item1.list1": "Smart app: Select 'Help,' then choose 'Complaints.'",
+  "faq.item2.question": "Can the criminal record certificate be amended after issuance?",
+  "faq.item2.answer": "The criminal record certificate cannot be amended after issuance, but you can request a new certificate.",
+  "faq.item3.question": "What are the required documents for a work permit?",
+  "faq.item3.answer": "The required documents include: a copy of the passport, a personal photo, an employment contract, and any additional documents requested by the relevant authority.",
+  "faq.item4.question": "How can I update my residence information?",
+  "faq.item4.answer": "To update your residence information, please visit the website of the Federal Authority for Identity and Citizenship or their smart app.",
+  "faq.item5.question": "Can I apply for a multiple-entry visit visa?",
+  "faq.item5.answer": "Yes, you can apply for a multiple-entry visit visa through the website of the Federal Authority for Identity and Citizenship.",
+  "meetings": {
+    "title": "Meetings",
+    "header": "Home - Media Office - Meetings",
+    "meeting1": {
+      "title": "Minister of Interior Inspects Security Conditions in Murzuq Municipality",
+      "description": "The Minister of Interior, Major General 'Essam Abu Zriba,' held an extensive meeting today, Thursday, with security leaders in the Al-Shati Security Directorate...",
+      "time": "2 days ago"
+    },
+    "readMore": "Read more..."
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "meetingsDetails": {
+    "title": "Meetings",
+    "header": "Home - Media Office - Meetings - Minister of Interior Inspects Security Conditions in Murzuq Municipality",
+    "mainTitle": "Minister of Interior Inspects Security Conditions in Murzuq Municipality",
+    "time": "2 days ago",
+    "description": "The Minister of Interior, Major General Essam Abu Zariba, conducted an inspection visit to the Municipality of Murzuq today, Wednesday, accompanied by the Head of the Ministry's Office in the Southern Region, the Head of the Criminal Investigation Authority, the Director of the General Directorate of Security Operations, and the Director of the General Directorate of Central Support. He was received by the Director of Security, Major General Dr. Osama Awidan, along with several security leaders, the Mayor of the Municipality, and the city's dignitaries and elders. As part of his field tour to monitor security conditions and enhance stability, the Minister held an extensive meeting with the Municipal Council, dignitaries, and elders of the city at the Security Directorate headquarters. During the meeting, he listened to their security demands and needs and discussed the challenges facing the municipality in this context. The attendees commended the Minister's continuous efforts, expressing their appreciation for his personal commitment to improving the security situation through his repeated visits to the region and his direct follow-up on security developments there. For his part, the Minister emphasized the importance of close cooperation between the Ministry of Interior and the local community, affirming that the Ministry will spare no effort in enhancing security and stability, pursuing lawbreakers, and protecting citizens. He also praised the role of the city's elders and dignitaries in supporting the Security Directorate and police stations and their solidarity with security personnel in their efforts to enforce the law and restore stability. The Minister reiterated that the Ministry places the security of citizens and the safety of Libya at the top of its priorities and is committed to taking the necessary measures to enhance security across all parts of the country.",
+    "imageAlt": "Image",
+    "relatedArticles": "Related Articles",
+    "relatedArticle1": {
+      "title": "Minister of Interior Inspects Security Conditions ",
+      "time": "2 days ago"
+    },
+    "relatedArticle2": {
+      "title": "Minister of Interior Visits Southern Municipalities",
+      "time": "3 days ago"
+    },
+    "relatedArticle3": {
+      "title": "Minister Discusses Security Challenges in Al-Shati",
+      "time": "4 days ago"
+    }
+  },
+  "developmentGoals": {
+    "title": "Sustainable Development Goals",
+    "breadcrumb": "Home - About Ministry - Sustainable Development Goals",
+    "imageAlt": "Development Goals Image",
+    "cardTitle": "Peace, Justice, and Strong Institutions",
+    "cardDescription": "Crime Prevention: Implement effective strategies to reduce crime and enhance public security. Rule of Law: Ensure the fair and transparent enforcement of laws and the protection of human rights. Anti-Corruption: Implement policies to combat corruption within security institutions and enhance integrity.",
+    "timeAgo": "2 days ago",
+    "readMore": "Read more.....",
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next"
+    }
+  },
+  "library": {
+    "imageLibrary": "Image Library",
+    "breadcrumb": "Home - Media Office - Image Library",
+    "articleTitle": "The Security Media lens documents the efforts of the General Directorate of Central Support in securing the match between our national team and the Mauritius team.",
+    "twoDaysAgo": "Two days ago",
+    "readMore": "Read more.....",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "allNews": {
+    "mainHeader": "Main News",
+    "breadcrumb": "Home - Media Office - Main News",
+    "newsTitle": "The Minister of Interior decides to merge several security directorates under the Libyan government",
+    "newsDescription": "The Minister of Interior, Major General 'Essam Abu Zeriba,' held an extensive meeting today, Thursday, with the security leaders in the Al-Shati Security Directorate, in the presence of the head of the Criminal Investigation Department, Major General 'Ahmed Al-Shamakh,' the head of the Illegal Immigration Control Department, Major General 'Salah Al-Khifaifi,' and the Security Director, Major General 'Wahbi Al-Rakh,' along with the directors of branches and security departments, as well as the heads of centers and sections affiliated with the directorate. During the meeting, His Excellency affirmed .....",
+    "readMore": "Read more.....",
+    "timeAgo": "2 days ago",
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next"
+    }
+  },
+  "main_news": "Main News",
+  "home": "Home",
+  "media_office": "Media Office",
+  "minister_security_meeting": "The Minister of Interior holds an extensive security meeting at the Al-Shati Security Directorate",
+  "minister_name": "Minister of Interior, Major General Essam Abu Zreiba",
+  "meeting_details": "The Minister of Interior, Major General Essam Abu Zariba, held an expanded meeting with security leaders at the Security Directorate of Al-Shate, today, Thursday, in the presence of the Head of the Criminal Investigation Authority, Major General Ahmed Al-Shamikh, the Head of the Anti-Illegal Immigration Authority, Major General Salah Al-Khafifi, the Director of Security, Major General Wahbi Al-Rakh, and the directors of the branches and security departments, in addition to the heads of the centers and departments affiliated with the directorate. During the meeting, the Minister emphasized the importance of strict adherence to the implementation of the law without leniency, stressing that citizens place their hopes in the security agencies to achieve security and stability, and that there is no room for leniency with any threats to public peace. The Minister also addressed the issue of appointments within the security institution, pointing out the necessity of establishing clear criteria to ensure the competence of security personnel and their ability to bear the responsibilities entrusted to them. The meeting discussed the main security challenges facing the region, and ways to improve security performance through developing emergency plans, enhancing coordination between various agencies, and providing the necessary supplies to the directorate and its components. The Minister issued instructions to quickly provide the directorate with the resources it needs, in accordance with what was presented by the Director of Security in Al-Shate. The Minister stressed the importance of",
+  "two_days_ago": "Two days ago",
+  "security_media": "The Security Media Lens Documents the Efforts of the General Support Department",
+  "time_ago": "2 days ago",
+  "related_articles": "Related Articles",
+  "minister_visit": "The Interior Minister Inspects Security Situation in Murzuq Municipality",
+  "allServices": {
+    "eServices": "Electronic Services",
+    "header": "Home - Electronic Services",
+    "newRequest": "New Request",
+    "requestsLog": "Requests Log",
+    "fullName": "Full Name",
+    "droneSerial": "Drone Serial Number",
+    "deviceType": "Device Type",
+    "deviceName": "Device Name",
+    "manufacturer": "Manufacturer",
+    "phoneNumber": "Phone Number",
+    "email": "Email",
+    "uploadImage": "Upload Image",
+    "submit": "Submit",
+    "searchServices": "Search in Services",
+    "search": "Search",
+    "reportingIncidents": "Reporting Incidents",
+    "reportingMissing": "Reporting a Missing Person",
+    "cyberCrime": "Reporting a Cyber Crime",
+    "idCard": "ID Card",
+    "monitor": "Monitor",
+    "drone": "Drone",
+    "camera": "Camera",
+    "trafficAccident": "Reporting Traffic Accidents",
+    "murderCrime": "Reporting a Murder Crime",
+    "environmentalIncident": "Reporting  Incidents",
+    "incidentsDetails": "Service details for incidents",
+    "missingDetails": "Service details for missing persons",
+    "cyberCrimeDetails": "Service details for cyber crimes",
+    "applyIdCard": "Apply for an ID Card",
+    "new_request": "New Request",
+    "request_history": "Request History",
+    "location": "Shooting Location",
+    "purpose": "Purpose of Shooting",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "serialNumber": "Camera Serial Number",
+    "apply": "more",
+    "electronicService": "Electronic Service"
+  },
+  "orders": {
+    "title": "Order History",
+    "reviewing": "Under Review",
+    "accepted": "Order Accepted",
+    "todayDate": "Today, {{date}}",
+    "view": "View",
+    "pending": "Under Review",
+    "approved": "Request Approved",
+    "status": {
+      "pending": "Under Review",
+      "approved": "Request Approved"
+    },
+    "date": "Today, March 20, 2025"
+  },
+  "Criminal-Reports": {
+    "eServices": "Raqeeb",
+    "header": "Home - Services - Raqeeb",
+    "fullName": "Full Name",
+    "phoneNumber": "Phone Number",
+    "email": "Email",
+    "uploadImage": "Upload Image",
+    "reportTitle": "Report Title",
+    "reportType": "Report Type",
+    "reportLink": "Report Link",
+    "reportSubject": "Report Subject",
+    "submit": "Submit"
+  },
+  "requestDetails": {
+    "header": "Home - E-Services - Request Status",
+    "statusTitle": "Request Status",
+    "accepted": "Request Accepted",
+    "date": "Today, {{date}}",
+    "imageAlt": "The Permit",
+    "description": "Description ..."
+  },
+  "new_request": "New Request",
+  "request_history": "Request History"
 }
