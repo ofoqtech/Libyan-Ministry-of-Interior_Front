@@ -3,8 +3,12 @@
     "home": "Home",
     "contact": "Contact Us",
     "about": "About Ministry",
+    "login": "Login",
     "all_news": "News",
     "all_meetings": "Meetings",
+    "navDate": "The Minister of Interior emphasizes the need to take strict measures",
+    "navDate2": "Thursday, May 3, 2025",
+    "breakingNews": "Breaking News",
     "overview": "Ministry Overview",
     "ministryWords": "Minister's Speech",
     "decisions": "Decisions",
@@ -25,6 +29,75 @@
     "ar": "Arabic",
     "language": "Language"
   },
+  "login": {
+    "welcomeBack": "Welcome back!",
+    "enterDetails": "Enter the following details to access your account!",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "loginBtn": "Log In",
+    "noAccount": "Don't have an account?",
+    "registerNow": "Register Now!"
+  },
+  "createAccount": {
+    "whoAreYou": "Who are you?",
+    "chooseOption": "Please choose the option that fits you",
+    "mediaProfessional": "Media Professional",
+    "mediaOrganization": "Media Organization"
+  },
+  "mediaRegistration": {
+    "title": "Register Your Info",
+    "basicInfo": "Basic Information",
+    "profileImage": "Profile Picture",
+    "fullName": "Full Name",
+    "namePlaceholder": "Name",
+    "phone": "Phone Number",
+    "phonePlaceholder": "+9665085858585",
+    "email": "Email",
+    "emailPlaceholder": "example@gmail.com",
+    "idNumber": "ID Number",
+    "idPlaceholder": "ID Number",
+    "nationality": "Nationality",
+    "selectNationality": "-- Choose from options --",
+    "nationalities": {
+      "saudi": "Saudi",
+      "egyptian": "Egyptian",
+      "jordanian": "Jordanian",
+      "syrian": "Syrian",
+      "palestinian": "Palestinian",
+      "sudanese": "Sudanese",
+      "moroccan": "Moroccan",
+      "other": "Other"
+    },
+    "cancel": "Cancel",
+    "createAccount": "Create Account"
+  },
+  "orgRegistration": {
+    "title": "Register Your Organization",
+    "basicInfo": "Basic Information",
+    "orgName": "Organization Name",
+    "orgNamePlaceholder": "Organization Name",
+    "orgType": "Organization Type",
+    "orgTypePlaceholder": "Organization Type",
+    "phone": "Phone Number",
+    "phonePlaceholder": "+9665085858585",
+    "email": "Email",
+    "emailPlaceholder": "example@gmail.com",
+    "idNumber": "ID Number",
+    "idPlaceholder": "ID Number",
+    "cancel": "Cancel",
+    "create": "Create"
+  },
+  "identical": {
+    "header": "Identification Card",
+    "header2": "Home - Services - Identification Card",
+    "header3": "City",
+    "header4": "Military Rank",
+    "header5": "Military Number",
+    "header6": "Authority",
+    "header7": "Date of Birth"
+  },
   "common_news": {
     "title": "Common News",
     "sample_title": "The Minister of Interior holds an extensive meeting to discuss security situations",
@@ -37,6 +110,16 @@
     "category_1": "Category 1",
     "2_days_ago": "2 days ago"
   },
+  "profile": {
+  "header1": "Profile",
+  "header2": "Home - My Account - Profile",
+  "header3": "Account Information",
+  "header4": "Welcome to your profile page",
+  "basicInfo": "Basic Information",
+  "requestHistory": "Request History",
+  "remove" : "Remove Account"
+
+},
   "primary_news": {
     "title": "Primary News",
     "subtitle": "Interior in a Minute",

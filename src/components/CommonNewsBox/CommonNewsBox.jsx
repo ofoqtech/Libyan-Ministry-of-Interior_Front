@@ -10,7 +10,7 @@ const CommonNewsBox = ({ image, type, title, time, styling = '', sizing = '', li
       <span className="type">{type}</span>
       <h2 className="title" style={{fontSize : sizing, lineHeight : lineHeight}}>{title}</h2>
       <div className="time">
-        <i class="uil uil-calendar-alt"></i> 
+        <i className="uil uil-calendar-alt"></i> 
         <p>{time}</p>
       </div>
     </div>

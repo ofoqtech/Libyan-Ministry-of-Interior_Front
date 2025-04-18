@@ -1,0 +1,53 @@
+.customNavbar {
+  background-image: linear-gradient(to right, #003F9C, #003F9C);
+  border-radius: 0 0 50px 50px;
+  padding: 40px;
+  text-align: center;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.navbarLogo {
+  width: 250px;
+}
+
+.cardContainer {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  width: 400px;
+}
+
+.serviceButton {
+  display: block;
+  width: 100%;
+  padding: 30px;
+  margin: 10px 0;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(to right, #003F9C, #003F9C);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.serviceButton:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .navbarLogo {
+    width: 220px;
+  }
+}
+
+@media (max-width: 300px) {
+  .navbarLogo {
+    width: 150px;
+  }
+}

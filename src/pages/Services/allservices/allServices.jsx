@@ -427,9 +427,9 @@ function AllServicesDetails() {
                               d="M5.33398 32L12.0007 25.3333L25.334 38.6667L52.0007 12L58.6673 18.6667L25.334 52L5.33398 32Z"
                               fill="#82CE3F"
                               stroke="#82CE3F"
-                              stroke-width="5.33333"
+                              strokeWidth="5.33333"
                               stroke-linecap="round"
-                              stroke-linejoin="round"
+                              strokeLinejoin="round"
                             />
                           </svg>
                           <div>
@@ -642,7 +642,7 @@ function AllServicesDetails() {
                                  <div className="list-group-item d-flex justify-content-between align-items-center">
                                      <div className="d-flex align-items-center list-status-item gap-2">
                                      <svg width="48" height="48" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5.33398 32L12.0007 25.3333L25.334 38.6667L52.0007 12L58.6673 18.6667L25.334 52L5.33398 32Z" fill="#82CE3F" stroke="#82CE3F" stroke-width="5.33333" stroke-linecap="round" stroke-linejoin="round" />
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5.33398 32L12.0007 25.3333L25.334 38.6667L52.0007 12L58.6673 18.6667L25.334 52L5.33398 32Z" fill="#82CE3F" stroke="#82CE3F" strokeWidth="5.33333" stroke-linecap="round" strokeLinejoin="round" />
                                                     </svg>
                                          <div>
                                              <p className="mb-1">{t("orders.status.approved")}</p>

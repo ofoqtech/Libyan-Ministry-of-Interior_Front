@@ -1,0 +1,56 @@
+.mediaReg__wrapper {
+  width: 100%;
+}
+
+.mediaReg__navbar {
+  background-image: linear-gradient(to right, #003F9C, #003F9C);
+  border-radius: 0 0 50px 50px;
+  padding: 40px;
+  text-align: center;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.mediaReg__navbar img {
+  width: 250px;
+}
+
+.mediaReg__card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px 20px;
+  width: 100%;
+}
+
+.bgBtn {
+  background-color: #003F9C;
+  color: #fff;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.bgBtn:hover {
+  background-color: #2466ca !important;
+  color: #fff;
+}
+
+.btnClose {
+  padding: 5px 50px;
+}
+
+.noUnderline {
+  text-decoration: none !important;
+}
+
+@media (max-width: 768px) {
+  .mediaReg__navbar img {
+    width: 220px;
+  }
+}
+
+@media (max-width: 300px) {
+  .mediaReg__navbar img {
+    width: 150px;
+  }
+}

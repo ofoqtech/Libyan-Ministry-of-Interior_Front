@@ -1,0 +1,52 @@
+.LoginPage .gradientBtn {
+  background-color: #003F9C;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 0;
+}
+.LoginPage .gradientBtn:hover{
+  background-color: #003F9C;
+color: white;
+}
+
+.LoginPage .bgLogin {
+  background-image: url("../../../public/assets/13777983_gradient_2 3.png");
+  border-radius: 20px;
+  height: 99vh;
+  text-align: center;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.LoginPage .account {
+  font-size: 16px;
+  color: #000;
+}
+
+.LoginPage .createSingin {
+  font-size: 16px;
+  padding: 5px 30px;
+}
+
+.LoginPage .logologin {
+  width: 300px;
+  max-width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .LoginPage .logologin {
+    width: 280px;
+  }
+
+  .LoginPage .account {
+    font-size: 14px;
+  }
+
+  .LoginPage .createSingin {
+    font-size: 14px;
+    padding: 3px 20px;
+  }
+}

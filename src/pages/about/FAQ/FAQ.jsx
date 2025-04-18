@@ -50,7 +50,7 @@ function MainFAQ() {
             <div key={index} className="accordion-item border mb-3">
               <h2 className="accordion-header" id={`heading${index}`}>
                 <button
-                  className={`accordion-button ${index !== 0 ? 'collapsed' : ''}`}
+                  className={`accordion-button faq-accordion-btn ${index !== 0 ? 'collapsed' : ''}`}
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target={`#collapse${index}`}
