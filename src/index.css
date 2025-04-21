@@ -89,3 +89,7 @@ margin-right: auto !important;
   left: 15px !important;
   right: initial !important;
 }
+[dir= 'ltr'] .accordion-button:after{
+margin-right : initial !important;
+  
+}
