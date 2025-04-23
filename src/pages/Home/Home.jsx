@@ -127,7 +127,7 @@ function CommonNews({ t }) {
                   type={t("common_news.category_1")}
                   more={t("news.read_more")}
                   newsDetailsItem={item.id}
-                  title={item.title}
+                  title={`${item.title.slice(0, 80)}...`}
                   time={`${item?.created_at?.slice(0, 10)}`}
                 />
               </SwiperSlide>
@@ -179,39 +179,39 @@ function TodayNews({ t }) {
           <div className="col-lg-4">
             {isLoading
               ? [1, 2].map((_, index) => (
-                  <div className="mb-3" key={index}>
-                    <div
-                      className="bg-secondary mb-2"
-                      style={{ height: "200px", width: "100%", borderRadius: "5px", opacity: 0.2 }}
-                    />
-                    <div
-                      className="bg-secondary"
-                      style={{ height: "20px", width: "80%", borderRadius: "5px", opacity: 0.2 }}
-                    />
-                  </div>
-                ))
+                <div className="mb-3" key={index}>
+                  <div
+                    className="bg-secondary mb-2"
+                    style={{ height: "200px", width: "100%", borderRadius: "5px", opacity: 0.2 }}
+                  />
+                  <div
+                    className="bg-secondary"
+                    style={{ height: "20px", width: "80%", borderRadius: "5px", opacity: 0.2 }}
+                  />
+                </div>
+              ))
               : TodayNews.slice(1, 3).map((news, index) => (
-                  <Link
-                    to={`/news/details/${news.id}`}
-                    key={index}
-                    style={{ textDecoration: "none", color: "black" }}
-                  >
-                    <div className="today-news-box position-relative mb-3">
-                      <div
-                        className="today-news-background mb-3"
-                        style={{
-                          backgroundImage: `url(${news.image_url})`,
-                          height: "200px",
-                          backgroundSize: "cover",
-                          backgroundPosition: "center",
-                        }}
-                      >
-                        <span className="type">{t("today_news.category_1")}</span>
-                      </div>
-                      <h6 style={{ lineHeight: "1.6" }}>{news?.name}</h6>
+                <Link
+                  to={`/news/details/${news.id}`}
+                  key={index}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <div className="today-news-box position-relative mb-3">
+                    <div
+                      className="today-news-background mb-3"
+                      style={{
+                        backgroundImage: `url(${news.image_url})`,
+                        height: "200px",
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                      }}
+                    >
+                      <span className="type">{t("today_news.category_1")}</span>
                     </div>
-                  </Link>
-                ))}
+                    <h6 style={{ lineHeight: "1.6" }}>{news?.name}</h6>
+                  </div>
+                </Link>
+              ))}
           </div>
 
           <div className="col-lg-8">
@@ -611,25 +611,25 @@ function NewsInternalPlatform() {
           <div className="row justify-content-center align-items-center mt-4">
             {isLoading
               ? [1, 2, 3].map((_, index) => (
-                  <div className="col-lg-6 mb-2" key={index}>
-                    <div
-                      className="bg-secondary mb-2"
-                      style={{ height: "150px", borderRadius: "8px", opacity: 0.2 }}
+                <div className="col-lg-6 mb-2" key={index}>
+                  <div
+                    className="bg-secondary mb-2"
+                    style={{ height: "150px", borderRadius: "8px", opacity: 0.2 }}
+                  />
+                </div>
+              ))
+              : newsList?.slice(1, 4).map((item, index) => (
+                <div className="col-lg-6 mb-2" key={index}>
+                  <div className="newBox mb-2">
+                    <NewsBoxNew
+                      image={item.image_url}
+                      type={t("news.category_1")}
+                      title={item.title}
+                      time={new Date(item.created_at).toLocaleDateString()}
                     />
                   </div>
-                ))
-              : newsList?.slice(1, 4).map((item, index) => (
-                  <div className="col-lg-6 mb-2" key={index}>
-                    <div className="newBox mb-2">
-                      <NewsBoxNew
-                        image={item.image_url}
-                        type={t("news.category_1")}
-                        title={item.title}
-                        time={new Date(item.created_at).toLocaleDateString()}
-                      />
-                    </div>
-                  </div>
-                ))}
+                </div>
+              ))}
           </div>
         </div>
       </div>
