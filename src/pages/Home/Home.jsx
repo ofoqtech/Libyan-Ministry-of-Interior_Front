@@ -218,10 +218,7 @@ function TodayNews({ t }) {
                 style={{ height: "300px", width: "100%", borderRadius: "10px", opacity: 0.2 }}
               />
             ) : TodayNews[2] && TodayNews[0] ? (
-              <Link
-                to={`/news/details/${TodayNews[2].id}`}
-                style={{ textDecoration: "none", color: "black" }}
-              >
+
                 <CommonNewsBox
                   image={TodayNews[2].image_url}
                   type={t("today_news.category_1")}
@@ -230,7 +227,6 @@ function TodayNews({ t }) {
                   lineHeight="50px"
                   styling="95.8%"
                 />
-              </Link>
             ) : null}
           </div>
           {TodayNews.length === 0 && <p>{t('noData')}</p>}

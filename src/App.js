@@ -40,6 +40,7 @@ import { ContactUs } from "./pages/contact-us/contactUs";
 import ForgetPassowrd from "./pages/ForgetPassword/ForgetPassword";
 import VertificationOtp from "./pages/vertification-otp/vertification-otp";
 import ChangePassword from "./pages/change password/changePassword";
+import ActiveAccount from "./pages/ActiveAccount/ActiveAccount";
 function LayoutWrapper({ children }) {
   const location = useLocation();
 
@@ -53,6 +54,7 @@ function LayoutWrapper({ children }) {
     "/mediadataregistration",
     "/registeringorganizationdata",
     "/forget-password",
+    '/active-account'
   ];
 
   const hideLayout = authRoutes.includes(location.pathname);
@@ -86,6 +88,7 @@ function AppRoutes() {
       <Route path="/contact" element={<ContactUs />} />
       <Route path="/forget-password" element={<ForgetPassowrd />} />
       <Route path="/services" element={<AllServicesPage />} />
+      <Route path="/active-account" element={<ActiveAccount />} />
       <Route path="/request-details/:id" element={<RequestDetailsPage />} />
       <Route
         path="/services/criminal-reports/:type1/:type2"

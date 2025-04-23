@@ -91,7 +91,11 @@ const Navigate = useNavigate();
                                     {t("login.loginBtn")}
                                 </button>
                             </form>
-                            <Link to={'/forget-password'} className="my-3 d-block">نسيت كلمه المرور؟</Link>
+                     <div className="d-flex justify-content-between align-items-center mt-3 mb-1">
+                     <Link to={'/forget-password'} className="my-3 d-block">نسيت كلمه المرور؟</Link>
+                     <Link to={'/active-account'} className="my-3 text-black d-block">تفعيل حسابك</Link>
+                     </div>
+
                             <div className="d-flex justify-content-center align-items-center mt-3 mb-1">
                                 <a href="#" className={`ms-3 ${styles.account}`}>
                                     {t("login.noAccount")}

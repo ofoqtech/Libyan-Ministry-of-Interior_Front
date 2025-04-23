@@ -6,6 +6,9 @@ import { useTranslation } from "react-i18next";
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import striptags from 'striptags';
+
+
 export default function DevelopmentGoals() {
   const { t } = useTranslation("global");
   return (
@@ -45,10 +48,11 @@ function MainDevelopmentGoals() {
       } finally {
         setLoading(false); // hide skeleton
       }
-    };
+    }
 
     getDevelopmentGoals();
   }, [i18n.language]);
+  const plainIncubations = striptags(developmentGoals.incubations);
 
   return (
     <section className="MainDevelopmentGoals my-5">
@@ -76,7 +80,7 @@ function MainDevelopmentGoals() {
                 alt={t("developmentGoals.imageAlt")}
               />
               <div className="col-lg-12 mx-auto">
-                <h5>{developmentGoals.incubations}</h5>
+                <h5>{plainIncubations}</h5>
                 <div className="d-flex justify-content-between align-items-center">
                   <span className="desicionstime mx-auto">
                     <i className="uil uil-calendar-alt ms-1"></i>{" "}

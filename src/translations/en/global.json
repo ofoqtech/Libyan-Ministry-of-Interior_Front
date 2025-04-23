@@ -368,6 +368,7 @@
     "previous": "Previous",
     "next": "Next"
   },
+  "acctiveAccount" : "Enter your email to send otp and  activate your account",
   "meetingsDetails": {
     "title": "Meetings",
     "header": "Home - Media Office - Meetings ",
