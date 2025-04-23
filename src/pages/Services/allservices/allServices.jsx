@@ -534,7 +534,11 @@ function AllServicesDetails() {
                   <div className="row">
                     <div className="col-md-12">
                       <div className="list-group">
-
+                        {(DronDetails?.result?.length === 0 && (
+                          <div className="text-center my-3">
+                            {t('noData')}
+                          </div>
+                        ))}
                         {DronDetails?.result?.map((item, index) => (
                           <div key={index} className="list-group-item d-flex justify-content-between align-items-center">
                             <div className="d-flex align-items-center list-status-item gap-2">
@@ -572,15 +576,15 @@ function AllServicesDetails() {
                                 </svg>
                               ) : item.status === "rejected" ? (<svg width="48" height="48" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M31.9992 3.2002C26.3031 3.2002 20.7349 4.88929 15.9988 8.05387C11.2627 11.2185 7.5713 15.7164 5.3915 20.9789C3.2117 26.2414 2.64136 32.0321 3.75262 37.6188C4.86387 43.2054 7.6068 48.3371 11.6346 52.3649C15.6623 56.3926 20.794 59.1356 26.3806 60.2468C31.9673 61.3581 37.758 60.7877 43.0205 58.6079C48.283 56.4281 52.781 52.7368 55.9456 48.0006C59.1101 43.2645 60.7992 37.6963 60.7992 32.0002C60.7992 24.362 57.765 17.0366 52.3639 11.6355C46.9629 6.23447 39.6375 3.2002 31.9992 3.2002ZM47.9992 35.2002H15.9992V28.8002H47.9992V35.2002Z" fill="#CE3F3F" />
-                            </svg>) : ''}
+                              </svg>) : ''}
 
                               <div>
                                 <p className="mb-1">{item.status}</p>
-                                <small>{item.created_at.slice(0,10)}</small>
+                                <small>{item.created_at.slice(0, 10)}</small>
                               </div>
                             </div>
                             <Link
-                         to={`/request-details/${item.id}`}
+                              to={`/request-details/${item.id}`}
                               className="btn btn-link text-primary text-decoration-none"
                             >
                               {t("orders.view")}
@@ -732,7 +736,11 @@ function AllServicesDetails() {
                   <div className="row">
                     <div className="col-md-12">
                       <div className="list-group">
-                       
+                      {(CameraDetails?.result?.length === 0 && (
+                          <div className="text-center my-3">
+                            {t('noData')}
+                          </div>
+                        ))}
                         {CameraDetails?.result?.map((item, index) => (
                           <div key={index} className="list-group-item mb-3 d-flex justify-content-between align-items-center">
                             <div className="d-flex align-items-center list-status-item gap-2">
@@ -772,7 +780,7 @@ function AllServicesDetails() {
 
                               <div>
                                 <p className="mb-1">{item.status}</p>
-                                <small>{item.created_at.slice(0,10)}</small>
+                                <small>{item.created_at.slice(0, 10)}</small>
                               </div>
                             </div>
                             <Link
