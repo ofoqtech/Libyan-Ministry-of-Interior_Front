@@ -5,9 +5,10 @@
   border-radius: 10px;
   padding: 10px 0;
 }
-.LoginPage .gradientBtn:hover{
+
+.LoginPage .gradientBtn:hover {
   background-color: #003F9C;
-color: white;
+  color: white;
 }
 
 .LoginPage .bgLogin {
