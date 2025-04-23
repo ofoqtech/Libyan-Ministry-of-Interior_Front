@@ -12,6 +12,7 @@ import { NewBoxContent, NewsBoxNew } from "../../components/NewsBoxNew/NewsBoxNe
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 
 const Home = () => {
@@ -77,11 +78,10 @@ function CommonNews({ t }) {
           }
         );
         if (response.status === 200) {
-          console.log((response.data.result.data));
           setCommon(response.data.result.data);
         }
       } catch (err) {
-        console.log(err);
+        toast.error("Error fetching news:");
       }
     }
     getCommonNews();
@@ -162,7 +162,8 @@ function TodayNews({ t }) {
         const result = await response.json();
         setTodayNews(result.data || []);
       } catch (error) {
-        console.error("Error fetching news:", error);
+        toast.error("Error fetching news:");
+
       } finally {
         setIsLoading(false);
       }
@@ -576,7 +577,7 @@ function NewsInternalPlatform() {
         const result = await response.json();
         setNewsList(result.result.data || []);
       } catch (error) {
-        console.error("Error fetching minis news:", error);
+        toast.error("Error fetching news:");
       } finally {
         setIsLoading(false);
       }
@@ -652,7 +653,7 @@ function DesitionsAndPhotos({ t }) {
         setImages(result.result || []);
 
       } catch (error) {
-        console.error("Error fetching images:", error);
+        toast.error("Error fetching images:");
       }
     };
 
@@ -673,7 +674,7 @@ function DesitionsAndPhotos({ t }) {
         setDesicions(result.result.data || []);
 
       } catch (error) {
-        console.error("Error fetching data:", error);
+        toast.error("Error fetching data:");
       }
     };
 
