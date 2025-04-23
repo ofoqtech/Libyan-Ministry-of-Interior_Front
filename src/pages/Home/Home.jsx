@@ -130,6 +130,8 @@ function CommonNews({ t }) {
             <p>{t("news.no_news")}</p>
           )}
         </Swiper>
+        {common.length === 0 && (<p>{t("news.no_news")}</p>
+        )}
       </div>
     </div>
   );
@@ -231,6 +233,7 @@ function TodayNews({ t }) {
               </Link>
             ) : null}
           </div>
+          {TodayNews.length === 0 && <p>{t('noData')}</p>}
         </div>
       </div>
     </section>
@@ -626,6 +629,7 @@ function NewsInternalPlatform() {
                 </div>
               ))}
           </div>
+          {newsList.length === 0 && <p>{t('noData')}</p>}
         </div>
       </div>
     </section>
@@ -691,6 +695,7 @@ function DesitionsAndPhotos({ t }) {
                 />
               </div>
             ))}
+            {Desicions.length === 0 && <p>{t('noData')}</p>}
           </div>
           <div className="col-lg-6">
             <MainTitle title={t("photos.title")} />
@@ -702,6 +707,7 @@ function DesitionsAndPhotos({ t }) {
                   key={index}
                 />
               ))}
+              {images.length === 0 && <p>{t('noData')}</p>}
             </div>
           </div>
         </div>

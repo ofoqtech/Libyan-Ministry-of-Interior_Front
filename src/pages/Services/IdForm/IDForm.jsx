@@ -2,6 +2,7 @@ import { useState } from "react";
 import { GlobalContainer } from "../../../components/globalComponent/globalComponent";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import {  ToastContainer } from "react-toastify";
 
 
 export function IDFORMPage() {
@@ -74,6 +75,10 @@ function IDFORM() {
             if (result.status === "success") {
                 toast.success(t("Criminal-Reports.submissionSuccess"), {
                     autoClose: 2000,
+                    onClose: () => {
+                        window.location.reload(); // إعادة تحميل الصفحة بعد فترة قصيرة
+                    },
+
                 });
             } else {
                 toast.error(t("Criminal-Reports.submissionError"), {
@@ -90,6 +95,7 @@ function IDFORM() {
 
     return (
         <section className="contact-details">
+            <ToastContainer />
             <div className="container py-5">
                 <div className="row justify-content-center">
                     <div className="col-md-12">

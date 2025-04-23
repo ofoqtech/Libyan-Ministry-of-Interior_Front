@@ -175,14 +175,20 @@ function AllServicesDetails() {
         {
           title: t("allServices.trafficAccident"),
           icon: "/assets/firm_2780785.png",
+            type1: "acci_crimes",
+          type2: 'traf_acc'
         },
         {
           title: t("allServices.murderCrime"),
           icon: "/assets/firm_2780785.png",
+            type1: "acci_crimes",
+          type2: 'killing_crime'
         },
         {
           title: t("allServices.environmentalIncident"),
           icon: "/assets/firm_2780785.png",
+            type1: "acci_crimes",
+          type2: 'environ_acc'
         },
         {
           title: t("allServices.instSlander"),
