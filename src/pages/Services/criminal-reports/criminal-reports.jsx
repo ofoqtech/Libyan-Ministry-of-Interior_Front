@@ -70,23 +70,16 @@ function CriminalReports() {
 
             if (result.status === "success") {
                 toast.success(t("Criminal-Reports.submissionSuccess"), {
-                    onClose: () => setFormData({
-                        name: "",
-                        gender: "male",
-                        city: "",
-                        phone: "",
-                        email: "",
-                        iden_img: null,
-                        subject: "",
-                        description: "",
-                        file: null,
-                    }),
+                    onClose: () => {
+                        window.location.reload(); 
+                      },
                     autoClose: 2000,
                 });
             } else {
                 toast.error(t("Criminal-Reports.submissionError"), {
-
+                 
                     autoClose: 2000,
+                   
                 });
             }
         } catch (error) {
