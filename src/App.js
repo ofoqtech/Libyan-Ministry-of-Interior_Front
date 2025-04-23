@@ -36,7 +36,7 @@ import Vertification from "./pages/verification/verification";
 import { ComplaintPage } from "./pages/complaint/complaint";
 import ProtectedRoute from "./components/ProtectedRoute";
 import CommonNewsDetailsPage from "./pages/commonNewsDetails/commonNewsDetails";
-import {ContactUs} from './pages/contact-us/contactUs'
+import { ContactUs } from "./pages/contact-us/contactUs";
 import ForgetPassowrd from "./pages/ForgetPassword/ForgetPassword";
 import VertificationOtp from "./pages/vertification-otp/vertification-otp";
 import ChangePassword from "./pages/change password/changePassword";
@@ -47,9 +47,9 @@ function LayoutWrapper({ children }) {
     "/login",
     "/createaccount",
     "/vertification",
-    '/vertification-otp',
+    "/vertification-otp",
     "/chooseaccounttype",
-    '/change-password',
+    "/change-password",
     "/mediadataregistration",
     "/registeringorganizationdata",
     "/forget-password",
@@ -85,7 +85,6 @@ function AppRoutes() {
       <Route path="/" element={<Home />} />
       <Route path="/contact" element={<ContactUs />} />
       <Route path="/forget-password" element={<ForgetPassowrd />} />
-
       <Route path="/services" element={<AllServicesPage />} />
       <Route path="/request-details/:id" element={<RequestDetailsPage />} />
       <Route
@@ -97,7 +96,7 @@ function AppRoutes() {
       <Route
         path="/profile"
         element={
-          <ProtectedRoute>  
+          <ProtectedRoute>
             <ProfilePage />
           </ProtectedRoute>
         }
@@ -111,7 +110,6 @@ function AppRoutes() {
       <Route path="/about/emergencyCases" element={<EmergencyCases />} />
       <Route path="/about/developmentgoals" element={<DevelopmentGoals />} />
       <Route path="/change-password" element={<ChangePassword />} />
-
       <Route
         path="/about/development-details"
         element={<DevelopmentDetailsPage />}
@@ -130,10 +128,12 @@ function AppRoutes() {
       <Route path="/mediaOffice/librarydetails" element={<LibraryDetails />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/vertification" element={<Vertification />} />
-      <Route path="/vertification" element={<Vertification />} />
       <Route path="/vertification-otp" element={<VertificationOtp />} />
 
-      <Route path="/CommonNewsDetailsPage/:id" element={<CommonNewsDetailsPage />} />
+      <Route
+        path="/CommonNewsDetailsPage/:id"
+        element={<CommonNewsDetailsPage />}
+      />
 
       <Route path="/createaccount" element={<CreateAccount />} />
       <Route
@@ -152,10 +152,9 @@ function AppRoutes() {
 function App() {
   return (
     <BrowserRouter>
-          <ToastContainer />
+      <ToastContainer />
       <AuthProvider>
         <LayoutWrapper>
-
           <AppRoutes />
         </LayoutWrapper>
       </AuthProvider>
