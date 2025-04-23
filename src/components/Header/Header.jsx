@@ -3,6 +3,8 @@ import "./header.css";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import useLocalStorage from "use-local-storage";
+import { useAuth } from "../../context/AuthContext";
+
 function Header() {
   const [mobHeader, setMobHeader] = useState(false);
 
@@ -25,17 +27,18 @@ function Header() {
         ? "الوزاره الداخلية بالحكومة الليبية"
         : "Ministry of Interior of the Libyan government";
   }, [dir, i18n, lang]);
+  const { user, logout  } = useAuth();
 
 
   return (
     <>
-      <TopNav t = {t} />
-      <DesktopHeader t={t} mobHeader={mobHeader} setMobHeader={setMobHeader} handleChange={handleChange} />
-      <ModileHeader t={t} mobHeader={mobHeader} setMobHeader={setMobHeader} handleChange={handleChange} />
+      <TopNav t={t} />
+      <DesktopHeader t={t} user={user} logout = {logout } mobHeader={mobHeader} setMobHeader={setMobHeader} handleChange={handleChange} />
+      <ModileHeader t={t} user={user} logout = {logout } mobHeader={mobHeader} setMobHeader={setMobHeader} handleChange={handleChange} />
     </>
   );
 }
-function TopNav({t}) {
+function TopNav({ t }) {
   return <div className="top-nav">
     <div className="container d-flex  align-items-center justify-content-between">
       <div className="top-nav-list d-flex gap-3 align-items-center ">
@@ -43,7 +46,7 @@ function TopNav({t}) {
           <i className="uil uil-calendar-alt"></i>
           <p style={{ fontSize: "14px" }} className="fw-light">{t('header.navDate2')}</p>
         </div>
-        <div className="fast-news text-white" style={{ background: "#003f9c", padding: "8px 20px", borderRadius: "4px", fontSize: "14px", width : '150px', textAlign : "center", maxWidth : "100%" }}>{t('header.breakingNews')}</div>
+        <div className="fast-news text-white" style={{ background: "#003f9c", padding: "8px 20px", borderRadius: "4px", fontSize: "14px", width: '150px', textAlign: "center", maxWidth: "100%" }}>{t('header.breakingNews')}</div>
         <p className="mt-3">{t('header.navDate')}</p>
       </div>
       <div className="top-nav-social">
@@ -118,7 +121,7 @@ function TopNav({t}) {
   </div>
 }
 
-function DesktopHeader({ mobHeader, setMobHeader, handleChange, t }) {
+function DesktopHeader({ mobHeader, setMobHeader, handleChange, t, user, logout  }) {
   return (
     <div className="header px-2">
       <div className="container px-2">
@@ -172,6 +175,11 @@ function DesktopHeader({ mobHeader, setMobHeader, handleChange, t }) {
                     {t('header.faq')}
                   </Link>
                 </li>
+                <li>
+                  <Link className="dropdown-item" to="/about/complaint">
+                    {t('header.complaint')}
+                  </Link>
+                </li>
               </ul>
             </div>
 
@@ -210,9 +218,40 @@ function DesktopHeader({ mobHeader, setMobHeader, handleChange, t }) {
 
               </ul>
             </div>
-            <div className="link menu">
-              <Link to={"/login"}>{t('header.login')}</Link>
-            </div>
+            {user == null ? (
+              <div className="link menu">
+                <Link to="/login">{t("header.login")}</Link>
+              </div>
+            ) : (
+              <div className="dropdown">
+                <button
+                  className="btn text-white border-0 dropdown-toggle"
+                  type="button"
+                  id="profile"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                 { t("profile.profile")}
+                </button>
+                <ul className="dropdown-menu" aria-labelledby="profile">
+                  <li>
+                    <Link className="dropdown-item" to="/profile">
+                      {t("profile.header1")}
+                    </Link>
+                  </li>
+
+                  <li>
+                    <button
+                      className="dropdown-item text-danger"
+                      onClick={logout}
+                    >
+                      {t("logout")}
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            )}
+
             <div className="link">
               <Link to={"/contact"}>{t('header.contact')}</Link>
             </div>
@@ -235,7 +274,7 @@ function DesktopHeader({ mobHeader, setMobHeader, handleChange, t }) {
   );
 }
 
-function ModileHeader({ mobHeader, setMobHeader, handleChange, t }) {
+function ModileHeader({ mobHeader, setMobHeader, handleChange, t, user, logout  }) {
   return (
     <>
       <div
@@ -306,6 +345,11 @@ function ModileHeader({ mobHeader, setMobHeader, handleChange, t }) {
                   {t('header.faq')}
                 </Link>
               </li>
+              <li>
+                <Link className="dropdown-item" to="/about/complaint">
+                  {t('header.complaint')}
+                </Link>
+              </li>
             </ul>
           </div>
           <li>
@@ -354,6 +398,40 @@ function ModileHeader({ mobHeader, setMobHeader, handleChange, t }) {
               {t('header.contact')}
             </NavLink>
           </li>
+          {user == null ? (
+              <div className="link menu mb-2">
+                <Link to="/login">{t("header.login")}</Link>
+              </div>
+            ) : (
+              <div className="dropdown" style={{ marginBottom: "15px" }}>
+                <button
+                  className="btn text-black border-0 dropdown-toggle"
+                  type="button"
+                  id="profile"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                 { t("profile.profile")}
+                </button>
+                <ul className="dropdown-menu" aria-labelledby="profile">
+                  <li>
+                    <Link className="dropdown-item" to="/profile">
+                      {t("profile.header1")}
+                    </Link>
+                  </li>
+
+                  <li>
+                    <button
+                      className="dropdown-item text-danger"
+                      onClick={logout}
+                    >
+                      {t("logout")}
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            )}
+
 
 
           <div className="dropdown">

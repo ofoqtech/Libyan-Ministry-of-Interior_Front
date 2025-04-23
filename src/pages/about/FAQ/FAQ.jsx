@@ -1,7 +1,8 @@
 import { GlobalContainer } from '../../../components/globalComponent/globalComponent';
 import { useTranslation } from 'react-i18next';
 import './FAQ.css';
-import React from 'react';
+import React, { useState ,useEffect} from 'react';
+import axios from 'axios';
 
 export default function FAQ() {
   const { t } = useTranslation("global");
@@ -15,38 +16,52 @@ export default function FAQ() {
 }
 
 function MainFAQ() {
-  const { t } = useTranslation("global");
-
-  const faqs = [
-    {
-      question: t('faq.item1.question'),
-      answer: t('faq.item1.answer'),
-      list: [t('faq.item1.list1')],
-    },
-    {
-      question: t('faq.item2.question'),
-      answer: t('faq.item2.answer'),
-    },
-    {
-      question: t('faq.item3.question'),
-      answer: t('faq.item3.answer'),
-    },
-    {
-      question: t('faq.item4.question'),
-      answer: t('faq.item4.answer'),
-    },
-    {
-      question: t('faq.item5.question'),
-      answer: t('faq.item5.answer'),
-    },
-  ];
-
+  const baseURL = process.env.REACT_APP_API_URL;
+  const { t, i18n } = useTranslation("global");
+  const [faqs,setFaqs] = useState([]);
+  const [loading,setLoading] = useState(true);
+  // get faqs 
+  useEffect(() => {
+    const getFaqs = async () => {
+      try {
+        const response = await axios.get(`${baseURL}/faqs/all_faqs`, {
+          headers:{
+            'Content-Type': 'application/json',
+            'lang' : i18n.language,
+          }
+        });
+        if(response.status === 200) {
+          setFaqs(response.data.result);
+          console.log(response.data.result);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+      finally {
+        setLoading(false);
+      }
+    }
+    getFaqs();
+  }, [baseURL, i18n.language]);
   return (
     <section className="my-5">
       <div className="container">
         <h4 className="mb-4 ">{t('faq.section.title')}</h4>
-        <div className="accordion" id="accordionExample">
-          {faqs.map((faq, index) => (
+        {loading ? (
+          // Skeleton
+          <div className="row justify-content-center my-3">
+            <div className="col-lg-12">
+            <div className="skeleton-wrapper">
+            <div className="skeleton-image mb-3"></div>
+            <div className="skeleton-text mb-2"></div>
+            <div className="skeleton-text mb-2"></div>
+            <div className="skeleton-text short mb-2"></div>
+          </div>
+            </div>
+          </div>
+        ):(
+          <div className="accordion" id="accordionExample">
+          {faqs?.map((faq, index) => (
             <div key={index} className="accordion-item border mb-3">
               <h2 className="accordion-header" id={`heading${index}`}>
                 <button
@@ -80,6 +95,7 @@ function MainFAQ() {
             </div>
           ))}
         </div>
+        )}
       </div>
     </section>
   );

@@ -10,6 +10,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+  z-index: 3;
 }
 .common-news-box::before {
   content: "";
@@ -22,6 +23,7 @@
   background: linear-gradient(169deg, #00000026, #00000036),
     linear-gradient(0deg, #00000033, #00000033),
     linear-gradient(180deg, #0000 -107.22%, #00000024 96.71%);
+  z-index: -1;
 }
 .common-news-box .type {
   width: fit-content;

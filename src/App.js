@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import Header from "./components/Header/Header";
 import Home from "./pages/Home/Home";
 import { Footer } from "./components/Footer/Footer";
-import { ContactUs } from "./pages/contact-us/contactUs";
 import { AllServicesPage } from "./pages/Services/allservices/allServices";
 import { RequestDetailsPage } from "./pages/Services/RequestDetails/RequestDetails";
 import { CriminalReportsPage } from "./pages/Services/criminal-reports/criminal-reports";
@@ -30,12 +29,31 @@ import { IDFORMPage } from "./pages/Services/IdForm/IDForm";
 import { useTranslation } from "react-i18next";
 import useLocalStorage from "use-local-storage";
 import ProfilePage from "./pages/profile/profile";
-
+import TodayNewsDetailsPage from "./pages/NewsDetails/NewsDetails";
+import { ToastContainer } from "react-toastify";
+import { AuthProvider } from "./context/AuthContext";
+import Vertification from "./pages/verification/verification";
+import { ComplaintPage } from "./pages/complaint/complaint";
+import ProtectedRoute from "./components/ProtectedRoute";
+import CommonNewsDetailsPage from "./pages/commonNewsDetails/commonNewsDetails";
+import {ContactUs} from './pages/contact-us/contactUs'
+import ForgetPassowrd from "./pages/ForgetPassword/ForgetPassword";
+import VertificationOtp from "./pages/vertification-otp/vertification-otp";
+import ChangePassword from "./pages/change password/changePassword";
 function LayoutWrapper({ children }) {
   const location = useLocation();
 
-
-  const authRoutes = ["/login", "/createaccount" , "/chooseaccounttype" , "/mediadataregistration" , "/registeringorganizationdata"];
+  const authRoutes = [
+    "/login",
+    "/createaccount",
+    "/vertification",
+    '/vertification-otp',
+    "/chooseaccounttype",
+    '/change-password',
+    "/mediadataregistration",
+    "/registeringorganizationdata",
+    "/forget-password",
+  ];
 
   const hideLayout = authRoutes.includes(location.pathname);
 
@@ -53,7 +71,6 @@ function AppRoutes() {
   const [lang, setLang] = useLocalStorage("lang", "ar");
   const dir = i18n.dir();
 
-
   /* eslint-disable */
   useEffect(() => {
     i18n.changeLanguage(lang);
@@ -66,32 +83,67 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="contact" element={<ContactUs />} />
-      <Route path="/services" element={<AllServicesPage />} />
-      <Route path="/request-details" element={<RequestDetailsPage />} />
-      <Route path="/services/criminal-reports" element={<CriminalReportsPage />} />
-      <Route path="/services/identical" element={<IDFORMPage />} />
-      <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/contact" element={<ContactUs />} />
+      <Route path="/forget-password" element={<ForgetPassowrd />} />
 
-      
+      <Route path="/services" element={<AllServicesPage />} />
+      <Route path="/request-details/:id" element={<RequestDetailsPage />} />
+      <Route
+        path="/services/criminal-reports/:type1/:type2"
+        element={<CriminalReportsPage />}
+      />
+      <Route path="/services/identical" element={<IDFORMPage />} />
+
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute>  
+            <ProfilePage />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route path="/news/details/:id" element={<TodayNewsDetailsPage />} />
       <Route path="/about/overview" element={<Overview />} />
       <Route path="/about/Ministry-words" element={<MinistryWords />} />
       <Route path="/about/desicions" element={<Desicions />} />
       <Route path="/about/desicions-details" element={<DesicionDetails />} />
       <Route path="/about/emergencyCases" element={<EmergencyCases />} />
       <Route path="/about/developmentgoals" element={<DevelopmentGoals />} />
-      <Route path="/about/development-details" element={<DevelopmentDetailsPage />} />
+      <Route path="/change-password" element={<ChangePassword />} />
+
+      <Route
+        path="/about/development-details"
+        element={<DevelopmentDetailsPage />}
+      />
       <Route path="/about/faq" element={<FAQ />} />
+      <Route path="/about/complaint" element={<ComplaintPage />} />
+
       <Route path="/mediaOffice/allnews" element={<Allnews />} />
-      <Route path="/mediaOffice/newsdetails" element={<NewsDetails />} />
+      <Route path="/mediaOffice/newsdetails/:id" element={<NewsDetails />} />
       <Route path="/mediaOffice/allmeetings" element={<AllMeetings />} />
-      <Route path="/mediaOffice/meetingsdetails" element={<MeetingsDetails />} />
+      <Route
+        path="/mediaOffice/meetingsdetails/:id"
+        element={<MeetingsDetails />}
+      />
       <Route path="/mediaOffice/alllibrary" element={<AllLibrary />} />
       <Route path="/mediaOffice/librarydetails" element={<LibraryDetails />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/vertification" element={<Vertification />} />
+      <Route path="/vertification" element={<Vertification />} />
+      <Route path="/vertification-otp" element={<VertificationOtp />} />
+
+      <Route path="/CommonNewsDetailsPage/:id" element={<CommonNewsDetailsPage />} />
+
       <Route path="/createaccount" element={<CreateAccount />} />
-      <Route path="/mediadataregistration" element={<MediaDataRegistration />} />
-      <Route path="/registeringorganizationdata" element={<RegisteringOrganizationData />} />
+      <Route
+        path="/mediadataregistration"
+        element={<MediaDataRegistration />}
+      />
+      <Route
+        path="/registeringorganizationdata"
+        element={<RegisteringOrganizationData />}
+      />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
@@ -100,9 +152,13 @@ function AppRoutes() {
 function App() {
   return (
     <BrowserRouter>
-      <LayoutWrapper>
-        <AppRoutes />
-      </LayoutWrapper>
+          <ToastContainer />
+      <AuthProvider>
+        <LayoutWrapper>
+
+          <AppRoutes />
+        </LayoutWrapper>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

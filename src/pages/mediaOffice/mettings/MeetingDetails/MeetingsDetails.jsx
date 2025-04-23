@@ -1,10 +1,34 @@
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import axios from 'axios';
 import { GlobalContainer } from '../../../../components/globalComponent/globalComponent';
 import './MeetingsDetails.css';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
 
 export default function MeetingsDetails() {
-  const { t } = useTranslation("global");
+  const { t, i18n } = useTranslation("global");
+  const { id } = useParams();
+
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    axios
+      .get(`https://brmjatech.co.uk/api/meetings/meeting_details/${id}`, {
+        headers: {
+          lang: i18n.language,
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => {
+        setData(res.data.result);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error('Error fetching meeting details:', err);
+        setLoading(false);
+      });
+  }, [id, i18n.language]);
 
   return (
     <>
@@ -12,93 +36,63 @@ export default function MeetingsDetails() {
         text={t('meetingsDetails.title')}
         header={t('meetingsDetails.header')}
       />
-      <MainMeetingsDetails />
-    </>
-  );
-}
 
-function MainMeetingsDetails() {
-  const { t } = useTranslation("global");
-
-  const relatedArticles = [
-    {
-      image: '/assets/FB_IMG_1740637952084 2.png',
-      title: t('meetingsDetails.relatedArticle1.title'),
-      time: t('meetingsDetails.relatedArticle1.time'),
-    },
-    {
-      image: '/assets/FB_IMG_1740637952084 2.png',
-      title: t('meetingsDetails.relatedArticle2.title'),
-      time: t('meetingsDetails.relatedArticle2.time'),
-    },
-    {
-      image: '/assets/FB_IMG_1740637952084 2.png',
-      title: t('meetingsDetails.relatedArticle3.title'),
-      time: t('meetingsDetails.relatedArticle3.time'),
-    },
-  ];
-
-  return (
-    <section className="MainMeetingsDetails my-5">
-      <div className="container">
-        <div className="row align-items-center">
-          <div className="col-lg-6">
-            <img
-              style={{ maxWidth: '100%', width: '700px' }}
-              src="/assets/FB_IMG_1740579987780 3.png"
-              className="mb-3"
-              alt=""
-            />
-          </div>
-          <div className="col-lg-6">
-            <h2 style={{ lineHeight: '40px', fontSize: '25px' }}>
-              {t('meetingsDetails.mainTitle')}
-            </h2>
-            <span className="desicionstime">
-              <i className="uil uil-calendar-alt mx-1"></i>
-              {t('meetingsDetails.time')}
-            </span>
-          </div>
-        </div>
-
-        <div className="my-3">
-          <p className="titledetalis">{t('meetingsDetails.description')}</p>
-        </div>
-
-        <div className="mt-5">
-          <div className="row g-3">
-            {[...Array(16)].map((_, index) => (
-              <div
-                key={index}
-                className="col-md-3 col-sm-6 col-12 image-container"
-              >
-                <img
-                  src="/assets/FB_IMG_1740580037892 1.png"
-                  alt={t('meetingsDetails.imageAlt')}
-                />
+      <section className="MainMeetingsDetails my-5">
+        <div className="container">
+          {loading ? (
+            <div className="d-flex justify-content-center align-items-center py-5">
+              <div className="spinner-border text-primary" role="status">
+                <span className="visually-hidden">{t('loading')}</span>
               </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="my-5">
-          <span className="type mb-4">{t('meetingsDetails.relatedArticles')}</span>
-          <div className="row">
-            {relatedArticles.map((article, index) => (
-              <div key={index} className="col-lg-4">
-                <div className="card mb-3">
-                  <img src={article.image} alt="" />
-                  <h5 className="my-2">{article.title}</h5>
+            </div>
+          ) : data ? (
+            <>
+              <div className="row align-items-center">
+                <div className="col-lg-6">
+                  <img
+                    style={{ maxWidth: '100%', width: '700px' }}
+                    src={data.image_url}
+                    className="mb-3"
+                    alt="meeting"
+                  />
+                </div>
+                <div className="col-lg-6">
+                  <h2 style={{ lineHeight: '40px', fontSize: '25px' }}>{data.title}</h2>
                   <span className="desicionstime">
-                    <i className="uil uil-calendar-alt ms-1 mx-2"></i>
-                    {article.time}
+                    <i className="uil uil-calendar-alt mx-1"></i>
+                    {new Date(data.created_at).toLocaleDateString(i18n.language)}
                   </span>
                 </div>
               </div>
-            ))}
-          </div>
+
+              <div className="my-3">
+                <p className="titledetalis">{data.description}</p>
+              </div>
+
+              {data.medias && data.medias.length > 0 && (
+                <div className="mt-5">
+                  <div className="row justify-content-center g-3">
+                    {data.medias.map((media) => (
+                      <div
+                        key={media.id}
+                        className="col-md-3 col-sm-6 col-12 image-container"
+                      >
+                        <img
+                          src={media.file_url}
+                          alt={t('meetingsDetails.imageAlt')}
+                          className="img-fluid"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </>
+          ) : (
+            <div className="text-center py-5 text-danger">{t('error')}</div>
+          )}
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

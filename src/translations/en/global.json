@@ -15,6 +15,8 @@
     "emergencyCases": "Emergency Cases",
     "developmentGoals": "Development Goals",
     "faq": "Frequently Asked Questions",
+    "complaint": "Complaints",
+    "complaint2": "Home - About Ministry - Complaints",
     "all_library": "Photo Library",
     "services": "Services",
     "media_office": "Media Office",
@@ -29,23 +31,33 @@
     "ar": "Arabic",
     "language": "Language"
   },
+  "loading": "Loading",
+  "error": "Something went wrong please try again",
   "login": {
     "welcomeBack": "Welcome back!",
     "enterDetails": "Enter the following details to access your account!",
     "email": "Email",
     "emailPlaceholder": "Enter your email",
     "password": "Password",
+    "password2": " Enter your Password again",
+
     "passwordPlaceholder": "Enter your password",
     "loginBtn": "Log In",
     "noAccount": "Don't have an account?",
     "registerNow": "Register Now!"
   },
+  "passwordMatch" : "The password fields do not match.",
+
   "createAccount": {
     "whoAreYou": "Who are you?",
     "chooseOption": "Please choose the option that fits you",
     "mediaProfessional": "Media Professional",
     "mediaOrganization": "Media Organization"
   },
+  "droneSucessMessage": "Drone request submitted successfully",
+  "droneFailedMessage": "Drone request submission failed",
+  "cameraFailedMessage": "Camera request submission failed",
+  "cameraSucessMessage": "Camera request submitted successfully",
   "mediaRegistration": {
     "title": "Register Your Info",
     "basicInfo": "Basic Information",
@@ -55,9 +67,13 @@
     "phone": "Phone Number",
     "phonePlaceholder": "+9665085858585",
     "email": "Email",
+    "password": "Enter your password",
     "emailPlaceholder": "example@gmail.com",
+    "orgName": "Organization Name",
+    "orgType": "Organization Type",
     "idNumber": "ID Number",
     "idPlaceholder": "ID Number",
+    "passwordMinLength": "Password must be at least 8 characters long",
     "nationality": "Nationality",
     "selectNationality": "-- Choose from options --",
     "nationalities": {
@@ -89,6 +105,19 @@
     "cancel": "Cancel",
     "create": "Create"
   },
+  "reSendCode": "Resend Code",
+  "sendCode": "Verify",
+  "send": "Send",
+  "login.success": "Logged in successfully",
+  "login.failed": "Login failed, please check your credentials",
+  "codeResent": "The code has been resent",
+  "resendFailed": "Failed to resend the code",
+  "login.enterEmailFirst": "Please enter your email first",
+  "verificationOk": "Verification successful",
+  "verificationFailed": "Verification failed",
+  "vertification": "Enter otp to verify your account",
+  "vertification2": "Enter the verification code sent to your email",
+  "verificationCode": "Verification Code",
   "identical": {
     "header": "Identification Card",
     "header2": "Home - Services - Identification Card",
@@ -101,25 +130,32 @@
   "common_news": {
     "title": "Common News",
     "sample_title": "The Minister of Interior holds an extensive meeting to discuss security situations",
-    "category_1": "Category 1",
+    "category_1": "New",
     "2_days_ago": "2 days ago"
   },
+  "change1" : "Password changed Successfully",
+  "change2" : "Password changed failed",
+  "change4" : "Enter the new password to be able to log in to your account.",
+
   "today_news": {
     "title": "Today's News",
     "sample_title": "The Minister of Interior inspects security situations in the Municipality of Murzuq",
-    "category_1": "Category 1",
+    "category_1": "New",
     "2_days_ago": "2 days ago"
   },
   "profile": {
-  "header1": "Profile",
-  "header2": "Home - My Account - Profile",
-  "header3": "Account Information",
-  "header4": "Welcome to your profile page",
-  "basicInfo": "Basic Information",
-  "requestHistory": "Request History",
-  "remove" : "Remove Account"
-
-},
+    "header1": "Profile",
+    "header2": "Home - My Account - Profile",
+    "header3": "Account Information",
+    "header4": "Welcome to your profile page",
+    "basicInfo": "Basic Information",
+    "requestHistory": "Request History",
+    "remove": "Remove Account",
+    "profile": "My Account",
+    "changePassword": "Change Password",
+    "newPassword": "New Password",
+    "updatePassword": "Update Password"
+  },
   "primary_news": {
     "title": "Primary News",
     "subtitle": "Interior in a Minute",
@@ -135,11 +171,16 @@
     "internal_title": "Ministry News",
     "category_1": "Category 1",
     "internal_meeting": "Extensive meeting to discuss security situations",
+    "read_more": "Read more",
+    "no_news": "There is no news",
     "two_days_ago": "2 days ago"
+  },
+  "commnNews": {
+    "header1": "Common News"
   },
   "decisions": {
     "title": "Decisions",
-    "category_1": "Category 1",
+    "category_1": "New",
     "decision_merge": "Interior Minister decides to merge a number of security directorates of the Libyan government",
     "two_hours_ago": "2 hours ago"
   },
@@ -171,8 +212,11 @@
     "subjectPlaceholder": "Enter the subject",
     "message": "Your Message",
     "messagePlaceholder": "Enter your message",
-    "submitButton": "Submit"
+    "submitButton": "Submit",
+    "PHOTO1": "Upload Identification Card",
+    "PHOTO2": "Upload Documents"
   },
+  "noData": "No data available",
   "ministryWordsPage": {
     "pageTitle": "Minister's Speech",
     "breadcrumb": "Home - About the Ministry - Minister's Speech",
@@ -228,8 +272,31 @@
       "subject": "Subject",
       "description": "Description",
       "print": "Print",
-      "send": "Send"
+      "send": "Send",
+      "required": "This field is required",
+      "invalidEmail": "Invalid email",
+      "success": "Submitted successfully",
+      "error": "An error occurred while submitting"
     }
+  },
+  "form": {
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "description": "Description",
+    "print": "Print",
+    "send": "Send",
+    "required": "This field is required",
+    "invalidEmail": "Invalid email",
+    "success": "Submitted successfully",
+    "error": "An error occurred while submitting"
+  },
+  "forget": {
+    "header1": "Enter your email to reset your password",
+    "header2": "send",
+      "successMessage" : "Code sent successfully",
+    "errorMessage" : "فشل في ارسال الرمز"
+
   },
   "overview": {
     "ministry_name": "Ministry of Interior, Government of Libya",
@@ -303,7 +370,7 @@
   },
   "meetingsDetails": {
     "title": "Meetings",
-    "header": "Home - Media Office - Meetings - Minister of Interior Inspects Security Conditions in Murzuq Municipality",
+    "header": "Home - Media Office - Meetings ",
     "mainTitle": "Minister of Interior Inspects Security Conditions in Murzuq Municipality",
     "time": "2 days ago",
     "description": "The Minister of Interior, Major General Essam Abu Zariba, conducted an inspection visit to the Municipality of Murzuq today, Wednesday, accompanied by the Head of the Ministry's Office in the Southern Region, the Head of the Criminal Investigation Authority, the Director of the General Directorate of Security Operations, and the Director of the General Directorate of Central Support. He was received by the Director of Security, Major General Dr. Osama Awidan, along with several security leaders, the Mayor of the Municipality, and the city's dignitaries and elders. As part of his field tour to monitor security conditions and enhance stability, the Minister held an extensive meeting with the Municipal Council, dignitaries, and elders of the city at the Security Directorate headquarters. During the meeting, he listened to their security demands and needs and discussed the challenges facing the municipality in this context. The attendees commended the Minister's continuous efforts, expressing their appreciation for his personal commitment to improving the security situation through his repeated visits to the region and his direct follow-up on security developments there. For his part, the Minister emphasized the importance of close cooperation between the Ministry of Interior and the local community, affirming that the Ministry will spare no effort in enhancing security and stability, pursuing lawbreakers, and protecting citizens. He also praised the role of the city's elders and dignitaries in supporting the Security Directorate and police stations and their solidarity with security personnel in their efforts to enforce the law and restore stability. The Minister reiterated that the Ministry places the security of citizens and the safety of Libya at the top of its priorities and is committed to taking the necessary measures to enhance security across all parts of the country.",
@@ -330,11 +397,14 @@
     "cardDescription": "Crime Prevention: Implement effective strategies to reduce crime and enhance public security. Rule of Law: Ensure the fair and transparent enforcement of laws and the protection of human rights. Anti-Corruption: Implement policies to combat corruption within security institutions and enhance integrity.",
     "timeAgo": "2 days ago",
     "readMore": "Read more.....",
+    "submitted": "Added successfully",
+    "fillin": "Please fill in all fields",
     "pagination": {
       "previous": "Previous",
       "next": "Next"
     }
   },
+  "logout": "Log out",
   "library": {
     "imageLibrary": "Image Library",
     "breadcrumb": "Home - Media Office - Image Library",
@@ -400,6 +470,13 @@
     "new_request": "New Request",
     "request_history": "Request History",
     "location": "Shooting Location",
+    "instSlander": "Report a slanderer or insulter",
+    "missingTourism": "Missing in public or tourist places",
+    "missingDentenation": "Missing in detention",
+    "missingPrison": "Missing in accidents or wars",
+    "blackmail": "Report blackmail",
+    "electronicTheft": "Report electronic theft",
+    "feelKillgin": "Report a murder",
     "purpose": "Purpose of Shooting",
     "startDate": "Start Date",
     "endDate": "End Date",
@@ -432,8 +509,14 @@
     "reportType": "Report Type",
     "reportLink": "Report Link",
     "reportSubject": "Report Subject",
-    "submit": "Submit"
+    "submit": "Submit",
+    "uploadFile": "Upload File",
+    "city": "City",
+    "submissionError": "Error Sending Data",
+    "submissionSuccess": "Data Sent Successfully"
   },
+  "ReadMore": "Read More",
+  "ShowLess": "Show Less",
   "requestDetails": {
     "header": "Home - E-Services - Request Status",
     "statusTitle": "Request Status",

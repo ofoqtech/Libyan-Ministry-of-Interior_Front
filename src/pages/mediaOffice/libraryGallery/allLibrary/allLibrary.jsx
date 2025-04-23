@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { GlobalContainer } from '../../../../components/globalComponent/globalComponent';
 import './allLibrary.css';
 import React from 'react';
+import { useEffect, useState } from "react";
+
 import { useTranslation } from 'react-i18next';
 
 export default function AllLibrary() {
@@ -21,74 +23,51 @@ export default function AllLibrary() {
 function MainAllLibrary() {
   const { t } = useTranslation("global");
 
-  const articles = [
-    {
-      imgSrc: '/assets/1-59-1 1.png',
-      title: t('library.articleTitle'),
-      time: t('library.twoDaysAgo'),
-      link: '/mediaOffice/librarydetails',
-    },
-    {
-        imgSrc: '/assets/1-59-1 1.png',
-        title: t('library.articleTitle'),
-        time: t('library.twoDaysAgo'),
-        link: '/mediaOffice/librarydetails',
-      },
-      {
-        imgSrc: '/assets/1-59-1 1.png',
-        title: t('library.articleTitle'),
-        time: t('library.twoDaysAgo'),
-        link: '/mediaOffice/librarydetails',
-      },
-  ];
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
 
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        setLoading(true); 
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/pictures/home_pictures`);
+        const result = await response.json();
+        setImages(result.result || []);
+      } catch (error) {
+        console.error("Error fetching images:", error);
+      } finally {
+        setLoading(false); 
+      }
+    };
+  
+    fetchImages();
+  }, []);
+  
   return (
-    <section className="MainAllLibrary my-5">
-      <div className="container">
-        {articles.map((article, index) => (
-          <div className="row align-items-center my-3" key={index}>
-            <div className="col-lg-4">
+    <div className="photos-section">
+    <div className="decisions-gallery">
+      {loading ? (
+        <div className="text-center py-5">
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">{t("loading")}</span>
+          </div>
+        </div>
+      ) : (
+        <div className="row justify-content-center">
+          {images.map((img, index) => (
+            <div className="col-lg-3 col-md-6 col-12 mb-1" key={index}>
               <img
-                style={{ maxWidth: '100%', width: '700px' }}
-                src={article.imgSrc}
-                className="mb-3"
-                alt=""
+                src={img.link_url}
+                alt={t("photos.alt_text")}
+                className="img-fluid"
               />
             </div>
-            <div className="col-lg-8">
-              <h5>{article.title}</h5>
-              <div className="d-flex justify-content-between align-items-center">
-                <span className="desicionstime">
-                  <i className="uil uil-calendar-alt ms-1 mx-2"></i>
-                  {article.time}
-                </span>
-                <Link to={article.link} className="type">
-                  {t('library.readMore')}
-                </Link>
-              </div>
-            </div>
-          </div>
-        ))}
-
-        <div className="mt-5">
-          <nav>
-            <ul className="pagination justify-content-center">
-              <li className="page-item">
-                <button className="page-link">{t('library.previous')}</button>
-              </li>
-              <li className="page-item active">
-                <button className="page-link">2</button>
-              </li>
-              <li className="page-item">
-                <button className="page-link">3</button>
-              </li>
-              <li className="page-item">
-                <button className="page-link">{t('library.next')}</button>
-              </li>
-            </ul>
-          </nav>
+          ))}
         </div>
-      </div>
-    </section>
-  );
+      )}
+    </div>
+  </div>
+);
+
 }

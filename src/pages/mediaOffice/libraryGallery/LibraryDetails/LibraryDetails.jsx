@@ -12,7 +12,7 @@ export default function LibraryDetails() {
         header={t('library.breadcrumb')}
       /> 
                 
-                <MainLibraryDetails />
+      <MainLibraryDetails />
         </>
 }
 
