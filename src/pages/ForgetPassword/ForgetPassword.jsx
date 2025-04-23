@@ -19,7 +19,6 @@ const ForgetPassword = () => {
                 email: email
             });
 
-            // Success toast
             toast.success(t("forget.successMessage"), {
                 duration: 2000,
                 onClose: () => navigate("/vertification-otp"),
