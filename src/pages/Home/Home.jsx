@@ -33,10 +33,6 @@ const Home = () => {
 
 
 function Hero({ t }) {
-
-
-
-
   return (
     <div className="home" style={{ backgroundImage: `url(${'/assets/home_1.png'})` }}>
       <div className="container">
@@ -45,8 +41,6 @@ function Hero({ t }) {
           <h1 className="title py-3 px-3" style={{ background: "#003f9c" }}>{t("header.news_article.title")}</h1>
           <p className="description new-desc" style={{ background: "white", color: "black", padding: "10px", width: "80%", maxWidth: "100%" }}>{t("header.news_article.details")}</p>
         </div>
-
-
       </div>
     </div>
   );
@@ -81,7 +75,7 @@ function CommonNews({ t }) {
           setCommon(response.data.result.data);
         }
       } catch (err) {
-        toast.error("Error fetching news:");
+        toast.error(t('error'));
       }
     }
     getCommonNews();
@@ -162,7 +156,7 @@ function TodayNews({ t }) {
         const result = await response.json();
         setTodayNews(result.data || []);
       } catch (error) {
-        toast.error("Error fetching news:");
+        toast.error(t('error'));
 
       } finally {
         setIsLoading(false);
@@ -577,7 +571,7 @@ function NewsInternalPlatform() {
         const result = await response.json();
         setNewsList(result.result.data || []);
       } catch (error) {
-        toast.error("Error fetching news:");
+        toast.error(t('error'));
       } finally {
         setIsLoading(false);
       }
@@ -653,7 +647,7 @@ function DesitionsAndPhotos({ t }) {
         setImages(result.result || []);
 
       } catch (error) {
-        toast.error("Error fetching images:");
+        toast.error(t('error'));
       }
     };
 
@@ -674,7 +668,7 @@ function DesitionsAndPhotos({ t }) {
         setDesicions(result.result.data || []);
 
       } catch (error) {
-        toast.error("Error fetching data:");
+        toast.error(t('error'));
       }
     };
 
