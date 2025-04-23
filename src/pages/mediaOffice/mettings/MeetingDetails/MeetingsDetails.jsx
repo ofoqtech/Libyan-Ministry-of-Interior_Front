@@ -16,7 +16,7 @@ export default function MeetingsDetails() {
     axios
       .get(`https://brmjatech.co.uk/api/meetings/meeting_details/${id}`, {
         headers: {
-          lang: i18n.language,
+          'lang': i18n.language,
           'Content-Type': 'application/json',
         },
       })

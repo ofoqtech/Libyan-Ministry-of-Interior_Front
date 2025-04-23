@@ -31,7 +31,7 @@ function MainNewsDetalis() {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_API_URL}/news/news_details/${id}`, {
                     headers: {
-                        lang: i18n.language,
+                        'lang': i18n.language,
                         'Content-Type': 'application/json',
                     },
                 });

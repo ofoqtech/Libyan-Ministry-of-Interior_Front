@@ -43,7 +43,6 @@ function ContactDetails({ t, i18n }) {
           email: values.email,
           title: values.subject,
           message: values.message,
-          lang: i18n.language,
         });
         toast.success(t("form.success"));
         resetForm();

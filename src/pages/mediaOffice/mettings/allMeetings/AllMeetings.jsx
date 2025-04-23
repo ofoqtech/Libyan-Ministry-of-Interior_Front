@@ -39,7 +39,7 @@ function MainAllMeetings() {
     try {
       const response = await axios.get(url, {
         headers: {
-          lang: i18n.language,
+          'lang': i18n.language,
           'Content-Type': 'application/json',
         },
       });

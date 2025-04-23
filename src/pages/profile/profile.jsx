@@ -34,7 +34,7 @@ function Profile() {
                 const response = await fetch(`${process.env.REACT_APP_API_URL}/medias/profile`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
-                        lang: i18n.language,
+                        'lang': i18n.language,
                     },
                 });
                 const data = await response.json();
@@ -54,7 +54,7 @@ function Profile() {
             try {
                 const response = await fetch(`${process.env.REACT_APP_API_URL}/medias/media_types`, {
                     headers: {
-                        lang: i18n.language,
+                        'lang': i18n.language,
                     },
                 });
                 const data = await response.json();
@@ -77,7 +77,7 @@ function Profile() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    lang: i18n.language
+                    'lang': i18n.language
                 },
                 body: JSON.stringify({
                     email: userData.email,

@@ -16,7 +16,7 @@ const MediaDataRegistration = () => {
             try {
                 const response = await fetch(`${process.env.REACT_APP_API_URL}/medias/media_types`, {
                     headers: {
-                        lang: i18n.language,
+                        'lang': i18n.language,
                     },
                 });
                 const data = await response.json();

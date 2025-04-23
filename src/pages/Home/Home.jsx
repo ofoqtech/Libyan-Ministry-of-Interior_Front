@@ -67,7 +67,7 @@ function CommonNews({ t }) {
           {
             headers: {
               "Content-Type": "application/json",
-              lang: i18n.language,
+              'lang': i18n.language,
             },
           }
         );
@@ -149,7 +149,7 @@ function TodayNews({ t }) {
           `${process.env.REACT_APP_API_URL}/news/home_latest_news`,
           {
             headers: {
-              lang: i18n.language,
+              'lang': i18n.language,
             },
           }
         );
@@ -564,7 +564,7 @@ function NewsInternalPlatform() {
           `${process.env.REACT_APP_API_URL}/news/minis_news`,
           {
             headers: {
-              lang: i18n.language,
+              'lang': i18n.language,
             },
           }
         );

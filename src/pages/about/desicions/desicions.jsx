@@ -33,7 +33,7 @@ function DesicionsInformations({ t }) {
           {
             headers: {
               "Content-Type": "application/json",
-              lang: i18n.language,
+              'lang': i18n.language,
             },
           }
         );
