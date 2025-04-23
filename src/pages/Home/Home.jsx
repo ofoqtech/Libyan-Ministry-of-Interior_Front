@@ -146,6 +146,8 @@ function CommonNews({ t }) {
 function TodayNews({ t }) {
   const { _, i18n } = useTranslation("global");
   const [TodayNews, setTodayNews] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const fetchNews = async () => {
       try {
@@ -153,7 +155,7 @@ function TodayNews({ t }) {
           `${process.env.REACT_APP_API_URL}/news/home_latest_news`,
           {
             headers: {
-              "lang": i18n.language,
+              lang: i18n.language,
             },
           }
         );
@@ -161,41 +163,68 @@ function TodayNews({ t }) {
         setTodayNews(result.data || []);
       } catch (error) {
         console.error("Error fetching news:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchNews();
   }, [i18n.language]);
+
   return (
     <section className="today-news mb-3">
       <div className="container">
         <MainTitle title={t("header.latest_news")} />
         <div className="row">
           <div className="col-lg-4">
-            {TodayNews.slice(1, 3).map((news, index) => (
-              <Link to={`/news/details/${news.id}`} key={index} style={{ textDecoration: "none", color: "black" }}>
-                <div className="today-news-box position-relative mb-3" key={index}>
-                  <div
-                    className="today-news-background mb-3"
-                    style={{
-                      backgroundImage: `url(${news.image_url})`,
-                      height: "200px",
-                      objectFit: "cover",
-                    }}
-                  >
-                    <span className="type">{t("today_news.category_1")}</span>
+            {isLoading
+              ? [1, 2].map((_, index) => (
+                  <div className="mb-3" key={index}>
+                    <div
+                      className="bg-secondary mb-2"
+                      style={{ height: "200px", width: "100%", borderRadius: "5px", opacity: 0.2 }}
+                    />
+                    <div
+                      className="bg-secondary"
+                      style={{ height: "20px", width: "80%", borderRadius: "5px", opacity: 0.2 }}
+                    />
                   </div>
-                  <h6 style={{ lineHeight: '1.6' }}>{news?.name}</h6>
-
-                </div>
-              </Link>
-            ))}
+                ))
+              : TodayNews.slice(1, 3).map((news, index) => (
+                  <Link
+                    to={`/news/details/${news.id}`}
+                    key={index}
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    <div className="today-news-box position-relative mb-3">
+                      <div
+                        className="today-news-background mb-3"
+                        style={{
+                          backgroundImage: `url(${news.image_url})`,
+                          height: "200px",
+                          backgroundSize: "cover",
+                          backgroundPosition: "center",
+                        }}
+                      >
+                        <span className="type">{t("today_news.category_1")}</span>
+                      </div>
+                      <h6 style={{ lineHeight: "1.6" }}>{news?.name}</h6>
+                    </div>
+                  </Link>
+                ))}
           </div>
 
           <div className="col-lg-8">
-
-            {TodayNews[0] && (
-              <Link to={`/news/details/${TodayNews[2].id}`} style={{ textDecoration: "none", color: "black" }}>
+            {isLoading ? (
+              <div
+                className="bg-secondary mb-3"
+                style={{ height: "300px", width: "100%", borderRadius: "10px", opacity: 0.2 }}
+              />
+            ) : TodayNews[2] && TodayNews[0] ? (
+              <Link
+                to={`/news/details/${TodayNews[2].id}`}
+                style={{ textDecoration: "none", color: "black" }}
+              >
                 <CommonNewsBox
                   image={TodayNews[2].image_url}
                   type={t("today_news.category_1")}
@@ -205,9 +234,7 @@ function TodayNews({ t }) {
                   styling="95.8%"
                 />
               </Link>
-
-            )}
-
+            ) : null}
           </div>
         </div>
       </div>
@@ -533,6 +560,7 @@ function TodayNews({ t }) {
 function NewsInternalPlatform() {
   const { t, i18n } = useTranslation("global");
   const [newsList, setNewsList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -541,7 +569,7 @@ function NewsInternalPlatform() {
           `${process.env.REACT_APP_API_URL}/news/minis_news`,
           {
             headers: {
-              "lang": i18n.language,
+              lang: i18n.language,
             },
           }
         );
@@ -549,6 +577,8 @@ function NewsInternalPlatform() {
         setNewsList(result.result.data || []);
       } catch (error) {
         console.error("Error fetching minis news:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -560,8 +590,13 @@ function NewsInternalPlatform() {
       <div className="container">
         <MainTitle title={t("news.internal_title")} />
         <div className="row justify-content-center align-items-center">
-          <div className="col-lg-12">
-            {newsList[0] && (
+          <div className="col-lg-12 mb-4">
+            {isLoading ? (
+              <div
+                className="bg-secondary mb-4"
+                style={{ height: "300px", borderRadius: "10px", opacity: 0.2 }}
+              />
+            ) : newsList[0] && (
               <CommonNewsBox
                 image={newsList[0].image_url}
                 type={t("news.category_1")}
@@ -569,33 +604,39 @@ function NewsInternalPlatform() {
                 time={new Date(newsList[0].created_at).toLocaleDateString()}
                 description={newsList[0].description}
                 styling="500px"
-
               />
             )}
-
-
           </div>
 
           <div className="row justify-content-center align-items-center mt-4">
-            {newsList?.slice(1, 4).map((item, index) => (
-              <div className="col-lg-6 mb-2" key={index}>
-                <div className="newBox mb-2">
-                  <NewsBoxNew
-                    image={item.image_url}
-                    type={t("news.category_1")}
-                    title={item.title}
-                    time={new Date(item.created_at).toLocaleDateString()}
-
-                  />
-                </div>
-              </div>
-            ))}
+            {isLoading
+              ? [1, 2, 3].map((_, index) => (
+                  <div className="col-lg-6 mb-2" key={index}>
+                    <div
+                      className="bg-secondary mb-2"
+                      style={{ height: "150px", borderRadius: "8px", opacity: 0.2 }}
+                    />
+                  </div>
+                ))
+              : newsList?.slice(1, 4).map((item, index) => (
+                  <div className="col-lg-6 mb-2" key={index}>
+                    <div className="newBox mb-2">
+                      <NewsBoxNew
+                        image={item.image_url}
+                        type={t("news.category_1")}
+                        title={item.title}
+                        time={new Date(item.created_at).toLocaleDateString()}
+                      />
+                    </div>
+                  </div>
+                ))}
           </div>
         </div>
       </div>
     </section>
   );
 }
+
 
 
 
