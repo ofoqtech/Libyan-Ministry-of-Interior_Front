@@ -88,15 +88,15 @@ function Profile() {
             const data = await response.json();
 
             if (data.status === "success") {
-                toast.success("تم تغيير كلمة المرور بنجاح");
+                toast.success(t("change1"))
                 setShowPasswordForm(false);
                 setNewPassword("");
             } else {
-                toast.error(data.message || "حدث خطأ أثناء تغيير كلمة المرور");
+                toast.error(data.message || (t("change2")));
             }
         } catch (error) {
-            console.error("Error resetting password:", error);
-            toast.error("فشل في الاتصال بالخادم");
+            console.error((t("change2")));
+            toast.error(t('error'));
         }
     };
     const [CameraDetails, setCameraDetails] = useState(null);
