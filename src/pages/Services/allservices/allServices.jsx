@@ -522,7 +522,7 @@ function AllServicesDetails() {
                       </label>
                       <input type="file" className="form-control" id="upload" />
                     </div>
-                    <div className="col-12">
+                    <div className="col-12 text-center">
                       <button
                         type="submit"
                         className="btn btn-primary"
@@ -727,7 +727,7 @@ function AllServicesDetails() {
                       </label>
                       <input type="file" className="form-control" id="upload" />
                     </div>
-                    <div className="col-12">
+                    <div className="col-12 text-center">
                       <button
                         type="submit"
                         className="btn btn-primary"

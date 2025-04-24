@@ -110,9 +110,9 @@ const LoginPage = () => {
                             </div>
 
                             <div className="d-flex justify-content-center align-items-center mt-3 mb-1">
-                                <a href="#" className={`ms-3 ${styles.account}`}>
+                                <span className={`ms-3 ${styles.account}`}>
                                     {t("login.noAccount")}
-                                </a>
+                                </span>
                                 <Link to={'/createaccount'} className={`btn btn-outline-secondary me-3 ${styles.createSingin}`}>
                                     {t("login.registerNow")}
                                 </Link>

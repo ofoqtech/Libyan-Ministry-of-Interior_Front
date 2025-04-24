@@ -182,9 +182,11 @@ const MediaDataRegistration = () => {
                     </div>
 
                     <div className="d-flex justify-content-center flex-wrap mt-3 mb-5">
+                        <Link to="/createaccount">
                         <button type="button" className={`btn border mb-2 me-3 ${styles.btnclos}`} style={{ borderRadius: '10px' }}>
                             {t("mediaRegistration.cancel")}
                         </button>
+                        </Link>
                         <button type="submit" className={`btn px-5 me-3 ${styles["bg-btn"]}`} style={{ fontSize: "14px" }}>
                             {t("mediaRegistration.createAccount")}
                         </button>

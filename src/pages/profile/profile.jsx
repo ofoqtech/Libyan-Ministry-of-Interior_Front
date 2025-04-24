@@ -287,7 +287,7 @@ function Profile() {
                                             />
 
                                         </div>
-                                        <div className="col-12 mt-4">
+                                        <div className="col-12 text-center mt-4">
                                             <p
                                                 className="text-primary"
                                                 style={{ cursor: 'pointer', fontWeight: 'bold' }}
@@ -298,7 +298,7 @@ function Profile() {
                                         </div>
 
                                         {showPasswordForm && (
-                                            <div className="col-md-12 mt-3">
+                                            <div className="col-md-12 mt-3 text-center">
                                                 <label htmlFor="newPassword">{t("profile.newPassword")}</label>
                                                 <input
                                                     type="password"
