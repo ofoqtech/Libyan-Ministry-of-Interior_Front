@@ -120,7 +120,7 @@ function TopNav({ t }) {
             {t("header.breakingNews")}
           </div>
           <p className="mt-3">
-            {`${breakingNews?.title?.slice(0, 45)}`}... 
+            {`${breakingNews?.title?.slice(0, 47)}`}... 
             <Link to={`/CommonNewsDetailsPage/${breakingNews.id}`}>{t("ReadMore")}</Link>
           </p>
         </div>

@@ -26,20 +26,28 @@ const LoginPage = () => {
                 email,
                 password
             });
-
-
+    
+            const result = res?.data?.result;
+            if (!result) {
+                toast.error(t("login.error")); // أو رسالة مخصصة مثل "بيانات غير صالحة من السيرفر"
+                return;
+            }
+    
             toast.success(t("login.success"), {
                 autoClose: 2000,
                 onClose: () => {
-                  login(res.data.result); 
-                  Navigate("/"); 
+                    login(result); 
+                    Navigate("/"); 
                 },
-              });
-              
+            });
+    
         } catch (error) {
-            toast.error(error.response.data.message || t("login.error"));
+            toast.error(
+                error?.response?.data?.message || t("login.error") || "Network error"
+            );
         }
     };
+    
     return (
         <section className={`mt-1 ${styles.LoginPage}`}>
             <div className="container-fluid">

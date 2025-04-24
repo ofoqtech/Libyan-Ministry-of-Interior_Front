@@ -9,9 +9,12 @@ export const AuthProvider = ({ children }) => {
     });
 
     const login = (userData = '') => {
+        if (!userData || typeof userData !== "object") return;
+    
         setUser(userData);
-        localStorage.setItem("user", JSON.stringify(userData)); // Save to localStorage
+        localStorage.setItem("user", JSON.stringify(userData));
     };
+    
 
     const logout = () => {
         setUser(null);

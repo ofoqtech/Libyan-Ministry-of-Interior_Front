@@ -43,6 +43,7 @@
     "passwordPlaceholder": "ادخل الرقم السري",
     "loginBtn": "تسجيل الدخول",
     "noAccount": "ليس لديك حساب؟",
+    "error" : "حدث خطأ أثناء تسجيل الدخول",
     "registerNow": "سجّل الآن!"
   },
   "passwordMatch" : "كلمه المرور غير متطابقه في الحقول ",
