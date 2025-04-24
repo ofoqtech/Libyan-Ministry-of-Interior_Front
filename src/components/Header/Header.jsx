@@ -32,7 +32,7 @@ function Header() {
 
   return (
     <>
-      <TopNav t={t} />
+      <TopNav t={t} i18n = {i18n} />
       <DesktopHeader
         t={t}
         user={user}
@@ -53,10 +53,9 @@ function Header() {
   );
 }
 
-function TopNav({ t }) {
+function TopNav({ t, i18n }) {
   const [breakingNews, setBreakingNews] = useState([]);
   const [loading, setLoading] = useState(true); // إضافة حالة التحميل
-  const { i18n } = useTranslation('global');
 
   useEffect(() => {
     const getBreakingNews = async () => {
