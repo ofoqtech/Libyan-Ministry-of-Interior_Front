@@ -79,7 +79,7 @@ function RequestDetails() {
                                 <path opacity="0.6" d="M22.8958 18.8304C23.5258 20.3004 24.6758 23.6354 23.1758 24.2054C21.6758 24.7804 19.4808 22.6504 18.4408 20.5104C17.4008 18.3704 17.4958 15.5304 19.0658 15.4854C20.6358 15.4404 22.0608 16.8854 22.8958 18.8304ZM21.4508 40.3004C19.8858 42.1304 18.7108 44.5904 19.1558 46.9654C19.6258 49.4704 21.9558 48.7804 22.7658 48.1454C25.3458 46.1204 24.6408 43.5254 26.6358 40.6104C26.9758 40.1104 28.3958 38.5454 28.1958 37.5604C28.0758 36.9754 26.7158 36.6754 24.2408 37.9154C23.1508 38.4654 22.2558 39.3654 21.4508 40.3004Z" fill="white" />
                             </svg>
 
-                        ) : data.status === "completed" ? (<svg width="48" height="48" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        ) : data.status === "approved" ? (<svg width="48" height="48" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 fillRule="evenodd"
                                 clipRule="evenodd"
@@ -103,13 +103,15 @@ function RequestDetails() {
 
                     <div className="row d-flex justify-content-center my-5">
                         <div className="col-lg-6">
-                            <div className="request-details border rounded p-3">
+                            {data.status === "approved" && (
+                                <div className="request-details border rounded p-3">
                                 <img
                                     src={data?.response_file_url || "/assets/home_1.png"}
                                     className="w-100"
                                     alt={t("requestDetails.imageAlt")}
                                 />
                             </div>
+                            )}
                         </div>
                         <p className="my-5">{data?.response || t("requestDetails.description")}</p>
                     </div>
