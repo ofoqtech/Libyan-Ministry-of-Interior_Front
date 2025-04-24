@@ -24,6 +24,7 @@
     linear-gradient(0deg, #00000033, #00000033),
     linear-gradient(180deg, #0000 -107.22%, #00000024 96.71%);
   z-index: -1;
+  
 }
 .common-news-box .type {
   width: fit-content;

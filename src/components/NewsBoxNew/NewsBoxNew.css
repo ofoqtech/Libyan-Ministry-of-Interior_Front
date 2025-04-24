@@ -1,7 +1,6 @@
 .news-box-new .news-box-Image img {
     width: 140px;
     height: 140px;
-    object-fit: cover;
 }
 
 .new-box-content .type {
