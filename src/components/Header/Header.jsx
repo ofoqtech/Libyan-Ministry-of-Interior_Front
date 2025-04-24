@@ -47,7 +47,7 @@ function TopNav({ t }) {
           <p style={{ fontSize: "14px" }} className="fw-light">{t('header.navDate2')}</p>
         </div>
         <div className="fast-news text-white" style={{ background: "#003f9c", padding: "8px 20px", borderRadius: "4px", fontSize: "14px", width: '150px', textAlign: "center", maxWidth: "100%" }}>{t('header.breakingNews')}</div>
-        <p className="mt-3">{t('header.navDate')}</p>
+        <p className="mt-3">{t('header.navDate')} <Link to={`/CommonNewsDetailsPage`}>{t('ReadMore')}</Link></p>
       </div>
       <div className="top-nav-social">
         <ul className='d-flex mt-1 mb-0'>
