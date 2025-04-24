@@ -203,9 +203,9 @@ function TopNav({ t, i18n }) {
                     height="40"
                     rx="20"
                     fill="white"
-                    shape-rendering="crispEdges"
+                    shapeRendering="crispEdges"
                   />
-                  <g clip-path="url(#clip0_138_2815)">
+                  <g clipPath="url(#clip0_138_2815)">
                     <path
                       d="M28.076 27H31.61L34.755 31.498L38.53 27H39.659L35.185 32.114L40 39H36.468L33.183 34.303L29.128 39H28L32.753 33.688L28.076 27Z"
                       fill="#0F0F6F"
@@ -220,9 +220,9 @@ function TopNav({ t, i18n }) {
                     width="68"
                     height="68"
                     filterUnits="userSpaceOnUse"
-                    color-interpolation-filters="sRGB"
+                    colorInterpolationFilters="sRGB"
                   >
-                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feFlood floodOpacity="0" result="BackgroundImageFix" />
                     <feColorMatrix
                       in="SourceAlpha"
                       type="matrix"

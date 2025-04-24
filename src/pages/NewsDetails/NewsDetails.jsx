@@ -8,7 +8,7 @@ export default function TodayNewsDetailsPage() {
 
     return (
         <>
-            <GlobalContainer text={t('main_news')} header={`${t('home')} -  ${t('main_news')} - ${t('header.latest_news')} `} />
+            <GlobalContainer text={t('header.latest_news')} header={`${t('home')} - ${t('header.latest_news')} `} />
             <TodayNewsDetails />
         </>
     );

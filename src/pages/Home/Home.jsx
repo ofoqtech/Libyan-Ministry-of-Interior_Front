@@ -221,8 +221,8 @@ function TodayNews({ t }) {
             ) : TodayNews[2] && TodayNews[0] ? (
 
               <Link to={`/news/details/${TodayNews[0]?.id}`}>
-              
-              <CommonNewsBox
+
+                <CommonNewsBox
                   image={TodayNews[2].image_url}
                   type={t("today_news.category_1")}
                   title={TodayNews[0]?.name}
@@ -595,15 +595,17 @@ function NewsInternalPlatform() {
                 style={{ height: "300px", borderRadius: "10px", opacity: 0.2 }}
               />
             ) : newsList[0] && (
-              <CommonNewsBox
-                image={newsList[0].image_url}
-                type={t("news.category_1")}
-                title={newsList[0].title}
-                time={new Date(newsList[0].created_at).toLocaleDateString()}
-                description={newsList[0].description}
-                styling="500px"
-                styling2 = 'cover'
-              />
+              <Link to={`MinsitryNewsDetailsPage/${newsList[0]?.id}`}>
+                <CommonNewsBox
+                  image={newsList[0].image_url}
+                  type={t("news.category_1")}
+                  title={newsList[0].title}
+                  time={new Date(newsList[0].created_at).toLocaleDateString()}
+                  description={newsList[0].description}
+                  styling="500px"
+                  styling2='cover'
+                />
+              </Link>
             )}
           </div>
 
@@ -620,12 +622,15 @@ function NewsInternalPlatform() {
               : newsList?.slice(1, 4).map((item, index) => (
                 <div className="col-lg-6 mb-2" key={index}>
                   <div className="newBox mb-2">
-                    <NewsBoxNew
-                      image={item.image_url}
-                      type={t("news.category_1")}
-                      title={item.title}
-                      time={new Date(item.created_at).toLocaleDateString()}
-                    />
+                  <Link to={`MinsitryNewsDetailsPage/${item?.id}`} className="text-black">
+                      <NewsBoxNew
+                        image={item.image_url}
+                        type={t("news.category_1")}
+                        title={item.title}
+                        time={new Date(item.created_at).toLocaleDateString()}
+                      />
+
+                    </Link>
                   </div>
                 </div>
               ))}

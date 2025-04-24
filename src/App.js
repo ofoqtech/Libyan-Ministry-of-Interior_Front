@@ -41,6 +41,7 @@ import ForgetPassowrd from "./pages/ForgetPassword/ForgetPassword";
 import VertificationOtp from "./pages/vertification-otp/vertification-otp";
 import ChangePassword from "./pages/change password/changePassword";
 import ActiveAccount from "./pages/ActiveAccount/ActiveAccount";
+import MinsitryNewsDetailsPage from "./pages/MinistryNewsDetails/MinistryNewsDetails";
 function LayoutWrapper({ children }) {
   const location = useLocation();
 
@@ -54,7 +55,7 @@ function LayoutWrapper({ children }) {
     "/mediadataregistration",
     "/registeringorganizationdata",
     "/forget-password",
-    '/active-account'
+    "/active-account",
   ];
 
   const hideLayout = authRoutes.includes(location.pathname);
@@ -136,6 +137,10 @@ function AppRoutes() {
       <Route
         path="/CommonNewsDetailsPage/:id"
         element={<CommonNewsDetailsPage />}
+      />
+      <Route
+        path="/MinsitryNewsDetailsPage/:id"
+        element={<MinsitryNewsDetailsPage />}
       />
 
       <Route path="/createaccount" element={<CreateAccount />} />
