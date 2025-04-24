@@ -33,18 +33,106 @@ const Home = () => {
 
 
 function Hero({ t }) {
+  const [heroSection, setHeroSection] = useState(null);
+  const { i18n } = useTranslation("global");
+
+  useEffect(() => {
+    const getHeroSection = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/app_settings/hero`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              lang: i18n.language,
+            },
+          }
+        );
+        if (response.status === 200) {
+          setHeroSection(response.data.result);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getHeroSection();
+  }, [i18n.language]);
+
+  const isLoading = !heroSection;
+
   return (
-    <div className="home" style={{ backgroundImage: `url(${'/assets/home_1.png'})` }}>
+    <div
+      className="home"
+      style={{
+        backgroundImage: `url(${heroSection?.image || "/assets/home_1.png"})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <div className="container">
         <div className="text" style={{ paddingTop: "170px" }}>
-          <span className="news text-black" style={{ background: "white", }} >{t("header.latest_news")}</span>
-          <h1 className="title py-3 px-3" style={{ background: "#003f9c" }}>{t("header.news_article.title")}</h1>
-          <p className="description new-desc" style={{ background: "white", color: "black", padding: "10px", width: "80%", maxWidth: "100%" }}>{t("header.news_article.details")}</p>
+          {isLoading ? (
+            <>
+              <div
+                style={{
+                  width: "120px",
+                  height: "30px",
+                  backgroundColor: "#ddd",
+                  borderRadius: "4px",
+                  marginBottom: "20px",
+                }}
+              />
+              <div
+                style={{
+                  width: "60%",
+                  height: "60px",
+                  backgroundColor: "#ccc",
+                  borderRadius: "6px",
+                  marginBottom: "20px",
+                }}
+              />
+              <div
+                style={{
+                  width: "80%",
+                  height: "80px",
+                  backgroundColor: "#eee",
+                  borderRadius: "4px",
+                }}
+              />
+            </>
+          ) : (
+            <>
+              <span className="news text-black" style={{ background: "white" }}>
+                {t("header.latest_news")}
+              </span>
+              <h1 className="title py-3 px-3" style={{ background: "#003f9c" }}>
+                {i18n.language === "ar"
+                  ? heroSection?.title_ar
+                  : heroSection?.title_en}
+              </h1>
+              <p
+                className="description new-desc"
+                style={{
+                  background: "white",
+                  color: "black",
+                  padding: "10px",
+                  width: "80%",
+                  maxWidth: "100%",
+                }}
+              >
+                {i18n.language === "ar"
+                  ? heroSection?.description_ar
+                  : heroSection?.description_en}
+              </p>
+            </>
+          )}
         </div>
       </div>
     </div>
   );
 }
+
 
 
 
@@ -622,7 +710,7 @@ function NewsInternalPlatform() {
               : newsList?.slice(1, 4).map((item, index) => (
                 <div className="col-lg-6 mb-2" key={index}>
                   <div className="newBox mb-2">
-                  <Link to={`MinsitryNewsDetailsPage/${item?.id}`} className="text-black">
+                    <Link to={`MinsitryNewsDetailsPage/${item?.id}`} className="text-black">
                       <NewsBoxNew
                         image={item.image_url}
                         type={t("news.category_1")}

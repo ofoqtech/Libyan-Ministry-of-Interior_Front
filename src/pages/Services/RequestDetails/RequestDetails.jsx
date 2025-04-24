@@ -96,8 +96,8 @@ function RequestDetails() {
 
                         ) : ''}
                         <div>
-                            <p className="mb-1">{data.status}</p>
-                            <small>{data.created_at.slice(0, 10)}</small>
+                            <p className="mb-1">{data?.status}</p>
+                            <small>{data?.created_at.slice(0, 10)}</small>
                         </div>
                     </div>
 
@@ -105,13 +105,13 @@ function RequestDetails() {
                         <div className="col-lg-6">
                             <div className="request-details border rounded p-3">
                                 <img
-                                    src={data.image_url || "/assets/home_1.png"}
+                                    src={data?.response_file_url || "/assets/home_1.png"}
                                     className="w-100"
                                     alt={t("requestDetails.imageAlt")}
                                 />
                             </div>
                         </div>
-                        <p className="my-5">{data.description || t("requestDetails.description")}</p>
+                        <p className="my-5">{data?.response || t("requestDetails.description")}</p>
                     </div>
                 </div>
             </div>
