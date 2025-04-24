@@ -3,6 +3,7 @@ import { GlobalContainer } from "../../../components/globalComponent/globalCompo
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import {  ToastContainer } from "react-toastify";
+import axios from "axios";
 
 
 export function IDFORMPage() {
@@ -51,7 +52,7 @@ function IDFORM() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         const payload = new FormData();
         payload.append("name", formData.name);
         payload.append("city", formData.city);
@@ -62,23 +63,27 @@ function IDFORM() {
         payload.append("army_number", formData.army_number);
         payload.append("side", formData.side);
         payload.append("bod", formData.bod);
-
+    
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/indentity_cards/make_card`, {
-                method: "POST",
-                body: payload,
-            });
-
-            const result = await response.json();
-            console.log("Response:", result);  // طباعة الريسبونس في الـ console
-
+            const response = await axios.post(
+                `${process.env.REACT_APP_API_URL}/indentity_cards/make_card`,
+                payload,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                }
+            );
+    
+            const result = response.data;
+            console.log("Response:", result);
+    
             if (result.status === "success") {
                 toast.success(t("Criminal-Reports.submissionSuccess"), {
                     autoClose: 2000,
                     onClose: () => {
-                        window.location.reload(); // إعادة تحميل الصفحة بعد فترة قصيرة
+                        window.location.reload();
                     },
-
                 });
             } else {
                 toast.error(t("Criminal-Reports.submissionError"), {

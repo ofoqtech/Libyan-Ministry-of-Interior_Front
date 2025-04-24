@@ -5,6 +5,7 @@ import { GlobalContainer } from '../../components/globalComponent/globalComponen
 import styles from './profile.module.css';
 import { useAuth } from '../../context/AuthContext';
 import { toast } from 'react-toastify';
+import axios from "axios";
 
 export default function ProfilePage() {
     const { t } = useTranslation("global");
@@ -73,30 +74,30 @@ function Profile() {
     const [newPassword, setNewPassword] = useState("");
     const handlePasswordChange = async () => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/medias/reset_password`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'lang': i18n.language
-                },
-                body: JSON.stringify({
+            const response = await axios.post(
+                `${process.env.REACT_APP_API_URL}/medias/reset_password`,
+                {
                     email: userData.email,
-                    password: newPassword
-                })
-            });
-
-            const data = await response.json();
-
-            if (data.status === "success") {
-                toast.success(t("change1"))
+                    password: newPassword,
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "lang": i18n.language,
+                    },
+                }
+            );
+    
+            if (response.data.status === "success") {
+                toast.success(t("change1"));
                 setShowPasswordForm(false);
                 setNewPassword("");
             } else {
-                toast.error(data.message || (t("change2")));
+                toast.error(response.data.message || t("change2"));
             }
         } catch (error) {
-            console.error((t("change2")));
-            toast.error(t('error'));
+            
+            toast.error(error.response?.data?.message || t("error"));
         }
     };
     const [CameraDetails, setCameraDetails] = useState(null);
@@ -198,7 +199,7 @@ function Profile() {
                                                 type="text"
                                                 className="form-control mt-2"
                                                 id="name"
-                                                value={userData.name || ""}
+                                                value={userData.name || userData.org_name || ""}
                                                 readOnly
                                             />
                                         </div>}

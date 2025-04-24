@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { GlobalContainer } from "../../components/globalComponent/globalComponent";
 import { useState } from "react";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 
 export function ComplaintPage() {
@@ -31,7 +31,7 @@ function Complaint({ t }) {
       toast.error(t("developmentGoals.fillin"));
       return;
     }
-
+  
     const formData = new FormData();
     formData.append("name", name);
     formData.append("subject", subject);
@@ -39,16 +39,20 @@ function Complaint({ t }) {
     formData.append("message", message);
     formData.append("photo1", photo1);
     formData.append("photo2", photo2);
-
+  
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/complaints/add`,
         formData
-        // No need to manually set headers
       );
+  
       if (response.status === 200) {
-        toast.success(t("developmentGoals.submitted"));
-        console.log(response.data);
+        toast.success(t("developmentGoals.submitted"), {
+          autoClose: 2000,
+          onClose: () => {
+            window.location.reload();
+          },
+        });
         // Reset form
         setName("");
         setEmail("");
@@ -56,15 +60,29 @@ function Complaint({ t }) {
         setMessage("");
         setPhoto1(null);
         setPhoto2(null);
+      } else {
+       
+        toast.error(response.data.message || t("developmentGoals.error"));
       }
     } catch (err) {
       console.error(err);
-      toast.error("Failed to submit");
+      if (err.response) {
+     
+        toast.error(err.response.data.message || t("developmentGoals.error"));
+      } else if (err.request) {
+      
+        toast.error(t("networkError"));
+      } else {
+      
+        toast.error(t("developmentGoals.error"));
+      }
     }
   };
+  
 
   return (
     <section className="contact-details">
+      <ToastContainer />  
       <div className="container py-5">
         <div className="row justify-content-center">
           <div className="col-md-12">

@@ -3,6 +3,7 @@ import styles from "./ChangePassword.module.css";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const ChangePassword = () => {
     const [t, i18n] = useTranslation("global");
@@ -11,38 +12,44 @@ const ChangePassword = () => {
     const [confirmpassword, setConfirmationPassword] = useState("");
   const navigate = useNavigate();
 
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // تحقق من تطابق كلمة المرور مع تأكيد كلمة المرور
-    if (password !== confirmpassword) {
-        toast.error(t("passwordMatch"), { autoClose: 2000 });
-        return;
-    }
-
-    try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/medias/reset_password`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ email, password }), // إرسال كلمة المرور فقط إذا كانت متطابقة
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-            toast.success(t("change1"), {
-                autoClose: 2000,
-                onClose: () => navigate('/login'),
-            });
-        } else {
-            toast.error(t("change2"), { autoClose: 5000 });
-        }
-    } catch (error) {
-        toast.error(t("change2"), { autoClose: 5000 });
-    }
-};
+      e.preventDefault();
+  
+      // تحقق من تطابق كلمة المرور مع تأكيد كلمة المرور
+      if (password !== confirmpassword) {
+          toast.error(t("passwordMatch"), { autoClose: 2000 });
+          return;
+      }
+  
+      try {
+          const response = await axios.post(
+              `${process.env.REACT_APP_API_URL}/medias/reset_password`,
+              { email, password }, 
+              {
+                  headers: {
+                      "Content-Type": "application/json",
+                  },
+              }
+          );
+  
+          if (response.status === 200) {
+              toast.success(t("change1"), {
+                  autoClose: 2000,
+                  onClose: () => navigate("/login"),
+              });
+          } else {
+              toast.error(t("change2"), { autoClose: 5000 });
+          }
+      } catch (error) {
+          console.error("Reset password error:", error);
+          toast.error(
+              error.response?.data?.message || t("change2"),
+              { autoClose: 5000 }
+          );
+      }
+  };
+  
 
 
    
@@ -74,7 +81,7 @@ const ChangePassword = () => {
                                         {t("login.password")}
                                     </label>
                                     <input
-                                        type="text"
+                                        type="password"
                                         className="form-control"
                                         placeholder={t("login.passwordPlaceholder")}
                                         value={password}
@@ -86,7 +93,7 @@ const ChangePassword = () => {
                                         {t("login.password2")}
                                     </label>
                                     <input
-                                        type="text"
+                                        type="password"
                                         className="form-control"
                                         placeholder={t("login.password2")}
                                         value={confirmpassword}

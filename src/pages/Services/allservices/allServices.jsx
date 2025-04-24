@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 import { type } from "@testing-library/user-event/dist/type";
 import { useAuth } from "../../../context/AuthContext";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 export function AllServicesPage() {
   const [t, i18n] = useTranslation("global");
@@ -175,19 +176,19 @@ function AllServicesDetails() {
         {
           title: t("allServices.trafficAccident"),
           icon: "/assets/firm_2780785.png",
-            type1: "acci_crimes",
+          type1: "acci_crimes",
           type2: 'traf_acc'
         },
         {
           title: t("allServices.murderCrime"),
           icon: "/assets/firm_2780785.png",
-            type1: "acci_crimes",
+          type1: "acci_crimes",
           type2: 'killing_crime'
         },
         {
           title: t("allServices.environmentalIncident"),
           icon: "/assets/firm_2780785.png",
-            type1: "acci_crimes",
+          type1: "acci_crimes",
           type2: 'environ_acc'
         },
         {
@@ -218,27 +219,31 @@ function AllServicesDetails() {
     formData.append("end_at", form["end-date"].value);
     formData.append("type", "photo");
     formData.append("photo", form["upload"].files[0]);
-    formData.append("prof_img", form["upload"].files[0]); // Optional if required twice
+    formData.append("prof_img", form["upload"].files[0]);
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/services/ask_photo_serv`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        body: formData,
-      });
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API_URL}/services/ask_photo_serv`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-      const data = await response.json();
       console.log("Response:", data);
 
       if (data.status === "success") {
-        toast.success(t("Criminal-Reports.submissionSuccess"));
+        toast.success(t("Criminal-Reports.submissionSuccess"), {
+          autoClose: 2000,
+          onClose: () => window.location.reload(),
+        });
+
       } else {
         toast.error(data.message || t("allServices.submissionError"));
       }
     } catch (error) {
-      console.error("Submission error:", error);
       toast.error(t("allServices.submissionError"));
     }
   };
@@ -254,25 +259,29 @@ function AllServicesDetails() {
     formData.append("device_name", form["device-name"].value);
     formData.append("manufacturer", form["manufacturer"].value);
     formData.append("type", "drown");
+
     if (form["upload"].files[0]) {
       formData.append("photo", form["upload"].files[0]);
-      formData.append("prof_img", form["upload"].files[0]); // لو لازم يتكرر
+      formData.append("prof_img", form["upload"].files[0]);
     }
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/services/ask_photo_serv`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        body: formData,
-      });
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API_URL}/services/ask_photo_serv`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-      const data = await response.json();
       console.log("Drone submission response:", data);
 
       if (data.status === "success") {
-        toast.success(t("droneSucessMessage"));
+        toast.success(t("droneSucessMessage"), {
+          autoClose: 2000,  onClose: () => window.location.reload(),
+        });
       } else {
         toast.error(data.message || t("droneFailedMessage"));
       }
@@ -280,6 +289,7 @@ function AllServicesDetails() {
       toast.error(t("droneFailedMessage"));
     }
   };
+
 
   const [CameraDetails, setCameraDetails] = useState(null);
   const [DronDetails, setDronDetails] = useState(null);
@@ -742,7 +752,7 @@ function AllServicesDetails() {
                   <div className="row">
                     <div className="col-md-12">
                       <div className="list-group">
-                      {(CameraDetails?.result?.length === 0 && (
+                        {(CameraDetails?.result?.length === 0 && (
                           <div className="text-center my-3">
                             {t('noData')}
                           </div>

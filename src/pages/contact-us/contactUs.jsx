@@ -3,7 +3,7 @@ import { GlobalContainer } from "../../components/globalComponent/globalComponen
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 export function ContactUs() {
   const [t, i18n] = useTranslation("global");
@@ -20,6 +20,7 @@ export function ContactUs() {
 }
 
 function ContactDetails({ t, i18n }) {
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -35,26 +36,41 @@ function ContactDetails({ t, i18n }) {
       subject: Yup.string().required(t("form.required")),
       message: Yup.string().required(t("form.required")),
     }),
-    onSubmit: async (values, { resetForm }) => {
+    onSubmit: async (values) => {
       try {
-        await axios.post(`${process.env.REACT_APP_API_URL}/contact/contact_us`, {
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/contact/contact_us`, {
           name: values.name,
           phone: values.phone,
           email: values.email,
           title: values.subject,
           message: values.message,
         });
-        toast.success(t("form.success"));
-        resetForm();
+  
+        if (response.status === 200) {
+          toast.success(t("form.success"), {
+            autoClose: 2000,
+            onClose: () => {
+             window.location.reload();
+            },
+          });
+        } else {
+          toast.error(response.data.message || t("form.error"));
+        }
       } catch (error) {
-        toast.error(t("form.error"));
+        if (error.response) {
+          toast.error(error.response.data.message || t("form.error"));
+        } else if (error.request) {
+          toast.error(t("networkError"));
+        } else {
+          toast.error(t("form.error"));
+        }
       }
-    }
-    
+    },
   });
-
+  
   return (
     <section className="contact-details">
+      <ToastContainer />
       <div className="container py-5">
         <div className="row justify-content-center">
           <div className="col-md-12">

@@ -3,6 +3,7 @@ import styles from "./verification.module.css";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Vertification = () => {
     const [t, i18n] = useTranslation("global");
@@ -22,23 +23,25 @@ const Vertification = () => {
         return () => clearInterval(interval);
     }, [timer]);
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+    
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/medias/verify_code`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ email, code }),
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
+            const response = await axios.post(
+                `${process.env.REACT_APP_API_URL}/medias/verify_code`,
+                { email, code },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+    
+            if (response.status === 200) {
                 toast.success(t("verificationOk"), {
                     autoClose: 2000,
-                    onClose: () => navigate('/login')
+                    onClose: () => navigate("/login"),
                 });
             } else {
                 toast.error(t("verificationFailed"), { autoClose: 5000 });
@@ -47,26 +50,27 @@ const Vertification = () => {
             toast.error(t("verificationFailed"), { autoClose: 5000 });
         }
     };
-
+    
     const handleResend = async () => {
         if (!email) {
             toast.error(t("login.enterEmailFirst"));
             return;
         }
-
+    
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/medias/resend_code`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ email }),
-            });
-
-            const data = await response.json();
-            console.log("Resend response:", data);
-
-            if (response.ok) {
+            const response = await axios.post(
+                `${process.env.REACT_APP_API_URL}/medias/resend_code`,
+                { email },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+    
+            console.log("Resend response:", response.data);
+    
+            if (response.status === 200) {
                 toast.success(t("codeResent"));
                 setTimer(60);
                 setResendAvailable(false);
@@ -78,6 +82,7 @@ const Vertification = () => {
             toast.error(t("resendFailed"));
         }
     };
+    
 
     return (
         <section className={`mt-5 pt-5 ${styles.LoginPage}`}>

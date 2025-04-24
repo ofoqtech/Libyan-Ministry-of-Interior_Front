@@ -184,6 +184,8 @@
     "decision_merge": "Interior Minister decides to merge a number of security directorates of the Libyan government",
     "two_hours_ago": "2 hours ago"
   },
+  "networkError" : "Network Connection Error",
+
   "photos": {
     "title": "Photos",
     "alt_text": "Image from decisions"

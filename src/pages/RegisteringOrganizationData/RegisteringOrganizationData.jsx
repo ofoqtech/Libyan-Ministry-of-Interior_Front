@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.rtl.min.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 
 const RegisteringOrganizationData = () => {
@@ -32,40 +33,48 @@ const RegisteringOrganizationData = () => {
         fetchMediaTypes();
     }, [i18n.language]);
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         const form = e.target;
         const password = form.password.value;
-  // تحقق من تطابق كلمة المرور مع تأكيد كلمة المرور
+    
+        // تحقق من تطابق كلمة المرور مع تأكيد كلمة المرور
         if (password !== confirmpassword) {
             toast.error(t("passwordMatch"), { autoClose: 2000 });
             return;
         }
+    
         if (password.length < 8) {
             toast.error(t("mediaRegistration.passwordMinLength"));
             return;
         }
+    
         const formData = new FormData();
         formData.append("name", form.name.value);
-
         formData.append("email", form.email.value);
         formData.append("phone", form.phone.value);
         formData.append("national_id", form.Identity.value);
-        formData.append("password", form.password.value); // تعديل حسب المطلوب
+        formData.append("password", form.password.value);
         formData.append("nationality", form.Nationality.value);
         formData.append("prof_img", form.prof_img.files[0]);
-        formData.append("type", "org"); 
-
+        formData.append("type", "org");
+    
         try {
-            const res = await fetch(`${process.env.REACT_APP_API_URL}/medias/media_regist`, {
-                method: "POST",
-                body: formData,
-            });
-
-            const data = await res.json();
-            console.log(data);
-
+            const response = await axios.post(
+                `${process.env.REACT_APP_API_URL}/medias/media_regist`,
+                formData,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                        'lang': i18n.language,
+                    },
+                }
+            );
+    
+            const data = response.data;
+    
             if (data.status === "success") {
                 toast.success(t("Criminal-Reports.submissionSuccess"), {
                     autoClose: 2000,
@@ -73,16 +82,16 @@ const RegisteringOrganizationData = () => {
                         navigate("/vertification");
                     },
                 });
-
             } else {
                 toast.error(data.message || t("Criminal-Reports.submissionError"));
             }
         } catch (err) {
-            console.error("Submit error:", err);
-            toast.error(t("Criminal-Reports.submissionError"));
+            toast.error(
+                err.response?.data?.message || t("Criminal-Reports.submissionError")
+            );
         }
     };
-
+    
     return (
         <div className={styles.mediaReg__wrapper}>
             <nav>
@@ -103,7 +112,7 @@ const RegisteringOrganizationData = () => {
                         <div className="row">
                             <h4>{t("mediaRegistration.basicInfo")}</h4>
 
-                            <div className="col-md-4 col-lg-4 col-sm-12">
+                            <div className="col-md-4 mt-3 mb-2 col-lg-4 col-sm-12">
                                 <label className="my-1 d-block">{t("mediaRegistration.profileImage")}</label>
                                 <div className="d-flex parent-btns2 align-items-center gap-2">
                                     <div className={styles["custom-file-input"]}>
@@ -113,11 +122,11 @@ const RegisteringOrganizationData = () => {
                             </div>
 
 
-                            <div className="col-md-4">
+                            <div className="col-md-4 mt-3 mb-2">
                                 <label htmlFor="name">{t("mediaRegistration.orgName")}</label>
                                 <input required type="text" className="form-control mt-2" id="name" name="name" placeholder={t("mediaRegistration.namePlaceholder")} />
                             </div>
-                            <div className="col-md-4">
+                            <div className="col-md-4 mt-3 mb-2">
                                 <label htmlFor="phone">{t("mediaRegistration.phone")}</label>
                                 <input required type="text" className="form-control mt-2" id="phone" name="phone" placeholder={t("mediaRegistration.phonePlaceholder")} />
                             </div>

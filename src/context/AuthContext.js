@@ -4,12 +4,11 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(() => {
-        // Check if user is saved in localStorage
         const storedUser = localStorage.getItem("user");
         return storedUser ? JSON.parse(storedUser) : null;
     });
 
-    const login = (userData) => {
+    const login = (userData = '') => {
         setUser(userData);
         localStorage.setItem("user", JSON.stringify(userData)); // Save to localStorage
     };
