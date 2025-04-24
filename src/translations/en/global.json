@@ -47,6 +47,8 @@
     "noAccount": "Don't have an account?",
     "registerNow": "Register Now!"
   },
+  "account_deleted": "Account Deleted Successfully",
+  "account_deleted_failed": "Account Deletion Failed",
   "passwordMatch" : "The password fields do not match.",
 
   "createAccount": {

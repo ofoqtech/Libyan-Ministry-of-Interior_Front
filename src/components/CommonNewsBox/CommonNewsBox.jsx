@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import "./common-new-box.css";
 
-const CommonNewsBox = ({ image, type, title, time = '', more, newsDetailsItem, styling = '', sizing = '', lineHeight = '' }) => {
+const CommonNewsBox = ({ image, type, title, styling2,  time = '', more, newsDetailsItem, backgroundSize = '',  styling = '', sizing = '', lineHeight = '' }) => {
   return (
     <div
       className="common-news-box"
-      style={{ backgroundImage: `url(${image})`, height: styling, backgroundSize: '100% 100%', backgroundPosition: 'center' }}
+      style={{ backgroundImage: `url(${image})`, height: styling, objectFit : styling2, backgroundSize: backgroundSize, backgroundPosition: 'center' }}
 
     >
       <span className="type">{type}</span>

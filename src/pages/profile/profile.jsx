@@ -1,5 +1,5 @@
 import React, { use, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { GlobalContainer } from '../../components/globalComponent/globalComponent';
 import styles from './profile.module.css';
@@ -28,6 +28,7 @@ function Profile() {
     const { t, i18n } = useTranslation("global");
     const [activeTab, setActiveTab] = useState("basic");
     const [userData, setUserData] = useState({});
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -87,7 +88,7 @@ function Profile() {
                     },
                 }
             );
-    
+
             if (response.data.status === "success") {
                 toast.success(t("change1"));
                 setShowPasswordForm(false);
@@ -96,7 +97,7 @@ function Profile() {
                 toast.error(response.data.message || t("change2"));
             }
         } catch (error) {
-            
+
             toast.error(error.response?.data?.message || t("error"));
         }
     };
@@ -148,6 +149,33 @@ function Profile() {
     }, []);
 
 
+    const handleDeleteAccount = async () => {
+        try {
+            const response = await axios.get(
+                `${process.env.REACT_APP_API_URL}/medias/delete_account`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            if (response.data.status === "success") {
+                toast.success(t('account_deleted'), {
+                    autoClose: 2000,
+                    onClose: () => navigate('/'),
+                });
+            }
+
+
+        } catch (error) {
+            const message =
+                error.response?.data?.message || t('account_deleted_failed') || t('error');
+            toast.error(message);
+        }
+
+    };
+
+
     return (
         <section className="MainAllnews my-5">
             <div className="container">
@@ -168,9 +196,10 @@ function Profile() {
                             <div className={styles.progressBar} style={{ width: activeTab === 'requests' ? '100%' : '0%' }} />
                         </div>
                     </div>
-                    <p style={{ background: "red", padding: "6px 20px", color: "white", borderRadius: "12px" }}>
+                    <Link
+                        style={{ background: "red", padding: "6px 20px", color: "white", borderRadius: "12px" }}  className='d-flex align-items-center' onClick={handleDeleteAccount}>
                         {t('profile.remove')}
-                    </p>
+                    </Link>
                 </div>
 
                 {activeTab === 'basic' && (

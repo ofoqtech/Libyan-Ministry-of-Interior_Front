@@ -123,6 +123,7 @@ function CommonNews({ t }) {
                   newsDetailsItem={item.id}
                   title={`${item.title.slice(0, 80)}...`}
                   time={`${item?.created_at?.slice(0, 10)}`}
+                  backgroundSize="100% 100%"
                 />
               </SwiperSlide>
             ))
@@ -601,6 +602,7 @@ function NewsInternalPlatform() {
                 time={new Date(newsList[0].created_at).toLocaleDateString()}
                 description={newsList[0].description}
                 styling="500px"
+                styling2 = 'cover'
               />
             )}
           </div>
