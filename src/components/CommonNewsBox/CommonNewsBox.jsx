@@ -5,7 +5,7 @@ const CommonNewsBox = ({ image, type, title, time = '', more, newsDetailsItem, s
   return (
     <div
       className="common-news-box"
-      style={{ backgroundImage: `url(${image})`, height: styling, backgroundSize: 'cover', backgroundPosition: 'center' }}
+      style={{ backgroundImage: `url(${image})`, height: styling, backgroundSize: '100% 100%', backgroundPosition: 'center' }}
 
     >
       <span className="type">{type}</span>

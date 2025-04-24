@@ -55,7 +55,7 @@ function Header() {
 
 function TopNav({ t, i18n }) {
   const [breakingNews, setBreakingNews] = useState([]);
-  const [loading, setLoading] = useState(true); // إضافة حالة التحميل
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getBreakingNews = async () => {
@@ -75,7 +75,7 @@ function TopNav({ t, i18n }) {
       } catch (err) {
         console.log(err);
       } finally {
-        setLoading(false); // تعيين التحميل إلى false بعد استلام البيانات أو حدوث خطأ
+        setLoading(false); 
       }
     };
 

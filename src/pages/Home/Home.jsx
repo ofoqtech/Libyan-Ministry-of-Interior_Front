@@ -219,7 +219,9 @@ function TodayNews({ t }) {
               />
             ) : TodayNews[2] && TodayNews[0] ? (
 
-                <CommonNewsBox
+              <Link to={`/news/details/${TodayNews[0]?.id}`}>
+              
+              <CommonNewsBox
                   image={TodayNews[2].image_url}
                   type={t("today_news.category_1")}
                   title={TodayNews[0]?.name}
@@ -227,6 +229,7 @@ function TodayNews({ t }) {
                   lineHeight="50px"
                   styling="95.8%"
                 />
+              </Link>
             ) : null}
           </div>
           {TodayNews.length === 0 && <p>{t('noData')}</p>}
