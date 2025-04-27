@@ -4,6 +4,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export function ContactUs() {
   const [t, i18n] = useTranslation("global");
@@ -20,6 +22,24 @@ export function ContactUs() {
 }
 
 function ContactDetails({ t, i18n }) {
+  const { id } = useParams();
+  const [governments, setGovernments] = useState([]);
+  useEffect(() => {
+    fetchGovernments();
+  }, [i18n.language]);
+
+  const fetchGovernments = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/governments/get_all`, {
+        headers: {
+          'lang': i18n.language,
+        },
+      });
+      setGovernments(response.data?.result || []);
+    } catch (error) {
+      toast.error(error?.response?.data?.message || t("noData") || "Something went wrong");
+    }
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -28,7 +48,9 @@ function ContactDetails({ t, i18n }) {
       email: "",
       subject: "",
       message: "",
+      government_id: id || "",  
     },
+    
     validationSchema: Yup.object({
       name: Yup.string().required(t("form.required")),
       phone: Yup.string().required(t("form.required")),
@@ -38,19 +60,25 @@ function ContactDetails({ t, i18n }) {
     }),
     onSubmit: async (values) => {
       try {
-        const response = await axios.post(`${process.env.REACT_APP_API_URL}/contact/contact_us`, {
+        const payload = {
           name: values.name,
           phone: values.phone,
           email: values.email,
           title: values.subject,
           message: values.message,
-        });
-  
+        };
+    
+        if (values.government_id) {
+          payload.government_id = values.government_id;
+        }
+    
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/contact/contact_us`, payload);
+    
         if (response.status === 200) {
           toast.success(t("form.success"), {
             autoClose: 2000,
             onClose: () => {
-             window.location.reload();
+              window.location.reload();
             },
           });
         } else {
@@ -66,12 +94,31 @@ function ContactDetails({ t, i18n }) {
         }
       }
     },
+    
   });
-  
+
   return (
     <section className="contact-details">
       <ToastContainer />
       <div className="container py-5">
+        {id != null && (
+          <div className="mb-4 d-flex justify-content-between align-items-center">
+            <span>{t('chooseDirectorates')}</span>
+            <select
+              className="form-select w-auto"
+              name="government_id"
+              value={formik.values.government_id}
+              onChange={formik.handleChange}
+            >
+              {governments.map((gov) => (
+                <option key={gov.id} value={gov.id}>
+                  {gov.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+
         <div className="row justify-content-center">
           <div className="col-md-12">
             <form onSubmit={formik.handleSubmit}>

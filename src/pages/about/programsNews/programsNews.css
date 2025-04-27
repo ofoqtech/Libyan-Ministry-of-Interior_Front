@@ -1,0 +1,9 @@
+.programsNews .type {
+    padding: 10px 20px;
+    border-radius: 3px;
+    font-size: 14px;
+    color: var(--white-color);
+    background-color: var(--main-color);
+    width: fit-content;   
+}
+.programsNews .card img {width: auto;max-height: 200px;}

@@ -256,7 +256,7 @@ html[dir="rtl"] .dropdown-menu.show {
     margin: 0 auto;
   }
   .header{
-    top: 190px;
+    top: 215px;
   }
 }
 @media(max-width:464px){
@@ -270,9 +270,14 @@ html[dir="rtl"] .dropdown-menu.show {
 }
 @media(max-width:338px){
   .header{
-    top: 320px;
+    top: 300px;
   }
   }
   .ol, ul{
     padding: 0 !important; 
   }
+  @media(max-width:280px){
+    .header{
+      top: 340px;
+    }
+    }

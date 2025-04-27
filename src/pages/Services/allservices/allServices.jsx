@@ -59,20 +59,18 @@ function AllServicesDetails() {
       image: "/assets/2149098125323223.png",
       id: 4,
     },
-    ...(user != null
-      ? [
-        {
-          title: t("allServices.drone"),
-          image: "/assets/dron.png",
-          id: 5,
-        },
-        {
-          title: t("allServices.camera"),
-          image: "/assets/camera.png",
-          id: 6,
-        },
-      ]
-      : []),
+
+    {
+      title: t("allServices.drone"),
+      image: "/assets/dron.png",
+      id: 5,
+    },
+    {
+      title: t("allServices.camera"),
+      image: "/assets/camera.png",
+      id: 6,
+    },
+
   ];
 
 
@@ -280,7 +278,7 @@ function AllServicesDetails() {
 
       if (data.status === "success") {
         toast.success(t("droneSucessMessage"), {
-          autoClose: 2000,  onClose: () => window.location.reload(),
+          autoClose: 2000, onClose: () => window.location.reload(),
         });
       } else {
         toast.error(data.message || t("droneFailedMessage"));
@@ -354,6 +352,35 @@ function AllServicesDetails() {
         >
           {services.map((service, index) => (
             <SwiperSlide key={service.id}>
+             {user != null  ?  <div
+                className={`position-relative w-100 text-center px-0 ${activeTab === index ? " border-5" : ""
+                  }`}
+                onClick={() => setActiveTab(index)}
+                style={{
+                  cursor: "pointer",
+                  backgroundImage: `url(${service.image})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  width: "288px",
+                  height: "350px",
+                  border:
+                    activeTab === index ? "1px solid #003F9C" : "transparent",
+                }}
+              >
+                <div className="overlay2"></div>
+                <h5
+                  style={{
+                    zIndex: 1,
+                    position: "absolute",
+                    top: "86%",
+                    width: "100%",
+                    fontSize: "18px",
+                  }}
+                  className="text-white text-center all-services-heading"
+                >
+                  {service.title}
+                </h5>
+              </div> : service.title === 'الدرون' || service.title === 'Drone' || service.title === 'Camera' || service.title === 'الكاميرا' ?  <Link to={'/login'}>
               <div
                 className={`position-relative w-100 text-center px-0 ${activeTab === index ? " border-5" : ""
                   }`}
@@ -383,7 +410,37 @@ function AllServicesDetails() {
                   {service.title}
                 </h5>
               </div>
-              {activeTab === index && (
+              
+              </Link> :    <div
+                className={`position-relative w-100 text-center px-0 ${activeTab === index ? " border-5" : ""
+                  }`}
+                onClick={() => setActiveTab(index)}
+                style={{
+                  cursor: "pointer",
+                  backgroundImage: `url(${service.image})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  width: "288px",
+                  height: "350px",
+                  border:
+                    activeTab === index ? "1px solid #003F9C" : "transparent",
+                }}
+              >
+                <div className="overlay2"></div>
+                <h5
+                  style={{
+                    zIndex: 1,
+                    position: "absolute",
+                    top: "86%",
+                    width: "100%",
+                    fontSize: "18px",
+                  }}
+                  className="text-white text-center all-services-heading"
+                >
+                  {service.title}
+                </h5>
+              </div> }
+              {activeTab === index &&   (
                 <div
                   style={{
                     border: "2px solid #003F9C",
@@ -422,8 +479,7 @@ function AllServicesDetails() {
         {activeTab ===
           services.findIndex(
             (service) => service.title === "الدرون" || service.title === "Drone"
-          ) ? (
-          <div>
+          ) ? (user != null ? <div>
             <div>
               <div className="d-flex gap-2 justify-content-center my-3 flex-wrap">
                 <button
@@ -615,8 +671,7 @@ function AllServicesDetails() {
                 </div>
               )}
             </div>
-          </div>
-        ) : activeTab ===
+          </div> : <div></div>) : activeTab ===
           services.findIndex(
             (service) =>
               service.title === "الكاميرا" || service.title === "Camera"

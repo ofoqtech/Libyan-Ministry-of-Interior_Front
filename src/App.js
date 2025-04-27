@@ -42,6 +42,9 @@ import VertificationOtp from "./pages/vertification-otp/vertification-otp";
 import ChangePassword from "./pages/change password/changePassword";
 import ActiveAccount from "./pages/ActiveAccount/ActiveAccount";
 import MinsitryNewsDetailsPage from "./pages/MinistryNewsDetails/MinistryNewsDetails";
+import DirectoratesNewsPage from "./pages/mediaOffice/DirectoratesNews/DirectoratesNews";
+import ProgramsNews from "./pages/about/programsNews/ProgramsNews";
+import ProgramDetails from "./pages/about/programDetails/ProgramDetails";
 function LayoutWrapper({ children }) {
   const location = useLocation();
 
@@ -86,7 +89,9 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/contact/:id" element={<ContactUs />} />
       <Route path="/contact" element={<ContactUs />} />
+
       <Route path="/forget-password" element={<ForgetPassowrd />} />
       <Route path="/services" element={<AllServicesPage />} />
       <Route path="/active-account" element={<ActiveAccount />} />
@@ -124,6 +129,9 @@ function AppRoutes() {
       <Route path="/mediaOffice/allnews" element={<Allnews />} />
       <Route path="/mediaOffice/newsdetails/:id" element={<NewsDetails />} />
       <Route path="/mediaOffice/allmeetings" element={<AllMeetings />} />
+      <Route path="/about/programs-news" element={<ProgramsNews />} />
+      <Route path="/about/programDetails/:id" element={<ProgramDetails />} />
+      <Route path="/mediaOffice/DirectoratesNews" element={<DirectoratesNewsPage />} />
       <Route
         path="/mediaOffice/meetingsdetails/:id"
         element={<MeetingsDetails />}
