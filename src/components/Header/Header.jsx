@@ -341,7 +341,7 @@ function DesktopHeader({
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/contact/1">
+                  <Link className="dropdown-item" to="/contact/directorate">
                     {t("header.contacTheDirectorate")}
                   </Link>
                 </li>

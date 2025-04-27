@@ -48,9 +48,10 @@ function ContactDetails({ t, i18n }) {
       email: "",
       subject: "",
       message: "",
-      government_id: id || "",  
+      ...(id != null && { government_id: "" }), 
     },
     
+
     validationSchema: Yup.object({
       name: Yup.string().required(t("form.required")),
       phone: Yup.string().required(t("form.required")),
@@ -67,13 +68,14 @@ function ContactDetails({ t, i18n }) {
           title: values.subject,
           message: values.message,
         };
-    
-        if (values.government_id) {
+
+        if (id != null && values.government_id) {
           payload.government_id = values.government_id;
         }
-    
+        
+
         const response = await axios.post(`${process.env.REACT_APP_API_URL}/contact/contact_us`, payload);
-    
+
         if (response.status === 200) {
           toast.success(t("form.success"), {
             autoClose: 2000,
@@ -94,7 +96,7 @@ function ContactDetails({ t, i18n }) {
         }
       }
     },
-    
+
   });
 
   return (
@@ -103,19 +105,20 @@ function ContactDetails({ t, i18n }) {
       <div className="container py-5">
         {id != null && (
           <div className="mb-4 d-flex justify-content-between align-items-center">
-            <span>{t('chooseDirectorates')}</span>
             <select
               className="form-select w-auto"
               name="government_id"
               value={formik.values.government_id}
               onChange={formik.handleChange}
             >
+              <option value="">{t("chooseDirectorates")}</option> {/* الاختيار الافتراضي */}
               {governments.map((gov) => (
                 <option key={gov.id} value={gov.id}>
                   {gov.name}
                 </option>
               ))}
             </select>
+
           </div>
         )}
 
