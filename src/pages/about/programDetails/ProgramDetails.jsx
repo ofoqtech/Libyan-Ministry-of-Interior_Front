@@ -64,7 +64,7 @@ function Programs() {
             <React.Fragment key={index}>
               <div className="col-lg-6">
                 <img
-                  style={{ maxWidth: "100%", width: "700px", height : "400px", objectFit : "cover" }}
+                  style={{ maxWidth: "100%", width: "700px", height: "400px", objectFit: "cover" }}
                   src={news?.image_url || '/assets/placeholder.jpg'}
                   className="mb-3"
                   alt={news?.title}
@@ -83,6 +83,9 @@ function Programs() {
               <div className="my-3">
                 <p className="titledetalis">{news?.description}</p>
               </div>
+              {news?.youtube_link && <div className="my-3">
+                <Link className="titledetalis text-center mx-auto d-flex justify-content-center type" style={{ borderRadius: "10px" }} to={news?.youtube_link} clas>{t('showVideo')}</Link>
+              </div>}
             </React.Fragment>
           ))}
         </div>

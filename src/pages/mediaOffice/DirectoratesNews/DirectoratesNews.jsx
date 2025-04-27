@@ -20,145 +20,122 @@ export default function DirectoratesNewsPage() {
     );
 }
 
+
+
 function DirectoratesNews() {
-    const { t, i18n } = useTranslation("global");
-    const [news, setNews] = useState([]);
-    const [pagination, setPagination] = useState({
-        current_page: 1,
-        last_page: 1,
-        next_page_url: null,
-        prev_page_url: null,
-    });
-    const [loading, setLoading] = useState(true);
-    const [governments, setGovernments] = useState([]);
+  const { t, i18n } = useTranslation("global");
+  const [news, setNews] = useState([]);
+  const [selectedGovId, setSelectedGovId] = useState(null);
+  const [loadingData, setLoadingData] = useState(false);
+  const [governments, setGovernments] = useState([]);
 
-    useEffect(() => {
-        fetchNews(`${process.env.REACT_APP_API_URL}/news/main_news?page=1`);
-    }, [i18n.language]);
+  const handleGovChange = (event) => {
+    const govId = event.target.value;
+    setSelectedGovId(govId);
+  };
 
-    useEffect(() => {
-        fetchGovernments();
-    }, [i18n.language]);
-
+  useEffect(() => {
     const fetchGovernments = async () => {
-        try {
-          const response = await axios.get(`${process.env.REACT_APP_API_URL}/governments/get_all`, {
-            headers: {
-              'lang': i18n.language,
-            },
-          });
-          setGovernments(response.data?.result || []);
-        } catch (error) {
-          toast.error(error?.response?.data?.message || t("noData") || "Something went wrong");
-        }
-      };
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/governments/get_all`, {
+          headers: {
+            lang: i18n.language,
+          },
+        });
+        setGovernments(response.data?.result || []);
+      } catch (error) {
+        console.error("Error fetching governments:", error);
+      }
+    };
+    fetchGovernments();
+  }, [i18n.language]);
 
-    const fetchNews = async (url) => {
-        setLoading(true);
+  useEffect(() => {
+    const fetchGovernmentNews = async () => {
+      if (selectedGovId) {
+        setLoadingData(true);
         try {
-            const response = await axios.get(url, {
+          const response = await axios.get(
+            `${process.env.REACT_APP_API_URL}/news/government_news/${selectedGovId}`,
+            {
                 headers: {
                     'lang': i18n.language,
                     'Content-Type': 'application/json',
                 },
-            });
-
-            if (response.data.status === 'success') {
-                setNews(response.data.result.data);
-                setPagination(response.data.result);
             }
-        } catch (error) {
-            console.error('Error fetching news:', error);
+          );
+          setNews(response?.data?.result?.data); 
+        } catch (err) {
+          console.error('Error fetching government news:', err);
         } finally {
-            setLoading(false);
+          setLoadingData(false);
         }
+      } else {
+        setNews([]); 
+      }
     };
+    fetchGovernmentNews();
+  }, [selectedGovId, i18n.language]);
 
-    const handlePagination = (url) => {
-        if (url) fetchNews(url);
-    };
-
-    if (loading) {
-        return (
-            <div className="text-center my-5">
-                <div className="spinner-border text-primary" role="status">
-                    <span className="visually-hidden">{t('loading')}</span>
-                </div>
-            </div>
-        );
-    }
-
+  if (loadingData) {
     return (
-        <section className="MainAllnews my-5">
-            <div className="container">
-                <div className="mb-4 d-flex justify-content-between align-items-center">
-                    <span>{t('filterBy')}</span>
-                    <select className="form-select w-auto">
-                        {governments.map((gov) => (
-                            <option key={gov.id} value={gov.id}>
-                                {gov.name}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-                {news.map((item, index) => (
-                    <div className="row my-3" key={index}>
-                        <div className="col-lg-4">
-                            <img
-                                style={{ maxWidth: '100%', width: '700px' }}
-                                src={item.image_url}
-                                className="mb-3"
-                                alt="News"
-                            />
-                        </div>
-                        <div className="col-lg-8">
-                            <h5>{item.title}</h5>
-                            <p className="desicionstitle mt-2">{item.description}</p>
-                            <div className="d-flex justify-content-between align-items-center">
-                                <span className="desicionstime">
-                                    <i className="uil uil-calendar-alt ms-1 mx-2"></i>
-                                    {new Date(item.created_at).toLocaleDateString(i18n.language)}
-                                </span>
-                                <Link to={`/mediaOffice/newsdetails/${item.id}`} className="type">
-                                    {t('allNews.readMore')}
-                                </Link>
-
-
-                            </div>
-                        </div>
-                    </div>
-                ))}
-
-                <div className="mt-5">
-                    <nav>
-                        <ul className="pagination justify-content-center">
-                            <li className="page-item">
-                                <button
-                                    className="page-link"
-                                    onClick={() => handlePagination(pagination.prev_page_url)}
-                                    disabled={!pagination.prev_page_url}
-                                >
-                                    {t('allNews.pagination.previous')}
-                                </button>
-                            </li>
-
-                            <li className="page-item active">
-                                <button className="page-link">{pagination.current_page}</button>
-                            </li>
-
-                            <li className="page-item">
-                                <button
-                                    className="page-link"
-                                    onClick={() => handlePagination(pagination.next_page_url)}
-                                    disabled={!pagination.next_page_url}
-                                >
-                                    {t('allNews.pagination.next')}
-                                </button>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </section>
+      <div className="text-center my-5">
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">{t('loading')}</span>
+        </div>
+      </div>
     );
+  }
+
+  return (
+    <section className="MainAllnews my-5">
+      <div className="container">
+      <div className="mb-4 d-flex justify-content-between align-items-center">
+  <select
+    className="form-select w-auto"
+    onChange={handleGovChange}
+    value={selectedGovId || ""}
+  >
+    <option value="">{t('chooseDirectorates')}</option>
+    {governments.map((gov) => (
+      <option key={gov.id} value={gov.id}>
+        {gov.name}
+      </option>
+    ))}
+  </select>
+</div>
+
+        <div className="row">
+          {news.length > 0 ? (
+            news.map((program) => (
+              <div className="col-lg-4 col-md-6 col-sm-12 mb-4" key={program?.id}>
+                <div className="card px-4 pt-4 pb-1 text-center h-100 mb-2">
+                  <img
+                    src={program?.image_url || '/assets/placeholder.jpg'}
+                    className="rounded"
+                    alt={program?.name}
+                  />
+                  <h5 className="mt-3 mb-2" style={{lineHeight : "1.6"}}>{program?.title}</h5>
+                  <p
+                    className="mb-3 mt-1"
+                    style={{ fontSize: '14px', fontWeight: '400' }}
+                  >
+                   {program?.description}
+                  </p>
+                  <Link to={program?.youtube_link } className='d-block mb-3'>
+                    <span className="type mx-auto d-block">{t('programsNewsPage.view')}</span>
+                  </Link>
+                </div>
+              </div>
+            ))
+          ) : (
+            selectedGovId && <p>{t('noData')}</p>
+
+          )}
+        </div>
+      </div>
+    </section>
+  );
 }
+
+

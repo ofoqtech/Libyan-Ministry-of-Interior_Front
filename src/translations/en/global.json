@@ -47,6 +47,8 @@
     "view":"View",
     "programName":"Program Name"
   },
+  "showVideo" : "Show Video",
+
   "loading": "Loading",
   "error": "Something went wrong please try again",
   "login": {
