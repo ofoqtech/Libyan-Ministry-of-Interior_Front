@@ -34,32 +34,35 @@ const MediaDataRegistration = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
         const form = e.target;
         const password = form.password.value;
-    
+
         if (password.length < 8) {
             toast.error(t("mediaRegistration.passwordMinLength"));
             return;
         }
-    
+
         if (password !== confirmpassword) {
             toast.error(t("passwordMatch"), { autoClose: 2000 });
             return;
         }
-    
+
         const formData = new FormData();
         formData.append("name", form.name.value);
         formData.append("email", form.email.value);
+        formData.append("who_you", form.who_you.value);
         formData.append("phone", form.phone.value);
         formData.append("national_id", form.Identity.value);
         formData.append("password", form.password.value);
         formData.append("nationality", form.Nationality.value);
         formData.append("org_name", form.org_name.value);
         formData.append("org_tye", form.mediaType.value);
-        formData.append("prof_img", form.prof_img.files[0]);
+        if (form.prof_img.files && form.prof_img.files.length > 0) {
+            formData.append("prof_img", form.prof_img.files[0]);
+        }
         formData.append("type", "man");
-    
+
         try {
             const response = await axios.post(
                 `${process.env.REACT_APP_API_URL}/medias/media_regist`,
@@ -71,9 +74,9 @@ const MediaDataRegistration = () => {
                     },
                 }
             );
-    
+
             const data = response.data;
-    
+
             if (data.status === "success") {
                 toast.success(t("Criminal-Reports.submissionSuccess"), {
                     autoClose: 2000,
@@ -90,7 +93,7 @@ const MediaDataRegistration = () => {
             }
         }
     };
-    
+
 
     return (
         <div className={styles.mediaReg__wrapper}>
@@ -129,6 +132,10 @@ const MediaDataRegistration = () => {
                             <div className="col-md-4 mt-3 mb-2">
                                 <label htmlFor="phone">{t("mediaRegistration.phone")}</label>
                                 <input required type="text" className="form-control mt-2" id="phone" name="phone" placeholder={t("mediaRegistration.phonePlaceholder")} />
+                            </div>
+                            <div className="col-md-4 mt-3 mb-2">
+                                <label htmlFor="phone">{t("mediaRegistration.whoYou")}</label>
+                                <input required type="text" className="form-control mt-2" id="who_you" name="who_you" placeholder={t("mediaRegistration.whoYou")} />
                             </div>
 
                             <div className="col-md-4 mt-3 mb-2">
@@ -183,9 +190,9 @@ const MediaDataRegistration = () => {
 
                     <div className="d-flex justify-content-center flex-wrap mt-3 mb-5">
                         <Link to="/createaccount">
-                        <button type="button" className={`btn border mb-2 me-3 ${styles.btnclos}`} style={{ borderRadius: '10px' }}>
-                            {t("mediaRegistration.cancel")}
-                        </button>
+                            <button type="button" className={`btn border mb-2 me-3 ${styles.btnclos}`} style={{ borderRadius: '10px' }}>
+                                {t("mediaRegistration.cancel")}
+                            </button>
                         </Link>
                         <button type="submit" className={`btn px-5 me-3 ${styles["bg-btn"]}`} style={{ fontSize: "14px" }}>
                             {t("mediaRegistration.createAccount")}
