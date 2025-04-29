@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { GlobalContainer } from '../../components/globalComponent/globalComponent';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 export default function MinsitryNewsDetailsPage() {
@@ -71,18 +71,27 @@ function MinsitryNewsDetails() {
                         </h2>
                     </div>
                 </div>
-
                 <div className="my-3">
-                    {isLoading ? (
-                        <>
-                            <div className="bg-secondary rounded mb-2" style={{ height: "15px", width: "100%", opacity: 0.2 }}></div>
-                            <div className="bg-secondary rounded mb-2" style={{ height: "15px", width: "95%", opacity: 0.2 }}></div>
-                            <div className="bg-secondary rounded mb-2" style={{ height: "15px", width: "90%", opacity: 0.2 }}></div>
-                        </>
-                    ) : (
-                        <p className="titledetalis">{todayNews?.description}</p>
-                    )}
-                </div>
+  {isLoading ? (
+    <>
+      <div className="bg-secondary rounded mb-2" style={{ height: "15px", width: "100%", opacity: 0.2 }}></div>
+      <div className="bg-secondary rounded mb-2" style={{ height: "15px", width: "95%", opacity: 0.2 }}></div>
+      <div className="bg-secondary rounded mb-2" style={{ height: "15px", width: "90%", opacity: 0.2 }}></div>
+    </>
+  ) : (
+    <>
+      <p className="titledetalis">{todayNews?.description}</p>
+      {todayNews?.youtube_link && (
+        <div className="my-5 mx-auto text-center d-flex justify-content-center">
+          <Link className="titledetalis type" to={todayNews.youtube_link}>
+            {t('showVideo')}
+          </Link>
+        </div>
+      )}
+    </>
+  )}
+</div>
+
             </div>
         </section>
     );

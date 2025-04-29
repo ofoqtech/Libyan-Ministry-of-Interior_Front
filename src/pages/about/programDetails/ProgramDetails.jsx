@@ -83,6 +83,10 @@ function Programs() {
               <div className="my-3">
                 <p className="titledetalis">{news?.description}</p>
               </div>
+              {newsDetails?.youtube_link && <div className="my-5 mx-auto text-center d-flex justify-content-center">
+                <Link className="titledetalis type" to={newsDetails?.youtube_link}>{t('showVideo')}</Link>
+              </div>}
+              
               {news?.youtube_link && <div className="my-3">
                 <Link className="titledetalis text-center mx-auto d-flex justify-content-center type" style={{ borderRadius: "10px" }} to={news?.youtube_link} clas>{t('showVideo')}</Link>
               </div>}

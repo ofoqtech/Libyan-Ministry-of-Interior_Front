@@ -45,7 +45,7 @@ function MainAllLibrary() {
   }, []);
   
   return (
-    <div className="photos-section">
+    <div className="photos-section my-5">
     <div className="decisions-gallery">
       {loading ? (
         <div className="text-center py-5">

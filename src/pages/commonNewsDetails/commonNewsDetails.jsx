@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { GlobalContainer } from "../../components/globalComponent/globalComponent";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 export default function CommonNewsDetailsPage() {
   const { t } = useTranslation("global");
 
@@ -18,6 +18,8 @@ export default function CommonNewsDetailsPage() {
 }
 
 function CommonNewsDetails() {
+  const { t } = useTranslation("global");
+
   const { i18n } = useTranslation("global");
   const { id } = useParams();
   const [detail, setDetail] = useState();
@@ -90,6 +92,13 @@ function CommonNewsDetails() {
 
         <div className="my-3">
           <p className="titledetalis">{detail?.description}</p>
+          {detail?.youtube_link && (
+            <div className="my-5 mx-auto text-center d-flex justify-content-center">
+              <Link className="titledetalis type" to={detail.youtube_link}>
+                {t('showVideo')}
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </section>

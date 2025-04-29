@@ -153,7 +153,7 @@ function TopNav({ t }) {
                       src={image_url}
 
                       alt="social"
-                      style={{ width: "60px", height: "60px" }}
+                      style={{ width: "30px", height: "30px" }}
                     />
                   );
                   return (

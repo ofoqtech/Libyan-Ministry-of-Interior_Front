@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { GlobalContainer } from '../../components/globalComponent/globalComponent';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 export default function TodayNewsDetailsPage() {
     const { t } = useTranslation("global");
@@ -79,7 +79,17 @@ function TodayNewsDetails() {
                             <div className="bg-secondary rounded mb-2" style={{ height: "15px", width: "90%", opacity: 0.2 }}></div>
                         </>
                     ) : (
-                        <p className="titledetalis">{todayNews?.description}</p>
+
+                        <>
+                            <p className="titledetalis">{todayNews?.description}</p>
+                            {todayNews?.youtube_link && (
+                                <div className="my-5 mx-auto text-center d-flex justify-content-center">
+                                    <Link className="titledetalis type" to={todayNews.youtube_link}>
+                                        {t('showVideo')}
+                                    </Link>
+                                </div>
+                            )}
+                        </>
                     )}
                 </div>
             </div>

@@ -2,7 +2,7 @@ import { GlobalContainer } from '../../../../components/globalComponent/globalCo
 import './newsDetails.css';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 export default function NewsDetails() {
@@ -85,6 +85,9 @@ function MainNewsDetalis() {
                 <div className="my-3">
                     <p className="titledetalis">{newsDetails.description}</p>
                 </div>
+               {newsDetails?.youtube_link &&  <div className="my-5 mx-auto text-center d-flex justify-content-center">
+                    <Link className="titledetalis type"  to={newsDetails?.youtube_link}>{t('showVideo')}</Link>
+                </div>}
 
                 {newsDetails.medias?.length > 0 && (
                     <div className="mt-5">

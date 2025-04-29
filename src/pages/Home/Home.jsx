@@ -697,9 +697,8 @@ function NewsInternalPlatform() {
             )}
           </div>
 
-          <div className="row justify-content-center align-items-center mt-4">
-            {isLoading
-              ? [1, 2, 3].map((_, index) => (
+          <div className="row  align-items-center mt-4">
+            {isLoading ? [1, 2, 3].map((_, index) => (
                 <div className="col-lg-6 mb-2" key={index}>
                   <div
                     className="bg-secondary mb-2"
@@ -708,6 +707,7 @@ function NewsInternalPlatform() {
                 </div>
               ))
               : newsList?.slice(1, 4).map((item, index) => (
+               <>
                 <div className="col-lg-6 mb-2" key={index}>
                   <div className="newBox mb-2">
                     <Link to={`MinsitryNewsDetailsPage/${item?.id}`} className="text-black">
@@ -721,6 +721,8 @@ function NewsInternalPlatform() {
                     </Link>
                   </div>
                 </div>
+               </>
+                
               ))}
           </div>
           {newsList.length === 0 && <p>{t('noData')}</p>}
