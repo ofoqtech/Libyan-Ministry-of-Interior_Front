@@ -45,7 +45,9 @@
     "breadcrumb1":"Home - Programs - Program Details",
     "lorem":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae vitae, laborum dicta unde nobis vero perspiciatis nemo sequi repellat corrupti.",
     "view":"View",
-    "programName":"Program Name"
+    "programName":"Program Name",
+    "searchPlaceholder": "Search programs..."
+
   },
   "showVideo" : "Show Video",
 
@@ -254,6 +256,12 @@
     "mainHeading": "The Minister of Interior decides to merge several security directorates affiliated with the Libyan government",
     "paragraph": "The Minister of Interior, Major General Essam Abu Zariba, issued separate decisions to merge several security directorates affiliated with the Libyan government in the eastern, southeastern, and southwestern regions, reducing their number from 37 directorates to 16. According to the distribution of the directorates, the Benghazi Security Directorate includes (Benghazi, Suluq, Qaminis, Tokra, and Al-Abya.",
     "readMore": "Read more.....",
+    
+
+    "searchPlaceholder": "Search for a decision...",
+    "modalTitle": "Decision Details",
+    "createdAt": "Creation Date",
+    "close": "Close",
     "timeAgo": "2 days ago",
     "pagination": {
       "previous": "Previous",
@@ -440,6 +448,14 @@
     "previous": "Previous",
     "next": "Next"
   },
+  "searchModal": {
+    "title": "Search News",
+    "placeholder": "Search news",
+    "searchButton": "Search",
+    "closeButton": "Close"
+  },
+  "lastnews" : "Latest News",
+
   "allNews": {
     "mainHeader": "Main News",
     "DirectoratesNews" : "Directorates News",
@@ -448,6 +464,8 @@
     "newsTitle": "The Minister of Interior decides to merge several security directorates under the Libyan government",
     "newsDescription": "The Minister of Interior, Major General 'Essam Abu Zeriba,' held an extensive meeting today, Thursday, with the security leaders in the Al-Shati Security Directorate, in the presence of the head of the Criminal Investigation Department, Major General 'Ahmed Al-Shamakh,' the head of the Illegal Immigration Control Department, Major General 'Salah Al-Khifaifi,' and the Security Director, Major General 'Wahbi Al-Rakh,' along with the directors of branches and security departments, as well as the heads of centers and sections affiliated with the directorate. During the meeting, His Excellency affirmed .....",
     "readMore": "Read more.....",
+    "searchPlaceholder" : "Search For News",
+
     "timeAgo": "2 days ago",
     "pagination": {
       "previous": "Previous",

@@ -54,7 +54,8 @@ function MainAllLibrary() {
           </div>
         </div>
       ) : (
-        <div className="row justify-content-center">
+   <div className="container">
+         <div className="row justify-content-center">
           {images.map((img, index) => (
             <div className="col-lg-3 col-md-6 col-12 mb-1" key={index}>
               <img
@@ -65,6 +66,7 @@ function MainAllLibrary() {
             </div>
           ))}
         </div>
+   </div>
       )}
     </div>
   </div>

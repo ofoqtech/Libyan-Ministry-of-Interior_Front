@@ -45,6 +45,8 @@ import MinsitryNewsDetailsPage from "./pages/MinistryNewsDetails/MinistryNewsDet
 import DirectoratesNewsPage from "./pages/mediaOffice/DirectoratesNews/DirectoratesNews";
 import ProgramsNews from "./pages/about/programsNews/ProgramsNews";
 import ProgramDetails from "./pages/about/programDetails/ProgramDetails";
+import SearchPage from "./pages/search/search";
+import LastNewsDetailsPage from "./pages/LastNewsDetailsPage/LastNewsDetailsPage";
 function LayoutWrapper({ children }) {
   const location = useLocation();
 
@@ -89,7 +91,6 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/contact/:id" element={<ContactUs />} />
       <Route path="/contact" element={<ContactUs />} />
 
       <Route path="/forget-password" element={<ForgetPassowrd />} />
@@ -125,6 +126,8 @@ function AppRoutes() {
       />
       <Route path="/about/faq" element={<FAQ />} />
       <Route path="/about/complaint" element={<ComplaintPage />} />
+      <Route path="/search/:id" element={<SearchPage />} />
+      <Route path="/lastNews/:id" element={<LastNewsDetailsPage />} />
 
       <Route path="/mediaOffice/allnews" element={<Allnews />} />
       <Route path="/mediaOffice/newsdetails/:id" element={<NewsDetails />} />

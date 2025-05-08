@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
+
 export default function EmergencyCases() {
   const { t } = useTranslation("global");
 
@@ -23,7 +24,20 @@ export default function EmergencyCases() {
 function MainEmergencyCases({ t }) {
   const { i18n } = useTranslation("global");
   const [emergencyCases, setEmergencyCases] = useState([]);
-  const [loading,setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
+
+  // Function to decode HTML entities like &nbsp;, &rdquo;, &ldquo;, etc.
+  const decodeHtmlEntities = (text) => {
+    return text
+      .replace(/&nbsp;/g, ' ')    // Replacing &nbsp; with a space
+      .replace(/&rdquo;/g, '"')   // Replacing &rdquo; with a double quote
+      .replace(/&ldquo;/g, '"')   // Replacing &ldquo; with a double quote
+      .replace(/&amp;/g, '&')     // Replacing &amp; with an ampersand
+      .replace(/&lt;/g, '<')      // Replacing &lt; with a less-than sign
+      .replace(/&gt;/g, '>')      // Replacing &gt; with a greater-than sign
+      .replace(/&quot;/g, '"');   // Replacing &quot; with a double quote
+  };
+
   useEffect(() => {
     const getEmergencyCases = async () => {
       try {
@@ -38,32 +52,34 @@ function MainEmergencyCases({ t }) {
         );
         if (response.status === 200) {
           setEmergencyCases(response.data.result);
-          console.log(response.data.result);
         }
       } catch (err) {
         console.log(err);
-      }
-      finally {
+      } finally {
         setLoading(false); // hide skeleton
       }
     };
 
     getEmergencyCases();
   }, [i18n.language]);
+
   const em = emergencyCases?.emergency_situation
-    ? emergencyCases.emergency_situation
-        .replace(/<p>/g, "") // Remove <p> tags
-        .replace(/<\/p>/g, "") // Remove </p> tags
+    ? decodeHtmlEntities(
+        emergencyCases.emergency_situation
+          .replace(/<p>/g, "") // Remove <p> tags
+          .replace(/<\/p>/g, "") // Remove </p> tags
+      )
         .split("\n") // Split by new lines
         .filter((item) => item.trim() !== "") // Filter out empty lines
         .map((item, index) => <p key={index}>{item.trim()}</p>) // Map each line to a <p> tag
-    : null; // Return null if minister_word is undefined
+    : null; // Return null if emergency_situation is undefined
 
   // inputs
   const [name, setName] = useState("");
   const [sub, setSub] = useState("");
   const [disc, setDisc] = useState("");
   const [email, setEmail] = useState("");
+
   // make emergency
   const makeEmergency = async (e) => {
     e.preventDefault();
@@ -101,7 +117,6 @@ function MainEmergencyCases({ t }) {
       console.log(err);
       toast.error("Faild to submit");
     }
-  
   };
 
   return (
@@ -111,17 +126,17 @@ function MainEmergencyCases({ t }) {
           // Skeleton
           <div className="row justify-content-center my-3">
             <div className="col-lg-12">
-            <div className="skeleton-wrapper">
-            <div className="skeleton-image mb-3"></div>
-            <div className="skeleton-text mb-2"></div>
-            <div className="skeleton-text mb-2"></div>
-            <div className="skeleton-text short mb-2"></div>
-          </div>
+              <div className="skeleton-wrapper">
+                <div className="skeleton-image mb-3"></div>
+                <div className="skeleton-text mb-2"></div>
+                <div className="skeleton-text mb-2"></div>
+                <div className="skeleton-text short mb-2"></div>
+              </div>
             </div>
           </div>
-        ):(
+        ) : (
           <>
-          {em}
+            {em}
           </>
         )}
 

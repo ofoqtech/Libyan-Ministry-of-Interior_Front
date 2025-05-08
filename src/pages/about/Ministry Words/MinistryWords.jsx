@@ -23,6 +23,19 @@ function MainWords({ t }) {
   const { i18n } = useTranslation("global");
   const [ministryWord, setMinistryWord] = useState({});
   const [loading, setLoading] = useState(true);
+
+  // Function to decode HTML entities like &rdquo;, &ldquo;, etc.
+  const decodeHtmlEntities = (text) => {
+    return text
+      .replace(/&rdquo;/g, '"')  // Replacing &rdquo; with a double quote
+      .replace(/&ldquo;/g, '"')  // Replacing &ldquo; with a double quote
+      .replace(/&nbsp;/g, ' ')   // Replacing &nbsp; with a space
+      .replace(/&amp;/g, '&')    // Replacing &amp; with an ampersand
+      .replace(/&lt;/g, '<')     // Replacing &lt; with a less-than sign
+      .replace(/&gt;/g, '>')     // Replacing &gt; with a greater-than sign
+      .replace(/&quot;/g, '"');  // Replacing &quot; with a double quote
+  };
+
   useEffect(() => {
     const getWord = async () => {
       try {
@@ -37,7 +50,6 @@ function MainWords({ t }) {
         );
         if (response.status === 200) {
           setMinistryWord(response.data.result);
-          console.log(response.data.result);
         }
       } catch (err) {
         console.log(err);
@@ -48,19 +60,23 @@ function MainWords({ t }) {
 
     getWord();
   }, [i18n.language]);
+
   const ministerWord = ministryWord?.minister_word
-    ? ministryWord.minister_word
-        .replace(/<p>/g, "") // Remove <p> tags
-        .replace(/<\/p>/g, "") // Remove </p> tags
-        .split("\n") // Split by new lines
-        .filter((item) => item.trim() !== "") // Filter out empty lines
-        .map((item, index) => <p key={index}>{item.trim()}</p>) // Map each line to a <p> tag
-    : null; // Return null if minister_word is undefined
+    ? decodeHtmlEntities(
+        ministryWord.minister_word
+          .replace(/<p>/g, "")
+          .replace(/<\/p>/g, "")
+      )
+        .split("\n")  // Split by new lines
+        .filter((item) => item.trim() !== "")  // Filter out empty lines
+        .map((item, index) => <p key={index}>{item.trim()}</p>)  // Display each line in <p> tag
+    : null;
+
   return (
     <section className="my-5">
       <div className="container">
         {loading ? (
-          // Skeleton
+          // Skeleton loader while loading data
           <div className="row justify-content-center my-3">
             <div className="col-lg-12">
               <div className="skeleton-wrapper">
@@ -72,9 +88,8 @@ function MainWords({ t }) {
             </div>
           </div>
         ) : (
-          <p>{ministerWord}</p>
+          <div>{ministerWord}</div>  // Display minister's message
         )}
-        
       </div>
     </section>
   );

@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -7,75 +6,68 @@ import { GlobalContainer } from '../../../components/globalComponent/globalCompo
 import { toast } from 'react-toastify';
 
 export default function DirectoratesNewsPage() {
-    const { t } = useTranslation("global");
-
-    return (
-        <>
-            <GlobalContainer
-                text={t('allNews.DirectoratesNews')}
-                header={t('allNews.DirectoratesNews2')}
-            />
-            <DirectoratesNews />
-        </>
-    );
+  const { t } = useTranslation("global");
+  return (
+    <>
+      <GlobalContainer
+        text={t('allNews.DirectoratesNews')}
+        header={t('allNews.DirectoratesNews2')}
+      />
+      <DirectoratesNews />
+    </>
+  );
 }
-
-
 
 function DirectoratesNews() {
   const { t, i18n } = useTranslation("global");
-  const [news, setNews] = useState([]);
-  const [selectedGovId, setSelectedGovId] = useState(null);
-  const [loadingData, setLoadingData] = useState(false);
   const [governments, setGovernments] = useState([]);
+  const [news, setNews] = useState([]);
+  const [filteredNews, setFilteredNews] = useState([]);
+  const [selectedGovId, setSelectedGovId] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [loadingData, setLoadingData] = useState(false);
 
-  const handleGovChange = (event) => {
-    const govId = event.target.value;
-    setSelectedGovId(govId);
+  // Load governments
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_API_URL}/governments/get_all`, {
+      headers: { lang: i18n.language }
+    })
+    .then(res => setGovernments(res.data.result || []))
+    .catch(() => toast.error(t('error')));
+  }, [i18n.language, t]);
+
+  // Load news for selected governorate
+  useEffect(() => {
+    if (!selectedGovId) {
+      setNews([]);
+      setFilteredNews([]);
+      return;
+    }
+    setLoadingData(true);
+    axios.get(
+      `${process.env.REACT_APP_API_URL}/news/government_news/${selectedGovId}`, 
+      { headers: { lang: i18n.language, 'Content-Type': 'application/json' } }
+    )
+    .then(res => {
+      const arr = res.data.result.data || [];
+      setNews(arr);
+      setFilteredNews(arr);
+    })
+    .catch(() => toast.error(t('error')))
+    .finally(() => setLoadingData(false));
+  }, [selectedGovId, i18n.language, t]);
+
+  // Filter on title AND description
+  const handleSearchChange = e => {
+    const q = e.target.value.toLowerCase();
+    setSearchQuery(q);
+    setFilteredNews(
+      news.filter(n =>
+        n.title.toLowerCase().includes(q) ||
+        n.description.toLowerCase().includes(q)
+      )
+    );
   };
-
-  useEffect(() => {
-    const fetchGovernments = async () => {
-      try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/governments/get_all`, {
-          headers: {
-            lang: i18n.language,
-          },
-        });
-        setGovernments(response.data?.result || []);
-      } catch (error) {
-        console.error("Error fetching governments:", error);
-      }
-    };
-    fetchGovernments();
-  }, [i18n.language]);
-
-  useEffect(() => {
-    const fetchGovernmentNews = async () => {
-      if (selectedGovId) {
-        setLoadingData(true);
-        try {
-          const response = await axios.get(
-            `${process.env.REACT_APP_API_URL}/news/government_news/${selectedGovId}`,
-            {
-                headers: {
-                    'lang': i18n.language,
-                    'Content-Type': 'application/json',
-                },
-            }
-          );
-          setNews(response?.data?.result?.data); 
-        } catch (err) {
-          console.error('Error fetching government news:', err);
-        } finally {
-          setLoadingData(false);
-        }
-      } else {
-        setNews([]); 
-      }
-    };
-    fetchGovernmentNews();
-  }, [selectedGovId, i18n.language]);
 
   if (loadingData) {
     return (
@@ -89,53 +81,68 @@ function DirectoratesNews() {
 
   return (
     <section className="MainAllnews my-5">
-      <div className="container">
-      <div className="mb-4 d-flex justify-content-between align-items-center">
-  <select
-    className="form-select w-auto"
-    onChange={handleGovChange}
-    value={selectedGovId || ""}
-  >
-    <option value="">{t('chooseDirectorates')}</option>
-    {governments.map((gov) => (
-      <option key={gov.id} value={gov.id}>
-        {gov.name}
-      </option>
-    ))}
-  </select>
-</div>
-
-        <div className="row">
-          {news.length > 0 ? (
-            news.map((program) => (
-              <div className="col-lg-4 col-md-6 col-sm-12 mb-4" key={program?.id}>
-                <div className="card px-4 pt-4 pb-1 text-center h-100 mb-2">
-                  <img
-                    src={program?.image_url || '/assets/placeholder.jpg'}
-                    className="rounded"
-                    alt={program?.name}
-                  />
-                  <h5 className="mt-3 mb-2" style={{lineHeight : "1.6"}}>{program?.title}</h5>
-                  <p
-                    className="mb-3 mt-1"
-                    style={{ fontSize: '14px', fontWeight: '400' }}
-                  >
-                   {program?.description}
-                  </p>
-                  <Link to={program?.youtube_link } className='d-block mb-3'>
-                    <span className="type mx-auto d-block">{t('programsNewsPage.view')}</span>
-                  </Link>
-                </div>
-              </div>
-            ))
-          ) : (
-            selectedGovId && <p>{t('noData')}</p>
-
-          )}
-        </div>
+    <div className="container">
+      {/* selector */}
+      <div className="mb-4 d-flex align-items-center gap-3">
+        <select
+          className="form-select w-auto"
+          value={selectedGovId}
+          onChange={e => setSelectedGovId(e.target.value)}
+        >
+          <option value="">{t('chooseDirectorates')}</option>
+          {governments.map(gov => (
+            <option key={gov.id} value={gov.id}>
+              {gov.name}
+            </option>
+          ))}
+        </select>
       </div>
-    </section>
+
+      {/* صف جديد للبحث مع ترويسة */}
+      {selectedGovId && (
+        <div className="row mb-5">
+          <div className="col-lg-6 mx-auto">
+            <input
+              type="text"
+              className="form-control"
+              placeholder={t('allNews.searchPlaceholder') || 'ابحث في العنوان أو الوصف...'}
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* news cards */}
+      <div className="row justify-content-center">
+        {filteredNews.length > 0 ? (
+          filteredNews.map(item => (
+            <div className="col-lg-4 col-md-6 col-sm-12 mb-4" key={item.id}>
+              <div className="card px-4 pt-4 pb-1 text-center h-100 mb-2">
+                <img
+                  src={item.image_url || '/assets/placeholder.jpg'}
+                  className="rounded"
+                  alt={item.title}
+                />
+                <h5 className="mt-3 mb-2" style={{ lineHeight: 1.6 }}>
+                  {item.title}
+                </h5>
+                <p className="mb-3 mt-1" style={{ fontSize: 14, fontWeight: 400 }}>
+                  {item.description}
+                </p>
+                <Link to={item.youtube_link} className="d-block mb-3">
+                  <span className="type mx-auto d-block">
+                    {t('programsNewsPage.view')}
+                  </span>
+                </Link>
+              </div>
+            </div>
+          ))
+        ) : selectedGovId ? (
+          <p>{t('noData')}</p>
+        ) : null}
+      </div>
+    </div>
+  </section>
   );
 }
-
-

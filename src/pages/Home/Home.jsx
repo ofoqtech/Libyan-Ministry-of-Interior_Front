@@ -7,12 +7,12 @@ import "swiper/css/navigation";
 import { useEffect, useState } from "react";
 import MainTitle from "../../components/MainTitle/MainTitle";
 import CommonNewsBox from "../../components/CommonNewsBox/CommonNewsBox";
-import { Modal } from "react-bootstrap";
 import { NewBoxContent, NewsBoxNew } from "../../components/NewsBoxNew/NewsBoxNew";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Modal, Button } from "react-bootstrap";
 
 
 const Home = () => {
@@ -62,74 +62,182 @@ function Hero({ t }) {
   const isLoading = !heroSection;
 
   return (
-    <div
-      className="home"
-      style={{
-        backgroundImage: `url(${heroSection?.image || "/assets/home_1.png"})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      <div className="container">
-        <div className="text" style={{ paddingTop: "170px" }}>
-          {isLoading ? (
-            <>
-              <div
-                style={{
-                  width: "120px",
-                  height: "30px",
-                  backgroundColor: "#ddd",
-                  borderRadius: "4px",
-                  marginBottom: "20px",
-                }}
-              />
-              <div
-                style={{
-                  width: "60%",
-                  height: "60px",
-                  backgroundColor: "#ccc",
-                  borderRadius: "6px",
-                  marginBottom: "20px",
-                }}
-              />
-              <div
-                style={{
-                  width: "80%",
-                  height: "80px",
-                  backgroundColor: "#eee",
-                  borderRadius: "4px",
-                }}
-              />
-            </>
-          ) : (
-            <>
-              <span className="news text-black" style={{ background: "white" }}>
-                {t("header.latest_news")}
-              </span>
-              <h1 className="title py-3 px-3" style={{ background: "#003f9c" }}>
-                {i18n.language === "ar"
-                  ? heroSection?.title_ar
-                  : heroSection?.title_en}
-              </h1>
-              <p
-                className="description new-desc"
-                style={{
-                  background: "white",
-                  color: "black",
-                  padding: "10px",
-                  width: "80%",
-                  maxWidth: "100%",
-                }}
-              >
-                {i18n.language === "ar"
-                  ? heroSection?.description_ar
-                  : heroSection?.description_en}
-              </p>
-            </>
-          )}
-        </div>
+    <>
+      <div className="home-swiper home">
+        <Swiper
+          spaceBetween={0}
+          slidesPerView={1}
+          modules={[Navigation, Autoplay]}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          onSlideChange={() => console.log("slide change")}
+          onSwiper={(swiper) => console.log(swiper)}
+        >
+          <SwiperSlide>
+            <div
+              className="swiper-image"
+              style={{
+                backgroundImage: `url(${heroSection?.image || "/assets/home_1.png"
+                  })`,
+              }}
+            >
+              <div className="swiper-info">
+                <div className="container">
+                  <div className="text" style={{ paddingTop: "170px" }}>
+                    {isLoading ? (
+                      <div className="swip-skel">
+                        <div
+                          style={{
+                            width: "120px",
+                            height: "30px",
+                            backgroundColor: "#ddd",
+                            borderRadius: "4px",
+                            marginBottom: "20px",
+                          }}
+                        />
+                        <div
+                          style={{
+                            width: "60%",
+                            height: "60px",
+                            backgroundColor: "#ccc",
+                            borderRadius: "6px",
+                            marginBottom: "20px",
+                          }}
+                        />
+                        <div
+                          style={{
+                            width: "80%",
+                            height: "80px",
+                            backgroundColor: "#eee",
+                            borderRadius: "4px",
+                          }}
+                        />
+                      </div>
+                    ) : (
+                      <>
+                        <span
+                          className="news text-black"
+                          style={{ background: "white" }}
+                        >
+                          {t("header.latest_news")}
+                        </span>
+                        <h1
+                          className="title py-3 px-3 text-white"
+                          style={{ background: "#003f9c" }}
+                        >
+                          <Link to={`/lastNews/${heroSection?.id}`}>
+                            {i18n.language === "ar"
+                              ? heroSection?.title_ar
+                              : heroSection?.title_en}
+                          </Link>
+                        </h1>
+                        <p
+                          className="description new-desc"
+                          style={{
+                            background: "white",
+                            color: "black",
+                            padding: "10px",
+                            width: "80%",
+                            maxWidth: "100%",
+                          }}
+                        >
+                          <Link to={`/lastNews/${heroSection?.id}`}>
+                            {i18n.language === "ar"
+                              ? heroSection?.description_ar
+                              : heroSection?.description_en}
+                          </Link>
+                        </p>
+
+                      </>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div
+              className="swiper-image"
+              style={{
+                backgroundImage: `url(${heroSection?.image || "/assets/home_1.png"
+                  })`,
+              }}
+            >
+              <div className="swiper-info">
+                <div className="container">
+                  <div className="text" style={{ paddingTop: "170px" }}>
+                    {isLoading ? (
+                      <div className="swip-skel">
+                        <div
+                          style={{
+                            width: "120px",
+                            height: "30px",
+                            backgroundColor: "#ddd",
+                            borderRadius: "4px",
+                            marginBottom: "20px",
+                          }}
+                        />
+                        <div
+                          style={{
+                            width: "60%",
+                            height: "60px",
+                            backgroundColor: "#ccc",
+                            borderRadius: "6px",
+                            marginBottom: "20px",
+                          }}
+                        />
+                        <div
+                          style={{
+                            width: "80%",
+                            height: "80px",
+                            backgroundColor: "#eee",
+                            borderRadius: "4px",
+                          }}
+                        />
+                      </div>
+                    ) : (
+                      <>
+                        <span
+                          className="news text-black"
+                          style={{ background: "white" }}
+                        >
+                          {t("header.latest_news")}
+                        </span>
+                        <h1
+                          className="title py-3 px-3 text-white"
+                          style={{ background: "#003f9c" }}
+                        >
+                          <Link to={`/lastNews/${heroSection?.id}`}>
+                            {i18n.language === "ar"
+                              ? heroSection?.title_ar
+                              : heroSection?.title_en}
+                          </Link>
+                        </h1>
+                        <p
+                          className="description new-desc"
+                          style={{
+                            background: "white",
+                            color: "black",
+                            padding: "10px",
+                            width: "80%",
+                            maxWidth: "100%",
+                          }}
+                        >
+                          <Link to={`/lastNews/${heroSection?.id}`}>
+                            {i18n.language === "ar"
+                              ? heroSection?.description_ar
+                              : heroSection?.description_en}
+                          </Link>
+                        </p>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+        </Swiper>
       </div>
-    </div>
+    </>
   );
 }
 
@@ -204,15 +312,17 @@ function CommonNews({ t }) {
           {common ? (
             common.map((item, index) => (
               <SwiperSlide key={index}>
-                <CommonNewsBox
-                  image={item.image_url}
-                  type={t("common_news.category_1")}
-                  more={t("news.read_more")}
-                  newsDetailsItem={item.id}
-                  title={`${item.title.slice(0, 80)}...`}
-                  time={`${item?.created_at?.slice(0, 10)}`}
-                  backgroundSize="100% 100%"
-                />
+                <Link to={`/CommonNewsDetailsPage/${item.id}`}>
+                  <CommonNewsBox
+                    image={item.image_url}
+                    type={t("common_news.category_1")}
+                    more={t("news.read_more")}
+                    newsDetailsItem={item.id}
+                    title={`${item.title.slice(0, 80)}...`}
+                    time={`${item?.created_at?.slice(0, 10)}`}
+                    backgroundSize="100% 100%"
+                  />
+                </Link>
               </SwiperSlide>
             ))
           ) : (
@@ -699,30 +809,30 @@ function NewsInternalPlatform() {
 
           <div className="row  align-items-center mt-4">
             {isLoading ? [1, 2, 3].map((_, index) => (
-                <div className="col-lg-6 mb-2" key={index}>
-                  <div
-                    className="bg-secondary mb-2"
-                    style={{ height: "150px", borderRadius: "8px", opacity: 0.2 }}
-                  />
-                </div>
-              ))
+              <div className="col-lg-6 mb-2" key={index}>
+                <div
+                  className="bg-secondary mb-2"
+                  style={{ height: "150px", borderRadius: "8px", opacity: 0.2 }}
+                />
+              </div>
+            ))
               : newsList?.slice(1, 4).map((item, index) => (
-               <>
-                <div className="col-lg-6 mb-2" key={index}>
-                  <div className="newBox mb-2">
-                    <Link to={`MinsitryNewsDetailsPage/${item?.id}`} className="text-black">
-                      <NewsBoxNew
-                        image={item.image_url}
-                        type={t("news.category_1")}
-                        title={item.title}
-                        time={new Date(item.created_at).toLocaleDateString()}
-                      />
+                <>
+                  <div className="col-lg-6 mb-2" key={index}>
+                    <div className="newBox mb-2">
+                      <Link to={`MinsitryNewsDetailsPage/${item?.id}`} className="text-black">
+                        <NewsBoxNew
+                          image={item.image_url}
+                          type={t("news.category_1")}
+                          title={item.title}
+                          time={new Date(item.created_at).toLocaleDateString()}
+                        />
 
-                    </Link>
+                      </Link>
+                    </div>
                   </div>
-                </div>
-               </>
-                
+                </>
+
               ))}
           </div>
           {newsList.length === 0 && <p>{t('noData')}</p>}
@@ -738,6 +848,19 @@ function NewsInternalPlatform() {
 function DesitionsAndPhotos({ t }) {
   const [Desicions, setDesicions] = useState([]);
   const [images, setImages] = useState([]);
+  const [showModal, setShowModal] = useState(false); // Modal visibility state
+  const [selectedDesicion, setSelectedDesicion] = useState(null); // Selected desicion for modal
+  // Function to handle modal opening
+  const openModal = (desicion) => {
+    setSelectedDesicion(desicion);
+    setShowModal(true); // Show the modal
+  };
+
+  // Function to close the modal
+  const closeModal = () => {
+    setShowModal(false);
+    setSelectedDesicion(null); // Reset selected desicion
+  };
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -774,6 +897,13 @@ function DesitionsAndPhotos({ t }) {
 
     fetchImages();
   }, [i18n.language]);
+  const [showModal2, setShowModal2] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleImageClick = (img) => {
+    setSelectedImage(img);
+    setShowModal2(true);
+  };
 
 
   return (
@@ -783,7 +913,8 @@ function DesitionsAndPhotos({ t }) {
           <div className="col-lg-5">
             <MainTitle title={t("decisions.title")} />
             {Desicions.slice(0, 3).map((desition, index) => (
-              <div className="new-box-content mb-3" key={index}>
+              <div className="new-box-content mb-3" key={index} onClick={() => openModal(desition)} // Open modal on card click
+              >
                 <NewBoxContent
                   type={t("decisions.category_1")}
                   title={`${desition.text}`}
@@ -798,16 +929,82 @@ function DesitionsAndPhotos({ t }) {
             <div className="desiscions-gallary">
               {images?.map((img, index) => (
                 <img
-                  src={`${img.link_url}`}
+                  src={img.link_url}
                   alt={t("photos.alt_text")}
                   key={index}
+                  onClick={() => handleImageClick(img)}
+                  style={{ cursor: "pointer" }}
                 />
               ))}
-              {images.length === 0 && <p>{t('noData')}</p>}
+
+              {images.length === 0 && <p>{t("noData")}</p>}
+            </div>
+
+            {/* Modal */}
+            <Modal show={showModal2} onHide={() => setShowModal2(false)} centered>
+              <Modal.Header closeButton>
+                <Modal.Title>{t("photos.title")}</Modal.Title>
+              </Modal.Header>
+              <Modal.Body className="text-center">
+                {selectedImage && (
+                  <>
+                    <img
+                      src={selectedImage.link_url}
+                      alt={t("photos.alt_text")}
+                      style={{ maxWidth: "100%", marginBottom: "10px" }}
+                    />
+                    <p>{selectedImage.text}</p>
+                  </>
+                )}
+              </Modal.Body>
+              <Modal.Footer className="d-flex justify-content-center">
+                <Button variant="danger" onClick={() => setShowModal2(false)}>
+                  {t("decisionsPage.close")}
+                </Button>
+              </Modal.Footer>
+
+            </Modal>
+          </div>
+
+        </div>
+      </div>
+      {/* Modal for displaying decision details */}
+      {showModal && selectedDesicion && (
+        <div
+          className="modal fade show"
+          style={{ display: "block" }}
+          tabIndex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">
+                  {t("decisionsPage.modalTitle")}
+                </h5>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                  onClick={closeModal}
+                ></button>
+              </div>
+              <div className="modal-body">
+                <h6>{selectedDesicion.text}</h6>
+                <p>{selectedDesicion.description}</p>
+                <p>{t("decisionsPage.createdAt")}: {selectedDesicion.created_at}</p>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" onClick={closeModal}>
+                  {t("decisionsPage.close")}
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }

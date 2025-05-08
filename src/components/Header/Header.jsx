@@ -1,11 +1,19 @@
 import { Link, NavLink } from "react-router-dom";
 import "./header.css";
 import { useEffect, useState } from "react";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import { Navigation } from "swiper/modules";
+// import { Autoplay } from "swiper/modules";
+// import "swiper/css";
+// import "swiper/css/navigation";
+import React, { useCallback, useMemo, useRef } from "react";
+import { Swiper } from "swiper";
 import { useTranslation } from "react-i18next";
 import useLocalStorage from "use-local-storage";
 import { useAuth } from "../../context/AuthContext";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Marquee from "react-fast-marquee";
 
 function Header() {
   const [mobHeader, setMobHeader] = useState(false);
@@ -57,7 +65,7 @@ function Header() {
 function TopNav({ t }) {
   const [breakingNews, setBreakingNews] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { i18n } = useTranslation("global")
+  const { i18n } = useTranslation("global");
   const [socials, setSocials] = useState([]);
 
   useEffect(() => {
@@ -68,7 +76,7 @@ function TopNav({ t }) {
           {
             headers: {
               "Content-Type": "application/json",
-              'lang': i18n.language,
+              lang: i18n.language,
             },
           }
         );
@@ -88,7 +96,7 @@ function TopNav({ t }) {
           {
             headers: {
               "Content-Type": "application/json",
-              'lang': i18n.language,
+              lang: i18n.language,
             },
           }
         );
@@ -96,7 +104,9 @@ function TopNav({ t }) {
           setSocials(response.data.result);
         }
       } catch (err) {
-        toast.error(t("noData") || err?.response?.data?.message || "Something went wrong");
+        toast.error(
+          t("noData") || err?.response?.data?.message || "Something went wrong"
+        );
       }
     };
 
@@ -119,52 +129,59 @@ function TopNav({ t }) {
   return (
     <div className="top-nav">
       <div className="container d-flex align-items-center justify-content-between">
-        <div className="top-nav-list d-flex gap-3 align-items-center ">
-          <div className="time d-flex gap-2 mt-3">
-            <i className="uil uil-calendar-alt"></i>
-            <p style={{ fontSize: "14px" }} className="fw-light">
-              {`${breakingNews?.created_at?.slice(0, 10)}`}
+       
+          <div className="top-nav-list d-flex gap-3 align-items-center mx-2">
+            <div className="time d-flex gap-2 mt-3">
+              <i className="uil uil-calendar-alt"></i>
+              <p style={{ fontSize: "14px",whiteSpace: "nowrap" }} className="fw-light">
+                {`${breakingNews?.created_at?.slice(0, 10)}`}
+              </p>
+            </div>
+            <div
+              className="fast-news text-white"
+              style={{
+                background: "#003f9c",
+                padding: "8px 20px",
+                borderRadius: "4px",
+                fontSize: "14px",
+                width: "150px",
+                textAlign: "center",
+                maxWidth: "100%",
+                whiteSpace: "nowrap"
+              }}
+            >
+              {t("header.breakingNews")}
+            </div>
+            <Marquee speed={90} delay={0}>
+            <p className="mt-3">
+              {`${breakingNews?.title?.slice(0, 47)}`}...
+              <Link to={`/CommonNewsDetailsPage/${breakingNews.id}`}>
+                {t("ReadMore")}
+              </Link>
             </p>
+            </Marquee>
           </div>
-          <div
-            className="fast-news text-white"
-            style={{
-              background: "#003f9c",
-              padding: "8px 20px",
-              borderRadius: "4px",
-              fontSize: "14px",
-              width: "150px",
-              textAlign: "center",
-              maxWidth: "100%",
-            }}
-          >
-            {t("header.breakingNews")}
-          </div>
-          <p className="mt-3">
-            {`${breakingNews?.title?.slice(0, 47)}`}...
-            <Link to={`/CommonNewsDetailsPage/${breakingNews.id}`}>{t("ReadMore")}</Link>
-          </p>
-        </div>
-        <div className="top-nav-social">
-        <ul className="d-flex mt-3">
-                {socials.map(({ id, link, image_url }) => {
-                  const icon = (
-                    <img
-                      src={image_url}
+       
 
-                      alt="social"
-                      style={{ width: "30px", height: "30px" }}
-                    />
-                  );
-                  return (
-                    <li key={id} className="my-2 mx-2">
-                      <Link to={link} target="_blank" rel="noopener noreferrer">
-                        {icon}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
+        <div className="top-nav-social">
+          <ul className="d-flex mt-3">
+            {socials.map(({ id, link, image_url }) => {
+              const icon = (
+                <img
+                  src={image_url}
+                  alt="social"
+                  style={{ width: "30px", height: "30px" }}
+                />
+              );
+              return (
+                <li key={id} className="my-2 mx-2">
+                  <Link to={link} target="_blank" rel="noopener noreferrer">
+                    {icon}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
     </div>
@@ -248,7 +265,7 @@ function DesktopHeader({
             <div className="link menu">
               <Link to={"/services"}>{t("header.services")}</Link>
             </div>
-            
+
             <div className="nav-item dropdown">
               <Link
                 to="#"
@@ -282,11 +299,13 @@ function DesktopHeader({
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/mediaOffice/DirectoratesNews">
+                  <Link
+                    className="dropdown-item"
+                    to="/mediaOffice/DirectoratesNews"
+                  >
                     {t("header.DirectoratesNews")}
                   </Link>
                 </li>
-
               </ul>
             </div>
             {user == null ? (
@@ -491,7 +510,7 @@ function ModileHeader({
               {t("header.services")}
             </NavLink>
           </li>
-          
+
           <div className="dropdown " style={{ marginBottom: "15px" }}>
             <div
               className="dropdown-toggle"
@@ -514,7 +533,6 @@ function ModileHeader({
                 </Link>
               </li>
 
-          
               <li onClick={() => setMobHeader(false)}>
                 <Link className="dropdown-item" to="/mediaOffice/allmeetings">
                   {t("header.all_meetings")}
@@ -527,9 +545,12 @@ function ModileHeader({
                 </Link>
               </li>
               <li onClick={() => setMobHeader(false)}>
-              <Link className="dropdown-item" to="/mediaOffice/DirectoratesNews">
-                    {t("header.DirectoratesNews")}
-                  </Link>
+                <Link
+                  className="dropdown-item"
+                  to="/mediaOffice/DirectoratesNews"
+                >
+                  {t("header.DirectoratesNews")}
+                </Link>
               </li>
             </ul>
           </div>
@@ -558,7 +579,7 @@ function ModileHeader({
                   {t("header.contactTheMinistry")}
                 </Link>
               </li>
-              <li> 
+              <li>
                 <Link
                   className="dropdown-item"
                   style={{ marginBottom: "15px" }}
@@ -571,7 +592,7 @@ function ModileHeader({
             </ul>
           </div>
           {user == null ? (
-            <li >
+            <li>
               <Link to="/login">{t("header.login")}</Link>
             </li>
           ) : (
@@ -587,7 +608,11 @@ function ModileHeader({
               </button>
               <ul className="dropdown-menu" aria-labelledby="profile">
                 <li>
-                  <Link className="dropdown-item" to="/profile" style={{margin : '0 3px'}}>
+                  <Link
+                    className="dropdown-item"
+                    to="/profile"
+                    style={{ margin: "0 3px" }}
+                  >
                     {t("profile.header1")}
                   </Link>
                 </li>

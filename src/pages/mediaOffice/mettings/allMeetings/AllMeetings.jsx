@@ -22,6 +22,7 @@ export default function AllMeetings() {
 function MainAllMeetings() {
   const { t, i18n } = useTranslation("global");
   const [meetings, setMeetings] = useState([]);
+  const [filteredMeetings, setFilteredMeetings] = useState([]);
   const [pagination, setPagination] = useState({
     current_page: 1,
     last_page: 1,
@@ -29,6 +30,7 @@ function MainAllMeetings() {
     prev_page_url: null,
   });
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     fetchMeetings(`${process.env.REACT_APP_API_URL}/meetings/get_all`);
@@ -45,9 +47,9 @@ function MainAllMeetings() {
       });
 
       const data = response.data;
-
       if (data.status === 'success') {
         setMeetings(data.result.data);
+        setFilteredMeetings(data.result.data);
         setPagination(data.result.pagination);
       }
     } catch (error) {
@@ -62,11 +64,22 @@ function MainAllMeetings() {
     fetchMeetings(url);
   };
 
+  const handleSearchChange = (e) => {
+    const q = e.target.value.toLowerCase();
+    setSearchQuery(q);
+    setFilteredMeetings(
+      meetings.filter(m =>
+        m.title.toLowerCase().includes(q) ||
+        m.description.toLowerCase().includes(q)
+      )
+    );
+  };
+
   if (loading) {
     return (
       <div className="text-center my-5">
         <div className="spinner-border text-primary" role="status">
-          <span className="visually-hidden">Loading...</span>
+          <span className="visually-hidden">{t('loading')}</span>
         </div>
       </div>
     );
@@ -75,32 +88,55 @@ function MainAllMeetings() {
   return (
     <section className="MainAllMeetings my-5">
       <div className="container">
-        {meetings.map((meeting, index) => (
-          <div className="row my-3" key={index}>
-            <div className="col-lg-4">
-              <img
-                style={{ maxWidth: '100%', width: '700px' }}
-                src={meeting.image_url}
-                className="mb-3"
-                alt="Meeting"
-              />
-            </div>
-            <div className="col-lg-8">
-              <h5>{meeting.title}</h5>
-              <p className="desicionstitle mt-2">{meeting.description}</p>
-              <div className="d-flex justify-content-between align-items-center">
-                <span className="desicionstime">
-                  <i className="uil uil-calendar-alt ms-1 mx-2"></i>
-                  {new Date(meeting.created_at).toLocaleString().slice(0, 9)}
-                </span>
-                <Link to={`/mediaOffice/meetingsdetails/${meeting.id}`} className=" type">
-                  {t("meetings.readMore")}
-                </Link>
+        {/* Search Input */}
+        <div className="row mb-4">
+          <div className="col-lg-12 mx-auto">
+            <input
+              type="text"
+              className="form-control"
+              placeholder={t('allNews.searchPlaceholder') || 'ابحث في الاجتماعات...'}
+              value={searchQuery}
+              onChange={handleSearchChange}
+            />
+          </div>
+        </div>
+
+        {/* Meetings List */}
+        {filteredMeetings.length === 0 ? (
+          <p className="text-center">{t('noData')}</p>
+        ) : (
+          filteredMeetings.map((meeting, index) => (
+            <div className="row my-3" key={index}>
+              <div className="col-lg-4">
+                <img
+                  style={{ maxWidth: '100%', width: '700px' }}
+                  src={meeting.image_url}
+                  className="mb-3"
+                  alt={meeting.title}
+                />
+              </div>
+              <div className="col-lg-8">
+                <h5>{meeting.title}</h5>
+                <p className="desicionstitle mt-2">{meeting.description}</p>
+                <div className="d-flex justify-content-between align-items-center">
+                  <span className="desicionstime">
+                    <i className="uil uil-calendar-alt ms-1 mx-2"></i>
+                    {new Date(meeting.created_at)
+                      .toLocaleDateString(i18n.language)}
+                  </span>
+                  <Link
+                    to={`/mediaOffice/meetingsdetails/${meeting.id}`}
+                    className="type"
+                  >
+                    {t('meetings.readMore')}
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
 
+        {/* Pagination Controls */}
         <div className="mt-5">
           <nav>
             <ul className="pagination justify-content-center">
@@ -114,7 +150,9 @@ function MainAllMeetings() {
                 </button>
               </li>
               <li className="page-item active">
-                <button className="page-link">{pagination.current_page}</button>
+                <button className="page-link">
+                  {pagination.current_page}
+                </button>
               </li>
               <li className="page-item">
                 <button
