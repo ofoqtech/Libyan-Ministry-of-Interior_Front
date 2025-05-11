@@ -78,8 +78,10 @@ const selectedHero = heroSection?.find(hero => String(hero.id) === id) || null;
                 </div>
 
                 <div className="my-3">
-                    <p className="titledetalis">
-                  {selectedHero?.description}</p>
+                    <p className="titledetalis"   dangerouslySetInnerHTML={{ __html: selectedHero?.description }}
+>
+                </p>
+                  
                 </div>
        
 
