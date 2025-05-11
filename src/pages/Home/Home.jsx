@@ -33,7 +33,7 @@ const Home = () => {
 
 
 function Hero({ t }) {
-  const [heroSection, setHeroSection] = useState(null);
+  const [heroSections, setHeroSection] = useState(null);
   const { i18n } = useTranslation("global");
 
   useEffect(() => {
@@ -59,7 +59,7 @@ function Hero({ t }) {
     getHeroSection();
   }, [i18n.language]);
 
-  const isLoading = !heroSection;
+  const isLoading = !heroSections;
 
   return (
     <>
@@ -72,169 +72,83 @@ function Hero({ t }) {
           onSlideChange={() => console.log("slide change")}
           onSwiper={(swiper) => console.log(swiper)}
         >
-          <SwiperSlide>
-            <div
-              className="swiper-image"
-              style={{
-                backgroundImage: `url(${heroSection?.image || "/assets/home_1.png"
-                  })`,
-              }}
-            >
-              <div className="swiper-info">
-                <div className="container">
-                  <div className="text" style={{ paddingTop: "170px" }}>
-                    {isLoading ? (
-                      <div className="swip-skel">
-                        <div
-                          style={{
-                            width: "120px",
-                            height: "30px",
-                            backgroundColor: "#ddd",
-                            borderRadius: "4px",
-                            marginBottom: "20px",
-                          }}
-                        />
-                        <div
-                          style={{
-                            width: "60%",
-                            height: "60px",
-                            backgroundColor: "#ccc",
-                            borderRadius: "6px",
-                            marginBottom: "20px",
-                          }}
-                        />
-                        <div
-                          style={{
-                            width: "80%",
-                            height: "80px",
-                            backgroundColor: "#eee",
-                            borderRadius: "4px",
-                          }}
-                        />
-                      </div>
-                    ) : (
-                      <>
-                        <span
-                          className="news text-black"
-                          style={{ background: "white" }}
-                        >
-                          {t("header.latest_news")}
-                        </span>
-                        <h1
-                          className="title py-3 px-3 text-white"
-                          style={{ background: "#003f9c" }}
-                        >
-                          <Link to={`/lastNews/${heroSection?.id}`}>
-                            {i18n.language === "ar"
-                              ? heroSection?.title_ar
-                              : heroSection?.title_en}
-                          </Link>
-                        </h1>
-                        <p
-                          className="description new-desc"
-                          style={{
-                            background: "white",
-                            color: "black",
-                            padding: "10px",
-                            width: "80%",
-                            maxWidth: "100%",
-                          }}
-                        >
-                          <Link to={`/lastNews/${heroSection?.id}`}>
-                            {i18n.language === "ar"
-                              ? heroSection?.description_ar
-                              : heroSection?.description_en}
-                          </Link>
-                        </p>
+          {heroSections?.map((heroSection, index) => (
+            <SwiperSlide key={index}>
+              <div
+                className="swiper-image"
+                style={{
+                  backgroundImage: `url(${heroSection?.image || "/assets/home_1.png"})`,
+                }}
+              >
+                <div className="swiper-info">
+                  <div className="container">
+                    <div className="text" style={{ paddingTop: "170px" }}>
+                      {isLoading ? (
+                        <div className="swip-skel">
+                          <div
+                            style={{
+                              width: "120px",
+                              height: "30px",
+                              backgroundColor: "#ddd",
+                              borderRadius: "4px",
+                              marginBottom: "20px",
+                            }}
+                          />
+                          <div
+                            style={{
+                              width: "60%",
+                              height: "60px",
+                              backgroundColor: "#ccc",
+                              borderRadius: "6px",
+                              marginBottom: "20px",
+                            }}
+                          />
+                          <div
+                            style={{
+                              width: "80%",
+                              height: "80px",
+                              backgroundColor: "#eee",
+                              borderRadius: "4px",
+                            }}
+                          />
+                        </div>
+                      ) : (
+                        <>
+                          <span
+                            className="news text-black"
+                            style={{ background: "white" }}
+                          >
+                            {t("header.latest_news")}
+                          </span>
+                          <h1
+                            className="title py-3 px-3 text-white"
+                            style={{ background: "#003f9c" }}
+                          >
+                            <Link to={`/lastNews/${heroSection?.id}`}>
+                              {heroSection?.title}
+                            </Link>
+                          </h1>
+                          <p
+                            className="description new-desc"
+                            style={{
+                              background: "white",
+                              color: "black",
+                              padding: "10px",
+                              width: "80%",
+                              maxWidth: "100%",
+                            }}
+                            dangerouslySetInnerHTML={{ __html: heroSection?.description }}
+                          ></p>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
 
-                      </>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div
-              className="swiper-image"
-              style={{
-                backgroundImage: `url(${heroSection?.image || "/assets/home_1.png"
-                  })`,
-              }}
-            >
-              <div className="swiper-info">
-                <div className="container">
-                  <div className="text" style={{ paddingTop: "170px" }}>
-                    {isLoading ? (
-                      <div className="swip-skel">
-                        <div
-                          style={{
-                            width: "120px",
-                            height: "30px",
-                            backgroundColor: "#ddd",
-                            borderRadius: "4px",
-                            marginBottom: "20px",
-                          }}
-                        />
-                        <div
-                          style={{
-                            width: "60%",
-                            height: "60px",
-                            backgroundColor: "#ccc",
-                            borderRadius: "6px",
-                            marginBottom: "20px",
-                          }}
-                        />
-                        <div
-                          style={{
-                            width: "80%",
-                            height: "80px",
-                            backgroundColor: "#eee",
-                            borderRadius: "4px",
-                          }}
-                        />
-                      </div>
-                    ) : (
-                      <>
-                        <span
-                          className="news text-black"
-                          style={{ background: "white" }}
-                        >
-                          {t("header.latest_news")}
-                        </span>
-                        <h1
-                          className="title py-3 px-3 text-white"
-                          style={{ background: "#003f9c" }}
-                        >
-                          <Link to={`/lastNews/${heroSection?.id}`}>
-                            {i18n.language === "ar"
-                              ? heroSection?.title_ar
-                              : heroSection?.title_en}
-                          </Link>
-                        </h1>
-                        <p
-                          className="description new-desc"
-                          style={{
-                            background: "white",
-                            color: "black",
-                            padding: "10px",
-                            width: "80%",
-                            maxWidth: "100%",
-                          }}
-                        >
-                          <Link to={`/lastNews/${heroSection?.id}`}>
-                            {i18n.language === "ar"
-                              ? heroSection?.description_ar
-                              : heroSection?.description_en}
-                          </Link>
-                        </p>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
+
         </Swiper>
       </div>
     </>
