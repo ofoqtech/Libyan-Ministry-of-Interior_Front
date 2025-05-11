@@ -44,9 +44,9 @@ function LastNews() {
     const { id } = useParams();
 
     const isLoading = !heroSection;
-    const selectedHero = heroSection && String(heroSection.id) === id ? heroSection : null;
+const selectedHero = heroSection?.find(hero => String(hero.id) === id) || null;
 
-  
+  console.log(selectedHero)
 
 
     if (!selectedHero) return <p className="text-center my-5">{t('loading')}...</p>;
@@ -61,16 +61,14 @@ function LastNews() {
                     <div className="col-lg-6">
                         <img
                             style={{ maxWidth: "100%", width: "700px" }}
-                            src={heroSection?.image}
+                            src={selectedHero?.image}
                             className="mb-3"
-                            alt={heroSection.title}
+                            alt={selectedHero.title}
                         />
                     </div>
                     <div className="col-lg-6">
                         <h2 style={{ lineHeight: "40px", fontSize: "25px" }}>
-                        {i18n.language === "ar"
-                  ? heroSection?.title_ar
-                  : heroSection?.title_en}
+                        {selectedHero.title}
                         </h2>
                         <span className="desicionstime">
                             <i className="uil uil-calendar-alt mx-1"></i>
@@ -80,9 +78,8 @@ function LastNews() {
                 </div>
 
                 <div className="my-3">
-                    <p className="titledetalis"> {i18n.language === "ar"
-                  ? heroSection?.description_ar
-                  : heroSection?.description_en}</p>
+                    <p className="titledetalis">
+                  {selectedHero?.description}</p>
                 </div>
        
 
