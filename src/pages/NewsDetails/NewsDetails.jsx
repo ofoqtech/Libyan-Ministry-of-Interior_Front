@@ -81,7 +81,9 @@ function TodayNewsDetails() {
                     ) : (
 
                         <>
-                            <p className="titledetalis">{todayNews?.description}</p>
+<p className="titledetalis">
+  {todayNews?.description?.replace(/<\/?p>/g, '').replace(/&ldquo;/g, '')}
+</p>
                             {todayNews?.youtube_link && (
                                 <div className="my-5 mx-auto text-center d-flex justify-content-center">
                                     <Link className="titledetalis type" to={todayNews.youtube_link}>

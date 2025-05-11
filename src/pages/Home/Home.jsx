@@ -765,6 +765,8 @@ function DesitionsAndPhotos({ t }) {
   const [showModal, setShowModal] = useState(false); // Modal visibility state
   const [selectedDesicion, setSelectedDesicion] = useState(null); // Selected desicion for modal
   // Function to handle modal opening
+    const { i18n } = useTranslation("global");
+
   const openModal = (desicion) => {
     setSelectedDesicion(desicion);
     setShowModal(true); // Show the modal
@@ -779,7 +781,11 @@ function DesitionsAndPhotos({ t }) {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/pictures/home_pictures`);
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/pictures/home_pictures`, {
+          headers: {
+            'lang': i18n.language,
+          },
+        });
         const result = await response.json();
         setImages(result.result || []);
 
@@ -789,8 +795,7 @@ function DesitionsAndPhotos({ t }) {
     };
 
     fetchImages();
-  }, []);
-  const { i18n } = useTranslation("global");
+  }, [i18n.language]);
   useEffect(() => {
     const fetchImages = async () => {
       try {
