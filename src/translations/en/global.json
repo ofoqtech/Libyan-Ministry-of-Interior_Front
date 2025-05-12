@@ -569,7 +569,23 @@
     "accepted": "Request Accepted",
     "date": "Today, {{date}}",
     "imageAlt": "The Permit",
-    "description": "Description ..."
+    "description": "Description ...",
+
+    "deviceName": "Device Name",
+    "manufacturer": "Manufacturer",
+    "serial": "Serial Number",
+    "startAt": "Start At",
+    "endAt": "End At",
+    "photoPlace": "Photo Location",
+    "photo": "Device Photo",
+    "submit": "Submit",
+
+
+    "photoUrl": "Photo URL",
+    "updateBtn": "Update",
+    "updatedSuccess": "Updated successfully",
+    "updateError": "An error occurred during update",
+    "connectionFailed": "Failed to connect to the server"
   },
   "new_request": "New Request",
   "request_history": "Request History"

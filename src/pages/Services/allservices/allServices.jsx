@@ -206,9 +206,6 @@ function AllServicesDetails() {
     const form = e.target;
     const formData = new FormData();
 
-    formData.append("name", form["name"].value);
-    formData.append("email", form["email"].value);
-    formData.append("phone", form["phone"].value);
     formData.append("serial", form["serial"].value);
     formData.append("device_name", form["device-name"].value);
     formData.append("manufacturer", form["manufacturer"].value);
@@ -250,9 +247,6 @@ function AllServicesDetails() {
     const form = e.target;
     const formData = new FormData();
 
-    formData.append("name", form["name"].value);
-    formData.append("email", form["email"].value);
-    formData.append("phone", form["phone"].value);
     formData.append("serial", form["serial"].value);
     formData.append("device_name", form["device-name"].value);
     formData.append("manufacturer", form["manufacturer"].value);
@@ -515,12 +509,7 @@ function AllServicesDetails() {
               {view === "form" && (
                 <div className="drone-service-content">
                   <form className="row g-3 my-3" onSubmit={handleDroneSubmit} encType="multipart/form-data">
-                    <div className="col-md-6">
-                      <label htmlFor="name" className="form-label">
-                        {t("allServices.fullName")}
-                      </label>
-                      <input required type="text" className="form-control" id="name" />
-                    </div>
+
                     <div className="col-md-6">
                       <label htmlFor="serial" className="form-label">
                         {t("allServices.droneSerial")}
@@ -560,21 +549,12 @@ function AllServicesDetails() {
                         required
                       />
                     </div>
-                    <div className="col-md-6">
-                      <label htmlFor="phone" className="form-label">
-                        {t("allServices.phoneNumber")}
-                      </label>
-                      <input type="text" className="form-control" id="phone" />
-                    </div>
-                    <div className="col-md-6">
-                      <label htmlFor="email" className="form-label">
-                        {t("allServices.email")}
-                      </label>
-                      <input type="email" className="form-control " required id="email" />
-                    </div>
-                    <div className="col-md-6">
+
+                   
+                    <div className="col-md-12">
                       <label htmlFor="upload" className="form-label">
-                        {t("allServices.uploadImage")}
+                      {t("requestDetails.photoUrl")}
+
                       </label>
                       <input type="file" className="form-control" id="upload" />
                     </div>
@@ -710,12 +690,7 @@ function AllServicesDetails() {
               {view === "form" && (
                 <div className="camera-service-content">
                   <form className="row g-3 my-3" onSubmit={handleSubmit} encType="multipart/form-data">
-                    <div className="col-md-6">
-                      <label htmlFor="name" className="form-label">
-                        {t("allServices.fullName")}
-                      </label>
-                      <input type="text" className="form-control" id="name" />
-                    </div>
+
                     <div className="col-md-6">
                       <label htmlFor="serial" className="form-label">
                         {t("allServices.serialNumber")}
@@ -740,45 +715,29 @@ function AllServicesDetails() {
                       </label>
                       <input type="text" className="form-control" id="manufacturer" />
                     </div>
-                    <div className="col-md-6">
-                      <label htmlFor="phone" className="form-label">
-                        {t("allServices.phoneNumber")}
-                      </label>
-                      <input type="text" className="form-control" id="phone" />
-                    </div>
-                    <div className="col-md-6">
-                      <label htmlFor="email" className="form-label">
-                        {t("allServices.email")}
-                      </label>
-                      <input type="email" className="form-control" id="email" />
-                    </div>
+
                     <div className="col-md-6">
                       <label htmlFor="location" className="form-label">
                         {t("allServices.location")}
                       </label>
                       <input type="text" className="form-control" id="location" />
                     </div>
-                    <div className="col-md-6">
-                      <label htmlFor="purpose" className="form-label">
-                        {t("allServices.purpose")}
-                      </label>
-                      <input type="text" className="form-control" id="purpose" />
-                    </div>
+
                     <div className="col-md-6">
                       <label htmlFor="start-date" className="form-label">
                         {t("allServices.startDate")}
                       </label>
                       <input type="date" className="form-control" id="start-date" />
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-12">
                       <label htmlFor="end-date" className="form-label">
                         {t("allServices.endDate")}
                       </label>
                       <input type="date" className="form-control" id="end-date" />
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-12">
                       <label htmlFor="upload" className="form-label">
-                        {t("allServices.uploadImage")}
+                        {t("requestDetails.photoUrl")}
                       </label>
                       <input type="file" className="form-control" id="upload" />
                     </div>
@@ -960,32 +919,7 @@ function AllServicesDetails() {
           </div>
         )}
 
-        {activeTab ===
-          services.findIndex(
-            (service) =>
-              service.title !== "الدرون" || service.title !== "الكاميرا"
-          ) && (
-            <div className="text-center mt-4">
-              <nav>
-                <ul className="pagination justify-content-center">
-                  <li className="page-item">
-                    <button className="page-link">
-                      {t("pagination.previous")}
-                    </button>
-                  </li>
-                  <li className="page-item active">
-                    <button className="page-link">2</button>
-                  </li>
-                  <li className="page-item">
-                    <button className="page-link">3</button>
-                  </li>
-                  <li className="page-item">
-                    <button className="page-link">{t("pagination.next")}</button>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          )}
+   
       </div>
     </section>
   );

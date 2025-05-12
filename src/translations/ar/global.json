@@ -39,6 +39,7 @@
     "language": "اللغة"
   },
   "filterBy" : "فرز بواسطه",
+  
 
   "chooseDirectorates" : "اختر المديرية" ,
 "showVideo" : "عرض الفيديو",
@@ -564,7 +565,21 @@
     "accepted": "تم قبول الطلب",
     "date": "اليوم، {{date}}",
     "imageAlt": "التصريح",
-    "description": "وصف ..."
+    "description": "وصف ...",
+    "deviceName": "اسم الجهاز",
+    "photoUrl": "الصورة الشخصية",
+    "serial": "السيريال",
+    "updateBtn": "تعديل",
+
+    "manufacturer": "الجهه المصنعة",
+    "startAt": "تاريخ البدء",
+    "endAt": "تاريخ الانتهاء",
+    "photoPlace": "مكان الصورة",
+    "photo": "صورة الجهاز",
+    "submit": "إرسال",
+    "updatedSuccess": "تم التعديل بنجاح",
+    "updateError": "حدث خطأ أثناء التعديل",
+    "connectionFailed": "فشل الاتصال بالخادم"
   },
 
   "new_request": "طلب جديد",
