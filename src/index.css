@@ -159,3 +159,9 @@ direction: ltr !important;
   );
   background-size: 200% 100%;
 }
+[dir = 'ltr'] .modal-header .btn-close{
+  margin: 0 !important;
+}
+[dir = 'ltr'] .modal-header {
+  justify-content: space-between !important;
+}

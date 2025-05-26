@@ -16,8 +16,8 @@ import axios from "axios";
 export function AllServicesPage() {
   const [t, i18n] = useTranslation("global");
   useEffect(() => {
-      window.scrollTo(0, 0);
-    }
+    window.scrollTo(0, 0);
+  }
     , []);
 
   return (
@@ -332,6 +332,14 @@ function AllServicesDetails() {
 
     fetchServiceDetails();
   }, []);
+  const [searchValue, setSearchValue] = useState("");
+  const handleSearchChange = (e) => {
+    setSearchValue(e.target.value);
+  };
+
+  const filteredCards = content[activeTab]?.cards.filter((card) =>
+    card.title.toLowerCase().includes(searchValue.toLowerCase())
+  );
   return (
     <section className="all-services">
       <div className="container py-5">
@@ -349,7 +357,7 @@ function AllServicesDetails() {
         >
           {services.map((service, index) => (
             <SwiperSlide key={service.id}>
-             {user != null  ?  <div
+              {user != null ? <div
                 className={`position-relative w-100 text-center px-0 ${activeTab === index ? " border-5" : ""
                   }`}
                 onClick={() => setActiveTab(index)}
@@ -377,8 +385,38 @@ function AllServicesDetails() {
                 >
                   {service.title}
                 </h5>
-              </div> : service.title === 'الدرون' || service.title === 'Drone' || service.title === 'Camera' || service.title === 'الكاميرا' ?  <Link to={'/login'}>
-              <div
+              </div> : service.title === 'الدرون' || service.title === 'Drone' || service.title === 'Camera' || service.title === 'الكاميرا' ? <Link to={'/login'}>
+                <div
+                  className={`position-relative w-100 text-center px-0 ${activeTab === index ? " border-5" : ""
+                    }`}
+                  onClick={() => setActiveTab(index)}
+                  style={{
+                    cursor: "pointer",
+                    backgroundImage: `url(${service.image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    width: "288px",
+                    height: "350px",
+                    border:
+                      activeTab === index ? "1px solid #003F9C" : "transparent",
+                  }}
+                >
+                  <div className="overlay2"></div>
+                  <h5
+                    style={{
+                      zIndex: 1,
+                      position: "absolute",
+                      top: "86%",
+                      width: "100%",
+                      fontSize: "18px",
+                    }}
+                    className="text-white text-center all-services-heading"
+                  >
+                    {service.title}
+                  </h5>
+                </div>
+
+              </Link> : <div
                 className={`position-relative w-100 text-center px-0 ${activeTab === index ? " border-5" : ""
                   }`}
                 onClick={() => setActiveTab(index)}
@@ -406,38 +444,8 @@ function AllServicesDetails() {
                 >
                   {service.title}
                 </h5>
-              </div>
-              
-              </Link> :    <div
-                className={`position-relative w-100 text-center px-0 ${activeTab === index ? " border-5" : ""
-                  }`}
-                onClick={() => setActiveTab(index)}
-                style={{
-                  cursor: "pointer",
-                  backgroundImage: `url(${service.image})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  width: "288px",
-                  height: "350px",
-                  border:
-                    activeTab === index ? "1px solid #003F9C" : "transparent",
-                }}
-              >
-                <div className="overlay2"></div>
-                <h5
-                  style={{
-                    zIndex: 1,
-                    position: "absolute",
-                    top: "86%",
-                    width: "100%",
-                    fontSize: "18px",
-                  }}
-                  className="text-white text-center all-services-heading"
-                >
-                  {service.title}
-                </h5>
-              </div> }
-              {activeTab === index &&   (
+              </div>}
+              {activeTab === index && (
                 <div
                   style={{
                     border: "2px solid #003F9C",
@@ -457,18 +465,11 @@ function AllServicesDetails() {
                 type="text"
                 className="form-control"
                 placeholder={t("allServices.searchServices")}
+                value={searchValue}
+                onChange={handleSearchChange}
                 style={{ borderRadius: "5px" }}
               />
-              <button
-                className="btn btn-primary mx-3 services-button"
-                style={{
-                  background: "#003F9C",
-                  width: "200px",
-                  borderRadius: "3px",
-                }}
-              >
-                {t("allServices.search")}
-              </button>
+         
             </div>
           </div>
         </div>
@@ -553,10 +554,10 @@ function AllServicesDetails() {
                       />
                     </div>
 
-                   
+
                     <div className="col-md-12">
                       <label htmlFor="upload" className="form-label">
-                      {t("requestDetails.photoUrl")}
+                        {t("requestDetails.photoUrl")}
 
                       </label>
                       <input type="file" className="form-control" id="upload" />
@@ -655,10 +656,10 @@ function AllServicesDetails() {
               )}
             </div>
           </div> : <div></div>) : activeTab ===
-          services.findIndex(
-            (service) =>
-              service.title === "الكاميرا" || service.title === "Camera"
-          ) ? (
+            services.findIndex(
+              (service) =>
+                service.title === "الكاميرا" || service.title === "Camera"
+            ) ? (
           <div>
             <div>
               <div className="d-flex gap-2 justify-content-center my-3 flex-wrap">
@@ -838,12 +839,12 @@ function AllServicesDetails() {
               service.title === "ID Card "
           ) ? (
           <div className="row">
-            {content[activeTab]?.cards.map((card, index) => (
+            {filteredCards.map((card, index) => (
               <div
                 key={index}
                 className="col-4 col-lg-4 services-parent col-sm-6 mb-3"
               >
-                <div className="p-3 d-flex gap-3 align-items-center  service-apply flex-column flex-sm-row">
+                <div className="mb-3 d-flex gap-3 align-items-center service-apply flex-column flex-sm-row">
                   <img
                     src={card.icon}
                     alt={card.title}
@@ -858,7 +859,7 @@ function AllServicesDetails() {
                     <h6 style={{ lineHeight: "1.8" }}>{card.title}</h6>
                     <div className="d-flex align-items-center justify-content-end">
                       <Link
-                        to="/services/identical"
+                        to={`/services/criminal-reports/${card.type1}/${card.type2}`}
                         className="btn btn-link text-primary position-relative text-white text-decoration-none"
                         style={{
                           background: "#003F9C",
@@ -880,12 +881,12 @@ function AllServicesDetails() {
           </div>
         ) : (
           <div className="row">
-            {content[activeTab]?.cards.map((card, index) => (
+            {filteredCards.map((card, index) => (
               <div
                 key={index}
                 className="col-4 col-lg-4 services-parent col-sm-6 mb-3"
               >
-                <div className="mb-3 d-flex gap-3 align-items-center  service-apply flex-column flex-sm-row">
+                <div className="mb-3 d-flex gap-3 align-items-center service-apply flex-column flex-sm-row">
                   <img
                     src={card.icon}
                     alt={card.title}
@@ -922,7 +923,7 @@ function AllServicesDetails() {
           </div>
         )}
 
-   
+
       </div>
     </section>
   );
