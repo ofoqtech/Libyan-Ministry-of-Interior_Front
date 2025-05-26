@@ -836,7 +836,7 @@ function DesitionsAndPhotos({ t }) {
               >
                 <NewBoxContent
                   type={t("decisions.category_1")}
-                  title={`${desition.text}`}
+                  title={`${desition.text.slice(0, 80)}...`}
                   time={`${desition.created_at.slice(0, 10)}`}
                 />
               </div>
@@ -868,11 +868,11 @@ function DesitionsAndPhotos({ t }) {
                 {selectedImage && (
                   <>
                     <img
-                      src={selectedImage.link_url}
+                      src={selectedImage?.link_url}
                       alt={t("photos.alt_text")}
                       style={{ maxWidth: "100%", marginBottom: "10px" }}
                     />
-                    <p>{selectedImage.text}</p>
+                    <p>{selectedImage?.text}</p>
                   </>
                 )}
               </Modal.Body>
@@ -888,42 +888,46 @@ function DesitionsAndPhotos({ t }) {
         </div>
       </div>
       {/* Modal for displaying decision details */}
-      {showModal && selectedDesicion && (
-        <div
-          className="modal fade show"
-          style={{ display: "block" }}
-          tabIndex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">
-                  {t("decisionsPage.modalTitle")}
-                </h5>
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                  onClick={closeModal}
-                ></button>
-              </div>
-              <div className="modal-body">
-                <h6>{selectedDesicion.text}</h6>
-                <p>{selectedDesicion.description}</p>
-                <p>{t("decisionsPage.createdAt")}: {selectedDesicion.created_at}</p>
-              </div>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" onClick={closeModal}>
-                  {t("decisionsPage.close")}
-                </button>
-              </div>
-            </div>
-          </div>
+    {showModal && selectedDesicion && (
+  <div
+    className="modal fade show"
+    style={{ display: "block" }}
+    tabIndex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+    onClick={closeModal} // Close modal when clicking outside content
+  >
+    <div className="modal-dialog" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-content">
+        <div className="modal-header">
+          <h5 className="modal-title" id="exampleModalLabel">
+            {t("decisionsPage.modalTitle")}
+          </h5>
+          <button
+            type="button"
+            className="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            onClick={closeModal}
+          ></button>
         </div>
-      )}
+        <div className="modal-body">
+          <h6 style={{ lineHeight: "2.3" }}>{selectedDesicion?.text}</h6>
+          <p style={{ lineHeight: "1.7" }}>{selectedDesicion?.description}</p>
+          <p>
+            {t("decisionsPage.createdAt")}: {selectedDesicion?.created_at}
+          </p>
+        </div>
+        <div className="modal-footer">
+          <button type="button" className="btn btn-secondary" onClick={closeModal}>
+            {t("decisionsPage.close")}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
     </section>
   );
 }

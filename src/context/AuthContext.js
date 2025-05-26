@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
         if (!userData || typeof userData !== "object") return;
     
         setUser(userData);
-        localStorage.setItem("user", JSON.stringify(userData));
+        localStorage.setItem("LibyanUser", JSON.stringify(userData));
     };
     
 

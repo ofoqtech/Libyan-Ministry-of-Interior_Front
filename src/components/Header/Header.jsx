@@ -129,39 +129,44 @@ function TopNav({ t }) {
   return (
     <div className="top-nav">
       <div className="container d-flex align-items-center justify-content-between">
-       
-          <div className="top-nav-list d-flex gap-3 align-items-center mx-2">
-            <div className="time d-flex gap-2 mt-3">
+
+        <div className="top-nav-list d-flex gap-3 align-items-center mx-2">
+          <div className="time d-flex gap-2 mt-3">
+
+            {breakingNews?.created_at && <>
               <i className="uil uil-calendar-alt"></i>
-              <p style={{ fontSize: "14px",whiteSpace: "nowrap" }} className="fw-light">
+              <p style={{ fontSize: "14px", whiteSpace: "nowrap" }} className="fw-light">
                 {`${breakingNews?.created_at?.slice(0, 10)}`}
               </p>
-            </div>
-            <div
-              className="fast-news text-white"
-              style={{
-                background: "#003f9c",
-                padding: "8px 20px",
-                borderRadius: "4px",
-                fontSize: "14px",
-                width: "150px",
-                textAlign: "center",
-                maxWidth: "100%",
-                whiteSpace: "nowrap"
-              }}
-            >
-              {t("header.breakingNews")}
-            </div>
-            <Marquee speed={90} delay={0}>
-            <p className="mt-3">
-              {`${breakingNews?.title?.slice(0, 47)}`}...
-              <Link to={`/CommonNewsDetailsPage/${breakingNews.id}`}>
-                {t("ReadMore")}
-              </Link>
-            </p>
-            </Marquee>
+            </>}
           </div>
-       
+          {breakingNews?.title &&  <div
+            className="fast-news text-white"
+            style={{
+              background: "#003f9c",
+              padding: "8px 20px",
+              borderRadius: "4px",
+              fontSize: "14px",
+              width: "150px",
+              textAlign: "center",
+              maxWidth: "100%",
+              whiteSpace: "nowrap"
+            }}
+          >
+            {t("header.breakingNews")}
+          </div> }
+         
+          <Marquee speed={90} delay={0}>
+            <p className="mt-3">
+              {breakingNews?.title && `${breakingNews?.title?.slice(0, 47)} ...`}
+              {breakingNews?.title && <Link to={`/CommonNewsDetailsPage/${breakingNews?.id}`}>
+                {t("ReadMore")}
+              </Link>}
+
+            </p>
+          </Marquee>
+        </div>
+
 
         <div className="top-nav-social">
           <ul className="d-flex mt-3">
