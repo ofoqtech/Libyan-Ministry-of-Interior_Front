@@ -3,7 +3,7 @@ import styles from "./RegisteringOrganizationData.module.css";
 import "bootstrap/dist/css/bootstrap.rtl.min.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 
 
@@ -94,6 +94,7 @@ const RegisteringOrganizationData = () => {
     
     return (
         <div className={styles.mediaReg__wrapper}>
+            <ToastContainer/>
             <nav>
                 <div className="container-fluid">
                     <div className={styles.mediaReg__navbar}>
