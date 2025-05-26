@@ -7,12 +7,11 @@ import axios from 'axios';
 
 const VertificationOtp = () => {
     const [t, i18n] = useTranslation("global");
-    const [email, setEmail] = useState("");
     const [code, setCode] = useState("");
     const [timer, setTimer] = useState(60);
     const [resendAvailable, setResendAvailable] = useState(false);
     const navigate = useNavigate();
-
+const email = localStorage.getItem("emailLibyan") || "";
     useEffect(() => {
         let interval;
         if (timer > 0) {
@@ -92,18 +91,7 @@ const VertificationOtp = () => {
                         <h6 className="text-secondary mt-3">{t("vertification2")}</h6>
                         <div className="p-2 mt-3">
                             <form onSubmit={handleSubmit}>
-                                <div className="mb-2">
-                                    <label className="form-label d-flex justify-content-start text-secondary">
-                                        {t("login.email")}
-                                    </label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        placeholder={t("login.emailPlaceholder")}
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                    />
-                                </div>
+                         
                                 <div className="mb-3">
                                     <label className="form-label d-flex justify-content-start text-secondary">
                                         {t("verificationCode")}

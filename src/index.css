@@ -22,6 +22,9 @@ html,body{
 .nav-item.dropdown:hover .nav-link{
   color: #c5d8f4 !important;
 }
+ #profile:hover{
+  color: #c5d8f4 !important;
+}
 :root {
   --main-color: #003f9c;
   --dark-color: #54595f;

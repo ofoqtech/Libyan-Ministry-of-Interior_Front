@@ -48,14 +48,13 @@ export default function MeetingsDetails() {
           ) : data ? (
             <>
               <div className="row align-items-center">
-                <div className="col-lg-6">
                   <img
-                    style={{ maxWidth: '100%', width: '700px' }}
+                    style={{ maxWidth: '100%', width: '300px' }}
                     src={data.image_url}
                     className="mb-3"
                     alt="meeting"
                   />
-                </div>
+                
                 <div className="col-lg-6">
                   <h2 style={{ lineHeight: '40px', fontSize: '25px' }}>{data.title}</h2>
                   <span className="desicionstime">

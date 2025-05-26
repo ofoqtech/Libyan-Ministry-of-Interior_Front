@@ -69,15 +69,13 @@ function CommonNewsDetails() {
           </div>
         ) : (
           <div className="row align-items-center">
-            <div className="col-lg-6">
               <img
                 style={{ maxWidth: "100%", width: "700px" }}
                 src={detail?.image_url}
                 className="mb-3"
-                width="700px"
+                width="300px"
                 alt=""
               />
-            </div>
             <div className="col-lg-6">
               <h2 style={{ lineHeight: "40px", fontSize: "25px" }}>
                 {detail?.title}

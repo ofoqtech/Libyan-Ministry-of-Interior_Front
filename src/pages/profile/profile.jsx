@@ -197,7 +197,7 @@ function Profile() {
                         </div>
                     </div>
                     <Link
-                        style={{ background: "red", padding: "6px 20px", color: "white", borderRadius: "12px" }}  className='d-flex align-items-center' onClick={handleDeleteAccount}>
+                        style={{ background: "red", padding: "6px 20px", color: "white", borderRadius: "12px" }} className='d-flex align-items-center' onClick={handleDeleteAccount}>
                         {t('profile.remove')}
                     </Link>
                 </div>
@@ -210,7 +210,16 @@ function Profile() {
                                     <div className="row">
                                         <h4 className='mb-5'>{t("mediaRegistration.basicInfo")}</h4>
                                         <div className="profile-photo justify-content-center mx-auto d-flex" >
-                                            <img src={userData.prof_img || 'https://png.pngtree.com/png-clipart/20220719/original/pngtree-businessman-user-avatar-wearing-suit-with-red-tie-png-image_8385663.png'} alt="Profile" className="img-fluid mb-5 mx-auto" style={{ width: "300px", height: "300px", objectFit: "cover", borderRadius: "20px" }} />
+                                            <img
+                                                src={
+                                                    userData.prof_img && userData.prof_img !== 'https://brmjatech.co.uk/storage'
+                                                        ? userData.prof_img
+                                                        : 'https://png.pngtree.com/png-clipart/20220719/original/pngtree-businessman-user-avatar-wearing-suit-with-red-tie-png-image_8385663.png'
+                                                }
+                                                alt="Profile"
+                                                className="img-fluid mb-5 mx-auto"
+                                                style={{ width: "300px", height: "300px", objectFit: "cover", borderRadius: "20px" }}
+                                            />
                                         </div>
 
                                         {userData?.type === "man" ? <div className="col-md-4">

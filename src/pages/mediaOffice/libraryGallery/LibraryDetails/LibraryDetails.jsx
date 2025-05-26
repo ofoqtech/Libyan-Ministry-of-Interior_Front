@@ -23,9 +23,7 @@ export default function LibraryDetails() {
         <section className="MainLibraryDetails my-5">
             <div className="container">
                 <div className="row align-items-center">
-                    <div className="col-lg-6">
-                        <img style={{ maxWidth: "100%", width: "700px" }} src="/assets/1-59-1 1.png" className="mb-3" width="700px" alt="" />
-                    </div>
+                        <img style={{ maxWidth: "100%", width: "300px" }} src="/assets/1-59-1 1.png" className="mb-3" width="700px" alt="" />
                     <div className="col-lg-6">
                         <h2 style={{ lineHeight: "40px", fontSize: "25px" }}>
                             {t('security_media')}

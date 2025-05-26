@@ -23,15 +23,13 @@ function DevelopmentDetails() {
         <section className="desicionsinformationsdetalis my-5">
             <div className="container">
                 <div className="row align-items-center">
-                    <div className="col-lg-6">
                         <img 
                             style={{ maxWidth: '100%' }} 
                             src="/assets/2148325790 1.png" 
                             className="mb-3" 
-                            width="700px" 
+                            width="300px" 
                             alt={t('gallery.image_alt')} 
                         />
-                    </div>
                     <div className="col-lg-6">
                         <h2 style={{ lineHeight: '40px', fontSize: '25px' }}>
                             {t('details.title')}

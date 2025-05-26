@@ -79,6 +79,7 @@ const RegisteringOrganizationData = () => {
                 toast.success(t("Criminal-Reports.submissionSuccess"), {
                     autoClose: 2000,
                     onClose: () => {
+                        localStorage.setItem("emailLibyan", form.email.value);
                         navigate("/vertification");
                     },
                 });

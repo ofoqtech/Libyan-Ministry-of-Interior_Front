@@ -5,6 +5,9 @@ import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import DOMPurify from 'dompurify';
+import { Modal, Button } from "react-bootstrap"; // تأكد إن Bootstrap و React-Bootstrap متثبتين
+
+
 
 export default function NewsDetails() {
     const { t } = useTranslation("global");
@@ -19,13 +22,15 @@ export default function NewsDetails() {
 
 function MainNewsDetalis() {
     const { t, i18n } = useTranslation("global");
-    const [showFullText, setShowFullText] = useState(false);
 
     const { id } = useParams();
-    const wordLimit = 20;
 
+
+    const [selectedArticle, setSelectedArticle] = useState(null);
+    const [showModal, setShowModal] = useState(false);
 
     const [newsDetails, setNewsDetails] = useState(null);
+   const [showFullText, setShowFullText] = useState(false);
 
     useEffect(() => {
         const fetchNewsDetails = async () => {
@@ -50,6 +55,9 @@ function MainNewsDetalis() {
 
     if (!newsDetails) return <p className="text-center my-5">{t('loading')}...</p>;
 
+
+    const wordLimit = 20;
+
     const getPreviewText = (text) => {
         const words = text.split(' ');
         if (words.length <= wordLimit) {
@@ -59,7 +67,15 @@ function MainNewsDetalis() {
         }
     };
 
+    const handleReadMore = (article) => {
+        setSelectedArticle(article);
+        setShowModal(true);
+    };
 
+    const handleCloseModal = () => {
+        setSelectedArticle(null);
+        setShowModal(false);
+    };
     return (
         <section className="MainNewsDetalis my-5">
             <div className="container">
@@ -109,7 +125,6 @@ function MainNewsDetalis() {
                 )}
 
 
-
                 {newsDetails.related_news?.length > 0 && (
                     <div className="my-5">
                         <span className="type mb-4">{t('related_articles')}</span>
@@ -122,41 +137,28 @@ function MainNewsDetalis() {
                                             alt={article.title}
                                             className="card-img-top"
                                         />
-                                          <p className="desicionstime mt-3">
-                                                <i className="uil uil-calendar-alt mt-1 ms-1 mx-2"></i>
-                                                {new Date(article.created_at).toLocaleDateString(i18n.language)}
-                                            </p>
-                                        <div className="card-body p-0 ">
-                                            <h5 style={{ lineHeight: "1.6", color : "black", marginBottom : '10px' }} className="card-title">{article?.title}</h5>
+                                        <p className="desicionstime mt-3">
+                                            <i className="uil uil-calendar-alt mt-1 ms-1 mx-2"></i>
+                                            {new Date(article.created_at).toLocaleDateString(i18n.language)}
+                                        </p>
+                                        <div className="card-body p-0">
+                                            <h5 style={{ lineHeight: "1.6", color: "black", marginBottom: '10px' }} className="card-title">{article?.title}</h5>
 
-                                            {showFullText ? (
-                                                <div
-                                                    className="card-text m-0"
-                                                    
-                                                    dangerouslySetInnerHTML={{
-                                                        __html: DOMPurify.sanitize(article?.description || '')
-                                                    }}
-                                                />
-                                            ) : (
-                                                <div
-                                                    className="card-text m-0"
-                                                    dangerouslySetInnerHTML={{
-                                                        __html: DOMPurify.sanitize(getPreviewText(article?.description || ''))
-                                                    }}
-                                                />
-                                            )}
-
-
+                                            <div
+                                                className="card-text m-0"
+                                                dangerouslySetInnerHTML={{
+                                                    __html: DOMPurify.sanitize(getPreviewText(article?.description || ''))
+                                                }}
+                                            />
 
                                             {article.description.split(' ').length > wordLimit && (
                                                 <button
-                                                    className="btn btn-link p-0 mt-1 " style={{ color: "#003f9c" }}
-                                                    onClick={() => setShowFullText(!showFullText)}
+                                                    className="btn btn-link p-0 mt-1" style={{ color: "#003f9c" }}
+                                                    onClick={() => handleReadMore(article)}
                                                 >
-                                                    {showFullText ? t('ShowLess') : t('ReadMore')}
+                                                    {t('ReadMore')}
                                                 </button>
                                             )}
-                                          
                                         </div>
                                     </div>
                                 </div>
@@ -164,6 +166,24 @@ function MainNewsDetalis() {
                         </div>
                     </div>
                 )}
+                <Modal show={showModal} onHide={handleCloseModal} centered size="lg">
+                    <Modal.Header closeButton>
+                        <Modal.Title>{selectedArticle?.title}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <div
+                            dangerouslySetInnerHTML={{
+                                __html: DOMPurify.sanitize(selectedArticle?.description || '')
+                            }}
+                        />
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleCloseModal}>
+                            {t('Close')}
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+
 
             </div>
         </section>

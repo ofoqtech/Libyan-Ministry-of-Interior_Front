@@ -37,6 +37,7 @@ const LoginPage = () => {
                 autoClose: 2000,
                 onClose: () => {
                     login(result); 
+                    localStorage.removeItem("emailLibyan");
                     Navigate("/"); 
                 },
             });

@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { ToastContainer } from "react-bootstrap";
 
 
 const MediaDataRegistration = () => {
@@ -80,7 +81,10 @@ const MediaDataRegistration = () => {
             if (data.status === "success") {
                 toast.success(t("Criminal-Reports.submissionSuccess"), {
                     autoClose: 2000,
-                    onClose: () => navigate("/vertification"),
+                    onClose: () => {
+                        localStorage.setItem("emailLibyan", form.email.value);
+                        navigate("/vertification");
+                    },
                 });
             } else {
                 toast.error(data.message || t("Criminal-Reports.submissionError"));
@@ -97,6 +101,7 @@ const MediaDataRegistration = () => {
 
     return (
         <div className={styles.mediaReg__wrapper}>
+            <ToastContainer/>
             <nav>
                 <div className="container-fluid">
                     <div className={styles.mediaReg__navbar}>

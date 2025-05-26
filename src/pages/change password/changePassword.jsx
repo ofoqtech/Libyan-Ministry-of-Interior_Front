@@ -7,10 +7,10 @@ import axios from "axios";
 
 const ChangePassword = () => {
     const [t, i18n] = useTranslation("global");
-    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmpassword, setConfirmationPassword] = useState("");
   const navigate = useNavigate();
+  const email = localStorage.getItem("emailLibyan") || "";
 
 
   const handleSubmit = async (e) => {
@@ -63,19 +63,7 @@ const ChangePassword = () => {
                         <h6 className="text-secondary mt-3">{t("change4")}</h6>
                         <div className="p-2 mt-3">
                             <form onSubmit={handleSubmit}>
-                                <div className="mb-2">
-                                    <label className="form-label d-flex justify-content-start text-secondary">
-                                        {t("login.email")}
-                                    </label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        placeholder={t("login.emailPlaceholder")}
-                                        value={email}
-                                        required
-                                        onChange={(e) => setEmail(e.target.value)}
-                                    />
-                                </div>
+                          
                                 <div className="mb-2">
                                     <label className="form-label d-flex justify-content-start text-secondary">
                                         {t("login.password")}
