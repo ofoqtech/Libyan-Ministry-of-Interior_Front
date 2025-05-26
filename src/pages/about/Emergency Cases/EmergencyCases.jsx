@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import DOMPurify from 'dompurify';
 
 export default function EmergencyCases() {
   const { t } = useTranslation("global");
@@ -65,13 +66,13 @@ function MainEmergencyCases({ t }) {
 
   const em = emergencyCases?.emergency_situation
     ? decodeHtmlEntities(
-        emergencyCases.emergency_situation
-          .replace(/<p>/g, "") // Remove <p> tags
-          .replace(/<\/p>/g, "") // Remove </p> tags
-      )
-        .split("\n") // Split by new lines
-        .filter((item) => item.trim() !== "") // Filter out empty lines
-        .map((item, index) => <p key={index}>{item.trim()}</p>) // Map each line to a <p> tag
+      emergencyCases.emergency_situation
+        .replace(/<p>/g, "") // Remove <p> tags
+        .replace(/<\/p>/g, "") // Remove </p> tags
+    )
+      .split("\n") // Split by new lines
+      .filter((item) => item.trim() !== "") // Filter out empty lines
+      .map((item, index) => <p key={index}>{item.trim()}</p>) // Map each line to a <p> tag
     : null; // Return null if emergency_situation is undefined
 
   // inputs
@@ -136,7 +137,13 @@ function MainEmergencyCases({ t }) {
           </div>
         ) : (
           <>
-            {em}
+             <p
+              className='titledetalis'
+              style={{lineHeight : '2.0'}}
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(emergencyCases?.emergency_situation || '')
+              }}
+            />
           </>
         )}
 

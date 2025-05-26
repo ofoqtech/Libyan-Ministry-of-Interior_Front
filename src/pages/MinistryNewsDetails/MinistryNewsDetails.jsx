@@ -88,7 +88,12 @@ function MinsitryNewsDetails() {
                         </>
                     ) : (
                         <>
-                            <p className="titledetalis">{todayNews?.description}</p>
+                            <p
+                                className='titledetalis'
+                                dangerouslySetInnerHTML={{
+                                    __html: DOMPurify.sanitize(todayNews?.description || '')
+                                }}
+                            />
                             {todayNews?.youtube_link && (
                                 <div className="my-5 mx-auto text-center d-flex justify-content-center">
                                     <Link className="titledetalis type" to={todayNews.youtube_link}>

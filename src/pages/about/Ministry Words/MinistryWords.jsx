@@ -3,6 +3,7 @@ import { GlobalContainer } from "../../../components/globalComponent/globalCompo
 import "./MinistryWords.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import DOMPurify from 'dompurify';
 
 export function MinistryWords() {
   const [t] = useTranslation("global");
@@ -63,13 +64,13 @@ function MainWords({ t }) {
 
   const ministerWord = ministryWord?.minister_word
     ? decodeHtmlEntities(
-        ministryWord.minister_word
-          .replace(/<p>/g, "")
-          .replace(/<\/p>/g, "")
-      )
-        .split("\n")  // Split by new lines
-        .filter((item) => item.trim() !== "")  // Filter out empty lines
-        .map((item, index) => <p key={index}>{item.trim()}</p>)  // Display each line in <p> tag
+      ministryWord.minister_word
+        .replace(/<p>/g, "")
+        .replace(/<\/p>/g, "")
+    )
+      .split("\n")  // Split by new lines
+      .filter((item) => item.trim() !== "")  // Filter out empty lines
+      .map((item, index) => <p key={index}>{item.trim()}</p>)  // Display each line in <p> tag
     : null;
 
   return (
@@ -88,8 +89,13 @@ function MainWords({ t }) {
             </div>
           </div>
         ) : (
-          <div>{ministerWord}</div>  // Display minister's message
-
+          <div
+            className='titledetalis'
+            style={{ lineHeight: '2.0' }}
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(ministryWord?.minister_word || '')
+            }}
+          />
         )}
       </div>
     </section>
