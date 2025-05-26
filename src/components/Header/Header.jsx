@@ -72,19 +72,19 @@ function TopNav({ t }) {
     const getBreakingNews = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/news/common_news`,
+          `${process.env.REACT_APP_API_URL}/news/breaking_news`,
           {
             headers: {
               "Content-Type": "application/json",
-              lang: i18n.language,
+              "lang": i18n.language,
             },
           }
         );
         if (response.status === 200) {
-          setBreakingNews(response.data.result.data[0]);
+          setBreakingNews(response.data.result.data);
         }
       } catch (err) {
-        console.log(err);
+        toast.error(t("noData") || err?.response?.data?.message || "Something went wrong");
       } finally {
         setLoading(false);
       }
