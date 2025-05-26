@@ -310,7 +310,7 @@ function TodayNews({ t }) {
                     <div
                       className="today-news-background mb-3"
                       style={{
-                        backgroundImage: `url(${news.image_url})`,
+                        backgroundImage: `url(${news?.image_url})`,
                         height: "200px",
                         backgroundSize: "cover",
                         backgroundPosition: "center",
@@ -335,7 +335,7 @@ function TodayNews({ t }) {
               <Link to={`/news/details/${TodayNews[0]?.id}`}>
 
                 <CommonNewsBox
-                  image={TodayNews[2].image_url}
+                  image={TodayNews[0].image_url}
                   type={t("today_news.category_1")}
                   title={TodayNews[0]?.name}
                   sizing="30px"

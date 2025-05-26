@@ -81,9 +81,8 @@ function TodayNewsDetails() {
                     ) : (
 
                         <>
-<p className="titledetalis">
-  {todayNews?.description?.replace(/<\/?p>/g, '').replace(/&ldquo;/g, '')}
-</p>
+                          <div className="titledetalis" dangerouslySetInnerHTML={{ __html: todayNews?.description }} />
+
                             {todayNews?.youtube_link && (
                                 <div className="my-5 mx-auto text-center d-flex justify-content-center">
                                     <Link className="titledetalis type" to={todayNews.youtube_link}>

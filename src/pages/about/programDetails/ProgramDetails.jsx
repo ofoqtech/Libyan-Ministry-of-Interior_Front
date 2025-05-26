@@ -92,6 +92,7 @@ function Programs() {
               </div>}
             </React.Fragment>
           ))}
+          {newsDetails.length === 0 && <p className="text-center">{t('noData')}</p>}
         </div>
 
 

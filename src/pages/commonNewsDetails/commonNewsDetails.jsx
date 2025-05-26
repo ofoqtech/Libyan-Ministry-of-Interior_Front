@@ -91,7 +91,7 @@ function CommonNewsDetails() {
         )}
 
         <div className="my-3">
-          <p className="titledetalis">{detail?.description}</p>
+<div className="titledetalis" dangerouslySetInnerHTML={{ __html: detail?.description }} />
           {detail?.youtube_link && (
             <div className="my-5 mx-auto text-center d-flex justify-content-center">
               <Link className="titledetalis type" to={detail.youtube_link}>

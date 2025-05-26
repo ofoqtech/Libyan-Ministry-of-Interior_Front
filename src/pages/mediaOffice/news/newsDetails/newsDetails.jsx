@@ -82,11 +82,10 @@ function MainNewsDetalis() {
                     </div>
                 </div>
 
-                <div className="my-3">
-                    <p className="titledetalis">{newsDetails.description}</p>
-                </div>
-               {newsDetails?.youtube_link &&  <div className="my-5 mx-auto text-center d-flex justify-content-center">
-                    <Link className="titledetalis type"  to={newsDetails?.youtube_link}>{t('showVideo')}</Link>
+                <div className="titledetalis my-3" dangerouslySetInnerHTML={{ __html: newsDetails?.description }} />
+
+                {newsDetails?.youtube_link && <div className="my-5 mx-auto text-center d-flex justify-content-center">
+                    <Link className="titledetalis type" to={newsDetails?.youtube_link}>{t('showVideo')}</Link>
                 </div>}
 
                 {newsDetails.medias?.length > 0 && (
@@ -130,9 +129,9 @@ function MainNewsDetalis() {
 
                                             {article.description.split(' ').length > wordLimit && (
                                                 <button
-                                                    className="btn btn-link p-0 mt-2 " style={{color:"#003f9c"}}
+                                                    className="btn btn-link p-0 mt-2 " style={{ color: "#003f9c" }}
                                                     onClick={() => setShowFullText(!showFullText)}
-                                                > 
+                                                >
                                                     {showFullText ? t('ShowLess') : t('ReadMore')}
                                                 </button>
                                             )}

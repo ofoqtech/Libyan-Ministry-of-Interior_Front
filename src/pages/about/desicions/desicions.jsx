@@ -131,7 +131,7 @@ function DesicionsInformations({ t }) {
                     <span className="type mx-auto d-block">
                       {t("decisions.category_1")}
                     </span>
-                    <p className="desicionstitle mt-2">{desicion.text}</p>
+                    <p className="desicionstitle mt-2">{desicion?.text.slice(0,100)}</p>
                     <div className="d-flex justify-content-between align-items-center">
                       <span className="desicionstime mx-auto d-block">
                         <i className="uil uil-calendar-alt ms-1 mx-2"></i>
@@ -204,7 +204,7 @@ function DesicionsInformations({ t }) {
                 ></button>
               </div>
               <div className="modal-body">
-                <h6>{selectedDesicion.text}</h6>
+                <h6 style={{lineHeight : '2.0'}}>{selectedDesicion.text}</h6>
                 <p>{selectedDesicion.description}</p>
                 <p>{t("decisionsPage.createdAt")}: {selectedDesicion.created_at}</p>
               </div>
