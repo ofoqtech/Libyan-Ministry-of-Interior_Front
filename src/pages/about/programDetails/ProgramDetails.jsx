@@ -80,13 +80,13 @@ function Programs() {
                 </span>
               </div>
 
-              <div className="my-3">
-                <p className="titledetalis">{news?.description}</p>
-              </div>
+
+              <div className="titledetalis my-3" dangerouslySetInnerHTML={{ __html: news?.description }} />
+
               {newsDetails?.youtube_link && <div className="my-5 mx-auto text-center d-flex justify-content-center">
                 <Link className="titledetalis type" to={newsDetails?.youtube_link}>{t('showVideo')}</Link>
               </div>}
-              
+
               {news?.youtube_link && <div className="my-3">
                 <Link className="titledetalis text-center mx-auto d-flex justify-content-center type" style={{ borderRadius: "10px" }} to={news?.youtube_link} clas>{t('showVideo')}</Link>
               </div>}

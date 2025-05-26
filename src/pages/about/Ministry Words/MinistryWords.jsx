@@ -89,6 +89,7 @@ function MainWords({ t }) {
           </div>
         ) : (
           <div>{ministerWord}</div>  // Display minister's message
+
         )}
       </div>
     </section>

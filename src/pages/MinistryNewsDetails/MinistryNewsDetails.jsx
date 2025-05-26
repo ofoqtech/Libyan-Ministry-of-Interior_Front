@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { GlobalContainer } from '../../components/globalComponent/globalComponent';
 import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import DOMPurify from 'dompurify';
 
 export default function MinsitryNewsDetailsPage() {
     const { t } = useTranslation("global");
@@ -36,7 +37,7 @@ function MinsitryNewsDetails() {
                 const selectedNews = result?.result?.data?.find((news) => news.id === Number(id));
                 setTodayNews(selectedNews || null);
             } catch (error) {
-               toast.error(error)
+                toast.error(error)
             } finally {
                 setIsLoading(false);
             }
@@ -64,33 +65,40 @@ function MinsitryNewsDetails() {
                     <div className="col-lg-6">
                         <h2 style={{ lineHeight: "40px", fontSize: "25px" }}>
                             {isLoading ? (
-                                <div className="bg-secondary rounded mb-2" style={{ width: "80%", height: "30px", opacity: 0.2 }}></div>
+                                <div
+                                    className="bg-secondary rounded mb-2"
+                                    style={{ width: "80%", height: "30px", opacity: 0.2 }}
+                                ></div>
                             ) : (
-                                todayNews?.title
+                                <span
+                                    dangerouslySetInnerHTML={{
+                                        __html: DOMPurify.sanitize(todayNews?.title || '')
+                                    }}
+                                />
                             )}
                         </h2>
                     </div>
                 </div>
                 <div className="my-3">
-  {isLoading ? (
-    <>
-      <div className="bg-secondary rounded mb-2" style={{ height: "15px", width: "100%", opacity: 0.2 }}></div>
-      <div className="bg-secondary rounded mb-2" style={{ height: "15px", width: "95%", opacity: 0.2 }}></div>
-      <div className="bg-secondary rounded mb-2" style={{ height: "15px", width: "90%", opacity: 0.2 }}></div>
-    </>
-  ) : (
-    <>
-      <p className="titledetalis">{todayNews?.description}</p>
-      {todayNews?.youtube_link && (
-        <div className="my-5 mx-auto text-center d-flex justify-content-center">
-          <Link className="titledetalis type" to={todayNews.youtube_link}>
-            {t('showVideo')}
-          </Link>
-        </div>
-      )}
-    </>
-  )}
-</div>
+                    {isLoading ? (
+                        <>
+                            <div className="bg-secondary rounded mb-2" style={{ height: "15px", width: "100%", opacity: 0.2 }}></div>
+                            <div className="bg-secondary rounded mb-2" style={{ height: "15px", width: "95%", opacity: 0.2 }}></div>
+                            <div className="bg-secondary rounded mb-2" style={{ height: "15px", width: "90%", opacity: 0.2 }}></div>
+                        </>
+                    ) : (
+                        <>
+                            <p className="titledetalis">{todayNews?.description}</p>
+                            {todayNews?.youtube_link && (
+                                <div className="my-5 mx-auto text-center d-flex justify-content-center">
+                                    <Link className="titledetalis type" to={todayNews.youtube_link}>
+                                        {t('showVideo')}
+                                    </Link>
+                                </div>
+                            )}
+                        </>
+                    )}
+                </div>
 
             </div>
         </section>

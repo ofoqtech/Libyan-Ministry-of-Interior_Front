@@ -117,7 +117,8 @@ function MainAllMeetings() {
               </div>
               <div className="col-lg-8">
                 <h5>{meeting.title}</h5>
-                <p className="desicionstitle mt-2">{meeting.description}</p>
+                <div className="desicionstitle my-2 mb-4" dangerouslySetInnerHTML={{ __html: meeting?.description.slice(0,200) }} />
+
                 <div className="d-flex justify-content-between align-items-center">
                   <span className="desicionstime">
                     <i className="uil uil-calendar-alt ms-1 mx-2"></i>

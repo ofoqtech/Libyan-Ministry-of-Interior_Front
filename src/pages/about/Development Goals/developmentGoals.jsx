@@ -61,12 +61,12 @@ function MainDevelopmentGoals() {
           // Skeleton
           <div className="row justify-content-center my-3">
             <div className="col-lg-4">
-            <div className="skeleton-wrapper">
-            <div className="skeleton-image mb-3"></div>
-            <div className="skeleton-text mb-2"></div>
-            <div className="skeleton-text mb-2"></div>
-            <div className="skeleton-text short mb-2"></div>
-          </div>
+              <div className="skeleton-wrapper">
+                <div className="skeleton-image mb-3"></div>
+                <div className="skeleton-text mb-2"></div>
+                <div className="skeleton-text mb-2"></div>
+                <div className="skeleton-text short mb-2"></div>
+              </div>
             </div>
           </div>
         ) : (
@@ -80,7 +80,8 @@ function MainDevelopmentGoals() {
                 alt={t("developmentGoals.imageAlt")}
               />
               <div className="col-lg-12 mx-auto">
-                <h5>{plainIncubations}</h5>
+                <div style={{ fontSize: 18, fontWeight: 400, marginBottom : "10px" }} dangerouslySetInnerHTML={{ __html: plainIncubations }} />
+
                 <div className="d-flex justify-content-between align-items-center">
                   <span className="desicionstime mx-auto">
                     <i className="uil uil-calendar-alt ms-1"></i>{" "}

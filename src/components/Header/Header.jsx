@@ -160,7 +160,7 @@ function TopNav({ t }) {
                 <span key={news.id} className="me-4">
                   {news.title?.slice(0, 47)}...
                   <Link
-                    to={`/CommonNewsDetailsPage/${news.id}`}
+                    to={`/breakingNewsDetails/${news.id}`}
                     className="ms-2"
                     style={{ color: "#00f", textDecoration: "underline" }}
                   >

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+import DOMPurify from 'dompurify';
 
 export default function NewsDetails() {
     const { t } = useTranslation("global");
@@ -121,24 +122,41 @@ function MainNewsDetalis() {
                                             alt={article.title}
                                             className="card-img-top"
                                         />
-                                        <div className="card-body">
-                                            <h5 style={{ lineHeight: "1.6" }} className="card-title">{article.title}</h5>
-                                            <p className="card-text m-0">
-                                                {showFullText ? article.description : getPreviewText(article.description)}
+                                          <p className="desicionstime mt-3">
+                                                <i className="uil uil-calendar-alt mt-1 ms-1 mx-2"></i>
+                                                {new Date(article.created_at).toLocaleDateString(i18n.language)}
                                             </p>
+                                        <div className="card-body p-0 ">
+                                            <h5 style={{ lineHeight: "1.6", color : "black", marginBottom : '10px' }} className="card-title">{article?.title}</h5>
+
+                                            {showFullText ? (
+                                                <div
+                                                    className="card-text m-0"
+                                                    
+                                                    dangerouslySetInnerHTML={{
+                                                        __html: DOMPurify.sanitize(article?.description || '')
+                                                    }}
+                                                />
+                                            ) : (
+                                                <div
+                                                    className="card-text m-0"
+                                                    dangerouslySetInnerHTML={{
+                                                        __html: DOMPurify.sanitize(getPreviewText(article?.description || ''))
+                                                    }}
+                                                />
+                                            )}
+
+
 
                                             {article.description.split(' ').length > wordLimit && (
                                                 <button
-                                                    className="btn btn-link p-0 mt-2 " style={{ color: "#003f9c" }}
+                                                    className="btn btn-link p-0 mt-1 " style={{ color: "#003f9c" }}
                                                     onClick={() => setShowFullText(!showFullText)}
                                                 >
                                                     {showFullText ? t('ShowLess') : t('ReadMore')}
                                                 </button>
                                             )}
-                                            <p className="desicionstime">
-                                                <i className="uil uil-calendar-alt mt-1 ms-1 mx-2"></i>
-                                                {new Date(article.created_at).toLocaleDateString(i18n.language)}
-                                            </p>
+                                          
                                         </div>
                                     </div>
                                 </div>

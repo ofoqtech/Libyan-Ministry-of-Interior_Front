@@ -47,6 +47,7 @@ import ProgramsNews from "./pages/about/programsNews/ProgramsNews";
 import ProgramDetails from "./pages/about/programDetails/ProgramDetails";
 import SearchPage from "./pages/search/search";
 import LastNewsDetailsPage from "./pages/LastNewsDetailsPage/LastNewsDetailsPage";
+import BreakingNewsDetailsPage from "./pages/breakingNewsDetails/breakingNewsDetails";
 function LayoutWrapper({ children }) {
   const location = useLocation();
 
@@ -148,6 +149,10 @@ function AppRoutes() {
       <Route
         path="/CommonNewsDetailsPage/:id"
         element={<CommonNewsDetailsPage />}
+      />
+          <Route
+        path="/breakingNewsDetails/:id"
+        element={<BreakingNewsDetailsPage />}
       />
       <Route
         path="/MinsitryNewsDetailsPage/:id"

@@ -7,7 +7,10 @@ import axios from 'axios';
 
 export default function Allnews() {
   const { t } = useTranslation("global");
-
+  useEffect(() => {
+      window.scrollTo(0, 0);
+    }
+    , []);
   return (
     <>
       <GlobalContainer
@@ -115,16 +118,17 @@ function MainAllnews() {
                 />
               </div>
               <div className="col-lg-8">
-                <h5>{item.title}</h5>
-                <p className="desicionstitle mt-2">{item.description}</p>
+                <h5 style={{lineHeight : '2.0'}}>{item.title}</h5>
+                <div className="desicionstitle my-3" dangerouslySetInnerHTML={{ __html: item?.description.slice(0,200) }} />
+
                 <div className="d-flex justify-content-between align-items-center">
                   <span className="desicionstime">
                     <i className="uil uil-calendar-alt ms-1 mx-2"></i>
                     {new Date(item.created_at)
                       .toLocaleDateString(i18n.language)}
                   </span>
-                  <Link 
-                    to={`/mediaOffice/newsdetails/${item.id}`} 
+                  <Link
+                    to={`/mediaOffice/newsdetails/${item.id}`}
                     className="type"
                   >
                     {t('allNews.readMore')}

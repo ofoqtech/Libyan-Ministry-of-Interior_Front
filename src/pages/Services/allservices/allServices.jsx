@@ -15,7 +15,10 @@ import axios from "axios";
 
 export function AllServicesPage() {
   const [t, i18n] = useTranslation("global");
-
+  useEffect(() => {
+      window.scrollTo(0, 0);
+    }
+    , []);
 
   return (
     <>

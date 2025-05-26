@@ -65,9 +65,9 @@ export default function MeetingsDetails() {
                 </div>
               </div>
 
-              <div className="my-3">
-                <p className="titledetalis">{data.description}</p>
-              </div>
+
+              <div className=" titledetalis my-3" dangerouslySetInnerHTML={{ __html: data?.description }} />
+
 
               {data.medias && data.medias.length > 0 && (
                 <div className="mt-5">

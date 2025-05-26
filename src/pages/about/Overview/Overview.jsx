@@ -6,6 +6,10 @@
 
   export function Overview() {
     const [t, i18n] = useTranslation("global");
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }
+    , []);
     return (
       <>
         <GlobalContainer
