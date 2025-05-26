@@ -355,30 +355,13 @@ function DesktopHeader({
               </div>
             )}
 
-            <div className="nav-item dropdown">
-              <Link
-                to="#"
-                className="nav-link dropdown-toggle text-white"
-                id="contactDrop"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
+            <li>
+              <Link className="dropdown-item text-white" to="/contact">
                 {t("header.contact")}
               </Link>
-              <ul className="dropdown-menu" aria-labelledby="contactDrop">
-                <li>
-                  <Link className="dropdown-item" to="/contact">
-                    {t("header.contactTheMinistry")}
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/contact/directorate">
-                    {t("header.contacTheDirectorate")}
-                  </Link>
-                </li>
-              </ul>
-            </div>
+            </li>
+
+
           </div>
           <div className="lang lang-desktop">
             <i className="uil uil-globe"></i>
@@ -567,43 +550,16 @@ function ModileHeader({
               </li>
             </ul>
           </div>
-          <div className="dropdown" style={{ marginBottom: "15px" }}>
-            <div
-              className="dropdown-toggle"
-              type="button"
-              id="contactDrop"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              style={{ padding: "10px", cursor: "pointer" }}
+
+          <li>
+            <Link
+              className="dropdown-item"
+              to="/contact"
+              onClick={() => setMobHeader(false)}
             >
               {t("header.contact")}
-            </div>
-            <ul
-              className="dropdown-menu dropdown-menu-end"
-              aria-labelledby="contactDrop"
-              data-bs-popper="static"
-            >
-              <li>
-                <Link
-                  className="dropdown-item"
-                  to="/contact"
-                  onClick={() => setMobHeader(false)}
-                >
-                  {t("header.contactTheMinistry")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="dropdown-item"
-                  style={{ marginBottom: "15px" }}
-                  to="/contact/1"
-                  onClick={() => setMobHeader(false)}
-                >
-                  {t("header.contacTheDirectorate")}
-                </Link>
-              </li>
-            </ul>
-          </div>
+            </Link>
+          </li>
           {user == null ? (
             <li>
               <Link to="/login">{t("header.login")}</Link>
