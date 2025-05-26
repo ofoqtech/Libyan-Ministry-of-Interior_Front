@@ -212,7 +212,8 @@ function DesktopHeader({
     <div className="header px-2">
       <div className="container px-2">
         <div className="logo">
-          <img src="/assets/logo.png" alt={t("header.logo_alt")} />
+          <Link to=''>          <img src="/assets/logo.png" alt={t("header.logo_alt")} />
+          </Link>
         </div>
         <div className="left-header">
           <div className="links">
