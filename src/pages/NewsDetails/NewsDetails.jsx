@@ -19,7 +19,9 @@ function TodayNewsDetails() {
     const { id } = useParams();
     const [todayNews, setTodayNews] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, []);
     useEffect(() => {
         const fetchNews = async () => {
             try {

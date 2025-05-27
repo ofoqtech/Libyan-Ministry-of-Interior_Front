@@ -27,6 +27,23 @@ function Header() {
     i18n.changeLanguage(value);
     setMobHeader(false);
   };
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      if (scrollPosition > 300) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
 
   /* eslint-disable */
   useEffect(() => {
@@ -46,6 +63,7 @@ function Header() {
         t={t}
         user={user}
         logout={logout}
+        scrolled={scrolled}
         mobHeader={mobHeader}
         setMobHeader={setMobHeader}
         handleChange={handleChange}
@@ -204,165 +222,168 @@ function DesktopHeader({
   mobHeader,
   setMobHeader,
   handleChange,
+  scrolled,
   t,
   user,
   logout,
 }) {
   return (
-    <div className="header px-2">
+    <div className={`header px-2 ${scrolled ? 'scrolled' : ''}`}
+      style={{ backgroundColor: scrolled ? "#003f9c" : "transparent", transition: "background-color 0.3s ease", top: scrolled ? "70px" : '100px' }}>
       <div className="container px-2">
         <div className="logo">
           <Link to=''>          <img src="/assets/logo.png" alt={t("header.logo_alt")} />
           </Link>
         </div>
-        <div className="left-header">
-          <div className="links">
-            <div className="link">
-              <Link to={"/"}>{t("header.home")}</Link>
-            </div>
-            <div className="nav-item dropdown">
-              <Link
-                to="#"
-                className="nav-link dropdown-toggle text-white"
-                id="aboutDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                {t("header.about")}
-              </Link>
-              <ul className="dropdown-menu" aria-labelledby="aboutDropdown">
-                <li>
-                  <Link className="dropdown-item" to="/about/overview">
-                    {t("header.overview")}
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/about/Ministry-words">
-                    {t("header.ministryWords")}
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/about/desicions">
-                    {t("header.decisions")}
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/about/programs-news">
-                    {t("header.programsNews")}
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/about/emergencyCases">
-                    {t("header.emergencyCases")}
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/about/developmentgoals">
-                    {t("header.developmentGoals")}
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/about/faq">
-                    {t("header.faq")}
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/about/complaint">
-                    {t("header.complaint")}
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div className="link menu">
-              <Link to={"/services"}>{t("header.services")}</Link>
-            </div>
-
-            <div className="nav-item dropdown">
-              <Link
-                to="#"
-                className="nav-link dropdown-toggle text-white"
-                id="mediaOfficeDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                {t("header.media_office")}
-              </Link>
-              <ul
-                className="dropdown-menu"
-                aria-labelledby="mediaOfficeDropdown"
-              >
-                <li>
-                  <Link className="dropdown-item" to="/mediaOffice/allnews">
-                    {t("header.all_news")}
-                  </Link>
-                </li>
-
-                <li>
-                  <Link className="dropdown-item" to="/mediaOffice/allmeetings">
-                    {t("header.all_meetings")}
-                  </Link>
-                </li>
-
-                <li>
-                  <Link className="dropdown-item" to="/mediaOffice/alllibrary">
-                    {t("header.all_library")}
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="dropdown-item"
-                    to="/mediaOffice/DirectoratesNews"
-                  >
-                    {t("header.DirectoratesNews")}
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            {user == null ? (
-              <div className="link menu">
-                <Link to="/login">{t("header.login")}</Link>
-              </div>
-            ) : (
-              <div className="dropdown">
-                <button
-                  className="btn text-white border-0 dropdown-toggle"
-                  type="button"
-                  id="profile"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  {t("profile.profile")}
-                </button>
-                <ul className="dropdown-menu" aria-labelledby="profile">
-                  <li>
-                    <Link className="dropdown-item" to="/profile">
-                      {t("profile.header1")}
-                    </Link>
-                  </li>
-
-                  <li>
-                    <button
-                      className="dropdown-item text-danger"
-                      onClick={logout}
-                    >
-                      {t("logout")}
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            )}
-
-            <li>
-              <Link className="dropdown-item text-white" to="/contact">
-                {t("header.contact")}
-              </Link>
-            </li>
-
-
+        <div className="links">
+          <div className="link">
+            <Link to={"/"}>{t("header.home")}</Link>
           </div>
+          <div className="nav-item dropdown">
+            <Link
+              to="#"
+              className="nav-link dropdown-toggle text-white"
+              id="aboutDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              {t("header.about")}
+            </Link>
+            <ul className="dropdown-menu" aria-labelledby="aboutDropdown">
+              <li>
+                <Link className="dropdown-item" to="/about/overview">
+                  {t("header.overview")}
+                </Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/about/Ministry-words">
+                  {t("header.ministryWords")}
+                </Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/about/desicions">
+                  {t("header.decisions")}
+                </Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/about/programs-news">
+                  {t("header.programsNews")}
+                </Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/about/emergencyCases">
+                  {t("header.emergencyCases")}
+                </Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/about/developmentgoals">
+                  {t("header.developmentGoals")}
+                </Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/about/faq">
+                  {t("header.faq")}
+                </Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/about/complaint">
+                  {t("header.complaint")}
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div className="link menu">
+            <Link to={"/services"}>{t("header.services")}</Link>
+          </div>
+
+          <div className="nav-item dropdown">
+            <Link
+              to="#"
+              className="nav-link dropdown-toggle text-white"
+              id="mediaOfficeDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              {t("header.media_office")}
+            </Link>
+            <ul
+              className="dropdown-menu"
+              aria-labelledby="mediaOfficeDropdown"
+            >
+              <li>
+                <Link className="dropdown-item" to="/mediaOffice/allnews">
+                  {t("header.all_news")}
+                </Link>
+              </li>
+
+              <li>
+                <Link className="dropdown-item" to="/mediaOffice/allmeetings">
+                  {t("header.all_meetings")}
+                </Link>
+              </li>
+
+              <li>
+                <Link className="dropdown-item" to="/mediaOffice/alllibrary">
+                  {t("header.all_library")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="dropdown-item"
+                  to="/mediaOffice/DirectoratesNews"
+                >
+                  {t("header.DirectoratesNews")}
+                </Link>
+              </li>
+            </ul>
+          </div>
+          {user == null ? (
+            <div className="link menu">
+              <Link to="/login">{t("header.login")}</Link>
+            </div>
+          ) : (
+            <div className="dropdown">
+              <button
+                className="btn text-white border-0 dropdown-toggle"
+                type="button"
+                id="profile"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {t("profile.profile")}
+              </button>
+              <ul className="dropdown-menu" aria-labelledby="profile">
+                <li>
+                  <Link className="dropdown-item" to="/profile">
+                    {t("profile.header1")}
+                  </Link>
+                </li>
+
+                <li>
+                  <button
+                    className="dropdown-item text-danger"
+                    onClick={logout}
+                  >
+                    {t("logout")}
+                  </button>
+                </li>
+              </ul>
+            </div>
+          )}
+
+          <li>
+            <Link className="dropdown-item text-white" to="/contact">
+              {t("header.contact")}
+            </Link>
+          </li>
+
+
+        </div>
+        <div className="left-header">
+
           <div className="lang lang-desktop">
             <i className="uil uil-globe"></i>
             <div className="lang-menu">

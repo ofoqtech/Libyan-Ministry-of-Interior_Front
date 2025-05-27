@@ -1,8 +1,58 @@
 .header {
-  position: absolute;
+  position: fixed;
   top: 100px;
   width: 100%;
   z-index: 12121;
+}
+@media(max-width:900px){
+.header{
+  top : 170px !important;
+}
+.header.scrolled{
+  top : 158px !important;
+}
+.global-container .text {
+  padding-top: 290px !important;
+}
+}
+@media(max-width:480px){
+.header{
+  top : 190px !important;
+}
+.header.scrolled{
+  top : 184px !important;
+}
+.global-container .text {
+  padding-top: 310px !important;
+}
+}
+@media(max-width:300px){
+.header {
+  top : 240px !important;
+}
+.header.header.scrolled {
+  top : 180px !important;
+}
+.global-container .text {
+  padding-top: 360px !important;
+}
+}
+@media(max-width:295px){
+.header {
+  top : 240px !important;
+}
+.header.header.scrolled {
+  top : 220px !important;
+}
+.global-container .text {
+  padding-top: 360px !important;
+}
+}
+.top-nav{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 122121;
 }
 
 .header .container {

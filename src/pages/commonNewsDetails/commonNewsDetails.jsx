@@ -19,7 +19,9 @@ export default function CommonNewsDetailsPage() {
 
 function CommonNewsDetails() {
   const { t } = useTranslation("global");
-
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, []);
   const { i18n } = useTranslation("global");
   const { id } = useParams();
   const [detail, setDetail] = useState();
@@ -69,13 +71,13 @@ function CommonNewsDetails() {
           </div>
         ) : (
           <div className="row align-items-center">
-              <img
-                style={{ maxWidth: "100%", width: "700px" }}
-                src={detail?.image_url}
-                className="mb-3"
-                width="300px"
-                alt=""
-              />
+            <img
+              style={{ maxWidth: "100%", width: "700px" }}
+              src={detail?.image_url}
+              className="mb-3"
+              width="300px"
+              alt=""
+            />
             <div className="col-lg-6">
               <h2 style={{ lineHeight: "40px", fontSize: "25px" }}>
                 {detail?.title}

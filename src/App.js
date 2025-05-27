@@ -48,6 +48,7 @@ import ProgramDetails from "./pages/about/programDetails/ProgramDetails";
 import SearchPage from "./pages/search/search";
 import LastNewsDetailsPage from "./pages/LastNewsDetailsPage/LastNewsDetailsPage";
 import BreakingNewsDetailsPage from "./pages/breakingNewsDetails/breakingNewsDetails";
+import ScrollToTop from "./components/scrollToTop/ScrollToTop";
 function LayoutWrapper({ children }) {
   const location = useLocation();
 
@@ -182,6 +183,7 @@ function App() {
           <AppRoutes />
         </LayoutWrapper>
       </AuthProvider>
+      <ScrollToTop />
     </BrowserRouter>
   );
 }
