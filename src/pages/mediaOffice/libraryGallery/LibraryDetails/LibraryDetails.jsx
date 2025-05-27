@@ -7,23 +7,23 @@ export default function LibraryDetails() {
     const { t } = useTranslation("global");
 
     return <>
-      <GlobalContainer
-        text={t('library.imageLibrary')}
-        header={t('library.breadcrumb')}
-      /> 
-                
-      <MainLibraryDetails />
-        </>
+        <GlobalContainer
+            text={t('library.imageLibrary')}
+            header={t('library.breadcrumb')}
+        />
+
+        <MainLibraryDetails />
+    </>
 }
 
-        function MainLibraryDetails() {
-  const {t} = useTranslation("global");
+function MainLibraryDetails() {
+    const { t } = useTranslation("global");
 
-        return (
+    return (
         <section className="MainLibraryDetails my-5">
             <div className="container">
                 <div className="row align-items-center">
-                        <img style={{ maxWidth: "100%", width: "300px" }} src="/assets/1-59-1 1.png" className="mb-3" width="700px" alt="" />
+                    <img style={{ maxWidth: "100%", width: "300px" }} src="/assets/1-59-1 1.png" className="mb-3"  alt="" />
                     <div className="col-lg-6">
                         <h2 style={{ lineHeight: "40px", fontSize: "25px" }}>
                             {t('security_media')}
@@ -97,5 +97,5 @@ export default function LibraryDetails() {
                 </div>
             </div>
         </section>
-        );
+    );
 }

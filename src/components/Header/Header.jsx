@@ -87,50 +87,55 @@ function TopNav({ t }) {
   const [socials, setSocials] = useState([]);
 
   useEffect(() => {
-    const getBreakingNews = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/news/breaking_news`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              "lang": i18n.language,
-            },
+    i18n.changeLanguage(i18n.language).then(() => {
+      const getBreakingNews = async () => {
+        try {
+          const response = await axios.get(
+            `${process.env.REACT_APP_API_URL}/news/breaking_news`,
+            {
+              headers: {
+                "Content-Type": "application/json",
+                "lang": i18n.language,
+              },
+            }
+          );
+          if (response.status === 200) {
+            setBreakingNews(response.data.result.data);
           }
-        );
-        if (response.status === 200) {
-          setBreakingNews(response.data.result.data);
+        } catch (err) {
+          toast.error(t("noData") || err?.response?.data?.message || "Something went wrong");
+        } finally {
+          setLoading(false);
         }
-      } catch (err) {
-        toast.error(t("noData") || err?.response?.data?.message || "Something went wrong");
-      } finally {
-        setLoading(false);
-      }
-    };
-    const getSocials = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/socials`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              lang: i18n.language,
-            },
+      };
+      const getSocials = async () => {
+        try {
+          const response = await axios.get(
+            `${process.env.REACT_APP_API_URL}/socials`,
+            {
+              headers: {
+                "Content-Type": "application/json",
+                lang: i18n.language,
+              },
+            }
+          );
+          if (response.status === 200) {
+            setSocials(response.data.result);
           }
-        );
-        if (response.status === 200) {
-          setSocials(response.data.result);
+        } catch (err) {
+          toast.error(
+            t("noData") || err?.response?.data?.message || "Something went wrong"
+          );
         }
-      } catch (err) {
-        toast.error(
-          t("noData") || err?.response?.data?.message || "Something went wrong"
-        );
-      }
-    };
+      };
 
-    getBreakingNews();
-    getSocials();
+      getBreakingNews();
+      getSocials();
+    });
+
+
   }, [i18n.language]);
+
 
   if (loading) {
     return (

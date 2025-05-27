@@ -50,18 +50,16 @@ function TodayNewsDetails() {
         <section className="MainNewsDetalis my-5">
             <div className="container">
                 <div className="row align-items-center">
-                    <div className="col-lg-6">
                         {isLoading ? (
                             <div className="bg-secondary rounded w-100" style={{ height: "350px", opacity: 0.2 }}></div>
                         ) : (
                             <img
-                                style={{ maxWidth: "100%", width: "700px" }}
+                                style={{ maxWidth: "100%", width: "300px" }}
                                 src={todayNews?.image_url}
                                 className="mb-3"
                                 alt=""
                             />
                         )}
-                    </div>
                     <div className="col-lg-6">
                         <h2 style={{ lineHeight: "40px", fontSize: "25px" }}>
                             {isLoading ? (

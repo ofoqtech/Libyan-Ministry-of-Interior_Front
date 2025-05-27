@@ -58,14 +58,12 @@ const selectedHero = heroSection?.find(hero => String(hero.id) === id) || null;
         <section className="MainNewsDetalis my-5">
             <div className="container">
                 <div className="row align-items-center">
-                    <div className="col-lg-6">
                         <img
-                            style={{ maxWidth: "100%", width: "700px" }}
+                            style={{ maxWidth: "100%", width: "300px" }}
                             src={selectedHero?.image}
                             className="mb-3"
                             alt={selectedHero.title}
                         />
-                    </div>
                     <div className="col-lg-6">
                         <h2 style={{ lineHeight: "40px", fontSize: "25px" }}>
                         {selectedHero.title}

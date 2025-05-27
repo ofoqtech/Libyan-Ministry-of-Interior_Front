@@ -70,7 +70,7 @@ function BreakingNewsDetails() {
                 ) : (
                     <div className="row align-items-center">
                             <img
-                                style={{ maxWidth: "100%", width: "700px" }}
+                                style={{ maxWidth: "100%", width: "300px" }}
                                 src={detail?.image_url}
                                 className="mb-3"
                                 width="300px"

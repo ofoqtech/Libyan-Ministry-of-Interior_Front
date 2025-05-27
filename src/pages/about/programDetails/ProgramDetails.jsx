@@ -62,14 +62,12 @@ function Programs() {
         <div className="row align-items-center">
           {newsDetails?.map((news, index) => (
             <React.Fragment key={index}>
-              <div className="col-lg-6">
                 <img
-                  style={{ maxWidth: "100%", width: "700px", height: "400px", objectFit: "cover" }}
+                  style={{ maxWidth: "100%", width: "300px", }}
                   src={news?.image_url || '/assets/placeholder.jpg'}
                   className="mb-3"
                   alt={news?.title}
                 />
-              </div>
               <div className="col-lg-6">
                 <h2 style={{ lineHeight: "40px", fontSize: "25px" }}>
                   {news?.title}
