@@ -886,7 +886,7 @@ function DesitionsAndPhotos({ t }) {
                       <img
                         src={selectedImage?.link_url}
                         alt={t("photos.alt_text")}
-                        style={{ width: "100%", height : "300px", objectFit : "cover"  }}
+                        style={{ width: "100%", height : "", objectFit : "cover", marginBottom : "30px"  }}
                       />
                       <p>{selectedImage?.text}</p>
                     </div>
