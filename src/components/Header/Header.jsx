@@ -32,7 +32,7 @@ function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      if (scrollPosition > 300) {
+      if (scrollPosition > 200) {
         setScrolled(true);
       } else {
         setScrolled(false);

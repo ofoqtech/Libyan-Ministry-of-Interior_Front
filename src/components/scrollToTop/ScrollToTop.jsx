@@ -14,7 +14,7 @@ const ScrollToTop = () => {
 
         setScrollValue(scrollValue);
 
-        if (pos > 700) {
+        if (pos > 200) {
             scrollProgress.classList.add("active");
         } else {
             scrollProgress.classList.remove("active");

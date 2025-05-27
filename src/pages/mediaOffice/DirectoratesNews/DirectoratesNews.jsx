@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { GlobalContainer } from '../../../components/globalComponent/globalComponent';
@@ -75,6 +75,26 @@ function DirectoratesNews() {
       )
     );
   };
+  const modalRef = useRef();
+
+useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (modalRef.current && !modalRef.current.contains(event.target)) {
+      setShowModal(false);
+    }
+  };
+
+  if (showModal) {
+    document.addEventListener("mousedown", handleClickOutside);
+  } else {
+    document.removeEventListener("mousedown", handleClickOutside);
+  }
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, [showModal]);
+
 
   if (loadingData) {
     return (
@@ -119,44 +139,45 @@ function DirectoratesNews() {
             </div>
           </div>
         )}
-        {showModal && selectedNews && (
-          <div className="modal fade show d-block"  role="dialog">
-            <div className="modal-dialog modal-lg" style={{zIndex : "122121"}} role="document">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title">{selectedNews?.title}</h5>
-                  <button
-                    type="button"
-                    className="btn-close"
-                    onClick={() => setShowModal(false)}
-                  ></button>
-                </div>
-                <div className="modal-body">
-                  <div
-                    dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(selectedNews?.description || '') }}
-                  />
-                </div>
-                <div className="modal-footer">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    onClick={() => setShowModal(false)}
-                  >
-                    {t('decisionsPage.close') || 'إغلاق'}
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="modal-backdrop fade show"></div>
-          </div>
-        )}
+       {showModal && selectedNews && (
+  <div className="modal fade show d-block" role="dialog">
+    <div className="modal-dialog modal-lg" style={{ zIndex: "122121" }} role="document">
+      <div className="modal-content" ref={modalRef}> {/* 👈 اضف المرجع هنا */}
+        <div className="modal-header">
+          <h5 className="modal-title">{selectedNews?.title}</h5>
+          <button
+            type="button"
+            className="btn-close"
+            onClick={() => setShowModal(false)}
+          ></button>
+        </div>
+        <div className="modal-body">
+          <div
+            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(selectedNews?.description || '') }}
+          />
+        </div>
+        <div className="modal-footer">
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() => setShowModal(false)}
+          >
+            {t('decisionsPage.close') || 'إغلاق'}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div className="modal-backdrop fade show"></div>
+  </div>
+)}
+
 
         {/* news cards */}
         <div className="row justify-content-center">
           {filteredNews.length > 0 ? (
             filteredNews.map(item => (
               <div className="col-lg-4 col-md-6 col-sm-12 mb-4" key={item.id}>
-                <div className="card px-4 pt-4 pb-1 text-center h-100 mb-2">
+                <div className="card px-4 pt-4 pb-1 text-center h-100 mb-2" style={{cursor : "pointer"}} onClick={() => handleReadMore(item)}>
                   <img
                     src={item.image_url || '/assets/placeholder.jpg'}
                     className="rounded"
