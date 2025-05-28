@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { GlobalContainer } from "../../components/globalComponent/globalComponent";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 
