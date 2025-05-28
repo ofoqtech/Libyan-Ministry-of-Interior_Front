@@ -1,14 +1,16 @@
 import { useTranslation } from 'react-i18next';
 import { GlobalContainer } from '../../../components/globalComponent/globalComponent';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export default function DevelopmentDetailsPage() {
     const { t } = useTranslation("global");
-
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <>
-            <GlobalContainer 
-                text={t('page.decisions')} 
+            <GlobalContainer
+                text={t('page.decisions')}
                 header={t('page.header')}
             />
             <DevelopmentDetails />
@@ -23,13 +25,13 @@ function DevelopmentDetails() {
         <section className="desicionsinformationsdetalis my-5">
             <div className="container">
                 <div className="row align-items-center">
-                        <img 
-                            style={{ maxWidth: '100%' }} 
-                            src="/assets/2148325790 1.png" 
-                            className="mb-3" 
-                            width="300px" 
-                            alt={t('gallery.image_alt')} 
-                        />
+                    <img
+                        style={{ maxWidth: '100%' }}
+                        src="/assets/2148325790 1.png"
+                        className="mb-3"
+                        width="300px"
+                        alt={t('gallery.image_alt')}
+                    />
                     <div className="col-lg-6">
                         <h2 style={{ lineHeight: '40px', fontSize: '25px' }}>
                             {t('details.title')}

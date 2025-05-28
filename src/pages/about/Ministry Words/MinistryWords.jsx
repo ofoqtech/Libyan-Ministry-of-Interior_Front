@@ -7,6 +7,9 @@ import DOMPurify from 'dompurify';
 
 export function MinistryWords() {
   const [t] = useTranslation("global");
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
 
   return (
     <>

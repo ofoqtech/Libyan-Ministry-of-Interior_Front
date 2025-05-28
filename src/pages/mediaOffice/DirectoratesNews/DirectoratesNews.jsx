@@ -8,6 +8,9 @@ import DOMPurify from 'dompurify';
 
 export default function DirectoratesNewsPage() {
   const { t } = useTranslation("global");
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
   return (
     <>
       <GlobalContainer

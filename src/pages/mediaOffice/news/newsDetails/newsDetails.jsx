@@ -11,7 +11,9 @@ import { Modal, Button } from "react-bootstrap"; // تأكد إن Bootstrap و R
 
 export default function NewsDetails() {
     const { t } = useTranslation("global");
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
     return (
         <>
             <GlobalContainer text={t('main_news')} header={`${t('home')} - ${t('media_office')} - ${t('main_news')}`} />

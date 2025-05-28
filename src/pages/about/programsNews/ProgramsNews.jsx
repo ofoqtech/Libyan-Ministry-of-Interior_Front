@@ -9,6 +9,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function ProgramsNews() {
   const [t] = useTranslation("global");
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
 
   return (
     <>

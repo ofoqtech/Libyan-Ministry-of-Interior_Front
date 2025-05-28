@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { GlobalContainer } from "../../../components/globalComponent/globalComponent";
 import { useTranslation } from "react-i18next";
 import "./desicionDetails.css";
 
 export default function DesicionDetails() {
   const [t] = useTranslation("global");
-
+ useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <GlobalContainer

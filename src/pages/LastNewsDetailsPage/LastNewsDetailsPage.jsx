@@ -6,6 +6,9 @@ import { GlobalContainer } from '../../components/globalComponent/globalComponen
 
 export default function LastNewsDetailsPage() {
     const { t } = useTranslation("global");
+      useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
 
     return (
         <>

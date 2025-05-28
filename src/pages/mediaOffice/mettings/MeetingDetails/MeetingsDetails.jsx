@@ -9,6 +9,9 @@ export default function MeetingsDetails() {
   const { t, i18n } = useTranslation("global");
   const { id } = useParams();
 
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 

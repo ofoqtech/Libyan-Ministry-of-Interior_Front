@@ -7,6 +7,9 @@ import './AllMeetings.css';
 
 export default function AllMeetings() {
   const { t } = useTranslation("global");
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
 
   return (
     <>

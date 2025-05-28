@@ -17,7 +17,9 @@ import { Modal, Button } from "react-bootstrap";
 
 const Home = () => {
   const [t] = useTranslation("global");
-
+ useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <Hero t={t} />

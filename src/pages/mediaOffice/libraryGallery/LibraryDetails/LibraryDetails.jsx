@@ -1,11 +1,14 @@
 import { GlobalContainer } from '../../../../components/globalComponent/globalComponent'
 import './LibraryDetails.css'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next';
 
 export default function LibraryDetails() {
     const { t } = useTranslation("global");
 
+      useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
     return <>
         <GlobalContainer
             text={t('library.imageLibrary')}

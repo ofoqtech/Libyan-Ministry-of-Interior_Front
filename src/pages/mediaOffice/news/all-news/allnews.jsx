@@ -8,8 +8,8 @@ import axios from 'axios';
 export default function Allnews() {
   const { t } = useTranslation("global");
   useEffect(() => {
-      window.scrollTo(0, 0);
-    }
+    window.scrollTo(0, 0);
+  }
     , []);
   return (
     <>
@@ -118,8 +118,8 @@ function MainAllnews() {
                 />
               </div>
               <div className="col-lg-8">
-                <h5 style={{lineHeight : '2.0'}}>{item.title}</h5>
-                <div className="desicionstitle my-3" dangerouslySetInnerHTML={{ __html: item?.description.slice(0,200) }} />
+                <h5 style={{ lineHeight: '2.0' }}>{item.title}</h5>
+                <div className="desicionstitle my-3" dangerouslySetInnerHTML={{ __html: item?.description.slice(0, 200) }} />
 
                 <div className="d-flex justify-content-between align-items-center">
                   <span className="desicionstime">

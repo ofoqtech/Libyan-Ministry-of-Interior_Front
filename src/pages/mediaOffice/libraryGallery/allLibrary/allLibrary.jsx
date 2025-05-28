@@ -9,6 +9,9 @@ import { Button, Modal } from 'react-bootstrap';
 
 export default function AllLibrary() {
   const { t } = useTranslation("global");
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
 
   return (
     <>
