@@ -5,6 +5,9 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 export default function BreakingNewsDetailsPage() {
     const { t } = useTranslation("global");
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    });
 
     return (
         <>
@@ -69,13 +72,13 @@ function BreakingNewsDetails() {
                     </div>
                 ) : (
                     <div className="row align-items-center">
-                            <img
-                                style={{ maxWidth: "100%", width: "300px" }}
-                                src={detail?.image_url}
-                                className="mb-3"
-                                width="300px"
-                                alt=""
-                            />
+                        <img
+                            style={{ maxWidth: "100%", width: "300px" }}
+                            src={detail?.image_url}
+                            className="mb-3"
+                            width="300px"
+                            alt=""
+                        />
                         <div className="col-lg-6">
                             <h2 style={{ lineHeight: "40px", fontSize: "25px" }}>
                                 {detail?.title}
