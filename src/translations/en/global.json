@@ -561,6 +561,10 @@
     "submissionError": "Error Sending Data",
     "submissionSuccess": "Data Sent Successfully"
   },
+    "continue" : "Continue",
+  "cancel" : "Cancel",
+  "placeholder" : "Search For A News",
+  "search" : "Search",
   "ReadMore": "Read More",
   "ShowLess": "Show Less",
   "requestDetails": {
