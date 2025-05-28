@@ -8,7 +8,10 @@ import { toast } from "react-toastify";
 
 export function RequestDetailsPage() {
     const { t } = useTranslation("global");
+    useEffect(() => {
+        window.scrollTo(0, 0);
 
+    },);
     return <>
 
         <GlobalContainer text={t('requestDetails.statusTitle')}

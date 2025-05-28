@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GlobalContainer } from "../../../components/globalComponent/globalComponent";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
@@ -8,6 +8,10 @@ import axios from "axios";
 
 export function IDFORMPage() {
     const { t } = useTranslation("global");
+       useEffect(() => {
+            window.scrollTo(0, 0);
+    
+        },);
 
     return <>
 

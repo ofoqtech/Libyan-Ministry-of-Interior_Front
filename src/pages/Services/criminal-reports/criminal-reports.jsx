@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { GlobalContainer } from "../../../components/globalComponent/globalComponent";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from 'axios';
 
 import { toast } from "react-toastify";  // استيراد الـ toast
@@ -9,6 +9,10 @@ import { ToastContainer } from "react-toastify";
 
 export function CriminalReportsPage() {
     const { t } = useTranslation("global");
+    useEffect(() => {
+        window.scrollTo(0, 0);
+
+    },);
 
     return <>
 
@@ -43,56 +47,56 @@ function CriminalReports() {
         }));
     };
 
- 
-const handleSubmit = async (e) => {
-    e.preventDefault();
-    const payload = new FormData();
-    payload.append("main_cat", type1);
-    payload.append("side_cat", type2);
-    payload.append("name", formData.name);
-    payload.append("gender", formData.gender);
-    payload.append("city", formData.city);
-    payload.append("phone", formData.phone);
-    payload.append("email", formData.email);
-    payload.append("iden_img", formData.iden_img);  
-    payload.append("iden_img", formData.image);
-    payload.append("subject", formData.subject);
-    payload.append("description", formData.description);
-    payload.append("file", formData.file);
 
-    try {
-        const response = await axios.post(
-            `${process.env.REACT_APP_API_URL}/services/ask_serv`,
-            payload,
-            {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const payload = new FormData();
+        payload.append("main_cat", type1);
+        payload.append("side_cat", type2);
+        payload.append("name", formData.name);
+        payload.append("gender", formData.gender);
+        payload.append("city", formData.city);
+        payload.append("phone", formData.phone);
+        payload.append("email", formData.email);
+        payload.append("iden_img", formData.iden_img);
+        payload.append("iden_img", formData.image);
+        payload.append("subject", formData.subject);
+        payload.append("description", formData.description);
+        payload.append("file", formData.file);
+
+        try {
+            const response = await axios.post(
+                `${process.env.REACT_APP_API_URL}/services/ask_serv`,
+                payload,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    }
                 }
+            );
+
+            const result = response.data;
+            console.log("Response:", result);
+
+            if (result.status === "success") {
+                toast.success(t("Criminal-Reports.submissionSuccess"), {
+                    onClose: () => {
+                        window.location.reload();
+                    },
+                    autoClose: 2000,
+                });
+            } else {
+                toast.error(t("Criminal-Reports.submissionError"), {
+                    autoClose: 2000,
+                });
             }
-        );
-
-        const result = response.data;
-        console.log("Response:", result);
-
-        if (result.status === "success") {
-            toast.success(t("Criminal-Reports.submissionSuccess"), {
-                onClose: () => {
-                    window.location.reload(); 
-                },
-                autoClose: 2000,
-            });
-        } else {
+        } catch (error) {
+            console.error("Error submitting form:", error);
             toast.error(t("Criminal-Reports.submissionError"), {
                 autoClose: 2000,
             });
         }
-    } catch (error) {
-        console.error("Error submitting form:", error);
-        toast.error(t("Criminal-Reports.submissionError"), {
-            autoClose: 2000,
-        });
-    }
-};
+    };
 
 
     return (

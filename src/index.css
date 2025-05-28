@@ -10,6 +10,10 @@
   z-index: 121121212121 !important;
   margin-top: 50px !important;
 }
+.Toastify {
+  z-index: 3333212121212 !important;
+  position: relative;
+}
 
 html,
 body,

@@ -90,7 +90,7 @@ export function Footer() {
       <hr className="w-100" style={{ border: "1px solid white" }} />
       <p className="mx-auto text-center text-white">
         {t("footer.rights")} ©{" "}
-        <span style={{ color: "#FFA500" }}>{t("footer.programming")}</span>.
+        <Link to={'https://brmja.tech'} style={{ color: "#FFA500" }}>{t("footer.programming")}</Link>.
       </p>
     </footer>
   );

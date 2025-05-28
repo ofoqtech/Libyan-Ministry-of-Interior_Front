@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./header.css";
 import { useEffect, useState } from "react";
 // import { Swiper, SwiperSlide } from "swiper/react";
@@ -232,6 +232,17 @@ function DesktopHeader({
   user,
   logout,
 }) {
+  const [show, setShow] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    if (searchTerm.trim()) {
+      navigate(`/search/${encodeURIComponent(searchTerm)}`);
+      setShow(false); // إغلاق المودال
+      setSearchTerm(""); // مسح القيمة
+    }
+  };
   return (
     <div className={`header px-2 ${scrolled ? 'scrolled' : ''}`}
       style={{ backgroundColor: scrolled ? "#003f9c" : "transparent", transition: "background-color 0.3s ease", top: scrolled ? "70px" : '100px' }}>
@@ -388,6 +399,42 @@ function DesktopHeader({
 
         </div>
         <div className="left-header">
+          <div className="search" onClick={() => setShow(true)} style={{ cursor: "pointer" }}>
+            <i className="uil uil-search text-white fs-4"></i>
+          </div>
+
+  {show && (
+        <div className="modal fade show d-block" tabIndex="-1" style={{ backgroundColor: "rgba(0,0,0,0.5)" }}>
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">بحث</h5>
+                <button type="button" className="btn-close" onClick={() => setShow(false)}></button>
+              </div>
+              <div className="modal-body">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="اكتب كلمة البحث"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") handleSearch();
+                  }}
+                />
+              </div>
+              <div className="modal-footer">
+                <button className="btn btn-secondary" onClick={() => setShow(false)}>
+                  إلغاء
+                </button>
+                <button className="btn btn-primary" onClick={handleSearch}>
+                  متابعة
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
           <div className="lang lang-desktop">
             <i className="uil uil-globe"></i>
