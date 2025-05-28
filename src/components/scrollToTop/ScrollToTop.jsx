@@ -43,7 +43,7 @@ const ScrollToTop = () => {
             className="progress"
             onClick={handleClick}
             style={{
-                background: `conic-gradient(hsl(209, 85.30%, 26.70%)
+                background: `conic-gradient(rgb(93, 112, 210)
  ${scrollValue}%, white  ${scrollValue}%)`,
             }}
         >
