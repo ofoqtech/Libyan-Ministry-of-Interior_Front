@@ -17,7 +17,7 @@ import { Modal, Button } from "react-bootstrap";
 
 const Home = () => {
   const [t] = useTranslation("global");
- useEffect(() => {
+  useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   return (
@@ -346,8 +346,9 @@ function TodayNews({ t }) {
                 />
               </Link>
             ) : null}
-          {TodayNews.length !== 0 && <Link to="/all_today_news" className="rounded shadow-sm" style={{backgroundColor:'#003F9C',color:'#fff',padding:'10px 20px'}}>{t('news.read_more')}</Link>}
           </div>
+          {TodayNews.length !== 0 && <Link to="/all_today_news" className="rounded shadow-sm mt-3" style={{ backgroundColor: '#003F9C', color: '#fff', padding: '10px 20px', width : "200px", textAlign : "center", margin : "0 auto" }}>{t('more')}</Link>}
+
           {TodayNews.length === 0 && <p>{t('noData')}</p>}
 
         </div>
@@ -866,13 +867,13 @@ function DesitionsAndPhotos({ t }) {
             {showModal2 && selectedImage && (
               <div
                 className="modal fade show"
-                style={{ display: "block", marginBottom : "70px" }}
+                style={{ display: "block", marginBottom: "70px" }}
                 tabIndex="-1"
                 aria-labelledby="imageModalLabel"
                 aria-hidden="true"
-                onClick={() => setShowModal2(false)} 
+                onClick={() => setShowModal2(false)}
               >
-                <div className="modal-dialog modal-lg" style={{marginBottom : "100px"}} onClick={(e) => e.stopPropagation()}>
+                <div className="modal-dialog modal-lg" style={{ marginBottom: "100px" }} onClick={(e) => e.stopPropagation()}>
                   <div className="modal-content">
                     <div className="modal-header">
                       <h5 className="modal-title" id="imageModalLabel">
@@ -890,7 +891,7 @@ function DesitionsAndPhotos({ t }) {
                       <img
                         src={selectedImage?.link_url}
                         alt={t("photos.alt_text")}
-                        style={{ width: "100%", height : "", objectFit : "cover", marginBottom : "30px"  }}
+                        style={{ width: "100%", height: "", objectFit: "cover", marginBottom: "30px" }}
                       />
                       <p>{selectedImage?.text}</p>
                     </div>

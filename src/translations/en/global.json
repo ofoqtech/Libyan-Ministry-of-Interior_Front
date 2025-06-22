@@ -39,6 +39,8 @@
     "ar": "Arabic",
     "language": "Language"
   },
+    "more" : "More",
+
   "programsNewsPage":{
     "pageTitle":"Programs",
     "breadcrumb":"Home - Programs",
