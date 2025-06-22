@@ -26,7 +26,7 @@ function TodayNewsDetails() {
         const fetchNews = async () => {
             try {
                 const response = await fetch(
-                    `${process.env.REACT_APP_API_URL}/news/home_latest_news`,
+                    `${process.env.REACT_APP_API_URL}/news/home_latest_news?isMobile=false`,
                     {
                         headers: {
                             "lang": i18n.language,

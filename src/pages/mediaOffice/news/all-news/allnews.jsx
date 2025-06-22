@@ -36,7 +36,7 @@ function MainAllnews() {
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    fetchNews(`${process.env.REACT_APP_API_URL}/news/main_news?page=1`);
+    fetchNews(`${process.env.REACT_APP_API_URL}/news/main_news?page=1?isMobile=false`);
   }, [i18n.language]);
 
   const fetchNews = async (url) => {

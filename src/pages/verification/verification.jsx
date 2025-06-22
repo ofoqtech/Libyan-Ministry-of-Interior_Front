@@ -29,7 +29,7 @@ const Vertification = () => {
     
         try {
             const response = await axios.post(
-                `${process.env.REACT_APP_API_URL}/medias/verify_code`,
+                `${process.env.REACT_APP_API_URL}/medias/verify_code?isMobile=false`,
                 { email, code },
                 {
                     headers: {
@@ -59,7 +59,7 @@ const Vertification = () => {
     
         try {
             const response = await axios.post(
-                `${process.env.REACT_APP_API_URL}/medias/resend_code`,
+                `${process.env.REACT_APP_API_URL}/medias/resend_code?isMobile=false`,
                 { email },
                 {
                     headers: {

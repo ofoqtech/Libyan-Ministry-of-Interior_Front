@@ -47,6 +47,7 @@ import ProgramsNews from "./pages/about/programsNews/ProgramsNews";
 import ProgramDetails from "./pages/about/programDetails/ProgramDetails";
 import SearchPage from "./pages/search/search";
 import LastNewsDetailsPage from "./pages/LastNewsDetailsPage/LastNewsDetailsPage";
+import AllTodayNews from "./pages/TodayNews/AllTodayNews";
 import BreakingNewsDetailsPage from "./pages/breakingNewsDetails/breakingNewsDetails";
 import ScrollToTop from "./components/scrollToTop/ScrollToTop";
 function LayoutWrapper({ children }) {
@@ -150,6 +151,10 @@ function AppRoutes() {
       <Route
         path="/CommonNewsDetailsPage/:id"
         element={<CommonNewsDetailsPage />}
+      />
+      <Route
+        path="all_today_news"
+        element={<AllTodayNews />}
       />
           <Route
         path="/breakingNewsDetails/:id"

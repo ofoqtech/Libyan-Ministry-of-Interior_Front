@@ -15,7 +15,7 @@ const ForgetPassword = () => {
         e.preventDefault();
 
         try {
-            const res = await axios.post(`${process.env.REACT_APP_API_URL}/medias/resend_code`, {
+            const res = await axios.post(`${process.env.REACT_APP_API_URL}/medias/resend_code?isMobile=false`, {
                 email: email
             });
 

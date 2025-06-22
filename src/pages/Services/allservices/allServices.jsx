@@ -221,7 +221,7 @@ function AllServicesDetails() {
 
     try {
       const { data } = await axios.post(
-        `${process.env.REACT_APP_API_URL}/services/ask_photo_serv`,
+        `${process.env.REACT_APP_API_URL}/services/ask_photo_serv?isMobile=false`,
         formData,
         {
           headers: {
@@ -262,7 +262,7 @@ function AllServicesDetails() {
 
     try {
       const { data } = await axios.post(
-        `${process.env.REACT_APP_API_URL}/services/ask_photo_serv`,
+        `${process.env.REACT_APP_API_URL}/services/ask_photo_serv?isMobile=false`,
         formData,
         {
           headers: {
@@ -294,7 +294,7 @@ function AllServicesDetails() {
     const fetchServiceDetails = async () => {
       try {
         // Step 1: Fetch my_services
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/services/my_services`, {
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/services/my_services?isMobile=false`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -315,7 +315,7 @@ function AllServicesDetails() {
     const fetchServiceDetails = async () => {
       try {
         // Step 1: Fetch my_services
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/services/my_drowns_services`, {
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/services/my_drowns_services?isMobile=false`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

@@ -27,7 +27,7 @@ function MainFAQ() {
   useEffect(() => {
     const getFaqs = async () => {
       try {
-        const response = await axios.get(`${baseURL}/faqs/all_faqs`, {
+        const response = await axios.get(`${baseURL}/faqs/all_faqs?isMobile=false`, {
           headers:{
             'Content-Type': 'application/json',
             'lang' : i18n.language,

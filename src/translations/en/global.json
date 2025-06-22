@@ -166,7 +166,8 @@
     "title": "Today's News",
     "sample_title": "The Minister of Interior inspects security situations in the Municipality of Murzuq",
     "category_1": "New",
-    "2_days_ago": "2 days ago"
+    "2_days_ago": "2 days ago",
+    "breadcrumb": "Home - Latest News"
   },
   "profile": {
     "header1": "Profile",

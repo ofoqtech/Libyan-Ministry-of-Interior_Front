@@ -26,7 +26,7 @@ function LastNews() {
       const getHeroSection = async () => {
         try {
           const response = await axios.get(
-            `${process.env.REACT_APP_API_URL}/app_settings/hero`,
+            `${process.env.REACT_APP_API_URL}/app_settings/hero?isMobile=false`,
             {
               headers: {
                 "Content-Type": "application/json",

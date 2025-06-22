@@ -70,7 +70,7 @@ function IDFORM() {
     
         try {
             const response = await axios.post(
-                `${process.env.REACT_APP_API_URL}/indentity_cards/make_card`,
+                `${process.env.REACT_APP_API_URL}/indentity_cards/make_card?isMobile=false`,
                 payload,
                 {
                     headers: {

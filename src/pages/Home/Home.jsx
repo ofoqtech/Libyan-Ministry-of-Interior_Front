@@ -42,7 +42,7 @@ function Hero({ t }) {
     const getHeroSection = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/app_settings/hero`,
+          `${process.env.REACT_APP_API_URL}/app_settings/hero?isMobile=false`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -175,7 +175,7 @@ function CommonNews({ t }) {
     const getCommonNews = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/news/common_news`,
+          `${process.env.REACT_APP_API_URL}/news/common_news?isMobile=false`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -263,7 +263,7 @@ function TodayNews({ t }) {
     const fetchNews = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/news/home_latest_news`,
+          `${process.env.REACT_APP_API_URL}/news/home_latest_news?isMobile=false`,
           {
             headers: {
               'lang': i18n.language,
@@ -346,8 +346,10 @@ function TodayNews({ t }) {
                 />
               </Link>
             ) : null}
+          {TodayNews.length !== 0 && <Link to="/all_today_news" className="rounded shadow-sm" style={{backgroundColor:'#003F9C',color:'#fff',padding:'10px 20px'}}>{t('news.read_more')}</Link>}
           </div>
           {TodayNews.length === 0 && <p>{t('noData')}</p>}
+
         </div>
       </div>
     </section>
@@ -678,7 +680,7 @@ function NewsInternalPlatform() {
     const fetchNews = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/news/minis_news`,
+          `${process.env.REACT_APP_API_URL}/news/minis_news?isMobile=false`,
           {
             headers: {
               'lang': i18n.language,
@@ -783,7 +785,7 @@ function DesitionsAndPhotos({ t }) {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/pictures/home_pictures`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/pictures/home_pictures?isMobile=false`, {
           headers: {
             'lang': i18n.language,
           },
@@ -801,7 +803,7 @@ function DesitionsAndPhotos({ t }) {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/decisions/all_decisions`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/decisions/all_decisions?isMobile=false`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

@@ -44,7 +44,7 @@ function MainWords({ t }) {
     const getWord = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/app_settings/minister_word`,
+          `${process.env.REACT_APP_API_URL}/app_settings/minister_word?isMobile=false`,
           {
             headers: {
               "Content-Type": "application/json",

@@ -30,7 +30,7 @@ function CommonNewsDetails() {
     const getDetail = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/news/common_news`,
+          `${process.env.REACT_APP_API_URL}/news/common_news?isMobile=false`,
           {
             headers: {
               "Content-Type": "application/json",

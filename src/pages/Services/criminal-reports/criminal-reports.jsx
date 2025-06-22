@@ -66,7 +66,7 @@ function CriminalReports() {
 
         try {
             const response = await axios.post(
-                `${process.env.REACT_APP_API_URL}/services/ask_serv`,
+                `${process.env.REACT_APP_API_URL}/services/ask_serv?isMobile=false`,
                 payload,
                 {
                     headers: {

@@ -39,7 +39,7 @@ function DesicionsInformations({ t }) {
       setLoading(true);
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/decisions/all_decisions?page=${currentPage}`,
+          `${process.env.REACT_APP_API_URL}/decisions/all_decisions?page=${currentPage}?isMobile=false`,
           {
             headers: {
               "Content-Type": "application/json",

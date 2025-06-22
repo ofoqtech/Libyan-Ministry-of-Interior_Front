@@ -37,7 +37,7 @@ function MainNewsDetalis() {
     useEffect(() => {
         const fetchNewsDetails = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API_URL}/news/news_details/${id}`, {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/news/news_details/${id}?isMobile=false`, {
                     headers: {
                         'lang': i18n.language,
                         'Content-Type': 'application/json',
