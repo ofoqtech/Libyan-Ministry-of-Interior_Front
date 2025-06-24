@@ -6,17 +6,17 @@ import { Link, useParams } from "react-router-dom";
 import DOMPurify from 'dompurify';
 import { Modal, Button } from "react-bootstrap"; // Ensure Bootstrap and React-Bootstrap are installed
 export default function CommonNewsDetailsPage() {
-  const { t } = useTranslation("global");
+    const { t } = useTranslation("global");
 
-  return (
-    <>
-      <GlobalContainer
-        text={t("commnNews.header1")}
-        header={`${t("home")} - ${t("commnNews.header1")} `}
-      />
-      <CommonNewsDetails />
-    </>
-  );
+    return (
+        <>
+            <GlobalContainer
+                text={t("commnNews.header1")}
+                header={`${t("home")} - ${t("commnNews.header1")} `}
+            />
+            <CommonNewsDetails />
+        </>
+    );
 }
 
 
@@ -118,10 +118,11 @@ function CommonNewsDetails() {
 
                         <>
                             <div className="titledetalis" dangerouslySetInnerHTML={{ __html: todayNews?.description }} />
-                            {todayNews?.medias.length > 0 && todayNews?.medias.map((media, index) => (
-                                <>
-                                    <div className="mx-auto text-center d-flex justify-content-center flex-column align-items-center">
-                                        <p>{t('another')}</p>
+                            <p className="text-center">{t('another')}</p>
+
+                            <>
+                                <div className="mx-auto text-center flex-wrap d-flex justify-content-center flex-row align-items-center gap-3">
+                                    {todayNews?.medias.length > 0 && todayNews?.medias.map((media, index) => (
                                         <img
                                             key={index}
                                             style={{ maxWidth: "100%", width: "200px" }}
@@ -129,9 +130,10 @@ function CommonNewsDetails() {
                                             className="mb-3"
                                             alt=""
                                         />
-                                    </div>
-                                </>
-                            ))}
+                                    ))}
+                                </div>
+
+                            </>
                             <div className="row mt-5">
                                 {todayNews?.related_news.length > 0 && <div class="my-2 text-center mx-auto"><span class="type mb-4 text-center mx-auto">{t('related')}</span></div>}                                 {todayNews?.related_news.length > 0 &&
                                     todayNews?.related_news.map((news, index) => (
@@ -194,7 +196,7 @@ function CommonNewsDetails() {
                 </div>
                 <Modal show={showModal} onHide={handleCloseModal} centered size="lg">
                     <Modal.Header closeButton>
-                        <Modal.Title style={{fontSize : "16px"}}>{selectedArticle?.title}</Modal.Title>
+                        <Modal.Title style={{ fontSize: "16px" }}>{selectedArticle?.title}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <div
