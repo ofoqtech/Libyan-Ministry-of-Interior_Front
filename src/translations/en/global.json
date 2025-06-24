@@ -41,6 +41,9 @@
   },
     "more" : "More",
 
+    "another" : "Other Images",
+    "related" : "Related News",
+
   "programsNewsPage":{
     "pageTitle":"Programs",
     "breadcrumb":"Home - Programs",

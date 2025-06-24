@@ -101,6 +101,7 @@ function TopNav({ t }) {
           );
           if (response.status === 200) {
             setBreakingNews(response.data.result.data);
+            console.log(response.data.result.data);
           }
         } catch (err) {
           toast.error(t("noData") || err?.response?.data?.message || "Something went wrong");
@@ -115,7 +116,7 @@ function TopNav({ t }) {
             {
               headers: {
                 "Content-Type": "application/json",
-                lang: i18n.language,
+                "lang": i18n.language,
               },
             }
           );
@@ -162,7 +163,7 @@ function TopNav({ t }) {
         </div>
 
         {breakingNews[0]?.title && <div
-          className="fast-news mx-2 text-white"
+          className="fast-news mx-2 text-white mb-2"
           style={{
             background: "#003f9c",
             padding: "8px 20px",

@@ -37,6 +37,9 @@
   padding-top: 360px !important;
 }
 }
+.rfm-marquee-container {
+  direction: ltr !important;
+}
 @media(max-width:295px){
 .header {
   top : 240px !important;
