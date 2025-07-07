@@ -33,7 +33,7 @@ function OverviewDetalis({ t }) {
     const getAbout = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/app_settings/about?isMobile=false`,
+          `${process.env.REACT_APP_API_URL}/app_settings/about?isMobile=0`,
           {
             headers: {
               "Content-Type": "application/json",

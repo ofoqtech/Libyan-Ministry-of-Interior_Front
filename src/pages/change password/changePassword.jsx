@@ -24,7 +24,7 @@ const ChangePassword = () => {
   
       try {
           const response = await axios.post(
-              `${process.env.REACT_APP_API_URL}/medias/reset_password?isMobile=false`,
+              `${process.env.REACT_APP_API_URL}/medias/reset_password?isMobile=0`,
               { email, password }, 
               {
                   headers: {

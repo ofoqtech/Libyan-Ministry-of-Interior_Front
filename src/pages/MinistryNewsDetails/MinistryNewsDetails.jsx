@@ -33,7 +33,7 @@ function MinsitryNewsDetails() {
     useEffect(() => {
         const fetchNewsDetails = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API_URL}/news/news_details/${id}?isMobile=false`, {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/news/news_details/${id}?isMobile=0`, {
                     headers: {
                         'lang': i18n.language,
                         'Content-Type': 'application/json',

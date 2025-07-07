@@ -35,7 +35,7 @@ function Programs({ t }) {
     const getPrograms = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/programs/get_all?isMobile=false`,
+          `${process.env.REACT_APP_API_URL}/programs/get_all?isMobile=0`,
           {
             headers: {
               "Content-Type": "application/json",

@@ -63,7 +63,7 @@ function SearchEl() {
 
   // initial fetch
   useEffect(() => {
-    fetchNews(`${process.env.REACT_APP_API_URL}/news/main_news?page=1?isMobile=false`);
+    fetchNews(`${process.env.REACT_APP_API_URL}/news/main_news?page=1?isMobile=0`);
   }, [fetchNews]);
 
   // refilter when searchQuery changes

@@ -36,7 +36,7 @@ function MainAllMeetings() {
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    fetchMeetings(`${process.env.REACT_APP_API_URL}/meetings/get_all?isMobile=false`);
+    fetchMeetings(`${process.env.REACT_APP_API_URL}/meetings/get_all?isMobile=0`);
   }, [i18n.language]);
 
   const fetchMeetings = async (url) => {

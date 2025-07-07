@@ -42,7 +42,7 @@ function Hero({ t }) {
     const getHeroSection = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/app_settings/hero?isMobile=false`,
+          `${process.env.REACT_APP_API_URL}/app_settings/hero?isMobile=0`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -175,7 +175,7 @@ function CommonNews({ t }) {
     const getCommonNews = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/news/common_news?isMobile=false`,
+          `${process.env.REACT_APP_API_URL}/news/common_news?isMobile=0`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -263,7 +263,7 @@ function TodayNews({ t }) {
     const fetchNews = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/news/home_latest_news?isMobile=false`,
+          `${process.env.REACT_APP_API_URL}/news/home_latest_news?isMobile=0`,
           {
             headers: {
               'lang': i18n.language,
@@ -681,7 +681,7 @@ function NewsInternalPlatform() {
     const fetchNews = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/news/minis_news?isMobile=false`,
+          `${process.env.REACT_APP_API_URL}/news/minis_news?isMobile=0`,
           {
             headers: {
               'lang': i18n.language,
@@ -786,7 +786,7 @@ function DesitionsAndPhotos({ t }) {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/pictures/home_pictures?isMobile=false`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/pictures/home_pictures?isMobile=0`, {
           headers: {
             'lang': i18n.language,
           },
@@ -804,7 +804,7 @@ function DesitionsAndPhotos({ t }) {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/decisions/all_decisions?isMobile=false`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/decisions/all_decisions?isMobile=0`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

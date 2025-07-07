@@ -22,7 +22,7 @@ const LoginPage = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(`${process.env.REACT_APP_API_URL}/medias/login?isMobile=false`, {
+            const res = await axios.post(`${process.env.REACT_APP_API_URL}/medias/login?isMobile=0`, {
                 email,
                 password
             });

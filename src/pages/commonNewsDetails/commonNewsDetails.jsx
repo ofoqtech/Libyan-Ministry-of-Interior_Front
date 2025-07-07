@@ -57,7 +57,7 @@ function CommonNewsDetails() {
         const fetchNews = async () => {
             try {
                 const response = await fetch(
-                    `${process.env.REACT_APP_API_URL}/news/news_details/${id}?isMobile=false`,
+                    `${process.env.REACT_APP_API_URL}/news/news_details/${id}?isMobile=0`,
                     {
                         headers: {
                             "lang": i18n.language,

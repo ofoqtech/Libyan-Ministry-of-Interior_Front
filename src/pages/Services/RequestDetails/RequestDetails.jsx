@@ -35,7 +35,7 @@ function RequestDetails() {
         const fetchDetails = async () => {
             try {
                 const response = await fetch(
-                    `${process.env.REACT_APP_API_URL}/services/service_details/${id}?isMobile=false`,
+                    `${process.env.REACT_APP_API_URL}/services/service_details/${id}?isMobile=0`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,

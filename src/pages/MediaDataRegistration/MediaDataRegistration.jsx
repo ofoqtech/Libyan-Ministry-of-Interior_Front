@@ -16,7 +16,7 @@ const MediaDataRegistration = () => {
     useEffect(() => {
         const fetchMediaTypes = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_API_URL}/medias/media_types?isMobile=false`, {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/medias/media_types?isMobile=0`, {
                     headers: {
                         'lang': i18n.language,
                     },
@@ -66,7 +66,7 @@ const MediaDataRegistration = () => {
 
         try {
             const response = await axios.post(
-                `${process.env.REACT_APP_API_URL}/medias/media_regist?isMobile=false`,
+                `${process.env.REACT_APP_API_URL}/medias/media_regist?isMobile=0`,
                 formData,
                 {
                     headers: {

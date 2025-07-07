@@ -33,7 +33,7 @@ function ContactDetails({ t, i18n }) {
 
   const fetchGovernments = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/governments/get_all?isMobile=false`, {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/governments/get_all?isMobile=0`, {
         headers: {
           'lang': i18n.language,
         },
@@ -77,7 +77,7 @@ function ContactDetails({ t, i18n }) {
         }
         
 
-        const response = await axios.post(`${process.env.REACT_APP_API_URL}/contact/contact_us?isMobile=false`, payload);
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/contact/contact_us?isMobile=0`, payload);
 
         if (response.status === 200) {
           toast.success(t("form.success"), {

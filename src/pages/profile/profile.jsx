@@ -33,7 +33,7 @@ function Profile() {
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_API_URL}/medias/profile?isMobile=false`, {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/medias/profile?isMobile=0`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                         'lang': i18n.language,
@@ -54,7 +54,7 @@ function Profile() {
     useEffect(() => {
         const fetchMediaTypes = async () => {
             try {
-                const response = await fetch(`${process.env.REACT_APP_API_URL}/medias/media_types?isMobile=false`, {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/medias/media_types?isMobile=0`, {
                     headers: {
                         'lang': i18n.language,
                     },
@@ -76,7 +76,7 @@ function Profile() {
     const handlePasswordChange = async () => {
         try {
             const response = await axios.post(
-                `${process.env.REACT_APP_API_URL}/medias/reset_password?isMobile=false`,
+                `${process.env.REACT_APP_API_URL}/medias/reset_password?isMobile=0`,
                 {
                     email: userData.email,
                     password: newPassword,
@@ -109,7 +109,7 @@ function Profile() {
         const fetchServiceDetails = async () => {
             try {
                 // Step 1: Fetch my_services
-                const res = await fetch(`${process.env.REACT_APP_API_URL}/services/my_services?isMobile=false`, {
+                const res = await fetch(`${process.env.REACT_APP_API_URL}/services/my_services?isMobile=0`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -130,7 +130,7 @@ function Profile() {
         const fetchServiceDetails = async () => {
             try {
                 // Step 1: Fetch my_services
-                const res = await fetch(`${process.env.REACT_APP_API_URL}/services/my_drowns_services?isMobile=false`, {
+                const res = await fetch(`${process.env.REACT_APP_API_URL}/services/my_drowns_services?isMobile=0`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -152,7 +152,7 @@ function Profile() {
     const handleDeleteAccount = async () => {
         try {
             const response = await axios.get(
-                `${process.env.REACT_APP_API_URL}/medias/delete_account?isMobile=false`,
+                `${process.env.REACT_APP_API_URL}/medias/delete_account?isMobile=0`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,

@@ -35,7 +35,7 @@ function MainAllLibrary() {
     const fetchImages = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/pictures/home_pictures?isMobile=false`);
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/pictures/home_pictures?isMobile=0`);
         const result = await response.json();
         setImages(result.result || []);
       } catch (error) {

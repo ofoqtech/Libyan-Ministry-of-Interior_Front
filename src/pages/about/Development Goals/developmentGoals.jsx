@@ -37,7 +37,7 @@ function MainDevelopmentGoals() {
       try {
         setLoading(true); // show skeleton
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/app_settings/get_incubations?isMobile=false`,
+          `${process.env.REACT_APP_API_URL}/app_settings/get_incubations?isMobile=0`,
           {
             headers: {
               "Content-Type": "application/json",

@@ -28,7 +28,7 @@ const email = localStorage.getItem("emailLibyan") || "";
     
         try {
             const response = await axios.post(
-                `${process.env.REACT_APP_API_URL}/medias/verify_code?isMobile=false`,
+                `${process.env.REACT_APP_API_URL}/medias/verify_code?isMobile=0`,
                 { email, code },
                 {
                     headers: {
@@ -58,7 +58,7 @@ const email = localStorage.getItem("emailLibyan") || "";
     
         try {
             const response = await axios.post(
-                `${process.env.REACT_APP_API_URL}/medias/resend_code?isMobile=false`,
+                `${process.env.REACT_APP_API_URL}/medias/resend_code?isMobile=0`,
                 { email },
                 {
                     headers: {

@@ -46,7 +46,7 @@ function MainEmergencyCases({ t }) {
     const getEmergencyCases = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/app_settings/emergency_situation?isMobile=false`,
+          `${process.env.REACT_APP_API_URL}/app_settings/emergency_situation?isMobile=0`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -100,7 +100,7 @@ function MainEmergencyCases({ t }) {
     console.log(payload);
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/emergencies/make_emerg?isMobile=false`,
+        `${process.env.REACT_APP_API_URL}/emergencies/make_emerg?isMobile=0`,
         payload,
         {
           headers: {

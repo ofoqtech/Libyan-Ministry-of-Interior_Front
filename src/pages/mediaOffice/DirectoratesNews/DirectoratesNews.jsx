@@ -39,7 +39,7 @@ function DirectoratesNews() {
 
   // Load governments
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/governments/get_all?isMobile=false`, {
+    axios.get(`${process.env.REACT_APP_API_URL}/governments/get_all?isMobile=0`, {
       headers: { lang: i18n.language }
     })
       .then(res => setGovernments(res.data.result || []))
@@ -55,7 +55,7 @@ function DirectoratesNews() {
     }
     setLoadingData(true);
     axios.get(
-      `${process.env.REACT_APP_API_URL}/news/government_news/${selectedGovId}?isMobile=false`,
+      `${process.env.REACT_APP_API_URL}/news/government_news/${selectedGovId}?isMobile=0`,
       { headers: { lang: i18n.language, 'Content-Type': 'application/json' } }
     )
       .then(res => {

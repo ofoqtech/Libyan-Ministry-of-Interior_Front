@@ -13,7 +13,7 @@ export function Footer() {
     const getSocials = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/socials?isMobile=false`,
+          `${process.env.REACT_APP_API_URL}/socials?isMobile=0`,
           {
             headers: {
               "Content-Type": "application/json",

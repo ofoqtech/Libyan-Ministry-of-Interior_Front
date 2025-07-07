@@ -45,7 +45,7 @@ function Complaint({ t }) {
   
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/complaints/add?isMobile=false`,
+        `${process.env.REACT_APP_API_URL}/complaints/add?isMobile=0`,
         formData
       );
   

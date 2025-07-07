@@ -31,7 +31,7 @@ function MainAllTodayNews() {
       try {
         setLoading(true); // show skeleton
         const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/news/home_latest_news?isMobile=false`,
+          `${process.env.REACT_APP_API_URL}/news/home_latest_news?isMobile=0`,
           {
             headers: {
               "Content-Type": "application/json",
