@@ -114,20 +114,24 @@ function TodayNewsDetails() {
 
                         <>
                             <div className="titledetalis" dangerouslySetInnerHTML={{ __html: todayNews?.description }} />
-                            {todayNews?.medias.length > 0 && todayNews?.medias.map((media, index) => (
-                                <>
-                                    <div className="mx-auto text-center d-flex justify-content-center flex-column align-items-center">
-                                        <p>{t('another')}</p>
-                                        <img
-                                            key={index}
-                                            style={{ maxWidth: "100%", width: "200px" }}
-                                            src={media?.file_url}
-                                            className="mb-3"
-                                            alt=""
-                                        />
+
+                            {todayNews?.medias.length > 0 && (
+                                <div className="text-center">
+                                    <p>{t('another')}</p>
+                                    <div className="d-flex flex-wrap justify-content-center gap-3">
+                                        {todayNews.medias.map((media, index) => (
+                                            <img
+                                                key={index}
+                                                style={{ maxWidth: "100%", width: "200px" }}
+                                                src={media?.file_url}
+                                                className="mb-3"
+                                                alt=""
+                                            />
+                                        ))}
                                     </div>
-                                </>
-                            ))}
+                                </div>
+                            )}
+
                             <div className="row mt-5">
                                 {todayNews?.related_news.length > 0 && <div class="my-2 text-center mx-auto"><span class="type mb-4 text-center mx-auto">{t('related')}</span></div>}                                 {todayNews?.related_news.length > 0 &&
                                     todayNews?.related_news.map((news, index) => (
@@ -190,7 +194,7 @@ function TodayNewsDetails() {
                 </div>
                 <Modal show={showModal} onHide={handleCloseModal} centered size="lg">
                     <Modal.Header closeButton>
-                        <Modal.Title style={{fontSize : "16px"}}>{selectedArticle?.title}</Modal.Title>
+                        <Modal.Title style={{ fontSize: "16px" }}>{selectedArticle?.title}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <div
