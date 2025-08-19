@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 
 const CreateAccount = () => {
   const { t } = useTranslation("global");
+  
 
   return (
     <div>

@@ -13,6 +13,14 @@ const MediaDataRegistration = () => {
     const navigate = useNavigate();
     const [mediaTypes, setMediaTypes] = useState([]);
     const [confirmpassword, setConfirmationPassword] = useState("");
+    const [initialized, setInitialized] = useState(false);
+
+    useEffect(() => {
+      if (!initialized) {
+        
+        setInitialized(true);
+      }
+    }, [initialized]);
     useEffect(() => {
         const fetchMediaTypes = async () => {
             try {

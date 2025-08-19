@@ -12,7 +12,14 @@ const RegisteringOrganizationData = () => {
     const [mediaTypes, setMediaTypes] = useState([]);
     const navigate = useNavigate();
     const [confirmpassword, setConfirmationPassword] = useState("");
+    const [initialized, setInitialized] = useState(false);
 
+    useEffect(() => {
+      if (!initialized) {
+        
+        setInitialized(true);
+      }
+    }, [initialized]);
     useEffect(() => {
         const fetchMediaTypes = async () => {
             try {

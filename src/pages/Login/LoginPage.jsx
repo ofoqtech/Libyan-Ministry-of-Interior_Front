@@ -15,6 +15,14 @@ const LoginPage = () => {
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
+    const [initialized, setInitialized] = useState(false);
+
+    useEffect(() => {
+      if (!initialized) {
+        
+        setInitialized(true);
+      }
+    }, [initialized]);
     const togglePassword = () => {
         setShowPassword(!showPassword);
     };
