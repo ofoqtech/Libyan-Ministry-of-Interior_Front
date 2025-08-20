@@ -37,6 +37,7 @@ const Home = () => {
 
 function Hero({ t }) {
   const [heroSections, setHeroSection] = useState(null);
+  const [swiperInstance, setSwiperInstance] = useState(null);
   const { i18n } = useTranslation("global");
 
   useEffect(() => {
@@ -62,7 +63,30 @@ function Hero({ t }) {
     getHeroSection();
   }, [i18n.language]);
 
+  // Restart autoplay when data changes
+  useEffect(() => {
+    if (swiperInstance && heroSections && heroSections.length > 1) {
+      console.log('Starting autoplay for Hero Swiper with', heroSections.length, 'items');
+      try {
+        if (swiperInstance.autoplay && typeof swiperInstance.autoplay.start === 'function') {
+          swiperInstance.autoplay.start();
+        } else {
+          console.warn('Autoplay module not available on Hero Swiper');
+        }
+      } catch (error) {
+        console.error('Error starting Hero autoplay:', error);
+      }
+    }
+  }, [heroSections, swiperInstance]);
+
   const isLoading = !heroSections;
+
+  // Debug: Log when data changes
+  useEffect(() => {
+    if (heroSections) {
+      console.log('Hero sections loaded:', heroSections.length, 'items');
+    }
+  }, [heroSections]);
 
   return (
     <>
@@ -72,9 +96,10 @@ function Hero({ t }) {
           slidesPerView={1}
           modules={[Navigation, Pagination, Autoplay, EffectFade]}
           autoplay={{ 
-            delay: 2000, 
+            delay: 3000, 
             disableOnInteraction: false,
-            pauseOnMouseEnter: true
+            pauseOnMouseEnter: true,
+            waitForTransition: true
           }}
           effect="fade"
           fadeEffect={{ crossFade: true }}
@@ -86,7 +111,28 @@ function Hero({ t }) {
           loop={true}
           speed={800}
           onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
+          onSwiper={(swiper) => {
+            console.log('Hero Swiper initialized:', swiper);
+            setSwiperInstance(swiper);
+            // Start autoplay immediately if we have data
+            if (heroSections && heroSections.length > 1) {
+              try {
+                swiper.autoplay.start();
+                console.log('Autoplay started successfully');
+              } catch (error) {
+                console.error('Error starting autoplay:', error);
+                // Fallback: try to start autoplay after a short delay
+                setTimeout(() => {
+                  try {
+                    swiper.autoplay.start();
+                    console.log('Autoplay started with fallback');
+                  } catch (fallbackError) {
+                    console.error('Fallback autoplay failed:', fallbackError);
+                  }
+                }, 1000);
+              }
+            }
+          }}
         >
           {heroSections?.map((heroSection, index) => (
             <SwiperSlide key={index}>
@@ -162,6 +208,7 @@ function Hero({ t }) {
 
 function CommonNews({ t }) {
   const [common, setCommon] = useState([]);
+  const [swiperInstance, setSwiperInstance] = useState(null);
   const { i18n } = useTranslation('global');
   
   useEffect(() => {
@@ -186,6 +233,29 @@ function CommonNews({ t }) {
     getCommonNews();
   }, [i18n.language]);
 
+  // Restart autoplay when data changes
+  useEffect(() => {
+    if (swiperInstance && common && common.length > 1) {
+      console.log('Starting autoplay for CommonNews Swiper with', common.length, 'items');
+      try {
+        if (swiperInstance.autoplay && typeof swiperInstance.autoplay.start === 'function') {
+          swiperInstance.autoplay.start();
+        } else {
+          console.warn('Autoplay module not available on CommonNews Swiper');
+        }
+      } catch (error) {
+        console.error('Error starting CommonNews autoplay:', error);
+      }
+    }
+  }, [common, swiperInstance]);
+
+  // Debug: Log when data changes
+  useEffect(() => {
+    if (common) {
+      console.log('Common news loaded:', common.length, 'items');
+    }
+  }, [common]);
+
   return (
     <div className="common-news">
       <div className="container">
@@ -205,7 +275,8 @@ function CommonNews({ t }) {
           autoplay={{ 
             delay: 4000, 
             disableOnInteraction: false,
-            pauseOnMouseEnter: true
+            pauseOnMouseEnter: true,
+            waitForTransition: true
           }}
           speed={600}
           loop={true}
@@ -220,6 +291,28 @@ function CommonNews({ t }) {
           }}
           grabCursor={true}
           effect="slide"
+          onSwiper={(swiper) => {
+            console.log('CommonNews Swiper initialized:', swiper);
+            setSwiperInstance(swiper);
+            // Start autoplay immediately if we have data
+            if (common && common.length > 1) {
+              try {
+                swiper.autoplay.start();
+                console.log('CommonNews autoplay started successfully');
+              } catch (error) {
+                console.error('Error starting CommonNews autoplay:', error);
+                // Fallback: try to start autoplay after a short delay
+                setTimeout(() => {
+                  try {
+                    swiper.autoplay.start();
+                    console.log('CommonNews autoplay started with fallback');
+                  } catch (fallbackError) {
+                    console.error('CommonNews fallback autoplay failed:', fallbackError);
+                  }
+                }, 1000);
+              }
+            }
+          }}
         >
           {common ? (
             common.map((item, index) => (
