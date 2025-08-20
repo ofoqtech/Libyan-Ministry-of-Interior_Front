@@ -22,7 +22,7 @@ function Guidance() {
   useEffect(() => {
     const fetchInstructions = async () => {
       try {
-        const response = await fetch(`https://brmjatech.co.uk/api/api_instructions?page=${currentPage}&per_page=${perPage}`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api_instructions?page=${currentPage}&per_page=${perPage}`, {
           headers: {
             'lang': i18n.language,
           },

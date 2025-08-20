@@ -26,7 +26,7 @@ function VideoLibrary() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch(`https://brmjatech.co.uk/api/api_video_categories`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api_video_categories`, {
           headers: {
             'lang': i18n.language,
           },
@@ -57,7 +57,7 @@ function VideoLibrary() {
   const fetchVideos = async (categoryId, page = 1) => {
     setIsLoadingVideos(true);
     try {
-      const response = await fetch(`https://brmjatech.co.uk/api/api_category_videos/${categoryId}?page=${page}&per_page=${perPage}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api_category_videos/${categoryId}?page=${page}&per_page=${perPage}`, {
         headers: {
           'lang': i18n.language,
         },

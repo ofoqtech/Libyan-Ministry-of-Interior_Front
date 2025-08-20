@@ -871,7 +871,7 @@ function NewsInternalPlatform() {
       try {
         // Fetch from category 2 to get latest videos
         const response = await fetch(
-          `https://brmjatech.co.uk/api/api_category_videos/2`,
+          `${process.env.REACT_APP_API_URL}/api_category_videos/2`,
           {
             headers: {
               'lang': i18n.language,

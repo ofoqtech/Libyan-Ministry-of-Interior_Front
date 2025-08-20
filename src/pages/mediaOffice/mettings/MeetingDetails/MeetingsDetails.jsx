@@ -17,7 +17,7 @@ export default function MeetingsDetails() {
 
   useEffect(() => {
     axios
-      .get(`https://brmjatech.co.uk/api/meetings/meeting_details/${id}`, {
+      .get(`${process.env.REACT_APP_API_URL}/meetings/meeting_details/${id}`, {
         headers: {
           'lang': i18n.language,
           'Content-Type': 'application/json',
