@@ -729,11 +729,14 @@ html[dir="ltr"] .home .container .text .description {
 }
 
 /* Home Video Player Styles */
+/* Video Player Container */
 .video-card.playing {
   cursor: default;
   transform: none;
   box-shadow: 0 15px 40px rgba(0, 63, 156, 0.2);
   border: 2px solid #003f9c;
+  position: relative;
+  z-index: 10;
 }
 
 .home-video-player-container {
@@ -745,6 +748,8 @@ html[dir="ltr"] .home .container .text .description {
   display: flex;
   flex-direction: column;
   min-height: 300px;
+  position: relative;
+  z-index: 5;
 }
 
 .home-video-player-header {
@@ -807,6 +812,7 @@ html[dir="ltr"] .home .container .text .description {
   background: #000;
   position: relative;
   min-height: 200px;
+  overflow: hidden;
 }
 
 .home-video-iframe {
@@ -816,6 +822,9 @@ html[dir="ltr"] .home .container .text .description {
   position: absolute;
   top: 0;
   left: 0;
+  min-height: 200px;
+  pointer-events: auto;
+  touch-action: manipulation;
 }
 
 .home-video-play-btn:hover {
@@ -823,10 +832,92 @@ html[dir="ltr"] .home .container .text .description {
   box-shadow: 0 8px 25px rgba(0, 63, 156, 0.3) !important;
 }
 
+/* Video Thumbnail Container */
+.video-thumbnail-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.video-play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.video-thumbnail-container:hover .video-play-icon {
+  transform: translate(-50%, -50%) scale(1.1);
+  background: rgba(255, 255, 255, 1);
+}
+
+/* Enhanced Video Player for Mobile */
+.video-card.playing {
+  position: relative;
+  z-index: 10;
+}
+
+.home-video-player-container {
+  position: relative;
+  z-index: 5;
+}
+
+/* Touch-friendly controls for mobile */
+@media (max-width: 768px) {
+  .home-video-control-btn {
+    min-width: 44px;
+    min-height: 44px;
+    width: 44px;
+    height: 44px;
+  }
+  
+  .home-video-iframe {
+    pointer-events: auto;
+    touch-action: manipulation;
+  }
+  
+  /* Ensure video is visible on mobile */
+  .video-card.playing {
+    margin-bottom: 2rem;
+  }
+  
+  /* Better spacing for mobile */
+  .col-lg-3.col-md-6.mb-3 {
+    margin-bottom: 1.5rem !important;
+  }
+}
+
+/* Additional mobile optimizations */
+@media (max-width: 480px) {
+  .home-video-player-container {
+    margin: 0 -0.5rem;
+    border-radius: 8px;
+  }
+  
+  .home-video-iframe-container {
+    border-radius: 0 0 8px 8px;
+  }
+  
+  /* Ensure proper video scaling on small screens */
+  .home-video-iframe {
+    transform: scale(1);
+    transform-origin: center center;
+  }
+}
+
 /* Mobile Responsive for Home Video Player */
 @media (max-width: 768px) {
   .home-video-player-container {
     min-height: 250px;
+    border-radius: 10px;
   }
 
   .home-video-player-header {
@@ -840,18 +931,70 @@ html[dir="ltr"] .home .container .text .description {
     font-size: 0.8rem;
     white-space: normal;
     text-align: center;
-  }
-
-  .home-video-control-btn {
-    width: 24px;
-    height: 24px;
-  }
-
-  .home-video-control-btn i {
-    font-size: 0.8rem;
+    line-height: 1.3;
   }
 
   .home-video-iframe-container {
     min-height: 180px;
+  }
+
+  .home-video-iframe {
+    min-height: 180px;
+  }
+
+  /* تحسين عرض الفيديوهات في الموبايل */
+  .col-lg-3.col-md-6.mb-3 {
+    padding: 0 0.5rem;
+  }
+
+  .video-card {
+    margin-bottom: 1rem;
+  }
+
+  .video-play-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .video-play-icon i {
+    font-size: 1.8rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-video-player-container {
+    min-height: 200px;
+    border-radius: 8px;
+  }
+
+  .home-video-player-header {
+    padding: 0.4rem 0.6rem;
+  }
+
+  .home-video-player-title {
+    font-size: 0.75rem;
+  }
+
+  .home-video-iframe-container {
+    min-height: 150px;
+  }
+
+  .home-video-iframe {
+    min-height: 150px;
+  }
+
+  .video-play-icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .video-play-icon i {
+    font-size: 1.5rem !important;
+  }
+
+  /* تحسين الأزرار في الموبايل */
+  .home-video-play-btn {
+    padding: 0.4rem 0.8rem !important;
+    font-size: 0.8rem !important;
   }
 }

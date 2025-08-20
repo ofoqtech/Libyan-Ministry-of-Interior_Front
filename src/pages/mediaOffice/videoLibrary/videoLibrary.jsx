@@ -137,12 +137,31 @@ function VideoLibrary() {
       } else {
         // تشغيل الفيديو الجديد
         setPlayingVideo(video.id);
+        // Scroll to video for better mobile experience
+        setTimeout(() => {
+          const videoElement = document.querySelector(`[data-video-id="${video.id}"]`);
+          if (videoElement) {
+            videoElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 100);
       }
     }
   };
 
   const handleCloseVideo = (videoId) => {
     setPlayingVideo(null);
+  };
+
+  // دالة لضمان عمل الفيديو في جميع الأجهزة
+  const ensureVideoCompatibility = (url) => {
+    if (!url) return null;
+    
+    // إضافة معاملات إضافية لضمان التوافق مع الموبايل
+    const videoId = getYouTubeVideoId(url);
+    if (videoId) {
+      return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1`;
+    }
+    return null;
   };
 
   // Generate page numbers for pagination
@@ -221,6 +240,7 @@ function VideoLibrary() {
                     <div 
                       key={video.id} 
                       className={`video-item ${playingVideo === video.id ? 'playing' : ''}`}
+                      data-video-id={video.id}
                     >
                       {playingVideo === video.id ? (
                         // Video Player Section
@@ -239,7 +259,7 @@ function VideoLibrary() {
                           </div>
                           <div className="video-iframe-container">
                             <iframe
-                              src={getYouTubeEmbedUrl(video.link)}
+                              src={ensureVideoCompatibility(video.link)}
                               title={video.title}
                               frameBorder="0"
                               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

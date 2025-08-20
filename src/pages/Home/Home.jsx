@@ -936,12 +936,31 @@ function NewsInternalPlatform() {
       } else {
         // تشغيل الفيديو الجديد
         setPlayingVideo(video.id);
+        // Scroll to video for better mobile experience
+        setTimeout(() => {
+          const videoElement = document.querySelector(`[data-video-id="${video.id}"]`);
+          if (videoElement) {
+            videoElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 100);
       }
     }
   };
 
   const handleCloseVideo = (videoId) => {
     setPlayingVideo(null);
+  };
+
+  // دالة لضمان عمل الفيديو في جميع الأجهزة
+  const ensureVideoCompatibility = (url) => {
+    if (!url) return null;
+    
+    // إضافة معاملات إضافية لضمان التوافق مع الموبايل
+    const videoId = getYouTubeVideoId(url);
+    if (videoId) {
+      return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1`;
+    }
+    return null;
   };
 
   return (
@@ -985,12 +1004,13 @@ function NewsInternalPlatform() {
                       </div>
                       <div className="home-video-iframe-container">
                         <iframe
-                          src={getYouTubeEmbedUrl(video.link)}
+                          src={ensureVideoCompatibility(video.link)}
                           title={video.title}
                           frameBorder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; playsinline"
                           allowFullScreen
                           className="home-video-iframe"
+                          data-video-id={video.id}
                         ></iframe>
                       </div>
                     </div>

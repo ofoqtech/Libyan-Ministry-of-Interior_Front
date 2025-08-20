@@ -57,12 +57,31 @@ function Guidance() {
       } else {
         // تشغيل الفيديو الجديد
         setPlayingVideo(instruction.id);
+        // Scroll to video for better mobile experience
+        setTimeout(() => {
+          const videoElement = document.querySelector(`[data-video-id="${instruction.id}"]`);
+          if (videoElement) {
+            videoElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 100);
       }
     }
   };
 
   const handleCloseVideo = (videoId) => {
     setPlayingVideo(null);
+  };
+
+  // دالة لضمان عمل الفيديو في جميع الأجهزة
+  const ensureVideoCompatibility = (url) => {
+    if (!url) return null;
+    
+    // إضافة معاملات إضافية لضمان التوافق مع الموبايل
+    const videoId = getYouTubeVideoId(url);
+    if (videoId) {
+      return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1`;
+    }
+    return null;
   };
 
   const handlePageChange = (page) => {
@@ -182,6 +201,7 @@ function Guidance() {
                     <div 
                       key={instruction.id} 
                       className={`guidance-item ${playingVideo === instruction.id ? 'playing' : ''}`}
+                      data-video-id={instruction.id}
                     >
                       {playingVideo === instruction.id ? (
                         // Video Player Section
@@ -200,12 +220,13 @@ function Guidance() {
                           </div>
                           <div className="guidance-video-iframe-container">
                             <iframe
-                              src={getYouTubeEmbedUrl(instruction.link)}
+                              src={ensureVideoCompatibility(instruction.link)}
                               title={instruction.title}
                               frameBorder="0"
                               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                               allowFullScreen
                               className="guidance-video-iframe"
+                              data-video-id={instruction.id}
                             ></iframe>
                           </div>
                         </div>
