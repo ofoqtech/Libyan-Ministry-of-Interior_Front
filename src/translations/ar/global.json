@@ -23,6 +23,7 @@
     "all_news": "الاخبار",
     "complaint": "الشكاوي",
     "complaint2": "الرئيسيه - عن الوزاره - الشكاوي",
+    "ministerMail": "بريد الوزير",
     "all_meetings": "الاجتماعات",
     "all_library": "مكتبة الصور ",
     "services": "الخدمات",
@@ -238,6 +239,21 @@
     "submitButton": "إرسال",
     "PHOTO1": "ارفق صوره الهويه",
     "PHOTO2": "ارفق مستند"
+  },
+  "ministerMail": {
+    "ministerMailText": "بريد الوزير",
+    "ministerMailHeader": "الرئيسية - عن الوزارة - بريد الوزير",
+    "name": "الاسم",
+    "namePlaceholder": "الاسم",
+    "phone": "رقم الهاتف",
+    "phonePlaceholder": "رقم الهاتف",
+    "email": "البريد الالكتروني",
+    "emailPlaceholder": "البريد الالكتروني",
+    "subject": "عنوان الموضوع",
+    "subjectPlaceholder": "عنوان الموضوع",
+    "message": "رسالتك",
+    "messagePlaceholder": "رسالتك",
+    "submitButton": "إرسال"
   },
   "logout": "تسجيل الخروج",
   "aboutMinistryPage": {

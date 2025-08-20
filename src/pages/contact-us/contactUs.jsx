@@ -70,6 +70,7 @@ function ContactDetails({ t, i18n }) {
           email: values.email,
           title: values.subject,
           message: values.message,
+          type: "ord"
         };
 
         if (id != null && values.government_id) {

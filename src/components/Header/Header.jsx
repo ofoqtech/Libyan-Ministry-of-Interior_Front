@@ -308,6 +308,11 @@ function DesktopHeader({
                   {t("header.complaint")}
                 </Link>
               </li>
+              <li>
+                <Link className="dropdown-item" to="/minister-mail">
+                  {t("header.ministerMail")}
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -582,6 +587,15 @@ function ModileHeader({
               <li>
                 <Link className="dropdown-item" to="/about/complaint">
                   {t("header.complaint")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="dropdown-item"
+                  to="/minister-mail"
+                  onClick={() => setMobHeader(false)}
+                >
+                  {t("header.ministerMail")}
                 </Link>
               </li>
             </ul>

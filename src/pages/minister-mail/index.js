@@ -1,0 +1,1 @@
+export { MinisterMail } from './MinisterMail';

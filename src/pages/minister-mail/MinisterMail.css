@@ -1,0 +1,82 @@
+.minister-mail-details {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.minister-mail-details .container {
+  max-width: 800px;
+}
+
+.minister-mail-details .form-label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.minister-mail-details .form-control {
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.minister-mail-details .form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.minister-mail-details .form-select {
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.minister-mail-details .form-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.minister-mail-details textarea.form-control {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.minister-mail-details .btn-primary {
+  background-color: #007bff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 32px;
+  font-size: 18px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.minister-mail-details .btn-primary:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+.minister-mail-details .text-danger {
+  font-size: 14px;
+  margin-top: 0.25rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .minister-mail-details .container {
+    padding: 2rem 1rem;
+  }
+  
+  .minister-mail-details .col-md-6 {
+    margin-bottom: 1rem;
+  }
+  
+  .minister-mail-details .btn-primary {
+    width: 100%;
+    padding: 16px 32px;
+  }
+}

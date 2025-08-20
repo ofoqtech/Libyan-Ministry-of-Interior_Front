@@ -39,6 +39,7 @@ import { ComplaintPage } from "./pages/complaint/complaint";
 import ProtectedRoute from "./components/ProtectedRoute";
 import CommonNewsDetailsPage from "./pages/commonNewsDetails/commonNewsDetails";
 import { ContactUs } from "./pages/contact-us/contactUs";
+import { MinisterMail } from "./pages/minister-mail";
 import ForgetPassowrd from "./pages/ForgetPassword/ForgetPassword";
 import VertificationOtp from "./pages/vertification-otp/vertification-otp";
 import ChangePassword from "./pages/change password/changePassword";
@@ -98,6 +99,7 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/contact" element={<ContactUs />} />
+      <Route path="/minister-mail" element={<MinisterMail />} />
 
       <Route path="/forget-password" element={<ForgetPassowrd />} />
       <Route path="/services" element={<AllServicesPage />} />

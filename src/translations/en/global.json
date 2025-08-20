@@ -25,6 +25,7 @@
     "faq": "Frequently Asked Questions",
     "complaint": "Complaints",
     "complaint2": "Home - About Ministry - Complaints",
+    "ministerMail": "Minister's Mail",
     "all_library": "Photo Library",
     "services": "Services",
     "media_office": "Media Office",
@@ -271,6 +272,21 @@
     "submitButton": "Submit",
     "PHOTO1": "Upload Identification Card",
     "PHOTO2": "Upload Documents"
+  },
+  "ministerMail": {
+    "ministerMailText": "Minister's Mail",
+    "ministerMailHeader": "Home - About Ministry - Minister's Mail",
+    "name": "Name",
+    "namePlaceholder": "Enter your name",
+    "phone": "Phone Number",
+    "phonePlaceholder": "Enter your phone number",
+    "email": "Email Address",
+    "emailPlaceholder": "Enter your email address",
+    "subject": "Subject",
+    "subjectPlaceholder": "Enter the subject",
+    "message": "Your Message",
+    "messagePlaceholder": "Enter your message",
+    "submitButton": "Submit"
   },
   "noData": "No data available",
   "ministryWordsPage": {
