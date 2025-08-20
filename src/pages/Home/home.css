@@ -728,3 +728,131 @@ html[dir="ltr"] .home .container .text .description {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* Home Video Player Styles */
+.video-card.playing {
+  cursor: default;
+  transform: none;
+  box-shadow: 0 15px 40px rgba(0, 63, 156, 0.2);
+  border: 2px solid #003f9c;
+}
+
+.home-video-player-container {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+}
+
+.home-video-player-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, #003f9c 0%, #0056d6 100%);
+  color: white;
+  flex-shrink: 0;
+}
+
+.home-video-player-title {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: white;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.home-video-player-controls {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.home-video-control-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-video-control-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.home-video-control-btn i {
+  font-size: 0.9rem;
+}
+
+.home-video-control-btn.close-btn:hover {
+  background: rgba(255, 0, 0, 0.3);
+}
+
+.home-video-iframe-container {
+  flex: 1;
+  width: 100%;
+  background: #000;
+  position: relative;
+  min-height: 200px;
+}
+
+.home-video-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.home-video-play-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 63, 156, 0.3) !important;
+}
+
+/* Mobile Responsive for Home Video Player */
+@media (max-width: 768px) {
+  .home-video-player-container {
+    min-height: 250px;
+  }
+
+  .home-video-player-header {
+    padding: 0.5rem 0.75rem;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .home-video-player-title {
+    font-size: 0.8rem;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .home-video-control-btn {
+    width: 24px;
+    height: 24px;
+  }
+
+  .home-video-control-btn i {
+    font-size: 0.8rem;
+  }
+
+  .home-video-iframe-container {
+    min-height: 180px;
+  }
+}

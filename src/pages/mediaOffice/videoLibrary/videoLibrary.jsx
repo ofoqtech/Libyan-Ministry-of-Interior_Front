@@ -10,6 +10,9 @@ function VideoLibrary() {
   const [activeTab, setActiveTab] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingVideos, setIsLoadingVideos] = useState(false);
+  // State for video player
+  const [playingVideo, setPlayingVideo] = useState(null);
+  
   useEffect(()=>{
     window.scrollTo(0,0)
   })
@@ -80,6 +83,8 @@ function VideoLibrary() {
 
   const handleTabClick = (categoryId) => {
     setActiveTab(categoryId);
+    // Reset video player when changing category
+    setPlayingVideo(null);
   };
 
   const handlePageChange = (page) => {
@@ -105,10 +110,39 @@ function VideoLibrary() {
     return '/assets/logo.png';
   };
 
-  const handleVideoClick = (videoLink) => {
-    if (videoLink) {
-      window.open(videoLink, '_blank');
+  // دالة لاستخراج YouTube video ID
+  const getYouTubeVideoId = (url) => {
+    if (!url) return null;
+    
+    try {
+      const videoId = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+      return videoId ? videoId[1] : null;
+    } catch (error) {
+      console.error('Error extracting YouTube video ID:', error);
+      return null;
     }
+  };
+
+  // دالة لإنشاء YouTube embed URL
+  const getYouTubeEmbedUrl = (url) => {
+    const videoId = getYouTubeVideoId(url);
+    return videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1` : null;
+  };
+
+  const handleVideoClick = (video) => {
+    if (video.link) {
+      if (playingVideo === video.id) {
+        // إذا كان الفيديو يعمل بالفعل، أوقفه
+        setPlayingVideo(null);
+      } else {
+        // تشغيل الفيديو الجديد
+        setPlayingVideo(video.id);
+      }
+    }
+  };
+
+  const handleCloseVideo = (videoId) => {
+    setPlayingVideo(null);
   };
 
   // Generate page numbers for pagination
@@ -186,27 +220,67 @@ function VideoLibrary() {
                   {videos.map((video) => (
                     <div 
                       key={video.id} 
-                      className="video-item"
-                      onClick={() => handleVideoClick(video.link)}
+                      className={`video-item ${playingVideo === video.id ? 'playing' : ''}`}
                     >
-                      <div className="video-thumbnail">
-                        <img 
-                          src={getYouTubeThumbnail(video.link)} 
-                          alt={video.title}
-                          onError={(e) => {
-                            e.target.src = '/assets/logo.png';
-                          }}
-                        />
-                        <div className="video-play-overlay">
-                          <i className="uil uil-play-circle"></i>
+                      {playingVideo === video.id ? (
+                        // Video Player Section
+                        <div className="video-player-container">
+                          <div className="video-player-header">
+                            <h4 className="video-player-title">{video.title}</h4>
+                            <div className="video-player-controls">
+                              <button 
+                                className="video-control-btn close-btn"
+                                onClick={() => handleCloseVideo(video.id)}
+                                title="إغلاق الفيديو"
+                              >
+                                <i className="uil uil-times"></i>
+                              </button>
+                            </div>
+                          </div>
+                          <div className="video-iframe-container">
+                            <iframe
+                              src={getYouTubeEmbedUrl(video.link)}
+                              title={video.title}
+                              frameBorder="0"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                              className="video-iframe"
+                            ></iframe>
+                          </div>
                         </div>
-                      </div>
-                      <div className="video-info">
-                        <h3 className="video-title">{video.title}</h3>
-                        <p className="video-description">
-                          {video.description || 'فيديو إرشادي من مكتبة الفيديوهات'}
-                        </p>
-                      </div>
+                      ) : (
+                        // Thumbnail Section
+                        <>
+                          <div 
+                            className="video-thumbnail"
+                            onClick={() => handleVideoClick(video)}
+                          >
+                            <img 
+                              src={getYouTubeThumbnail(video.link)} 
+                              alt={video.title}
+                              onError={(e) => {
+                                e.target.src = '/assets/logo.png';
+                              }}
+                            />
+                            <div className="video-play-overlay">
+                              <i className="uil uil-play-circle"></i>
+                            </div>
+                          </div>
+                          <div className="video-info">
+                            <h3 className="video-title">{video.title}</h3>
+                            <p className="video-description">
+                              {video.description || 'فيديو إرشادي من مكتبة الفيديوهات'}
+                            </p>
+                            <button 
+                              className="video-play-btn"
+                              onClick={() => handleVideoClick(video)}
+                            >
+                              <i className="uil uil-play me-2"></i>
+                              {t('videoLibrary.playVideo') || 'تشغيل الفيديو'}
+                            </button>
+                          </div>
+                        </>
+                      )}
                     </div>
                   ))}
                 </div>

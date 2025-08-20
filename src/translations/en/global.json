@@ -103,7 +103,8 @@
     "title": "Video Library",
     "header": "Video Library",
     "noVideos": "No videos in this category",
-    "watchVideo": "Watch Video"
+    "watchVideo": "Watch Video",
+    "playVideo": "Play Video"
   },
   "guidance": {
     "title": "Guidance & Awareness",

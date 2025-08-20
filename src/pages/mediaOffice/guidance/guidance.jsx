@@ -7,6 +7,9 @@ function Guidance() {
   const { t, i18n } = useTranslation("global");
   const [instructions, setInstructions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  // State for video player
+  const [playingVideo, setPlayingVideo] = useState(null);
+  
   useEffect(()=>{
     window.scrollTo(0,0)
   })
@@ -46,15 +49,27 @@ function Guidance() {
     fetchInstructions();
   }, [i18n.language, currentPage]);
 
-  const handleVideoClick = (videoLink) => {
-    if (videoLink) {
-      window.open(videoLink, '_blank');
+  const handleVideoClick = (instruction) => {
+    if (instruction.link) {
+      if (playingVideo === instruction.id) {
+        // إذا كان الفيديو يعمل بالفعل، أوقفه
+        setPlayingVideo(null);
+      } else {
+        // تشغيل الفيديو الجديد
+        setPlayingVideo(instruction.id);
+      }
     }
+  };
+
+  const handleCloseVideo = (videoId) => {
+    setPlayingVideo(null);
   };
 
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages && page !== currentPage) {
       setCurrentPage(page);
+      // Reset video player when changing page
+      setPlayingVideo(null);
     }
   };
 
@@ -72,6 +87,25 @@ function Guidance() {
     }
     
     return '/assets/logo.png';
+  };
+
+  // دالة لاستخراج YouTube video ID
+  const getYouTubeVideoId = (url) => {
+    if (!url) return null;
+    
+    try {
+      const videoId = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+      return videoId ? videoId[1] : null;
+    } catch (error) {
+      console.error('Error extracting YouTube video ID:', error);
+      return null;
+    }
+  };
+
+  // دالة لإنشاء YouTube embed URL
+  const getYouTubeEmbedUrl = (url) => {
+    const videoId = getYouTubeVideoId(url);
+    return videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1` : null;
   };
 
   // Generate page numbers for pagination
@@ -147,33 +181,69 @@ function Guidance() {
                   {instructions.map((instruction) => (
                     <div 
                       key={instruction.id} 
-                      className="guidance-item"
-                      onClick={() => handleVideoClick(instruction.link)}
+                      className={`guidance-item ${playingVideo === instruction.id ? 'playing' : ''}`}
                     >
-                      <div className="guidance-thumbnail">
-                        <img 
-                          src={getYouTubeThumbnail(instruction.link)} 
-                          alt={instruction.title}
-                          onError={(e) => {
-                            e.target.src = '/assets/logo.png';
-                          }}
-                        />
-                        <div className="guidance-play-overlay">
-                          <i className="uil uil-play-circle"></i>
+                      {playingVideo === instruction.id ? (
+                        // Video Player Section
+                        <div className="guidance-video-player-container">
+                          <div className="guidance-video-player-header">
+                            <h4 className="guidance-video-player-title">{instruction.title}</h4>
+                            <div className="guidance-video-player-controls">
+                              <button 
+                                className="guidance-video-control-btn close-btn"
+                                onClick={() => handleCloseVideo(instruction.id)}
+                                title="إغلاق الفيديو"
+                              >
+                                <i className="uil uil-times"></i>
+                              </button>
+                            </div>
+                          </div>
+                          <div className="guidance-video-iframe-container">
+                            <iframe
+                              src={getYouTubeEmbedUrl(instruction.link)}
+                              title={instruction.title}
+                              frameBorder="0"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                              className="guidance-video-iframe"
+                            ></iframe>
+                          </div>
                         </div>
-                        <div className="guidance-video-duration">
-                          <i className="uil uil-video"></i>
-                        </div>
-                      </div>
-                      <div className="guidance-info">
-                        <h3 className="guidance-video-title">{instruction.title}</h3>
-                        <div className="guidance-actions">
-                          <button className="guidance-watch-btn">
-                            <i className="uil uil-play me-2"></i>
-                            {t('guidance.watchVideo') || 'مشاهدة الفيديو'}
-                          </button>
-                        </div>
-                      </div>
+                      ) : (
+                        // Thumbnail Section
+                        <>
+                          <div 
+                            className="guidance-thumbnail"
+                            onClick={() => handleVideoClick(instruction)}
+                          >
+                            <img 
+                              src={getYouTubeThumbnail(instruction.link)} 
+                              alt={instruction.title}
+                              onError={(e) => {
+                                e.target.src = '/assets/logo.png';
+                              }}
+                            />
+                            <div className="guidance-play-overlay">
+                              <i className="uil uil-play-circle"></i>
+                            </div>
+                            <div className="guidance-video-duration">
+                              <i className="uil uil-video"></i>
+                            </div>
+                          </div>
+                          <div className="guidance-info">
+                            <h3 className="guidance-video-title">{instruction.title}</h3>
+                            <div className="guidance-actions">
+                              <button 
+                                className="guidance-watch-btn"
+                                onClick={() => handleVideoClick(instruction)}
+                              >
+                                <i className="uil uil-play me-2"></i>
+                                {t('guidance.watchVideo') || 'مشاهدة الفيديو'}
+                              </button>
+                            </div>
+                          </div>
+                        </>
+                      )}
                     </div>
                   ))}
                 </div>

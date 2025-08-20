@@ -40,6 +40,21 @@ function Hero({ t }) {
   const [swiperInstance, setSwiperInstance] = useState(null);
   const { i18n } = useTranslation("global");
 
+  // Manual autoplay restart function
+  const restartAutoplay = () => {
+    if (swiperInstance && swiperInstance.autoplay && heroSections && heroSections.length > 1) {
+      try {
+        swiperInstance.autoplay.stop();
+        setTimeout(() => {
+          swiperInstance.autoplay.start();
+          console.log('Manual autoplay restart successful');
+        }, 100);
+      } catch (error) {
+        console.error('Manual autoplay restart failed:', error);
+      }
+    }
+  };
+
   useEffect(() => {
     const getHeroSection = async () => {
       try {
@@ -85,12 +100,36 @@ function Hero({ t }) {
   useEffect(() => {
     if (heroSections) {
       console.log('Hero sections loaded:', heroSections.length, 'items');
+      // If we already have a swiper instance, restart autoplay
+      if (swiperInstance && heroSections.length > 1) {
+        setTimeout(restartAutoplay, 500);
+      }
     }
-  }, [heroSections]);
+  }, [heroSections, swiperInstance]);
 
   return (
     <>
       <div className="home-swiper home">
+        {/* Debug button - remove in production */}
+        {process.env.NODE_ENV === 'development' && (
+          <button 
+            onClick={restartAutoplay}
+            style={{
+              position: 'absolute',
+              top: '10px',
+              right: '10px',
+              zIndex: 1000,
+              padding: '5px 10px',
+              background: 'rgba(0, 63, 156, 0.8)',
+              color: 'white',
+              border: 'none',
+              borderRadius: '5px',
+              cursor: 'pointer'
+            }}
+          >
+            Restart Autoplay
+          </button>
+        )}
         <Swiper
           spaceBetween={0}
           slidesPerView={1}
@@ -99,7 +138,8 @@ function Hero({ t }) {
             delay: 3000, 
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
-            waitForTransition: true
+            waitForTransition: true,
+            stopOnLastSlide: false
           }}
           effect="fade"
           fadeEffect={{ crossFade: true }}
@@ -110,7 +150,19 @@ function Hero({ t }) {
           navigation={true}
           loop={true}
           speed={800}
-          onSlideChange={() => console.log("slide change")}
+          onSlideChange={() => {
+            console.log("Hero slide change");
+            // Ensure autoplay continues after slide change
+            if (swiperInstance && swiperInstance.autoplay && heroSections && heroSections.length > 1) {
+              setTimeout(() => {
+                try {
+                  swiperInstance.autoplay.start();
+                } catch (error) {
+                  console.error('Error restarting autoplay after slide change:', error);
+                }
+              }, 100);
+            }
+          }}
           onSwiper={(swiper) => {
             console.log('Hero Swiper initialized:', swiper);
             setSwiperInstance(swiper);
@@ -211,6 +263,21 @@ function CommonNews({ t }) {
   const [swiperInstance, setSwiperInstance] = useState(null);
   const { i18n } = useTranslation('global');
   
+  // Manual autoplay restart function
+  const restartAutoplay = () => {
+    if (swiperInstance && swiperInstance.autoplay && common && common.length > 1) {
+      try {
+        swiperInstance.autoplay.stop();
+        setTimeout(() => {
+          swiperInstance.autoplay.start();
+          console.log('CommonNews manual autoplay restart successful');
+        }, 100);
+      } catch (error) {
+        console.error('CommonNews manual autoplay restart failed:', error);
+      }
+    }
+  };
+  
   useEffect(() => {
     const getCommonNews = async () => {
       try {
@@ -253,8 +320,12 @@ function CommonNews({ t }) {
   useEffect(() => {
     if (common) {
       console.log('Common news loaded:', common.length, 'items');
+      // If we already have a swiper instance, restart autoplay
+      if (swiperInstance && common.length > 1) {
+        setTimeout(restartAutoplay, 500);
+      }
     }
-  }, [common]);
+  }, [common, swiperInstance]);
 
   return (
     <div className="common-news">
@@ -276,7 +347,8 @@ function CommonNews({ t }) {
             delay: 4000, 
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
-            waitForTransition: true
+            waitForTransition: true,
+            stopOnLastSlide: false
           }}
           speed={600}
           loop={true}
@@ -291,6 +363,19 @@ function CommonNews({ t }) {
           }}
           grabCursor={true}
           effect="slide"
+          onSlideChange={() => {
+            console.log("CommonNews slide change");
+            // Ensure autoplay continues after slide change
+            if (swiperInstance && swiperInstance.autoplay && common && common.length > 1) {
+              setTimeout(() => {
+                try {
+                  swiperInstance.autoplay.start();
+                } catch (error) {
+                  console.error('Error restarting CommonNews autoplay after slide change:', error);
+                }
+              }, 100);
+            }
+          }}
           onSwiper={(swiper) => {
             console.log('CommonNews Swiper initialized:', swiper);
             setSwiperInstance(swiper);
@@ -778,6 +863,8 @@ function NewsInternalPlatform() {
   const { t, i18n } = useTranslation("global");
   const [videos, setVideos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  // State for video player
+  const [playingVideo, setPlayingVideo] = useState(null);
 
   useEffect(() => {
     const fetchLatestVideos = async () => {
@@ -822,6 +909,41 @@ function NewsInternalPlatform() {
     return '/assets/logo.png';
   };
 
+  // دالة لاستخراج YouTube video ID
+  const getYouTubeVideoId = (url) => {
+    if (!url) return null;
+    
+    try {
+      const videoId = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+      return videoId ? videoId[1] : null;
+    } catch (error) {
+      console.error('Error extracting YouTube video ID:', error);
+      return null;
+    }
+  };
+
+  // دالة لإنشاء YouTube embed URL
+  const getYouTubeEmbedUrl = (url) => {
+    const videoId = getYouTubeVideoId(url);
+    return videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1` : null;
+  };
+
+  const handleVideoClick = (video) => {
+    if (video.link) {
+      if (playingVideo === video.id) {
+        // إذا كان الفيديو يعمل بالفعل، أوقفه
+        setPlayingVideo(null);
+      } else {
+        // تشغيل الفيديو الجديد
+        setPlayingVideo(video.id);
+      }
+    }
+  };
+
+  const handleCloseVideo = (videoId) => {
+    setPlayingVideo(null);
+  };
+
   return (
     <section className="news-internal-platform">
       <div className="container">
@@ -845,27 +967,83 @@ function NewsInternalPlatform() {
             // Display 4 videos in one row
             videos.slice(0, 4).map((video, index) => (
               <div className="col-lg-3 col-md-6 mb-3" key={video.id}>
-                <div className="video-card">
-                  <Link to={video?.link || '#'} target="_blank" className="text-black" style={{ textDecoration: "none" }}>
-                    <div className="video-thumbnail-container">
-                      <img 
-                        src={getYouTubeThumbnail(video.link)} 
-                        alt={video.title}
-                        style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '15px' }}
-                      />
-                      <div className="video-play-icon">
-                        <i className="uil uil-play-circle" style={{ fontSize: '2.5rem', color: '#003f9c' }}></i>
+                <div className={`video-card ${playingVideo === video.id ? 'playing' : ''}`}>
+                  {playingVideo === video.id ? (
+                    // Video Player Section
+                    <div className="home-video-player-container">
+                      <div className="home-video-player-header">
+                        <h4 className="home-video-player-title">{video.title}</h4>
+                        <div className="home-video-player-controls">
+                          <button 
+                            className="home-video-control-btn close-btn"
+                            onClick={() => handleCloseVideo(video.id)}
+                            title="إغلاق الفيديو"
+                          >
+                            <i className="uil uil-times"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <div className="home-video-iframe-container">
+                        <iframe
+                          src={getYouTubeEmbedUrl(video.link)}
+                          title={video.title}
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          className="home-video-iframe"
+                        ></iframe>
                       </div>
                     </div>
-                    <div className="video-info">
-                      <h4 style={{ color: '#2c3e50', fontSize: '1rem', fontWeight: '600', marginBottom: '0.5rem', marginTop: '1rem' }}>
-                        {video.title}
-                      </h4>
-                      <p style={{ color: '#6c757d', fontSize: '0.9rem', margin: 0 }}>
-                        {video.description || 'فيديو إرشادي'}
-                      </p>
+                  ) : (
+                    // Thumbnail Section
+                    <div className="text-black" style={{ textDecoration: "none", cursor: "pointer" }} onClick={() => handleVideoClick(video)}>
+                      <div className="video-thumbnail-container">
+                        <img 
+                          src={getYouTubeThumbnail(video.link)} 
+                          alt={video.title}
+                          style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '15px' }}
+                        />
+                        <div className="video-play-icon">
+                          <i className="uil uil-play-circle" style={{ fontSize: '2.5rem', color: '#003f9c' }}></i>
+                        </div>
+                      </div>
+                      <div className="video-info">
+                        <h4 style={{ color: '#2c3e50', fontSize: '1rem', fontWeight: '600', marginBottom: '0.5rem', marginTop: '1rem' }}>
+                          {video.title}
+                        </h4>
+                        <p style={{ color: '#6c757d', fontSize: '0.9rem', margin: 0 }}>
+                          {video.description || 'فيديو إرشادي'}
+                        </p>
+                        <button 
+                          className="home-video-play-btn"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleVideoClick(video);
+                          }}
+                          style={{
+                            background: 'linear-gradient(135deg, #003f9c 0%, #0056d6 100%)',
+                            color: 'white',
+                            border: 'none',
+                            padding: '0.5rem 1rem',
+                            borderRadius: '20px',
+                            fontSize: '0.85rem',
+                            fontWeight: '500',
+                            cursor: 'pointer',
+                            transition: 'all 0.3s ease',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.5rem',
+                            width: '100%',
+                            justifyContent: 'center',
+                            marginTop: '0.75rem'
+                          }}
+                        >
+                          <i className="uil uil-play"></i>
+                          {t('videoLibrary.playVideo') || 'تشغيل الفيديو'}
+                        </button>
+                      </div>
                     </div>
-                  </Link>
+                  )}
                 </div>
               </div>
             ))
