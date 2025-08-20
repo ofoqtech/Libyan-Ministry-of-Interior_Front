@@ -72,7 +72,7 @@ function Hero({ t }) {
           slidesPerView={1}
           modules={[Navigation, Pagination, Autoplay, EffectFade]}
           autoplay={{ 
-            delay: 5000, 
+            delay: 2000, 
             disableOnInteraction: false,
             pauseOnMouseEnter: true
           }}
