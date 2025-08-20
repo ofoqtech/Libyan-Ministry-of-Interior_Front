@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { GlobalContainer } from '../../components/globalComponent/globalComponent';
+import './LastNewsDetailsPage.css';
 
 export default function LastNewsDetailsPage() {
     const { t } = useTranslation("global");
@@ -58,36 +59,46 @@ const selectedHero = heroSection?.find(hero => String(hero.id) === id) || null;
 
 
     return (
-        <section className="MainNewsDetalis my-5">
+        <section className="last-news-details-page">
             <div className="container">
-                <div className="row align-items-center">
-                        <img
-                            style={{ maxWidth: "100%", width: "300px" }}
-                            src={selectedHero?.image}
-                            className="mb-3"
-                            alt={selectedHero.title}
-                        />
-                    <div className="col-lg-6">
-                        <h2 style={{ lineHeight: "40px", fontSize: "25px" }}>
-                        {selectedHero.title}
-                        </h2>
-                        <span className="desicionstime">
-                            <i className="uil uil-calendar-alt mx-1"></i>
-                        {new Date().toString().slice(0,16)}
-                        </span>
+                {isLoading ? (
+                    <div className="last-news-details-header-skeleton last-news-details-loading-skeleton"></div>
+                ) : selectedHero ? (
+                    <>
+                        {/* News Header Section */}
+                        <div className="last-news-details-header">
+                            <div className="last-news-details-header-content">
+                                <div className="last-news-details-header-image">
+                                    <img
+                                        src={selectedHero?.image}
+                                        alt={selectedHero.title}
+                                    />
+                                </div>
+                                <div className="last-news-details-header-text">
+                                    <h1>{selectedHero.title}</h1>
+                                    <div className="last-news-details-meta">
+                                        <div className="last-news-details-date">
+                                            <i className="uil uil-calendar-alt"></i>
+                                            {new Date().toString().slice(0,16)}
+                                        </div>
+                                        <div className="last-news-details-category">
+                                            {t('lastnews')}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* News Content Section */}
+                        <div className="last-news-details-content">
+                            <div className="last-news-details-description" dangerouslySetInnerHTML={{ __html: selectedHero?.description }} />
+                        </div>
+                    </>
+                ) : (
+                    <div className="text-center my-5">
+                        <p className="text-muted">{t('loading')}...</p>
                     </div>
-                </div>
-
-                <div className="my-3">
-                    <p className="titledetalis"   dangerouslySetInnerHTML={{ __html: selectedHero?.description }}
->
-                </p>
-                  
-                </div>
-       
-
-       
-
+                )}
             </div>
         </section>
     );

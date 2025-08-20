@@ -97,7 +97,27 @@
     "phonePlaceholder": "+9665085858585",
     "whoYou": "Your Characteristic",
     "email": "Email",
-    "password": "Enter your password",
+    "password": "Enter your password"
+  },
+  "videoLibrary": {
+    "title": "Video Library",
+    "header": "Video Library",
+    "noVideos": "No videos in this category",
+    "watchVideo": "Watch Video"
+  },
+  "guidance": {
+    "title": "Guidance & Awareness",
+    "header": "Guidance & Awareness",
+    "subtitle": "Guidance and Awareness Videos",
+    "description": "A collection of important guidance and awareness videos",
+    "watchVideo": "Watch Video",
+    "noInstructions": "No guidance videos available at the moment"
+  },
+  "createAccount": {
+    "whoAreYou": "Who are you?",
+    "chooseOption": "Please choose the option that fits you",
+    "mediaProfessional": "Media Professional",
+    "mediaOrganization": "Media Organization",
     "emailPlaceholder": "example@gmail.com",
     "orgName": "Organization Name",
     "orgType": "Organization Type",
@@ -200,6 +220,7 @@
   },
   "news": {
     "internal_title": "Ministry News",
+    "latestVideos": "Latest Videos",
     "category_1": "New",
     "internal_meeting": "Extensive meeting to discuss security situations",
     "read_more": "Read more",
@@ -229,6 +250,7 @@
     "mediaOffice": "Media Office",
     "contactUs": "Contact Us",
     "followUs": "Follow Us",
+    "privacyPolicy": "Privacy Policy",
     "rights": "All rights reserved",
     "programming": "Developed by Brmja Tech"
   },
@@ -341,30 +363,7 @@
     "ministry_name": "Ministry of Interior, Government of Libya",
     "ministry_description": "The Ministry of Interior of the Libyan government implements the legislations, laws, regulations, and decisions necessary to ensure the country's security, protect lives, honor, and property, and execute the policies, plans, and programs required for enforcing the legislations in the field of security and policing.",
     "core_tasks_title": "Core Tasks and Responsibilities",
-    "task_1": "1 – Monitoring the implementation of the ministry's plans and policies and working to enhance security performance levels.",
-    "task_2": "2 – Participating in preparing financial estimates necessary for drafting the ministry's budget projects.",
-    "task_3": "3 – Maintaining security by taking the necessary measures and procedures to ensure its achievement.",
-    "task_4": "4 – Preparing studies and research on security and devising plans to ensure its achievement.",
-    "task_5": "5 – Taking actions related to expenditures from the ministry's budget in accordance with the applicable legislation.",
-    "task_6": "6 – Contracting for the implementation of projects specific to the ministry in accordance with the applicable legislation.",
-    "task_7": "7 – Preparing necessary plans and programs to prevent and address crimes and safeguard lives, honor, and property.",
-    "task_8": "8 – Handling personal status matters, protecting and securing tourists, tourist sites, and heritage sites, and guarding facilities, establishments, and critical objectives in accordance with applicable legislation.",
-    "task_9": "9 – Recruiting, training, and preparing qualified technical personnel to work in the police and training members of public security.",
-    "task_10": "10 – Conducting investigations, collecting evidence, identifying individuals, and examining crime scenes using scientific and technical methods to collect and preserve material evidence.",
-    "task_11": "11 – Developing and implementing civil defense plans and projects, combating fires, addressing general and natural disasters, training individuals on civil defense tasks, and forming air raid and fire monitoring teams.",
-    "task_12": "12 – Conducting minefield surveys, detecting and clearing bombs, and collecting, transporting, and disposing of explosives.",
-    "task_13": "13 – Carrying out land and sea rescue operations.",
-    "task_14": "14 – Handling traffic affairs on public roads, police aviation, road patrols (vehicular and pedestrian), and ensuring wired and wireless communication and operations room management.",
-    "task_15": "15 – Raising security awareness among citizens to address fires, natural disasters, and crime prevention through security media and issuing related publications.",
-    "task_16": "16 – Managing passports, nationality, ID cards, civil status matters, foreign residency, and immigration, and monitoring entry and exit movements through designated ports.",
-    "task_17": "17 – Handling public relations and international cooperation within the ministry's domain.",
-    "task_18": "18 – Managing Arab and international police affairs.",
-    "task_19": "19 – Supervising entities affiliated with the ministry.",
-    "task_20": "20 – Taking necessary measures to appoint officials for entities affiliated with the ministry in accordance with applicable legislation.",
-    "task_21": "21 – Issuing decisions on appointments, promotions, transfers, deputations, and loans in accordance with the ministry's budget and applicable legislation.",
-    "task_22": "22 – Preparing the ministry's final accounts.",
-    "task_23": "23 – Proposing programs and plans to improve the efficiency and performance level of ministry employees in coordination with relevant entities.",
-    "task_24": "24 – Exercising the competencies prescribed by applicable legislation."
+    "about": "1 – Monitoring the implementation of the ministry's plans and policies and working to enhance security performance levels. 2 – Participating in preparing financial estimates necessary for drafting the ministry's budget projects. 3 – Maintaining security by taking the necessary measures and procedures to ensure its achievement. 4 – Preparing studies and research on security and devising plans to ensure its achievement. 5 – Taking actions related to expenditures from the ministry's budget in accordance with the applicable legislation. 6 – Contracting for the implementation of projects specific to the ministry in accordance with the applicable legislation. 7 – Preparing necessary plans and programs to prevent and address crimes and safeguard lives, honor, and property. 8 – Handling personal status matters, protecting and securing tourists, tourist sites, and heritage sites, and guarding facilities, establishments, and critical objectives in accordance with applicable legislation. 9 – Recruiting, training, and preparing qualified technical personnel to work in the police and training members of public security. 10 – Conducting investigations, collecting evidence, identifying individuals, and examining crime scenes using scientific and technical methods to collect and preserve material evidence. 11 – Developing and implementing civil defense plans and projects, combating fires, addressing general and natural disasters, training individuals on civil defense tasks, and forming air raid and fire monitoring teams. 12 – Conducting minefield surveys, detecting and clearing bombs, and collecting, transporting, and disposing of explosives. 13 – Carrying out land and sea rescue operations. 14 – Handling traffic affairs on public roads, police aviation, road patrols (vehicular and pedestrian), and ensuring wired and wireless communication and operations room management. 15 – Raising security awareness among citizens to address fires, natural disasters, and crime prevention through security media and issuing related publications. 16 – Managing passports, nationality, ID cards, civil status matters, foreign residency, and immigration, and monitoring entry and exit movements through designated ports. 17 – Handling public relations and international cooperation within the ministry's domain. 18 – Managing Arab and international police affairs. 19 – Supervising entities affiliated with the ministry. 20 – Taking necessary measures to appoint officials for entities affiliated with the ministry in accordance with applicable legislation. 21 – Issuing decisions on appointments, promotions, transfers, deputations, and loans in accordance with the ministry's budget and applicable legislation. 22 – Preparing the ministry's final accounts. 23 – Proposing programs and plans to improve the efficiency and performance level of ministry employees in coordination with relevant entities. 24 – Exercising the competencies prescribed by applicable legislation."
   },
   "page.decisions": "Decisions",
   "page.header": "Home - About the Ministry - Decisions - The Minister of Interior Decides to Merge Several Security Directorates of the Libyan Government",
@@ -598,5 +597,79 @@
     "connectionFailed": "Failed to connect to the server"
   },
   "new_request": "New Request",
-  "request_history": "Request History"
+  "request_history": "Request History",
+  
+  "privacyPolicy": {
+    "title": "Privacy Policy",
+    "breadcrumb": "Home - Privacy Policy",
+    "lastUpdated": "Last Updated: January 2025",
+    "introduction": "Welcome to the Libyan Ministry of Interior website. We are committed to protecting your privacy and ensuring the security of your personal information. This policy explains how we collect, use, and protect the information you provide to us.",
+    "informationCollection": {
+      "title": "Information Collection",
+      "description": "We collect the following information:",
+      "personalInfo": "Personal information (name, ID number, nationality)",
+      "contactInfo": "Contact information (email)",
+      "accountInfo": "Account information (password, user type)",
+      "serviceRequests": "Service requests (monitor, drone, camera, cyber crimes)",
+      "usageData": "Usage data and interaction with the website"
+    },
+    "informationUse": {
+      "title": "Information Use",
+      "description": "We use the collected information for the following purposes:",
+      "serviceProvision": "Providing requested services",
+      "accountManagement": "Managing accounts and users",
+      "communication": "Communicating with you regarding requests and services",
+      "security": "Ensuring website and service security",
+      "improvement": "Improving services and developing the website"
+    },
+    "informationProtection": {
+      "title": "Information Protection",
+      "description": "We use advanced security technologies to protect your information:",
+      "encryption": "Encryption of sensitive data",
+      "accessControl": "Access control to information",
+      "regularAudits": "Regular security audits",
+      "staffTraining": "Staff training on data protection"
+    },
+    "informationSharing": {
+      "title": "Information Sharing",
+      "description": "We do not share your personal information with third parties except in the following cases:",
+      "legalRequirement": "When required by law",
+      "serviceProviders": "With essential service providers only",
+      "userConsent": "With your explicit consent",
+      "securityPurposes": "For legitimate security purposes"
+    },
+    "userRights": {
+      "title": "User Rights",
+      "description": "You have the right to:",
+      "accessInfo": "Access your personal information",
+      "updateInfo": "Update or correct your information",
+      "deleteInfo": "Delete your account and information",
+      "withdrawConsent": "Withdraw consent for data processing",
+      "dataPortability": "Transfer your data to another entity"
+    },
+    "cookies": {
+      "title": "Cookies",
+      "description": "We use cookies to improve browsing experience:",
+      "essential": "Essential cookies for website functionality",
+      "functional": "Functional cookies for performance improvement",
+      "analytics": "Analytics cookies for understanding website usage"
+    },
+    "dataRetention": {
+      "title": "Data Retention",
+      "description": "We retain your information as long as necessary to fulfill the purposes stated in this policy, or as long as required by law."
+    },
+    "childrenPrivacy": {
+      "title": "Children's Privacy",
+      "description": "Our website does not target children under 18 years of age. If you have any questions about collecting children's information, please contact us."
+    },
+    "changes": {
+      "title": "Policy Changes",
+      "description": "We reserve the right to update this policy from time to time. You will be notified of any material changes via email or notification on the website."
+    },
+    "contact": {
+      "title": "Contact Us",
+      "description": "If you have any questions about our privacy policy or how we process your information, please contact us through:",
+      "ministryContact": "Legal Affairs Department - Ministry of Interior"
+    }
+  }
 }

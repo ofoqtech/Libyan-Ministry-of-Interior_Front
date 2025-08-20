@@ -1,9 +1,10 @@
 import "./home.css";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import { Autoplay } from "swiper/modules";
+import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
 import { useEffect, useState } from "react";
 import MainTitle from "../../components/MainTitle/MainTitle";
 import CommonNewsBox from "../../components/CommonNewsBox/CommonNewsBox";
@@ -69,8 +70,21 @@ function Hero({ t }) {
         <Swiper
           spaceBetween={0}
           slidesPerView={1}
-          modules={[Navigation, Autoplay]}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          modules={[Navigation, Pagination, Autoplay, EffectFade]}
+          autoplay={{ 
+            delay: 5000, 
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true
+          }}
+          effect="fade"
+          fadeEffect={{ crossFade: true }}
+          pagination={{
+            clickable: true,
+            dynamicBullets: true,
+          }}
+          navigation={true}
+          loop={true}
+          speed={800}
           onSlideChange={() => console.log("slide change")}
           onSwiper={(swiper) => console.log(swiper)}
         >
@@ -84,7 +98,7 @@ function Hero({ t }) {
               >
                 <div className="swiper-info">
                   <div className="container">
-                    <div className="text" style={{ paddingTop: "170px" }}>
+                    <div className="text">
                       {isLoading ? (
                         <div className="swip-skel">
                           <div
@@ -116,29 +130,16 @@ function Hero({ t }) {
                         </div>
                       ) : (
                         <>
-                          <span
-                            className="news text-black"
-                            style={{ background: "white" }}
-                          >
+                          <span className="news">
                             {t("header.latest_news")}
                           </span>
-                          <h1
-                            className="title py-3 px-3 text-white"
-                            style={{ background: "#003f9c" }}
-                          >
-                            <Link to={`/lastNews/${heroSection?.id}`}>
-                              {heroSection?.title}
+                          <h1 className="title">
+                            <Link style={{lineHeight : "2.0"}} to={`/lastNews/${heroSection?.id}`}>
+                              {heroSection?.title.slice(0, 80)}
                             </Link>
                           </h1>
                           <p
-                            className="description new-desc"
-                            style={{
-                              background: "white",
-                              color: "black",
-                              padding: "10px",
-                              width: "80%",
-                              maxWidth: "100%",
-                            }}
+                            className="description"
                             dangerouslySetInnerHTML={{ __html: heroSection?.description }}
                           ></p>
                         </>
@@ -149,8 +150,6 @@ function Hero({ t }) {
               </div>
             </SwiperSlide>
           ))}
-
-
         </Swiper>
       </div>
     </>
@@ -164,14 +163,8 @@ function Hero({ t }) {
 function CommonNews({ t }) {
   const [common, setCommon] = useState([]);
   const { i18n } = useTranslation('global');
+  
   useEffect(() => {
-    const nextBtn = document.querySelector(".swiper-button-next");
-    const prevBtn = document.querySelector(".swiper-button-prev");
-
-    if (nextBtn && prevBtn) {
-      nextBtn.classList.add("custom-swiper-button");
-      prevBtn.classList.add("custom-swiper-button");
-    }
     const getCommonNews = async () => {
       try {
         const response = await axios.get(
@@ -199,12 +192,8 @@ function CommonNews({ t }) {
         <div className="common-news-title">
           <MainTitle title={t("common_news.title")} />
           <div className="swiper-arrows">
-            <div className="swiper-button-prev">
-              <i className="uil uil-arrow-left"></i>
-            </div>
-            <div className="swiper-button-next">
-              <i className="uil uil-arrow-right"></i>
-            </div>
+            <div className="swiper-button-prev"></div>
+            <div className="swiper-button-next"></div>
           </div>
         </div>
         <Swiper
@@ -213,22 +202,29 @@ function CommonNews({ t }) {
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
           }}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
-          speed={500}
+          autoplay={{ 
+            delay: 4000, 
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true
+          }}
+          speed={600}
           loop={true}
-          spaceBetween={20}
+          spaceBetween={25}
           slidesPerView={1}
           breakpoints={{
-            1024: { slidesPerView: 4 },
-            768: { slidesPerView: 3 },
-            480: { slidesPerView: 2 },
-            0: { slidesPerView: 1 },
+            1200: { slidesPerView: 4, spaceBetween: 30 },
+            1024: { slidesPerView: 3, spaceBetween: 25 },
+            768: { slidesPerView: 2, spaceBetween: 20 },
+            480: { slidesPerView: 2, spaceBetween: 15 },
+            0: { slidesPerView: 1, spaceBetween: 10 },
           }}
+          grabCursor={true}
+          effect="slide"
         >
           {common ? (
             common.map((item, index) => (
               <SwiperSlide key={index}>
-                <Link to={`/CommonNewsDetailsPage/${item.id}`}>
+                <Link to={`/CommonNewsDetailsPage/${item.id}`} style={{ textDecoration: "none" }}>
                   <CommonNewsBox
                     image={item.image_url}
                     type={t("common_news.category_1")}
@@ -245,7 +241,10 @@ function CommonNews({ t }) {
             <p>{t("news.no_news")}</p>
           )}
         </Swiper>
-        {common.length === 0 && (<p>{t("news.no_news")}</p>
+        {common.length === 0 && (
+          <div className="text-center py-4">
+            <p className="text-muted">{t("news.no_news")}</p>
+          </div>
         )}
       </div>
     </div>
@@ -294,11 +293,11 @@ function TodayNews({ t }) {
                 <div className="mb-3" key={index}>
                   <div
                     className="bg-secondary mb-2"
-                    style={{ height: "200px", width: "100%", borderRadius: "5px", opacity: 0.2 }}
+                    style={{ height: "200px", width: "100%", borderRadius: "15px", opacity: 0.2 }}
                   />
                   <div
                     className="bg-secondary"
-                    style={{ height: "20px", width: "80%", borderRadius: "5px", opacity: 0.2 }}
+                    style={{ height: "20px", width: "80%", borderRadius: "10px", opacity: 0.2 }}
                   />
                 </div>
               ))
@@ -330,11 +329,11 @@ function TodayNews({ t }) {
             {isLoading ? (
               <div
                 className="bg-secondary mb-3"
-                style={{ height: "300px", width: "100%", borderRadius: "10px", opacity: 0.2 }}
+                style={{ height: "300px", width: "100%", borderRadius: "15px", opacity: 0.2 }}
               />
             ) : TodayNews[2] && TodayNews[0] ? (
 
-              <Link to={`/news/details/${TodayNews[0]?.id}`}>
+              <Link to={`/news/details/${TodayNews[0]?.id}`} style={{ textDecoration: "none" }}>
 
                 <CommonNewsBox
                   image={TodayNews[0].image_url}
@@ -347,7 +346,17 @@ function TodayNews({ t }) {
               </Link>
             ) : null}
           </div>
-          {TodayNews.length !== 0 && <Link to="/all_today_news" className="rounded shadow-sm mt-3" style={{ backgroundColor: '#003F9C', color: '#fff', padding: '10px 20px', width : "200px", textAlign : "center", margin : "0 auto" }}>{t('more')}</Link>}
+          
+          {TodayNews.length !== 0 && (
+            <div className="text-center mt-4">
+              <Link 
+                to="/all_today_news" 
+                className="btn-more"
+              >
+                {t('more')}
+              </Link>
+            </div>
+          )}
 
           {TodayNews.length === 0 && <p>{t('noData')}</p>}
 
@@ -674,14 +683,15 @@ function TodayNews({ t }) {
 
 function NewsInternalPlatform() {
   const { t, i18n } = useTranslation("global");
-  const [newsList, setNewsList] = useState([]);
+  const [videos, setVideos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchNews = async () => {
+    const fetchLatestVideos = async () => {
       try {
+        // Fetch from category 2 to get latest videos
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/news/minis_news?isMobile=0`,
+          `https://brmjatech.co.uk/api/api_category_videos/2`,
           {
             headers: {
               'lang': i18n.language,
@@ -689,72 +699,88 @@ function NewsInternalPlatform() {
           }
         );
         const result = await response.json();
-        setNewsList(result.result.data || []);
+        if (result.status === 'success') {
+          // Get latest 4 videos
+          setVideos(result.result.data?.slice(0, 4) || []);
+        }
       } catch (error) {
-        toast.error(t('error'));
+        console.error('Error fetching latest videos:', error);
       } finally {
         setIsLoading(false);
       }
     };
 
-    fetchNews();
+    fetchLatestVideos();
   }, [i18n.language]);
+
+  // دالة لاستخراج YouTube thumbnail
+  const getYouTubeThumbnail = (url) => {
+    if (!url) return '/assets/logo.png';
+    
+    try {
+      const videoId = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+      if (videoId && videoId[1]) {
+        return `https://img.youtube.com/vi/${videoId[1]}/maxresdefault.jpg`;
+      }
+    } catch (error) {
+      console.error('Error extracting YouTube thumbnail:', error);
+    }
+    
+    return '/assets/logo.png';
+  };
 
   return (
     <section className="news-internal-platform">
       <div className="container">
-        <MainTitle title={t("news.internal_title")} />
+        <MainTitle title={t("news.latestVideos") || "أحدث الفيديوهات"} />
         <div className="row justify-content-center align-items-center">
-          <div className="col-lg-12 mb-4">
-            {isLoading ? (
-              <div
-                className="bg-secondary mb-4"
-                style={{ height: "300px", borderRadius: "10px", opacity: 0.2 }}
-              />
-            ) : newsList[0] && (
-              <Link to={`MinsitryNewsDetailsPage/${newsList[0]?.id}`}>
-                <CommonNewsBox
-                  image={newsList[0].image_url}
-                  type={t("news.category_1")}
-                  title={newsList[0].title}
-                  time={new Date(newsList[0].created_at).toLocaleDateString()}
-                  description={newsList[0].description}
-                  styling="500px"
-                  styling2='cover'
-                />
-              </Link>
-            )}
-          </div>
-
-          <div className="row  align-items-center mt-4">
-            {isLoading ? [1, 2, 3].map((_, index) => (
-              <div className="col-lg-6 mb-2" key={index}>
+          {isLoading ? (
+            // Loading skeleton for 4 videos
+            [1, 2, 3, 4].map((_, index) => (
+              <div className="col-lg-3 col-md-6 mb-3" key={index}>
                 <div
                   className="bg-secondary mb-2"
-                  style={{ height: "150px", borderRadius: "8px", opacity: 0.2 }}
+                  style={{ height: "200px", borderRadius: "15px", opacity: 0.2 }}
+                />
+                <div
+                  className="bg-secondary"
+                  style={{ height: "20px", width: "80%", borderRadius: "10px", opacity: 0.2 }}
                 />
               </div>
             ))
-              : newsList?.slice(1, 4).map((item, index) => (
-                <>
-                  <div className="col-lg-6 mb-2" key={index}>
-                    <div className="newBox mb-2">
-                      <Link to={`MinsitryNewsDetailsPage/${item?.id}`} className="text-black">
-                        <NewsBoxNew
-                          image={item.image_url}
-                          type={t("news.category_1")}
-                          title={item.title}
-                          time={new Date(item.created_at).toLocaleDateString()}
-                        />
-
-                      </Link>
+          ) : videos.length > 0 ? (
+            // Display 4 videos in one row
+            videos.slice(0, 4).map((video, index) => (
+              <div className="col-lg-3 col-md-6 mb-3" key={video.id}>
+                <div className="video-card">
+                  <Link to={video?.link || '#'} target="_blank" className="text-black" style={{ textDecoration: "none" }}>
+                    <div className="video-thumbnail-container">
+                      <img 
+                        src={getYouTubeThumbnail(video.link)} 
+                        alt={video.title}
+                        style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '15px' }}
+                      />
+                      <div className="video-play-icon">
+                        <i className="uil uil-play-circle" style={{ fontSize: '2.5rem', color: '#003f9c' }}></i>
+                      </div>
                     </div>
-                  </div>
-                </>
-
-              ))}
-          </div>
-          {newsList.length === 0 && <p>{t('noData')}</p>}
+                    <div className="video-info">
+                      <h4 style={{ color: '#2c3e50', fontSize: '1rem', fontWeight: '600', marginBottom: '0.5rem', marginTop: '1rem' }}>
+                        {video.title}
+                      </h4>
+                      <p style={{ color: '#6c757d', fontSize: '0.9rem', margin: 0 }}>
+                        {video.description || 'فيديو إرشادي'}
+                      </p>
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="text-center py-4">
+              <p className="text-muted">{t('noData') || 'لا توجد فيديوهات متاحة'}</p>
+            </div>
+          )}
         </div>
       </div>
     </section>
@@ -767,20 +793,18 @@ function NewsInternalPlatform() {
 function DesitionsAndPhotos({ t }) {
   const [Desicions, setDesicions] = useState([]);
   const [images, setImages] = useState([]);
-  const [showModal, setShowModal] = useState(false); // Modal visibility state
-  const [selectedDesicion, setSelectedDesicion] = useState(null); // Selected desicion for modal
-  // Function to handle modal opening
+  const [showModal, setShowModal] = useState(false);
+  const [selectedDesicion, setSelectedDesicion] = useState(null);
   const { i18n } = useTranslation("global");
 
   const openModal = (desicion) => {
     setSelectedDesicion(desicion);
-    setShowModal(true); // Show the modal
+    setShowModal(true);
   };
 
-  // Function to close the modal
   const closeModal = () => {
     setShowModal(false);
-    setSelectedDesicion(null); // Reset selected desicion
+    setSelectedDesicion(null);
   };
 
   useEffect(() => {
@@ -801,8 +825,9 @@ function DesitionsAndPhotos({ t }) {
 
     fetchImages();
   }, [i18n.language]);
+  
   useEffect(() => {
-    const fetchImages = async () => {
+    const fetchDecisions = async () => {
       try {
         const response = await fetch(`${process.env.REACT_APP_API_URL}/decisions/all_decisions?isMobile=0`, {
           method: "GET",
@@ -819,8 +844,9 @@ function DesitionsAndPhotos({ t }) {
       }
     };
 
-    fetchImages();
+    fetchDecisions();
   }, [i18n.language]);
+  
   const [showModal2, setShowModal2] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -829,7 +855,6 @@ function DesitionsAndPhotos({ t }) {
     setShowModal2(true);
   };
 
-
   return (
     <section className="desitions-and-photos mb-5">
       <div className="container">
@@ -837,7 +862,10 @@ function DesitionsAndPhotos({ t }) {
           <div className="col-lg-5">
             <MainTitle title={t("decisions.title")} />
             {Desicions.slice(0, 3).map((desition, index) => (
-              <div className="new-box-content mb-3" key={index} onClick={() => openModal(desition)} // Open modal on card click
+              <div 
+                className="mb-3" 
+                key={index} 
+                onClick={() => openModal(desition)}
               >
                 <NewBoxContent
                   type={t("decisions.category_1")}
@@ -846,8 +874,13 @@ function DesitionsAndPhotos({ t }) {
                 />
               </div>
             ))}
-            {Desicions.length === 0 && <p>{t('noData')}</p>}
+            {Desicions.length === 0 && (
+              <div className="text-center py-4">
+                <p className="text-muted">{t('noData')}</p>
+              </div>
+            )}
           </div>
+          
           <div className="col-lg-6">
             <MainTitle title={t("photos.title")} />
             <div className="desiscions-gallary">
@@ -861,7 +894,11 @@ function DesitionsAndPhotos({ t }) {
                 />
               ))}
 
-              {images.length === 0 && <p>{t("noData")}</p>}
+              {images.length === 0 && (
+                <div className="text-center py-4">
+                  <p className="text-muted">{t("noData")}</p>
+                </div>
+              )}
             </div>
 
             {showModal2 && selectedImage && (
@@ -891,7 +928,7 @@ function DesitionsAndPhotos({ t }) {
                       <img
                         src={selectedImage?.link_url}
                         alt={t("photos.alt_text")}
-                        style={{ width: "100%", height: "", objectFit: "cover", marginBottom: "30px" }}
+                        style={{ width: "100%", height: "", objectFit: "cover", marginBottom: "30px", borderRadius: "15px" }}
                       />
                       <p>{selectedImage?.text}</p>
                     </div>
@@ -908,52 +945,50 @@ function DesitionsAndPhotos({ t }) {
                 </div>
               </div>
             )}
-
           </div>
-
         </div>
-      </div>
-      {/* Modal for displaying decision details */}
-      {showModal && selectedDesicion && (
-        <div
-          className="modal fade show"
-          style={{ display: "block" }}
-          tabIndex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-          onClick={closeModal} // Close modal when clicking outside content
-        >
-          <div className="modal-dialog" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">
-                  {t("decisionsPage.modalTitle")}
-                </h5>
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                  onClick={closeModal}
-                ></button>
-              </div>
-              <div className="modal-body">
-                <h6 style={{ lineHeight: "2.3" }}>{selectedDesicion?.text}</h6>
-                <p style={{ lineHeight: "1.7" }}>{selectedDesicion?.description}</p>
-                <p>
-                  {t("decisionsPage.createdAt")}: {selectedDesicion?.created_at}
-                </p>
-              </div>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" onClick={closeModal}>
-                  {t("decisionsPage.close")}
-                </button>
+        
+        {/* Modal for displaying decision details */}
+        {showModal && selectedDesicion && (
+          <div
+            className="modal fade show"
+            style={{ display: "block" }}
+            tabIndex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+            onClick={closeModal}
+          >
+            <div className="modal-dialog" onClick={(e) => e.stopPropagation()}>
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title" id="exampleModalLabel">
+                    {t("decisionsPage.modalTitle")}
+                  </h5>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                    onClick={closeModal}
+                  ></button>
+                </div>
+                <div className="modal-body">
+                  <h6 style={{ lineHeight: "2.3" }}>{selectedDesicion?.text}</h6>
+                  <p style={{ lineHeight: "1.7" }}>{selectedDesicion?.description}</p>
+                  <p>
+                    {t("decisionsPage.createdAt")}: {selectedDesicion?.created_at}
+                  </p>
+                </div>
+                <div className="modal-footer">
+                  <button type="button" className="btn btn-secondary" onClick={closeModal}>
+                    {t("decisionsPage.close")}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
-
+        )}
+      </div>
     </section>
   );
 }
@@ -961,3 +996,4 @@ function DesitionsAndPhotos({ t }) {
 
 
 export default Home;
+

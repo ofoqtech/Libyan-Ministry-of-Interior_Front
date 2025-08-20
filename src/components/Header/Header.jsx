@@ -32,7 +32,7 @@ function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      if (scrollPosition > 200) {
+      if (scrollPosition > 100) {
         setScrolled(true);
       } else {
         setScrolled(false);
@@ -348,6 +348,16 @@ function DesktopHeader({
                 </Link>
               </li>
               <li>
+                <Link className="dropdown-item" to="/mediaOffice/videolibrary">
+                  {t("videoLibrary.title")}
+                </Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/mediaOffice/guidance">
+                  {t("guidance.title")}
+                </Link>
+              </li>
+              <li>
                 <Link
                   className="dropdown-item"
                   to="/mediaOffice/DirectoratesNews"
@@ -613,6 +623,16 @@ function ModileHeader({
               <li onClick={() => setMobHeader(false)}>
                 <Link className="dropdown-item" to="/mediaOffice/alllibrary">
                   {t("header.all_library")}
+                </Link>
+              </li>
+              <li onClick={() => setMobHeader(false)}>
+                <Link className="dropdown-item" to="/mediaOffice/videolibrary">
+                  {t("videoLibrary.title")}
+                </Link>
+              </li>
+              <li onClick={() => setMobHeader(false)}>
+                <Link className="dropdown-item" to="/mediaOffice/guidance">
+                  {t("guidance.title")}
                 </Link>
               </li>
               <li onClick={() => setMobHeader(false)}>

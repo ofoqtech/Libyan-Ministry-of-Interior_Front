@@ -1,19 +1,17 @@
 import { GlobalContainer } from '../../../../components/globalComponent/globalComponent';
 import './newsDetails.css';
 import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useTranslation } from "react-i18next";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 import DOMPurify from 'dompurify';
-import { Modal, Button } from "react-bootstrap"; // تأكد إن Bootstrap و React-Bootstrap متثبتين
-
-
+import { Modal, Button } from "react-bootstrap";
 
 export default function NewsDetails() {
     const { t } = useTranslation("global");
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <>
             <GlobalContainer text={t('main_news')} header={`${t('home')} - ${t('media_office')} - ${t('main_news')}`} />
@@ -24,39 +22,11 @@ export default function NewsDetails() {
 
 function MainNewsDetalis() {
     const { t, i18n } = useTranslation("global");
-
     const { id } = useParams();
-
-
     const [selectedArticle, setSelectedArticle] = useState(null);
     const [showModal, setShowModal] = useState(false);
-
     const [newsDetails, setNewsDetails] = useState(null);
-   const [showFullText, setShowFullText] = useState(false);
-
-    useEffect(() => {
-        const fetchNewsDetails = async () => {
-            try {
-                const response = await axios.get(`${process.env.REACT_APP_API_URL}/news/news_details/${id}?isMobile=0`, {
-                    headers: {
-                        'lang': i18n.language,
-                        'Content-Type': 'application/json',
-                    },
-                });
-
-                if (response.data.status === 'success') {
-                    setNewsDetails(response.data.result);
-                }
-            } catch (error) {
-                console.error('Error fetching news details:', error);
-            }
-        };
-
-        fetchNewsDetails();
-    }, [id, i18n.language]);
-
-    if (!newsDetails) return <p className="text-center my-5">{t('loading')}...</p>;
-
+    const [isLoading, setIsLoading] = useState(true);
 
     const wordLimit = 20;
 
@@ -78,95 +48,145 @@ function MainNewsDetalis() {
         setSelectedArticle(null);
         setShowModal(false);
     };
+
+    useEffect(() => {
+        const fetchNewsDetails = async () => {
+            try {
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/news/news_details/${id}?isMobile=0`, {
+                    headers: {
+                        'lang': i18n.language,
+                        'Content-Type': 'application/json',
+                    },
+                });
+
+                if (response.data.status === 'success') {
+                    setNewsDetails(response.data.result);
+                }
+            } catch (error) {
+                console.error('Error fetching news details:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchNewsDetails();
+    }, [id, i18n.language]);
+
     return (
-        <section className="MainNewsDetalis my-5">
+        <section className="news-details-page">
             <div className="container">
-                <div className="row align-items-center">
-                        <img
-                            style={{ maxWidth: "100%", width: "300px" }}
-                            src={newsDetails.image_url}
-                            className="mb-3"
-                            alt={newsDetails.title}
-                        />
-                    <div className="col-lg-6">
-                        <h2 style={{ lineHeight: "40px", fontSize: "25px" }}>
-                            {newsDetails.title}
-                        </h2>
-                        <span className="desicionstime">
-                            <i className="uil uil-calendar-alt mx-1"></i>
-                            {new Date(newsDetails.created_at).toLocaleDateString(i18n.language)}
-                        </span>
-                    </div>
-                </div>
-
-                <div className="titledetalis my-3" dangerouslySetInnerHTML={{ __html: newsDetails?.description }} />
-
-                {newsDetails?.youtube_link && <div className="my-5 mx-auto text-center d-flex justify-content-center">
-                    <Link className="titledetalis type" to={newsDetails?.youtube_link}>{t('showVideo')}</Link>
-                </div>}
-
-                {newsDetails.medias?.length > 0 && (
-                    <div className="mt-5">
-                        <div className="row justify-content-center g-3">
-                            {newsDetails.medias.map((media) => (
-                                <div
-                                    key={media.id}
-                                    className="col-md-3 col-sm-6 col-12 image-container"
-                                >
+                {isLoading ? (
+                    <div className="news-details-header-skeleton news-details-loading-skeleton"></div>
+                ) : newsDetails ? (
+                    <>
+                        {/* News Header Section */}
+                        <div className="news-details-header">
+                            <div className="news-details-header-content">
+                                <div className="news-details-header-image">
                                     <img
-                                        src={media.file_url}
-                                        alt={t('newsDetails.imageAlt')}
-                                        className="img-fluid"
+                                        src={newsDetails.image_url}
+                                        alt={newsDetails.title}
                                     />
                                 </div>
-                            ))}
-                        </div>
-                    </div>
-                )}
-
-
-                {newsDetails.related_news?.length > 0 && (
-                    <div className="my-5">
-                        <span className="type mb-4">{t('related_articles')}</span>
-                        <div className="row">
-                            {newsDetails.related_news.map((article, index) => (
-                                <div className="col-lg-4" key={index}>
-                                    <div className="card mb-3">
-                                        <img
-                                            src={article.image_url}
-                                            alt={article.title}
-                                            className="card-img-top"
-                                        />
-                                        <p className="desicionstime mt-3">
-                                            <i className="uil uil-calendar-alt mt-1 ms-1 mx-2"></i>
-                                            {new Date(article.created_at).toLocaleDateString(i18n.language)}
-                                        </p>
-                                        <div className="card-body p-0">
-                                            <h5 style={{ lineHeight: "1.6", color: "black", marginBottom: '10px' }} className="card-title">{article?.title}</h5>
-
-                                            <div
-                                                className="card-text m-0"
-                                                dangerouslySetInnerHTML={{
-                                                    __html: DOMPurify.sanitize(getPreviewText(article?.description || ''))
-                                                }}
-                                            />
-
-                                            {article.description.split(' ').length > wordLimit && (
-                                                <button
-                                                    className="btn btn-link p-0 mt-1" style={{ color: "#003f9c" }}
-                                                    onClick={() => handleReadMore(article)}
-                                                >
-                                                    {t('ReadMore')}
-                                                </button>
-                                            )}
+                                <div className="news-details-header-text">
+                                    <h1>{newsDetails.title}</h1>
+                                    <div className="news-details-meta">
+                                        <div className="news-details-date">
+                                            <i className="uil uil-calendar-alt"></i>
+                                            {new Date(newsDetails.created_at).toLocaleDateString(i18n.language)}
+                                        </div>
+                                        <div className="news-details-category">
+                                            {t('main_news')}
                                         </div>
                                     </div>
                                 </div>
-                            ))}
+                            </div>
                         </div>
+
+                        {/* News Content Section */}
+                        <div className="news-details-content">
+                            <div className="news-details-description" dangerouslySetInnerHTML={{ __html: newsDetails?.description }} />
+                            
+                            {/* Media Gallery */}
+                            {newsDetails?.medias && newsDetails?.medias.length > 0 && (
+                                <div className="news-details-media-gallery">
+                                    <h3>صور أخرى</h3>
+                                    <div className="news-details-media-grid">
+                                        {newsDetails.medias.map((media, index) => (
+                                            <div key={index} className="news-details-media-item">
+                                                <img
+                                                    src={media?.file_url}
+                                                    alt={`صورة ${index + 1}`}
+                                                />
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Video Link */}
+                            {newsDetails?.youtube_link && (
+                                <div className="news-details-video-section">
+                                    <Link className="news-details-video-link" to={newsDetails.youtube_link}>
+                                        <i className="uil uil-play-circle me-2"></i>
+                                        {t('showVideo')}
+                                    </Link>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Related News Section */}
+                        {newsDetails?.related_news && newsDetails?.related_news.length > 0 && (
+                            <div className="news-details-related-section">
+                                <div className="news-details-related-title">
+                                    <span>{t('related_articles')}</span>
+                                </div>
+                                <div className="news-details-related-grid">
+                                    {newsDetails.related_news.map((article, index) => (
+                                        <div key={index} className="news-details-related-card">
+                                            <img
+                                                src={article?.image_url}
+                                                alt={article?.title}
+                                            />
+                                            <div className="news-details-related-content">
+                                                <h4>{getPreviewText(article?.title.slice(0, 100))}</h4>
+                                                <div className="news-details-related-actions">
+                                                    {article.description.split(' ').length > wordLimit && (
+                                                        <button
+                                                            className="news-details-read-more-btn"
+                                                            onClick={() => handleReadMore(article)}
+                                                        >
+                                                            {t("ReadMore")}
+                                                        </button>
+                                                    )}
+                                                    {article?.youtube_link && (
+                                                        <Link className="news-details-video-btn" to={article.youtube_link}>
+                                                            <i className="uil uil-play-circle me-2"></i>
+                                                            {t("showVideo")}
+                                                        </Link>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </>
+                ) : (
+                    <div className="text-center my-5">
+                        <p className="text-muted">{t('loading')}...</p>
                     </div>
                 )}
-                <Modal show={showModal} onHide={handleCloseModal} centered size="lg">
+
+                {/* Modal for Related News */}
+                <Modal 
+                    show={showModal} 
+                    onHide={handleCloseModal} 
+                    centered 
+                    size="lg"
+                    className="news-details-modal"
+                >
                     <Modal.Header closeButton>
                         <Modal.Title>{selectedArticle?.title}</Modal.Title>
                     </Modal.Header>
@@ -183,8 +203,6 @@ function MainNewsDetalis() {
                         </Button>
                     </Modal.Footer>
                 </Modal>
-
-
             </div>
         </section>
     );

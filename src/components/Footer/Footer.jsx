@@ -57,6 +57,9 @@ export function Footer() {
               <li>
                 <Link to="/contact">{t("footer.contactUs")}</Link>
               </li>
+              <li>
+                <Link to="/privacy-policy">{t("footer.privacyPolicy")}</Link>
+              </li>
             </ul>
           </div>
           <div className="col-md-4">

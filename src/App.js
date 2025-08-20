@@ -19,6 +19,8 @@ import AllMeetings from "./pages/mediaOffice/mettings/allMeetings/AllMeetings";
 import MeetingsDetails from "./pages/mediaOffice/mettings/MeetingDetails/MeetingsDetails";
 import AllLibrary from "./pages/mediaOffice/libraryGallery/allLibrary/allLibrary";
 import LibraryDetails from "./pages/mediaOffice/libraryGallery/LibraryDetails/LibraryDetails";
+import VideoLibrary from "./pages/mediaOffice/videoLibrary/videoLibrary";
+import Guidance from "./pages/mediaOffice/guidance/guidance";
 import DevelopmentDetailsPage from "./pages/about/development goals Details/developmentDetails";
 import NotFound from "./pages/404/404";
 import LoginPage from "./pages/Login/LoginPage";
@@ -50,6 +52,7 @@ import LastNewsDetailsPage from "./pages/LastNewsDetailsPage/LastNewsDetailsPage
 import AllTodayNews from "./pages/TodayNews/AllTodayNews";
 import BreakingNewsDetailsPage from "./pages/breakingNewsDetails/breakingNewsDetails";
 import ScrollToTop from "./components/scrollToTop/ScrollToTop";
+import { PrivacyPolicy } from "./pages/privacy-policy";
 function LayoutWrapper({ children }) {
   const location = useLocation();
 
@@ -131,6 +134,7 @@ function AppRoutes() {
       <Route path="/about/complaint" element={<ComplaintPage />} />
       <Route path="/search/:id" element={<SearchPage />} />
       <Route path="/lastNews/:id" element={<LastNewsDetailsPage />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
       <Route path="/mediaOffice/allnews" element={<Allnews />} />
       <Route path="/mediaOffice/newsdetails/:id" element={<NewsDetails />} />
@@ -144,6 +148,8 @@ function AppRoutes() {
       />
       <Route path="/mediaOffice/alllibrary" element={<AllLibrary />} />
       <Route path="/mediaOffice/librarydetails" element={<LibraryDetails />} />
+      <Route path="/mediaOffice/videolibrary" element={<VideoLibrary />} />
+      <Route path="/mediaOffice/guidance" element={<Guidance />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/vertification" element={<Vertification />} />
       <Route path="/vertification-otp" element={<VertificationOtp />} />

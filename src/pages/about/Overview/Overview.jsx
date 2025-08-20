@@ -53,36 +53,6 @@ function OverviewDetalis({ t }) {
     getAbout();
   }, [i18n.language]);
 
-  const aboutList =
-    i18n.language === "ar"
-      ? about.about
-        ? about.about
-          .replace(/<\/p>/g, "\n")
-          .replace(/<[^>]+>/g, "")
-          .replace(/&nbsp;/g, " ")
-          .replace(/&ndash;/g, "–")
-          .split(/\d+\s*[\-–]\s*/) // تقسيم النص بناءً على الأرقام (1 –، 2 – ...)
-          .filter((item) => item.trim() !== "") // إزالة الفراغات
-          .map((item, index) => (
-            <p key={index}>
-              {`${index + 1} – ${item.trim()}`}
-            </p>
-          ))
-        : null
-      : i18n.language === "en" && about.about
-        ? about.about
-          .replace(/<\/p>/g, "\n")
-          .replace(/<[^>]+>/g, "")
-          .replace(/&nbsp;/g, " ")
-          .replace(/&ndash;/g, "–")
-          .split(/\d+\s*[\-–]\s*/)
-          .filter((item) => item.trim() !== "")
-          .map((item, index) => (
-            <p key={index}>
-              {`${index + 1} – ${item.trim()}`}
-            </p>
-          ))
-        : null;
   const renderListFromText = (text) => {
     const lines = text.replace(/<\/p>/g, "\n")
       .replace(/<[^>]+>/g, "")
@@ -92,47 +62,73 @@ function OverviewDetalis({ t }) {
       .filter((item) => item.trim() !== "") // إزالة الفراغات
 
     return (
-      <ul className="titledetalis" style={{ lineHeight: '2.0' }}>
-        {lines.map((item, index) => {
-          const content = `${index + 1} – ${item.trim()}`;
-          return (
-            <li
-              key={index}
-              dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(content),
-              }}
-            />
-          );
-        })}
-        {lines.length === 0 && <li>{t('noData')}</li>}
+      <div className="overview-content">
+        <div className="overview-header">
+          <div className="overview-icon">
+            <i className="uil uil-building"></i>
+          </div>
+          <h2 className="overview-title">
+            {t("overview.ministry_name") || "وزارة الداخلية بالحكومة الليبية"}
+          </h2>
+          <p className="overview-subtitle">
+            {t("overview.ministry_description") || "تتولى وزارة الداخلية بالحكومة الليبية تنفيذ التشريعات والقوانين واللوائح والقرارات وما يلزم من التدابير والإجراءات التي تكفل أمن البلاد وحماية الأرواح والأعراض والممتلكات وتنفيذ السياسات والخطط والبرامج اللازمة لتنفيذ التشريعات في مجال الأمن والشرطة."}
+          </p>
+        </div>
 
-      </ul>
+        <div className="overview-tasks">
+          <h3 className="tasks-title">
+            <i className="uil uil-clipboard-notes"></i>
+            {t("overview.core_tasks_title") || "المهام الأساسية والاختصاصات"}
+          </h3>
+          
+          <div className="tasks-grid">
+            {lines.map((item, index) => {
+              const content = `${index + 1} – ${item.trim()}`;
+              return (
+                <div key={index} className="task-card">
+                  <div className="task-number">
+                    <span>{index + 1}</span>
+                  </div>
+                  <div className="task-content">
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: DOMPurify.sanitize(content.replace(/^\d+\s*[\-–]\s*/, '')),
+                      }}
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
     );
   };
 
-
-
   return (
-    <section className="overviewDetails my-5">
+    <section className="overview-section">
       <div className="container">
         {loading ? (
-          <div className="row justify-content-center my-3">
-            <div className="col-lg-12">
-              <div className="skeleton-wrapper">
-                <div className="skeleton-image mb-3"></div>
-                <div className="skeleton-text mb-2"></div>
-                <div className="skeleton-text mb-2"></div>
-                <div className="skeleton-text short mb-2"></div>
-              </div>
+          <div className="overview-loading">
+            <div className="loading-header">
+              <div className="loading-icon"></div>
+              <div className="loading-title"></div>
+              <div className="loading-subtitle"></div>
+            </div>
+            <div className="loading-tasks">
+              {[1, 2, 3, 4, 5].map((_, index) => (
+                <div key={index} className="loading-task">
+                  <div className="loading-number"></div>
+                  <div className="loading-content"></div>
+                </div>
+              ))}
             </div>
           </div>
         ) : (
           <>
             {renderListFromText(about.about || '')}
           </>
-
         )}
-        {aboutList?.length === 0 && <p>{t('noData')}</p>}
       </div>
     </section>
   );

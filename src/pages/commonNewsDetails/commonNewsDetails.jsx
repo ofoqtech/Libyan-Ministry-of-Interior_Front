@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { GlobalContainer } from "../../components/globalComponent/globalComponent";
-import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import DOMPurify from 'dompurify';
-import { Modal, Button } from "react-bootstrap"; // Ensure Bootstrap and React-Bootstrap are installed
+import { Modal, Button } from "react-bootstrap";
+import "./commonNewsDetails.css";
+
 export default function CommonNewsDetailsPage() {
     const { t } = useTranslation("global");
 
@@ -19,7 +20,6 @@ export default function CommonNewsDetailsPage() {
     );
 }
 
-
 function CommonNewsDetails() {
     const { i18n, t } = useTranslation("global");
     const { id } = useParams();
@@ -27,8 +27,6 @@ function CommonNewsDetails() {
     const [isLoading, setIsLoading] = useState(true);
     const [selectedArticle, setSelectedArticle] = useState(null);
     const [showModal, setShowModal] = useState(false);
-
-    const [showFullText, setShowFullText] = useState(false);
 
     const wordLimit = 20;
 
@@ -50,9 +48,11 @@ function CommonNewsDetails() {
         setSelectedArticle(null);
         setShowModal(false);
     };
+
     useEffect(() => {
         window.scrollTo(0, 0)
     }, []);
+
     useEffect(() => {
         const fetchNews = async () => {
             try {
@@ -78,126 +78,116 @@ function CommonNewsDetails() {
     }, [id, i18n.language]);
 
     return (
-        <section className="MainNewsDetalis my-5">
+        <section className="common-news-details">
             <div className="container">
-                <div className="row align-items-center">
-                    {isLoading ? (
-                        <div className="bg-secondary rounded w-100" style={{ height: "350px", opacity: 0.2 }}></div>
-                    ) : (
-
-                        <>
-                            <div className="d-flex gap-4  align-items-center">
-                                <img
-                                    style={{ maxWidth: "100%", width: "300px" }}
-                                    src={todayNews?.image_url}
-                                    className="mb-3"
-                                    alt=""
-                                />
-                                <h2 style={{ lineHeight: "40px", fontSize: "25px" }}>
-                                    {isLoading ? (
-                                        <div className="bg-secondary rounded mb-2" style={{ width: "80%", height: "30px", opacity: 0.2 }}></div>
-                                    ) : (
-                                        todayNews?.title
-                                    )}
-                                </h2>
+                {isLoading ? (
+                    <div className="header-skeleton loading-skeleton"></div>
+                ) : (
+                    <>
+                        {/* News Header Section */}
+                        <div className="news-header">
+                            <div className="news-header-content">
+                                <div className="news-header-image">
+                                    <img
+                                        src={todayNews?.image_url}
+                                        alt={todayNews?.title}
+                                    />
+                                </div>
+                                <div className="news-header-text">
+                                    <h1>{todayNews?.title}</h1>
+                                    <div className="news-meta">
+                                        <div className="news-date">
+                                            <i className="uil uil-calendar-alt"></i>
+                                            {new Date(todayNews?.created_at).toLocaleDateString(i18n.language)}
+                                        </div>
+                                        <div className="news-category">
+                                            {t("common_news.category_1")}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
 
-                        </>
-                    )}
-
-                </div>
-
-                <div className="my-3">
-                    {isLoading ? (
-                        <>
-                            <div className="bg-secondary rounded mb-2" style={{ height: "15px", width: "100%", opacity: 0.2 }}></div>
-                            <div className="bg-secondary rounded mb-2" style={{ height: "15px", width: "95%", opacity: 0.2 }}></div>
-                            <div className="bg-secondary rounded mb-2" style={{ height: "15px", width: "90%", opacity: 0.2 }}></div>
-                        </>
-                    ) : (
-
-                        <>
-                            <div className="titledetalis" dangerouslySetInnerHTML={{ __html: todayNews?.description }} />
+                        {/* News Content Section */}
+                        <div className="news-content">
+                            <div className="news-description" dangerouslySetInnerHTML={{ __html: todayNews?.description }} />
                             
+                            {/* Media Gallery */}
                             {todayNews?.medias && todayNews?.medias.length > 0 && (
-                                <>
-                                    <p className="text-center">{t('another')}</p>
-                                    <div className="mx-auto text-center flex-wrap d-flex justify-content-center flex-row align-items-center gap-3">
+                                <div className="media-gallery">
+                                    <h3>{t('another')}</h3>
+                                    <div className="media-grid">
                                         {todayNews.medias.map((media, index) => (
-                                            <img
-                                                key={index}
-                                                style={{ maxWidth: "100%", width: "200px" }}
-                                                src={media?.file_url}
-                                                className="mb-3"
-                                                alt=""
-                                            />
+                                            <div key={index} className="media-item">
+                                                <img
+                                                    src={media?.file_url}
+                                                    alt={`Media ${index + 1}`}
+                                                />
+                                            </div>
                                         ))}
                                     </div>
-                                </>
+                                </div>
                             )}
-                            <div className="row mt-5">
-                                {todayNews?.related_news.length > 0 && <div class="my-2 text-center mx-auto"><span class="type mb-4 text-center mx-auto">{t('related')}</span></div>}                                 {todayNews?.related_news.length > 0 &&
-                                    todayNews?.related_news.map((news, index) => (
-                                        <div key={index} className="col-lg-4 mb-4">
-                                            <div
-                                                className="card h-100"
-                                                style={{
-                                                    boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-                                                    borderRadius: "10px",
-                                                }}
-                                            >
-                                                <img
-                                                    style={{
-                                                        maxWidth: "100%",
-                                                        borderTopLeftRadius: "10px",
-                                                        borderTopRightRadius: "10px",
-                                                    }}
-                                                    src={news?.image_url}
-                                                    alt=""
-                                                />
-                                                <div className="card-body">
-                                                    <p style={{ lineHeight: "1.8" }}>{getPreviewText(news?.title.slice(0, 100))}</p>
-                                                    <span
-                                                        className="btn type my-3 mx-auto text-center d-flex justify-content-center"
-                                                        style={{ width: "160px", borderRadius: "5px" }}
-                                                        onClick={() => handleReadMore(news)}
 
+                            {/* Video Link */}
+                            {todayNews?.youtube_link && (
+                                <div className="video-section">
+                                    <Link className="video-link" to={todayNews.youtube_link}>
+                                        <i className="uil uil-play-circle me-2"></i>
+                                        {t('showVideo')}
+                                    </Link>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Related News Section */}
+                        {todayNews?.related_news && todayNews?.related_news.length > 0 && (
+                            <div className="related-news-section">
+                                <div className="related-news-title">
+                                    <span>{t('related')}</span>
+                                </div>
+                                <div className="related-news-grid">
+                                    {todayNews.related_news.map((news, index) => (
+                                        <div key={index} className="related-news-card">
+                                            <img
+                                                src={news?.image_url}
+                                                alt={news?.title}
+                                            />
+                                            <div className="related-news-content">
+                                                <h4>{getPreviewText(news?.title.slice(0, 100))}</h4>
+                                                <div className="related-news-actions">
+                                                    <button
+                                                        className="read-more-btn"
+                                                        onClick={() => handleReadMore(news)}
                                                     >
                                                         {t("ReadMore")}
-                                                    </span>
+                                                    </button>
                                                     {news?.youtube_link && (
-                                                        <div className="text-center mt-3">
-                                                            {news?.title.split(' ').length > wordLimit && (
-                                                                <Link className="btn btn-primary" to={news.youtube_link}>
-                                                                    {t("showVideo")}
-                                                                </Link>
-                                                            )}
-
-
-                                                        </div>
+                                                        <Link className="video-btn" to={news.youtube_link}>
+                                                            <i className="uil uil-play-circle me-2"></i>
+                                                            {t("showVideo")}
+                                                        </Link>
                                                     )}
                                                 </div>
                                             </div>
                                         </div>
                                     ))}
-                            </div>
-
-
-
-
-                            {todayNews?.youtube_link && (
-                                <div className="my-5 mx-auto text-center d-flex justify-content-center">
-                                    <Link className="titledetalis type" to={todayNews.youtube_link}>
-                                        {t('showVideo')}
-                                    </Link>
                                 </div>
-                            )}
-                        </>
-                    )}
-                </div>
-                <Modal show={showModal} onHide={handleCloseModal} centered size="lg">
+                            </div>
+                        )}
+                    </>
+                )}
+
+                {/* Modal for Related News */}
+                <Modal 
+                    show={showModal} 
+                    onHide={handleCloseModal} 
+                    centered 
+                    size="lg"
+                    className="news-modal"
+                >
                     <Modal.Header closeButton>
-                        <Modal.Title style={{ fontSize: "16px" }}>{selectedArticle?.title}</Modal.Title>
+                        <Modal.Title>{selectedArticle?.title}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <div

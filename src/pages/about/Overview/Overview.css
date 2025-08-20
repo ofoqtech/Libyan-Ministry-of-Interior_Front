@@ -1,15 +1,349 @@
-
-.overviewDetalis .type{
-    display: block;
-    padding: 10px 20px;
-    border-radius: 3px;
-    font-size: 14px;
-    color: var(--white-color);
-    background-color: var(--main-color);
-    width: fit-content;
+/* Overview Page - Government Ministry Style */
+.overview-section {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  min-height: 100vh;
+  padding: 3rem 0;
 }
-.overviewDetalis ol li {
-    margin: 14px 0 ;
-    font-size: 16px;
-    font-weight: 300;
+
+.overview-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Overview Content */
+.overview-content {
+  background: white;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 63, 156, 0.1);
+}
+
+/* Overview Header */
+.overview-header {
+  background: linear-gradient(135deg, #003f9c 0%, #0056d6 100%);
+  color: white;
+  padding: 3rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.overview-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.1)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.3;
+}
+
+.overview-icon {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 1.5rem;
+}
+
+.overview-icon i {
+  font-size: 4rem;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  backdrop-filter: blur(10px);
+}
+
+.overview-title {
+  position: relative;
+  z-index: 2;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+}
+
+.overview-subtitle {
+  position: relative;
+  z-index: 2;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 800px;
+  margin: 0 auto;
+  opacity: 0.95;
+}
+
+/* Overview Tasks */
+.overview-tasks {
+  padding: 3rem 2rem;
+}
+
+.tasks-title {
+  color: #003f9c;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.tasks-title i {
+  font-size: 2rem;
+  color: #003f9c;
+}
+
+/* Tasks Grid */
+.tasks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.task-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border: 2px solid rgba(0, 63, 156, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: visible; /* تغيير من hidden إلى visible لظهور الأرقام */
+  margin-top: 20px; /* إضافة margin لترك مساحة للأرقام */
+}
+
+.task-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #003f9c, #0056d6);
+}
+
+.task-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 63, 156, 0.15);
+  border-color: #003f9c;
+}
+
+.task-number {
+  position: absolute;
+  top: -20px; /* زيادة المسافة من الأعلى */
+  right: 20px;
+  background: linear-gradient(135deg, #003f9c 0%, #0056d6 100%);
+  color: white;
+  width: 55px; /* زيادة الحجم قليلاً */
+  height: 55px; /* زيادة الحجم قليلاً */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.5rem; /* زيادة حجم الخط */
+  box-shadow: 0 8px 25px rgba(0, 63, 156, 0.5);
+  z-index: 100; /* زيادة z-index */
+  border: 4px solid white; /* زيادة سمك الحدود */
+  transition: all 0.3s ease;
+}
+html[dir="ltr"] .task-number{
+  right: auto;
+  left: 20px !important;
+}
+html[dir="rtl"] .task-number{
+  left: auto;
+  right: 20px !important;
+}
+.task-number:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 30px rgba(0, 63, 156, 0.6);
+}
+
+.task-number span {
+  color: white;
+  font-weight: 800; /* زيادة سمك الخط */
+  font-size: 1.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  line-height: 1;
+}
+
+.task-content {
+  margin-top: 1rem;
+}
+
+.task-content p {
+  color: #2c3e50;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: 0;
+  text-align: justify;
+}
+
+/* Loading Skeleton */
+.overview-loading {
+  background: white;
+  border-radius: 25px;
+  padding: 3rem 2rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+}
+
+.loading-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.loading-icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  margin: 0 auto 1.5rem;
+}
+
+.loading-title {
+  height: 40px;
+  width: 60%;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 8px;
+  margin: 0 auto 1rem;
+}
+
+.loading-subtitle {
+  height: 20px;
+  width: 80%;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 8px;
+  margin: 0 auto;
+}
+
+.loading-tasks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.loading-task {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border: 2px solid rgba(0, 63, 156, 0.1);
+  position: relative;
+}
+
+.loading-number {
+  position: absolute;
+  top: -15px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+.loading-content {
+  height: 60px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .overview-section {
+    padding: 2rem 0;
+  }
+  
+  .overview-header {
+    padding: 2rem 1rem;
+  }
+  
+  .overview-title {
+    font-size: 2rem;
+  }
+  
+  .overview-subtitle {
+    font-size: 1rem;
+  }
+  
+  .overview-tasks {
+    padding: 2rem 1rem;
+  }
+  
+  .tasks-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .task-card {
+    padding: 1.5rem;
+  }
+  
+  .tasks-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .overview-header {
+    padding: 1.5rem 1rem;
+  }
+  
+  .overview-title {
+    font-size: 1.8rem;
+  }
+  
+  .overview-icon i {
+    font-size: 3rem;
+    width: 80px;
+    height: 80px;
+  }
+  
+  .task-card {
+    padding: 1rem;
+  }
+}
+
+/* RTL Support */
+html[dir="rtl"] .task-number {
+  left: auto;
+  right: 20px;
+}
+
+html[dir="ltr"] .loading-number {
+  right: auto;
+  left: 20px !important;
+}
+
+
+html[dir="rtl"] .task-content p {
+  text-align: right;
+}
+
+html[dir="ltr"] .task-content p {
+  text-align: left;
 }

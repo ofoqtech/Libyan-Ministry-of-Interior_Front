@@ -6,7 +6,9 @@
 .main-title .title {
   font-size: 26px;
   margin: 50px 0;
-  width: 250px;
+  width: auto;
+  flex: 1;
+  white-space: nowrap;
 }
 .main-title .lines {
   display: flex;

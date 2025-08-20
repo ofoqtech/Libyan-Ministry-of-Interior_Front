@@ -40,49 +40,54 @@ export default function MeetingsDetails() {
         header={t('meetingsDetails.header')}
       />
 
-      <section className="MainMeetingsDetails my-5">
+      <section className="meetings-details-page">
         <div className="container">
           {loading ? (
-            <div className="d-flex justify-content-center align-items-center py-5">
-              <div className="spinner-border text-primary" role="status">
-                <span className="visually-hidden">{t('loading')}</span>
-              </div>
-            </div>
+            <div className="meetings-details-header-skeleton meetings-details-loading-skeleton"></div>
           ) : data ? (
             <>
-              <div className="row align-items-center">
-                  <img
-                    style={{ maxWidth: '100%', width: '300px' }}
-                    src={data.image_url}
-                    className="mb-3"
-                    alt="meeting"
-                  />
-                
-                <div className="col-lg-6">
-                  <h2 style={{ lineHeight: '40px', fontSize: '25px' }}>{data.title}</h2>
-                  <span className="desicionstime">
-                    <i className="uil uil-calendar-alt mx-1"></i>
-                    {new Date(data.created_at).toLocaleDateString(i18n.language)}
-                  </span>
+              {/* Meeting Header Section */}
+              <div className="meetings-details-header">
+                <div className="meetings-details-header-content">
+                  <div className="meetings-details-header-image">
+                    <img
+                      src={data.image_url}
+                      alt="meeting"
+                    />
+                  </div>
+                  <div className="meetings-details-header-text">
+                    <h1>{data.title}</h1>
+                    <div className="meetings-details-meta">
+                      <div className="meetings-details-date">
+                        <i className="uil uil-calendar-alt"></i>
+                        {new Date(data.created_at).toLocaleDateString(i18n.language)}
+                      </div>
+                      <div className="meetings-details-category">
+                        {t('meetingsDetails.title')}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
+              {/* Meeting Content Section */}
+              <div className="meetings-details-content">
+                <div className="meetings-details-description" dangerouslySetInnerHTML={{ __html: data?.description }} />
+              </div>
 
-              <div className=" titledetalis my-3" dangerouslySetInnerHTML={{ __html: data?.description }} />
-
-
+              {/* Media Gallery */}
               {data.medias && data.medias.length > 0 && (
-                <div className="mt-5">
-                  <div className="row justify-content-center g-3">
+                <div className="meetings-details-media-gallery">
+                  <h3>{t('meetingsDetails.mediaGallery') || 'معرض الوسائط'}</h3>
+                  <div className="meetings-details-media-grid">
                     {data.medias.map((media) => (
                       <div
                         key={media.id}
-                        className="col-md-3 col-sm-6 col-12 image-container"
+                        className="meetings-details-media-item"
                       >
                         <img
                           src={media.file_url}
                           alt={t('meetingsDetails.imageAlt')}
-                          className="img-fluid"
                         />
                       </div>
                     ))}

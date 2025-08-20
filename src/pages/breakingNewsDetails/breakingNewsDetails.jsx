@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { GlobalContainer } from "../../components/globalComponent/globalComponent";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
+import "./breakingNewsDetails.css";
 export default function BreakingNewsDetailsPage() {
     const { t } = useTranslation("global");
     useEffect(() => {
@@ -56,51 +57,56 @@ function BreakingNewsDetails() {
         getDetail();
     }, [id, i18n.language]);
     return (
-        <section className="MainNewsDetalis my-5">
+        <section className="breaking-news-details-page">
             <div className="container">
                 {loading ? (
-                    // Skeleton
-                    <div className="row justify-content-center my-3">
-                        <div className="col-lg-12">
-                            <div className="skeleton-wrapper">
-                                <div className="skeleton-image mb-3"></div>
-                                <div className="skeleton-text mb-2"></div>
-                                <div className="skeleton-text mb-2"></div>
-                                <div className="skeleton-text short mb-2"></div>
+                    <div className="breaking-news-details-header-skeleton breaking-news-details-loading-skeleton"></div>
+                ) : detail ? (
+                    <>
+                        {/* News Header Section */}
+                        <div className="breaking-news-details-header">
+                            <div className="breaking-news-details-header-content">
+                                <div className="breaking-news-details-header-image">
+                                    <img
+                                        src={detail?.image_url}
+                                        alt={detail?.title}
+                                    />
+                                </div>
+                                <div className="breaking-news-details-header-text">
+                                    <h1>{detail?.title}</h1>
+                                    <div className="breaking-news-details-meta">
+                                        <div className="breaking-news-details-date">
+                                            <i className="uil uil-calendar-alt"></i>
+                                            {new Date(detail?.created_at).toLocaleDateString(i18n.language)}
+                                        </div>
+                                        <div className="breaking-news-details-category">
+                                            {t("header.breakingNews")}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ) : (
-                    <div className="row align-items-center">
-                        <img
-                            style={{ maxWidth: "100%", width: "300px" }}
-                            src={detail?.image_url}
-                            className="mb-3"
-                            width="300px"
-                            alt=""
-                        />
-                        <div className="col-lg-6">
-                            <h2 style={{ lineHeight: "40px", fontSize: "25px" }}>
-                                {detail?.title}
-                            </h2>
-                            <span className="desicionstime">
-                                <i className="uil uil-calendar-alt mx-1"></i>{" "}
-                                {`${detail?.created_at?.slice(0, 10)}`}
-                            </span>
+
+                        {/* News Content Section */}
+                        <div className="breaking-news-details-content">
+                            <div className="breaking-news-details-description" dangerouslySetInnerHTML={{ __html: detail?.description }} />
+                            
+                            {/* Video Link */}
+                            {detail?.youtube_link && (
+                                <div className="breaking-news-details-video-section">
+                                    <Link className="breaking-news-details-video-link" to={detail.youtube_link}>
+                                        <i className="uil uil-play-circle me-2"></i>
+                                        {t('showVideo')}
+                                    </Link>
+                                </div>
+                            )}
                         </div>
+                    </>
+                ) : (
+                    <div className="text-center my-5">
+                        <p className="text-muted">{t('loading')}...</p>
                     </div>
                 )}
-
-                <div className="my-3">
-                    <div className="titledetalis" dangerouslySetInnerHTML={{ __html: detail?.description }} />
-                    {detail?.youtube_link && (
-                        <div className="my-5 mx-auto text-center d-flex justify-content-center">
-                            <Link className="titledetalis type" to={detail.youtube_link}>
-                                {t('showVideo')}
-                            </Link>
-                        </div>
-                    )}
-                </div>
             </div>
         </section>
     );
