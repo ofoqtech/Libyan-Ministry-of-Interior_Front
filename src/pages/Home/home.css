@@ -296,7 +296,6 @@ html[dir="ltr"] .home .container .text .description {
 
 /*============ [Common News] ============*/
 .common-news {
-  padding: 2rem 0;
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
 }
 
@@ -304,7 +303,6 @@ html[dir="ltr"] .home .container .text .description {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
   padding: 0 0.5rem;
   flex-wrap: nowrap; /* منع التفاف العناصر */
 }
@@ -708,6 +706,7 @@ html[dir="ltr"] .home .container .text .description {
     flex-direction: column;
     gap: 1rem;
     text-align: center;
+    margin-bottom: 30px;
   }
   
   .desiscions-gallary {
