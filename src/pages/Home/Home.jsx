@@ -110,26 +110,7 @@ function Hero({ t }) {
   return (
     <>
       <div className="home-swiper home">
-        {/* Debug button - remove in production */}
-        {process.env.NODE_ENV === 'development' && (
-          <button 
-            onClick={restartAutoplay}
-            style={{
-              position: 'absolute',
-              top: '10px',
-              right: '10px',
-              zIndex: 1000,
-              padding: '5px 10px',
-              background: 'rgba(0, 63, 156, 0.8)',
-              color: 'white',
-              border: 'none',
-              borderRadius: '5px',
-              cursor: 'pointer'
-            }}
-          >
-            Restart Autoplay
-          </button>
-        )}
+
         <Swiper
           spaceBetween={0}
           slidesPerView={1}

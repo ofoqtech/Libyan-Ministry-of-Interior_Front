@@ -17,6 +17,8 @@ import Marquee from "react-fast-marquee";
 
 function Header() {
   const [mobHeader, setMobHeader] = useState(false);
+  const [breakingNews, setBreakingNews] = useState([]);
+  const [breakingNewsLoading, setBreakingNewsLoading] = useState(true);
 
   const [t, i18n] = useTranslation("global");
   const [lang, setLang] = useLocalStorage("lang", "ar");
@@ -56,9 +58,14 @@ function Header() {
   }, [dir, i18n, lang]);
   const { user, logout } = useAuth();
 
+  const handleBreakingNewsChange = (news, loading) => {
+    setBreakingNews(news);
+    setBreakingNewsLoading(loading);
+  };
+
   return (
     <>
-      <TopNav t={t} i18n={i18n} />
+      <TopNav t={t} i18n={i18n} onBreakingNewsChange={handleBreakingNewsChange} />
       <DesktopHeader
         t={t}
         user={user}
@@ -67,6 +74,8 @@ function Header() {
         mobHeader={mobHeader}
         setMobHeader={setMobHeader}
         handleChange={handleChange}
+        breakingNews={breakingNews}
+        breakingNewsLoading={breakingNewsLoading}
       />
       <ModileHeader
         t={t}
@@ -80,7 +89,7 @@ function Header() {
   );
 }
 
-function TopNav({ t }) {
+function TopNav({ t, onBreakingNewsChange }) {
   const [breakingNews, setBreakingNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const { i18n } = useTranslation("global");
@@ -137,6 +146,10 @@ function TopNav({ t }) {
 
   }, [i18n.language]);
 
+  // Notify parent component about breaking news changes
+  useEffect(() => {
+    onBreakingNewsChange && onBreakingNewsChange(breakingNews, loading);
+  }, [breakingNews, loading, onBreakingNewsChange]);
 
   if (loading) {
     return (
@@ -148,6 +161,11 @@ function TopNav({ t }) {
         </div>
       </div>
     );
+  }
+
+  // If no breaking news data, don't render the top nav
+  if (!breakingNews || breakingNews.length === 0) {
+    return null;
   }
 
   return (
@@ -232,6 +250,8 @@ function DesktopHeader({
   t,
   user,
   logout,
+  breakingNews,
+  breakingNewsLoading,
 }) {
   const [show, setShow] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -244,9 +264,12 @@ function DesktopHeader({
       setSearchTerm(""); // مسح القيمة
     }
   };
+  // Add CSS class based on breaking news
+  const headerClasses = `header px-2 ${scrolled ? 'scrolled' : ''} ${(!breakingNews || breakingNews.length === 0) ? 'no-breaking-news' : ''}`;
+
   return (
-    <div className={`header px-2 ${scrolled ? 'scrolled' : ''}`}
-      style={{ backgroundColor: scrolled ? "#003f9c" : "transparent", transition: "background-color 0.3s ease", top: scrolled ? "70px" : '100px' }}>
+    <div className={headerClasses}
+      style={{ backgroundColor: scrolled ? "#003f9c" : "transparent", transition: "background-color 0.3s ease" }}>
       <div className="container px-2">
         <div className="logo">
           <Link to=''>          <img src="/assets/logo.png" alt={t("header.logo_alt")} />

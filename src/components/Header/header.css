@@ -1,15 +1,23 @@
 .header {
   position: fixed;
-  top: 100px;
+  top: 70px;
   width: 100%;
   z-index: 12121;
+}
+
+/* Header position when no breaking news */
+.header.no-breaking-news {
+  top: 0px;
 }
 @media(max-width:900px){
 .header{
   top : 170px !important;
 }
 .header.scrolled{
-  top : 158px !important;
+  top : 186px !important;
+}
+.header.no-breaking-news {
+  top: 0px !important;
 }
 .global-container .text {
   padding-top: 290px !important;
@@ -22,6 +30,9 @@
 .header.scrolled{
   top : 184px !important;
 }
+.header.no-breaking-news {
+  top: 0px !important;
+}
 .global-container .text {
   padding-top: 310px !important;
 }
@@ -30,8 +41,14 @@
 .header {
   top : 240px !important;
 }
-.header.header.scrolled {
+.header.scrolled{
   top : 180px !important;
+}
+.header.no-breaking-news {
+  top: 0px !important;
+}
+.header.no-breaking-news.scrolled {
+  top: 0px !important;
 }
 .global-container .text {
   padding-top: 360px !important;
@@ -44,8 +61,14 @@
 .header {
   top : 240px !important;
 }
-.header.header.scrolled {
+.header.scrolled {
   top : 220px !important;
+}
+.header.no-breaking-news {
+  top: 0px !important;
+}
+.header.no-breaking-news.scrolled {
+  top: 0px !important;
 }
 .global-container .text {
   padding-top: 360px !important;

@@ -37,6 +37,10 @@
   z-index: 2;
   width: 100%;
   padding: 2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 
 .swiper-info h1 a {
@@ -185,6 +189,34 @@ html[dir="ltr"] .home .container .text .description {
 .home-swiper .swiper-wrapper {
   height: 120vh;
   min-height: 700px;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 0 !important;
+  row-gap: 0 !important;
+  column-gap: 0 !important;
+}
+
+.home-swiper {
+  height: 120vh;
+  min-height: 700px;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.home-swiper .swiper {
+  height: 120vh;
+  min-height: 700px;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.home-swiper .swiper-slide {
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 0 !important;
 }
 
 .swiper-image {
@@ -192,6 +224,19 @@ html[dir="ltr"] .home .container .text .description {
   background-size: cover;
   background-repeat: no-repeat;
   height: 100%;
+  width: 100% !important;
+  position: relative;
+}
+
+/* Ensure Swiper takes full width */
+.home-swiper {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.home-swiper .swiper {
+  width: 100% !important;
+  height: 100% !important;
 }
 
 /* Swiper Navigation Buttons */
@@ -241,10 +286,55 @@ html[dir="ltr"] .home .container .text .description {
     min-height: 100vh;
   }
   
+  .home-swiper,
+  .home-swiper .swiper,
+  .home-swiper .swiper-wrapper,
+  .home-swiper .swiper-slide,
+  .swiper-image {
+    width: 100% !important;
+  }
+  
+  .home-swiper {
+    height: 100vh !important;
+    min-height: 600px !important;
+  }
+  
+  .home-swiper .swiper {
+    height: 100vh !important;
+    min-height: 600px !important;
+  }
+  
+  .home-swiper .swiper-wrapper {
+    height: 100vh !important;
+    min-height: 600px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .swiper-image {
+    height: 100vh !important;
+    min-height: 600px !important;
+  }
+  
+  .swiper-info {
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 0;
+  }
+  
+  .home .container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
   .home .container .text {
     width: 90%;
     padding: 1.5rem;
-    margin-right: 10px; /* تقليل margin على الشاشات المتوسطة */
+    margin: 0 auto; /* توسيط في المنتصف */
+    text-align: center; /* محاذاة النص في المنتصف */
   }
   
   .home .container .text .title {
@@ -259,10 +349,64 @@ html[dir="ltr"] .home .container .text .description {
 }
 
 @media(max-width: 600px) {
+  .home-swiper,
+  .home-swiper .swiper,
+  .home-swiper .swiper-wrapper,
+  .home-swiper .swiper-slide,
+  .swiper-image {
+    width: 100% !important;
+  }
+  
+  .home-swiper {
+    height: 90vh !important;
+    min-height: 600px !important;
+  }
+  
+  .home-swiper .swiper {
+    height: 90vh !important;
+    min-height: 600px !important;
+  }
+  
+  .home-swiper .swiper-wrapper {
+    height: 90vh !important;
+    min-height: 600px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0 !important;
+    row-gap: 0 !important;
+    column-gap: 0 !important;
+  }
+  
+  .home-swiper .swiper-slide {
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0 !important;
+  }
+  
+  .swiper-image {
+    height: 90vh !important;
+    min-height: 600px !important;
+  }
+  
+  .swiper-info {
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+    padding: 0;
+  }
+  
+  .home .container {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
   .home .container .text {
     width: 95%;
     padding: 1rem;
-    margin-right: 1rem; /* تقليل margin على الشاشات الصغيرة */
+    margin: 0 auto; /* توسيط في المنتصف */
+    text-align: center; /* محاذاة النص في المنتصف */
   }
   
   .home .container .text .title {
@@ -277,10 +421,64 @@ html[dir="ltr"] .home .container .text .description {
 }
 
 @media(max-width: 480px) {
+  .home-swiper,
+  .home-swiper .swiper,
+  .home-swiper .swiper-wrapper,
+  .home-swiper .swiper-slide,
+  .swiper-image {
+    width: 100% !important;
+  }
+  
+  .home-swiper {
+    height: 85vh !important;
+    min-height: 550px !important;
+  }
+  
+  .home-swiper .swiper {
+    height: 85vh !important;
+    min-height: 550px !important;
+  }
+  
+  .home-swiper .swiper-wrapper {
+    height: 85vh !important;
+    min-height: 550px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0 !important;
+    row-gap: 0 !important;
+    column-gap: 0 !important;
+  }
+  
+  .home-swiper .swiper-slide {
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0 !important;
+  }
+  
+  .swiper-image {
+    height: 85vh !important;
+    min-height: 550px !important;
+  }
+  
+  .swiper-info {
+    align-items: center;
+    justify-content: center;
+    min-height: 85vh;
+    padding: 0;
+  }
+  
+  .home .container {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
   .home .container .text {
     padding: 1.5rem;
-    margin-right: 0.5rem; /* تقليل margin على الشاشات الصغيرة جداً */
+    margin: 0 auto; /* توسيط في المنتصف */
     width: 98%; /* زيادة العرض قليلاً */
+    text-align: center; /* محاذاة النص في المنتصف */
   }
   
   .home .container .text .title {
