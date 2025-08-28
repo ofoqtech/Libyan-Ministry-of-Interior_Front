@@ -3,10 +3,15 @@
   display: flex;
   align-items: center;
   position: relative;
-  z-index: 0;
+  z-index: 997;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+}
+
+.swiper-info .container {
+  position: relative !important;
+  z-index: 1001 !important;
 }
 
 .swiper-image {
@@ -18,13 +23,14 @@
   overflow: hidden;
   height: 120vh;
   min-height: 700px;
+  z-index: 998;
 }
 
 .swiper-image::before {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 999;
   background:
     linear-gradient(135deg, rgba(0, 63, 156, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%),
     linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0%, transparent 50%),
@@ -34,7 +40,7 @@
 
 .swiper-info {
   position: relative;
-  z-index: 2;
+  z-index: 1000;
   width: 100%;
   padding: 2rem 0;
   display: flex;
@@ -47,6 +53,9 @@
   color: #153ca5 !important;
   cursor: pointer;
   transition: all 0.3s ease;
+  position: relative;
+  z-index: 1006;
+  pointer-events: auto;
 }
 
 .swiper-info h1 a:hover {
@@ -58,10 +67,13 @@
 .swiper-info p a {
   color: #333 !important;
   cursor: pointer;
+  position: relative;
+  z-index: 1007;
+  pointer-events: auto;
 }
 
 .home .container {
-  z-index: 1;
+  z-index: 1001;
   display: flex;
   flex-direction: column;
   margin: 0px auto 0;
@@ -99,6 +111,9 @@ html[dir="ltr"] .home .container {
   height: auto;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  position: relative;
+  z-index: 1002;
+  pointer-events: auto;
 }
 
 /* للغة العربية - RTL */
@@ -126,6 +141,9 @@ html[dir="ltr"] .home .container .text {
   transition: all 0.3s ease;
   align-self: flex-end;
   /* محاذاة للجانب الأيمن */
+  position: relative;
+  z-index: 1005;
+  pointer-events: auto;
 }
 
 /* للغة العربية - RTL */
@@ -168,6 +186,9 @@ html[dir="ltr"] .home .container .text .news {
   /* خط جميل تحت العنوان */
   padding-bottom: 15px;
   /* زيادة المسافة تحت العنوان */
+  position: relative;
+  z-index: 1003;
+  pointer-events: auto;
 }
 
 /* للغة العربية - RTL */
@@ -193,6 +214,9 @@ html[dir="ltr"] .home .container .text .title {
   hyphens: auto;
   -webkit-line-clamp: unset;
   -webkit-box-orient: unset;
+  position: relative;
+  z-index: 1004;
+  pointer-events: auto;
 }
 
 /* للغة العربية - RTL */
@@ -223,6 +247,8 @@ html[dir="ltr"] .home .container .text .description {
   min-height: 700px;
   margin: 0 !important;
   padding: 0 !important;
+  position: relative;
+  z-index: 996;
 }
 
 .home-swiper .swiper {
@@ -230,6 +256,8 @@ html[dir="ltr"] .home .container .text .description {
   min-height: 700px;
   margin: 0 !important;
   padding: 0 !important;
+  position: relative;
+  z-index: 995;
 }
 
 .home-swiper .swiper-slide {
@@ -238,6 +266,8 @@ html[dir="ltr"] .home .container .text .description {
   margin: 0 !important;
   padding: 0 !important;
   gap: 0 !important;
+  position: relative;
+  z-index: 994;
 }
 
 .swiper-image {
@@ -247,6 +277,7 @@ html[dir="ltr"] .home .container .text .description {
   height: 100%;
   width: 100% !important;
   position: relative;
+  z-index: 993;
 }
 
 /* Ensure Swiper takes full width */

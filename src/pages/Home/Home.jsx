@@ -212,15 +212,38 @@ function Hero({ t }) {
                           <span className="news">
                             {t("header.latest_news")}
                           </span>
-                          <h1 className="title">
-                            <Link style={{lineHeight : "2.0"}} to={`/lastNews/${heroSection?.id}`}>
-                              {heroSection?.title.slice(0, 80)}
-                            </Link>
-                          </h1>
-                          <p
-                            className="description"
-                            dangerouslySetInnerHTML={{ __html: heroSection?.description }}
-                          ></p>
+                          <div style={{ position: "relative" }}>
+                            <h1
+                              className="title"
+                              style={{ position: "relative", zIndex: 2 }}
+                            >
+                              <Link style={{ lineHeight: "2.0" }} to={`/lastNews/${heroSection?.id}`}>
+                                {heroSection?.title.slice(0, 80)}
+                              </Link>
+                            </h1>
+                            <p
+                              className="description"
+                              style={{ lineHeight: "2.0", position: "relative", zIndex: 3 }}
+                            >
+                              <span
+                                dangerouslySetInnerHTML={{
+                                  __html: heroSection?.description.slice(0, 200)
+                                }}
+                              />
+                              ...{" "}
+                              <Link
+                                to={`/lastNews/${heroSection?.id}`}
+                                style={{
+                                  color: "#003f9c",
+                                  fontWeight: "bold",
+                                  position: "relative",
+                                  zIndex: 4,
+                                }}
+                              >
+                                اقرأ المزيد
+                              </Link>
+                            </p>
+                          </div>
                         </>
                       )}
                     </div>
