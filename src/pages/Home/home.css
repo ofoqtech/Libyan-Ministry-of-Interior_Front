@@ -44,9 +44,10 @@
   width: 100%;
   padding: 2rem 0;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   min-height: 100vh;
+  padding-bottom: 4rem;
 }
 
 .swiper-info h1 a {
@@ -439,17 +440,19 @@ html[dir="ltr"] .home .container .text .description {
   }
   
   .swiper-info {
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     min-height: 100vh;
     padding: 0;
+    padding-bottom: 3rem;
   }
   
   .home .container {
     min-height: 100vh;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
+    padding-bottom: 2rem;
   }
   
   .home .container .text {

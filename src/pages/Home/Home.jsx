@@ -38,6 +38,7 @@ const Home = () => {
 function Hero({ t }) {
   const [heroSections, setHeroSection] = useState(null);
   const [swiperInstance, setSwiperInstance] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const { i18n } = useTranslation("global");
 
   // Manual autoplay restart function
@@ -46,8 +47,16 @@ function Hero({ t }) {
       try {
         swiperInstance.autoplay.stop();
         setTimeout(() => {
-          swiperInstance.autoplay.start();
-          console.log('Manual autoplay restart successful');
+          try {
+            swiperInstance.autoplay.start();
+            console.log('Manual autoplay restart successful');
+          } catch (error) {
+            console.error('Error starting autoplay after restart:', error);
+            // Force restart swiper if autoplay fails
+            if (swiperInstance && swiperInstance.update) {
+              swiperInstance.update();
+            }
+          }
         }, 100);
       } catch (error) {
         console.error('Manual autoplay restart failed:', error);
@@ -58,6 +67,7 @@ function Hero({ t }) {
   useEffect(() => {
     const getHeroSection = async () => {
       try {
+        setIsLoading(true);
         const response = await axios.get(
           `${process.env.REACT_APP_API_URL}/app_settings/hero?isMobile=0`,
           {
@@ -67,16 +77,33 @@ function Hero({ t }) {
             },
           }
         );
-        if (response.status === 200) {
+        if (response.status === 200 && response.data.result) {
           setHeroSection(response.data.result);
+          // Start autoplay after data is set
+          setTimeout(() => {
+            if (swiperInstance && response.data.result.length > 1) {
+              try {
+                swiperInstance.autoplay.start();
+                console.log('Autoplay started after data fetch');
+              } catch (error) {
+                console.error('Error starting autoplay after data fetch:', error);
+              }
+            }
+          }, 100);
+        } else {
+          console.error('Invalid response format:', response.data);
+          setHeroSection([]);
         }
       } catch (err) {
-        console.log(err);
+        console.error('Error fetching hero sections:', err);
+        setHeroSection([]);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     getHeroSection();
-  }, [i18n.language]);
+  }, [i18n.language, swiperInstance]);
 
   // Restart autoplay when data changes
   useEffect(() => {
@@ -85,16 +112,19 @@ function Hero({ t }) {
       try {
         if (swiperInstance.autoplay && typeof swiperInstance.autoplay.start === 'function') {
           swiperInstance.autoplay.start();
+          console.log('Autoplay started successfully from useEffect');
         } else {
           console.warn('Autoplay module not available on Hero Swiper');
         }
       } catch (error) {
         console.error('Error starting Hero autoplay:', error);
+        // Force swiper update if autoplay fails
+        if (swiperInstance && swiperInstance.update) {
+          swiperInstance.update();
+        }
       }
     }
   }, [heroSections, swiperInstance]);
-
-  const isLoading = !heroSections;
 
   // Debug: Log when data changes
   useEffect(() => {
@@ -107,10 +137,27 @@ function Hero({ t }) {
     }
   }, [heroSections, swiperInstance]);
 
+  // Force swiper update if it gets stuck
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (swiperInstance && heroSections && heroSections.length > 1) {
+        try {
+          if (swiperInstance.autoplay && !swiperInstance.autoplay.running) {
+            console.log('Autoplay stopped, restarting...');
+            swiperInstance.autoplay.start();
+          }
+        } catch (error) {
+          console.error('Error in autoplay check:', error);
+        }
+      }
+    }, 5000); // Check every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [swiperInstance, heroSections]);
+
   return (
     <>
       <div className="home-swiper home">
-
         <Swiper
           spaceBetween={0}
           slidesPerView={1}
@@ -140,6 +187,10 @@ function Hero({ t }) {
                   swiperInstance.autoplay.start();
                 } catch (error) {
                   console.error('Error restarting autoplay after slide change:', error);
+                  // Force swiper update if autoplay fails
+                  if (swiperInstance && swiperInstance.update) {
+                    swiperInstance.update();
+                  }
                 }
               }, 100);
             }
@@ -147,111 +198,151 @@ function Hero({ t }) {
           onSwiper={(swiper) => {
             console.log('Hero Swiper initialized:', swiper);
             setSwiperInstance(swiper);
-            // Start autoplay immediately if we have data
-            if (heroSections && heroSections.length > 1) {
-              try {
-                swiper.autoplay.start();
-                console.log('Autoplay started successfully');
-              } catch (error) {
-                console.error('Error starting autoplay:', error);
-                // Fallback: try to start autoplay after a short delay
-                setTimeout(() => {
-                  try {
-                    swiper.autoplay.start();
-                    console.log('Autoplay started with fallback');
-                  } catch (fallbackError) {
-                    console.error('Fallback autoplay failed:', fallbackError);
-                  }
-                }, 1000);
+            
+            // Wait a bit for swiper to be fully ready
+            setTimeout(() => {
+              // Start autoplay immediately if we have data
+              if (heroSections && heroSections.length > 1) {
+                try {
+                  swiper.autoplay.start();
+                  console.log('Autoplay started successfully from onSwiper');
+                } catch (error) {
+                  console.error('Error starting autoplay from onSwiper:', error);
+                  // Fallback: try to start autoplay after a short delay
+                  setTimeout(() => {
+                    try {
+                      swiper.autoplay.start();
+                      console.log('Autoplay started with fallback from onSwiper');
+                    } catch (fallbackError) {
+                      console.error('Fallback autoplay failed from onSwiper:', fallbackError);
+                      // Force swiper update as last resort
+                      if (swiper.update) {
+                        swiper.update();
+                      }
+                    }
+                  }, 1000);
+                }
               }
-            }
+            }, 500);
           }}
         >
-          {heroSections?.map((heroSection, index) => (
-            <SwiperSlide key={index}>
+          {heroSections && heroSections.length > 0 ? (
+            heroSections.map((heroSection, index) => (
+              <SwiperSlide key={heroSection.id || index}>
+                <div
+                  className="swiper-image"
+                  style={{
+                    backgroundImage: `url(${heroSection?.image || "/assets/home_1.png"})`,
+                  }}
+                >
+                  <div className="swiper-info">
+                    <div className="container">
+                      <div className="text">
+                        {isLoading ? (
+                          <div className="swip-skel">
+                            <div
+                              style={{
+                                width: "120px",
+                                height: "30px",
+                                backgroundColor: "#ddd",
+                                borderRadius: "4px",
+                                marginBottom: "20px",
+                              }}
+                            />
+                            <div
+                              style={{
+                                width: "60%",
+                                height: "60px",
+                                backgroundColor: "#ccc",
+                                borderRadius: "6px",
+                                marginBottom: "20px",
+                              }}
+                            />
+                            <div
+                              style={{
+                                width: "80%",
+                                height: "80px",
+                                backgroundColor: "#eee",
+                                borderRadius: "4px",
+                              }}
+                            />
+                          </div>
+                        ) : (
+                          <>
+                            <span className="news">
+                              {t("header.latest_news")}
+                            </span>
+                            <div style={{ position: "relative" }}>
+                              <h1
+                                className="title"
+                                style={{ position: "relative", zIndex: 2 }}
+                              >
+                                <Link style={{ lineHeight: "2.0" }} to={`/lastNews/${heroSection?.id}`}>
+                                  {heroSection?.title?.slice(0, 80) || 'عنوان الخبر'}
+                                </Link>
+                              </h1>
+                              <p
+                                className="description"
+                                style={{ lineHeight: "2.0", position: "relative", zIndex: 3 }}
+                              >
+                                <span
+                                  dangerouslySetInnerHTML={{
+                                    __html: heroSection?.description?.slice(0, 200) || 'وصف الخبر'
+                                  }}
+                                />
+                                ...{" "}
+                                <Link
+                                  to={`/lastNews/${heroSection?.id}`}
+                                  style={{
+                                    color: "#003f9c",
+                                    fontWeight: "bold",
+                                    position: "relative",
+                                    zIndex: 4,
+                                  }}
+                                >
+                                  اقرأ المزيد
+                                </Link>
+                              </p>
+                            </div>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))
+          ) : (
+            // Fallback slide if no data
+            <SwiperSlide>
               <div
                 className="swiper-image"
                 style={{
-                  backgroundImage: `url(${heroSection?.image || "/assets/home_1.png"})`,
+                  backgroundImage: `url("/assets/home_1.png")`,
                 }}
               >
                 <div className="swiper-info">
                   <div className="container">
                     <div className="text">
-                      {isLoading ? (
-                        <div className="swip-skel">
-                          <div
-                            style={{
-                              width: "120px",
-                              height: "30px",
-                              backgroundColor: "#ddd",
-                              borderRadius: "4px",
-                              marginBottom: "20px",
-                            }}
-                          />
-                          <div
-                            style={{
-                              width: "60%",
-                              height: "60px",
-                              backgroundColor: "#ccc",
-                              borderRadius: "6px",
-                              marginBottom: "20px",
-                            }}
-                          />
-                          <div
-                            style={{
-                              width: "80%",
-                              height: "80px",
-                              backgroundColor: "#eee",
-                              borderRadius: "4px",
-                            }}
-                          />
-                        </div>
-                      ) : (
-                        <>
-                          <span className="news">
-                            {t("header.latest_news")}
-                          </span>
-                          <div style={{ position: "relative" }}>
-                            <h1
-                              className="title"
-                              style={{ position: "relative", zIndex: 2 }}
-                            >
-                              <Link style={{ lineHeight: "2.0" }} to={`/lastNews/${heroSection?.id}`}>
-                                {heroSection?.title.slice(0, 80)}
-                              </Link>
-                            </h1>
-                            <p
-                              className="description"
-                              style={{ lineHeight: "2.0", position: "relative", zIndex: 3 }}
-                            >
-                              <span
-                                dangerouslySetInnerHTML={{
-                                  __html: heroSection?.description.slice(0, 200)
-                                }}
-                              />
-                              ...{" "}
-                              <Link
-                                to={`/lastNews/${heroSection?.id}`}
-                                style={{
-                                  color: "#003f9c",
-                                  fontWeight: "bold",
-                                  position: "relative",
-                                  zIndex: 4,
-                                }}
-                              >
-                                اقرأ المزيد
-                              </Link>
-                            </p>
-                          </div>
-                        </>
-                      )}
+                      <span className="news">
+                        {t("header.latest_news")}
+                      </span>
+                      <div style={{ position: "relative" }}>
+                        <h1
+                          className="title"
+                          style={{ position: "relative", zIndex: 2 }}
+                        >
+                          <Link style={{ lineHeight: "2.0" }} to="/">
+                            لا توجد أخبار متاحة حالياً
+                          </Link>
+                        </h1>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </SwiperSlide>
-          ))}
+          )}
         </Swiper>
       </div>
     </>
