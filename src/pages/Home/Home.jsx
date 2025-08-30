@@ -875,7 +875,7 @@ function NewsInternalPlatform() {
       try {
         // Fetch from category 2 to get latest videos
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/api_category_videos/2`,
+          `${process.env.REACT_APP_API_URL}/api_category_videos/0`,
           {
             headers: {
               'lang': i18n.language,
@@ -884,7 +884,7 @@ function NewsInternalPlatform() {
         );
         const result = await response.json();
         if (result.status === 'success') {
-          // Get latest 4 videos
+          // Get first 4 videos from the array
           setVideos(result.result.data?.slice(0, 4) || []);
         }
       } catch (error) {
@@ -1077,6 +1077,41 @@ function NewsInternalPlatform() {
             </div>
           )}
         </div>
+        
+        {/* زر عرض المزيد */}
+        {videos.length > 0 && (
+          <div className="text-center mt-4">
+            <Link 
+              to="/mediaOffice/videolibrary" 
+              className="btn-more"
+              style={{
+                display: 'inline-block',
+                background: 'linear-gradient(135deg, #003f9c 0%, #0056d6 100%)',
+                color: 'white',
+                padding: '12px 24px',
+                borderRadius: '25px',
+                textDecoration: 'none',
+                fontWeight: '600',
+                fontSize: '1rem',
+                transition: 'all 0.3s ease',
+                boxShadow: '0 4px 15px rgba(0, 63, 156, 0.3)',
+                border: '2px solid rgba(255, 255, 255, 0.2)'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.background = 'linear-gradient(135deg, #0056d6 0%, #003f9c 100%)';
+                e.target.style.transform = 'translateY(-2px)';
+                e.target.style.boxShadow = '0 6px 20px rgba(0, 63, 156, 0.4)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.background = 'linear-gradient(135deg, #003f9c 0%, #0056d6 100%)';
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.boxShadow = '0 4px 15px rgba(0, 63, 156, 0.3)';
+              }}
+            >
+              {t('more') || 'عرض المزيد'}
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );
