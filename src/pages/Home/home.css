@@ -107,12 +107,12 @@ html[dir="ltr"] .home .container {
   flex-direction: column;
   gap: 20px;
   color: var(--white-color);
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.01);
   padding: 1.2rem;
   border-radius: 15px;
-  backdrop-filter: blur(1px);
-  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(0.5px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.01);
   margin: 0;
   min-height: fit-content;
   height: auto;
@@ -472,8 +472,8 @@ html[dir="ltr"] .home .container .text .description {
     /* محاذاة النص في المنتصف */
     min-height: fit-content;
     height: auto;
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(1px);
+    background: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(0.5px);
   }
   
   .home .container .text .title {
@@ -556,8 +556,8 @@ html[dir="ltr"] .home .container .text .description {
     /* محاذاة النص في المنتصف */
     min-height: fit-content;
     height: auto;
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(1px);
+    background: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(0.5px);
   }
   
   .home .container .text .title {
@@ -640,8 +640,8 @@ html[dir="ltr"] .home .container .text .description {
     /* زيادة العرض قليلاً */
     text-align: center;
     /* محاذاة النص في المنتصف */
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(1px);
+    background: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(0.5px);
   }
 
   .home .container .text .title {
