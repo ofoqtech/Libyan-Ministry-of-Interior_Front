@@ -51,26 +51,32 @@
 }
 
 .swiper-info h1 a {
-  color: #153ca5 !important;
+  color: #ffffff !important;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
   z-index: 1006;
   pointer-events: auto;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  /* إضافة شادو للرابط الأبيض */
 }
 
 .swiper-info h1 a:hover {
-  color: #0d3193 !important;
+  color: #f0f0f0 !important;
   transform: none;
   /* إزالة التأثير */
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  /* شادو أقوى عند الهوفر */
 }
 
 .swiper-info p a {
-  color: #333 !important;
+  color: #ffffff !important;
   cursor: pointer;
   position: relative;
   z-index: 1007;
   pointer-events: auto;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  /* إضافة شادو للرابط الأبيض */
 }
 
 .home .container {
@@ -101,12 +107,12 @@ html[dir="ltr"] .home .container {
   flex-direction: column;
   gap: 20px;
   color: var(--white-color);
-  background: rgba(255, 255, 255, 0.95);
-  padding: 2rem;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 1.2rem;
   border-radius: 15px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 20px 40px rgba(0, 63, 156, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(1px);
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.02);
   margin: 0;
   min-height: fit-content;
   height: auto;
@@ -167,9 +173,9 @@ html[dir="ltr"] .home .container .text .news {
 .home .container .text .title {
   line-height: 1.4;
   /* تحسين المسافة بين الأسطر */
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #153ca5;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
   margin: 0;
   padding: 0;
   word-wrap: break-word;
@@ -177,15 +183,15 @@ html[dir="ltr"] .home .container .text .news {
   hyphens: auto;
   -webkit-line-clamp: unset;
   -webkit-box-orient: unset;
-  text-shadow: none;
-  /* إزالة الشادو */
-  letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  /* إضافة شادو للنص الأبيض */
+  letter-spacing: 0.3px;
   /* مسافة بين الحروف */
   font-family: inherit;
   /* استخدام الخط الافتراضي */
-  border-bottom: 2px solid rgba(0, 63, 156, 0.2);
-  /* خط جميل تحت العنوان */
-  padding-bottom: 15px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  /* خط أبيض شفاف تحت العنوان */
+  padding-bottom: 12px;
   /* زيادة المسافة تحت العنوان */
   position: relative;
   z-index: 1003;
@@ -205,9 +211,9 @@ html[dir="ltr"] .home .container .text .title {
 }
 
 .home .container .text .description {
-  line-height: 1.6;
-  font-size: 1rem;
-  color: #333;
+  line-height: 1.5;
+  font-size: 0.9rem;
+  color: #ffffff;
   margin: 0;
   padding: 0;
   word-wrap: break-word;
@@ -215,6 +221,8 @@ html[dir="ltr"] .home .container .text .title {
   hyphens: auto;
   -webkit-line-clamp: unset;
   -webkit-box-orient: unset;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  /* إضافة شادو للنص الأبيض */
   position: relative;
   z-index: 1004;
   pointer-events: auto;
@@ -457,17 +465,19 @@ html[dir="ltr"] .home .container .text .description {
   
   .home .container .text {
     width: 90%;
-    padding: 1.5rem;
+    padding: 1rem;
     margin: 0 auto;
     /* توسيط في المنتصف */
     text-align: center;
     /* محاذاة النص في المنتصف */
     min-height: fit-content;
     height: auto;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(1px);
   }
   
   .home .container .text .title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     -webkit-line-clamp: unset;
     -webkit-box-orient: unset;
     word-wrap: break-word;
@@ -475,7 +485,7 @@ html[dir="ltr"] .home .container .text .description {
   }
   
   .home .container .text .description {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     -webkit-line-clamp: unset;
     -webkit-box-orient: unset;
     word-wrap: break-word;
@@ -539,17 +549,19 @@ html[dir="ltr"] .home .container .text .description {
   
   .home .container .text {
     width: 95%;
-    padding: 1rem;
+    padding: 0.8rem;
     margin: 0 auto;
     /* توسيط في المنتصف */
     text-align: center;
     /* محاذاة النص في المنتصف */
     min-height: fit-content;
     height: auto;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(1px);
   }
   
   .home .container .text .title {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     -webkit-line-clamp: unset;
     -webkit-box-orient: unset;
     word-wrap: break-word;
@@ -557,7 +569,7 @@ html[dir="ltr"] .home .container .text .description {
   }
   
   .home .container .text .description {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     -webkit-line-clamp: unset;
     -webkit-box-orient: unset;
     word-wrap: break-word;
@@ -621,13 +633,15 @@ html[dir="ltr"] .home .container .text .description {
   }
 
   .home .container .text {
-    padding: 1.5rem;
+    padding: 1rem;
     margin: 0 auto;
     /* توسيط في المنتصف */
     width: 98%;
     /* زيادة العرض قليلاً */
     text-align: center;
     /* محاذاة النص في المنتصف */
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(1px);
   }
 
   .home .container .text .title {
