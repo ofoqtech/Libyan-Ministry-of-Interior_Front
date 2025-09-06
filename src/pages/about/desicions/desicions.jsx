@@ -209,7 +209,7 @@ function DesicionsInformations({ t }) {
               <div className="modal-body">
                 <h6 style={{lineHeight : '2.0'}}>{selectedDesicion.text}</h6>
                 <p>{selectedDesicion.description}</p>
-                <p>{t("decisionsPage.createdAt")}: {selectedDesicion.created_at}</p>
+                <p>{t("decisionsPage.createdAt")}: {selectedDesicion.date}</p>
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" onClick={closeModal}>

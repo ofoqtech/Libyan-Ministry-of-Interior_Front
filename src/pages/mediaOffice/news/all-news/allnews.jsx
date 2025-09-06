@@ -124,7 +124,7 @@ function MainAllnews() {
                 <div className="d-flex justify-content-between align-items-center">
                   <span className="desicionstime">
                     <i className="uil uil-calendar-alt ms-1 mx-2"></i>
-                    {new Date(item.created_at)
+                    {new Date(item.date)
                       .toLocaleDateString(i18n.language)}
                   </span>
                   <Link

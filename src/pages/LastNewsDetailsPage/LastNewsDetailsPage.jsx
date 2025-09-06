@@ -79,7 +79,8 @@ const selectedHero = heroSection?.find(hero => String(hero.id) === id) || null;
                                     <div className="last-news-details-meta">
                                         <div className="last-news-details-date">
                                             <i className="uil uil-calendar-alt"></i>
-                                            {new Date().toString().slice(0,16)}
+                                            {selectedHero?.date || new Date().toString().slice(0,16)}
+                                            {/* {new Date().toString().slice(0,16)} */}
                                         </div>
                                         <div className="last-news-details-category">
                                             {t('lastnews')}

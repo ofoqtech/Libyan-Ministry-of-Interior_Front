@@ -90,7 +90,7 @@ function MinsitryNewsDetails() {
                         </h2>
                         <span className="desicionstime">
                             <i className="uil uil-calendar-alt mx-1"></i>
-                            {new Date(newsDetails.created_at).toLocaleDateString(i18n.language)}
+                            {new Date(newsDetails.date).toLocaleDateString(i18n.language)}
                         </span>
                     </div>
                 </div>
@@ -135,7 +135,7 @@ function MinsitryNewsDetails() {
                                         />
                                         <p className="desicionstime mt-3">
                                             <i className="uil uil-calendar-alt mt-1 ms-1 mx-2"></i>
-                                            {new Date(article.created_at).toLocaleDateString(i18n.language)}
+                                            {new Date(article.date).toLocaleDateString(i18n.language)}
                                         </p>
                                         <div className="card-body p-0">
                                             <h5 style={{ lineHeight: "1.6", color: "black", marginBottom: '10px' }} className="card-title">{article?.title}</h5>

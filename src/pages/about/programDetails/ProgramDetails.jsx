@@ -77,7 +77,7 @@ function Programs() {
                 </h2>
                 <span className="desicionstime">
                   <i className="uil uil-calendar-alt mx-1"></i>
-                  {new Date(news?.created_at).toLocaleDateString(i18n.language)}
+                  {new Date(news?.date).toLocaleDateString(i18n.language)}
                 </span>
               </div>
 

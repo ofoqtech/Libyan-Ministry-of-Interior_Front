@@ -125,7 +125,7 @@ function MainAllMeetings() {
                 <div className="d-flex justify-content-between align-items-center">
                   <span className="desicionstime">
                     <i className="uil uil-calendar-alt ms-1 mx-2"></i>
-                    {new Date(meeting.created_at)
+                    {new Date(meeting.date)
                       .toLocaleDateString(i18n.language)}
                   </span>
                   <Link

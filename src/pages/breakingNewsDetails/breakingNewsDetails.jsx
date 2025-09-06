@@ -77,7 +77,7 @@ function BreakingNewsDetails() {
                                     <div className="breaking-news-details-meta">
                                         <div className="breaking-news-details-date">
                                             <i className="uil uil-calendar-alt"></i>
-                                            {new Date(detail?.created_at).toLocaleDateString(i18n.language)}
+                                            {new Date(detail?.date).toLocaleDateString(i18n.language)}
                                         </div>
                                         <div className="breaking-news-details-category">
                                             {t("header.breakingNews")}

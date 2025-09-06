@@ -95,7 +95,7 @@ function TodayNewsDetails() {
                                     <div className="news-details-meta">
                                         <div className="news-details-date">
                                             <i className="uil uil-calendar-alt"></i>
-                                            {new Date(todayNews?.created_at).toLocaleDateString(i18n.language)}
+                                            {new Date(todayNews?.date).toLocaleDateString(i18n.language)}
                                         </div>
                                         <div className="news-details-category">
                                             {t('header.latest_news')}

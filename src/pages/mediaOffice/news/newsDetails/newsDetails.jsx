@@ -7,7 +7,8 @@ import axios from "axios";
 import DOMPurify from 'dompurify';
 import { Modal, Button } from "react-bootstrap";
 
-export default function NewsDetails() {
+export default function 
+NewsDetails() {
     const { t } = useTranslation("global");
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -93,7 +94,7 @@ function MainNewsDetalis() {
                                     <div className="news-details-meta">
                                         <div className="news-details-date">
                                             <i className="uil uil-calendar-alt"></i>
-                                            {new Date(newsDetails.created_at).toLocaleDateString(i18n.language)}
+                                            {new Date(newsDetails.date).toLocaleDateString(i18n.language)}
                                         </div>
                                         <div className="news-details-category">
                                             {t('main_news')}

@@ -1397,7 +1397,7 @@ function DesitionsAndPhotos({ t }) {
                   <h6 style={{ lineHeight: "2.3" }}>{selectedDesicion?.text}</h6>
                   <p style={{ lineHeight: "1.7" }}>{selectedDesicion?.description}</p>
                   <p>
-                    {t("decisionsPage.createdAt")}: {selectedDesicion?.created_at}
+                    {t("decisionsPage.createdAt")}: {selectedDesicion?.date}
                   </p>
                 </div>
                 <div className="modal-footer">

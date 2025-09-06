@@ -60,7 +60,7 @@ export default function MeetingsDetails() {
                     <div className="meetings-details-meta">
                       <div className="meetings-details-date">
                         <i className="uil uil-calendar-alt"></i>
-                        {new Date(data.created_at).toLocaleDateString(i18n.language)}
+                        {new Date(data.date).toLocaleDateString(i18n.language)}
                       </div>
                       <div className="meetings-details-category">
                         {t('meetingsDetails.title')}
