@@ -1,10 +1,196 @@
 .privacy-policy {
-  background: linear-gradient(135deg, #f5f7fa 0%, #585f6b 100%);  padding: 2rem 0;
+  background: #ffffff;
+  padding: 2rem 0;
   direction: rtl;
 }
 
+
 .privacy-policy[dir="ltr"] {
   direction: ltr;
+}
+
+/* Loading Styles */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #4A90E2;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  color: #4A90E2;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Policy Content Styles */
+.policy-content {
+  line-height: 1.8;
+  color: #2c3e50;
+}
+
+.policy-content h1,
+.policy-content h2,
+.policy-content h3,
+.policy-content h4,
+.policy-content h5,
+.policy-content h6 {
+  color: #2c3e50;
+  margin: 2rem 0 1rem 0;
+  font-weight: 600;
+}
+
+.policy-content h1 {
+  font-size: 2rem;
+  border-bottom: 3px solid #4A90E2;
+  padding-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.policy-content h2 {
+  font-size: 1.8rem;
+  border-bottom: 2px solid #4A90E2;
+  padding-bottom: 0.3rem;
+  display: inline-block;
+}
+
+.policy-content h3 {
+  font-size: 1.5rem;
+  color: #4A90E2;
+}
+
+.policy-content p {
+  margin: 1rem 0;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.policy-content ul,
+.policy-content ol {
+  margin: 1rem 0;
+  padding-right: 2rem;
+}
+
+.policy-content li {
+  margin: 0.8rem 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.policy-content strong,
+.policy-content b {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.policy-content em,
+.policy-content i {
+  font-style: italic;
+  color: #555;
+}
+
+.policy-content a {
+  color: #4A90E2;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.policy-content a:hover {
+  color: #357ABD;
+  text-decoration: underline;
+}
+
+.policy-content blockquote {
+  border-right: 4px solid #4A90E2;
+  padding: 1rem 2rem;
+  margin: 2rem 0;
+  background: #f8f9fa;
+  font-style: italic;
+  color: #555;
+}
+
+.policy-content code {
+  background: #f1f3f4;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  color: #d63384;
+}
+
+.policy-content pre {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.policy-content pre code {
+  background: none;
+  padding: 0;
+  color: #2c3e50;
+}
+
+.policy-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.policy-content th,
+.policy-content td {
+  padding: 1rem;
+  text-align: right;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.policy-content th {
+  background: #4A90E2;
+  color: white;
+  font-weight: 600;
+}
+
+.policy-content tr:hover {
+  background: #f8f9fa;
+}
+
+/* RTL Support for English */
+.privacy-policy[dir="ltr"] .policy-content ul,
+.privacy-policy[dir="ltr"] .policy-content ol {
+  padding-right: 0;
+  padding-left: 2rem;
+}
+
+.privacy-policy[dir="ltr"] .policy-content blockquote {
+  border-right: none;
+  border-left: 4px solid #4A90E2;
+}
+
+.privacy-policy[dir="ltr"] .policy-content th,
+.privacy-policy[dir="ltr"] .policy-content td {
+  text-align: left;
 }
 
 .container {
@@ -13,73 +199,61 @@
   padding: 0 1rem;
 }
 
-/* Breadcrumb Styles */
-.breadcrumb-nav {
-  margin-bottom: 2rem;
-}
-
-.breadcrumb {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 8px;
-  padding: 1rem 1.5rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.breadcrumb-item {
-  margin: 0 0.5rem;
-}
-
-.breadcrumb-item:first-child {
-  margin-right: 0;
-}
-
-.breadcrumb-item:last-child {
-  margin-left: 0;
-}
-
-.breadcrumb-item a {
-  color: #007bff;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.breadcrumb-item a:hover {
-  color: #0056b3;
-}
-
-.breadcrumb-item.active {
-  color: #6c757d;
-  font-weight: 600;
-}
 
 /* Header Styles */
 .policy-header {
   text-align: center;
-  margin-bottom: 3rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  margin-bottom: 0;
+  background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
   color: white;
-  padding: 3rem 2rem;
-  border-radius: 15px;
+  padding: 4rem 2rem 6rem 2rem;
+  border-radius: 0;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
 }
 
-.policy-title {
-  font-size: 3rem;
+.policy-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255,255,255,0.08) 0%, transparent 50%),
+    radial-gradient(circle at 40% 60%, rgba(255,255,255,0.05) 0%, transparent 50%);
+  opacity: 0.6;
+}
+
+.policy-title-ar {
+  font-size: 3.5rem;
   font-weight: 700;
-  margin: 0 0 1rem 0;
+  margin: 0 0 0.5rem 0;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 1;
+}
+
+.policy-title-en {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 0 0 1rem 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 1;
 }
 
 .policy-date {
-  font-size: 1.1rem;
+  font-size: 1rem;
   opacity: 0.9;
   margin: 0;
   font-weight: 300;
+  position: relative;
+  z-index: 1;
 }
 
 /* Section Styles */
@@ -87,15 +261,16 @@
   background: white;
   margin-bottom: 2rem;
   padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-  border-right: 5px solid #007bff;
+  border-radius: 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-right: 3px solid #4A90E2;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 2rem;
 }
 
 .policy-section:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
 .section-title {
@@ -104,7 +279,7 @@
   font-weight: 600;
   margin: 0 0 1rem 0;
   padding-bottom: 0.5rem;
-  border-bottom: 3px solid #007bff;
+  border-bottom: 3px solid #4A90E2;
   display: inline-block;
 }
 
@@ -136,15 +311,15 @@
 }
 
 .info-list li {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
   color: white;
   margin: 0.8rem 0;
   padding: 1rem 1.5rem;
-  border-radius: 8px;
+  border-radius: 6px;
   position: relative;
   padding-right: 3rem;
   font-weight: 500;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
 }
 
@@ -164,9 +339,9 @@
 
 /* Contact Info Styles */
 .contact-info {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
   padding: 2rem;
-  border-radius: 10px;
+  border-radius: 6px;
   text-align: center;
   margin-top: 1rem;
 }
@@ -184,8 +359,8 @@
   text-align: center;
   margin-top: 3rem;
   padding: 2rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 15px;
+  background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+  border-radius: 0;
   color: white;
 }
 
@@ -199,15 +374,19 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .privacy-policy {
-    padding: 1rem 0;
+    padding: 0;
   }
   
-  .policy-title {
-    font-size: 2rem;
+  .policy-title-ar {
+    font-size: 2.5rem;
+  }
+  
+  .policy-title-en {
+    font-size: 1.2rem;
   }
   
   .policy-header {
-    padding: 2rem 1rem;
+    padding: 3rem 1rem;
   }
   
   .policy-section {
@@ -219,14 +398,6 @@
     font-size: 1.5rem;
   }
   
-  .breadcrumb {
-    flex-direction: column;
-    padding: 0.8rem 1rem;
-  }
-  
-  .breadcrumb-item {
-    margin: 0.2rem 0;
-  }
   
   .info-list li {
     padding: 0.8rem 1rem;
@@ -239,8 +410,12 @@
     padding: 0 0.5rem;
   }
   
-  .policy-title {
-    font-size: 1.8rem;
+  .policy-title-ar {
+    font-size: 2rem;
+  }
+  
+  .policy-title-en {
+    font-size: 1rem;
   }
   
   .policy-section {
@@ -259,7 +434,7 @@
 /* RTL Support for English */
 .privacy-policy[dir="ltr"] .policy-section {
   border-right: none;
-  border-left: 5px solid #007bff;
+  border-left: 3px solid #4A90E2;
 }
 
 .privacy-policy[dir="ltr"] .info-list li {

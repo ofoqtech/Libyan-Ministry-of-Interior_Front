@@ -688,5 +688,7 @@
       "description": "If you have any questions about our privacy policy or how we process your information, please contact us through:",
       "ministryContact": "Legal Affairs Department - Ministry of Interior"
     }
-  }
+  },
+  "privacyPolicy.loading": "جاري تحميل سياسة الخصوصية..."
+
 }
