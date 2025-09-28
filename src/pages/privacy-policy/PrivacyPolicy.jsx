@@ -13,6 +13,10 @@ export function PrivacyPolicy() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const fetchPrivacyPolicy = async () => {
       try {
         setLoading(true);
