@@ -58,7 +58,6 @@ function MainEmergencyCases({ t }) {
           setEmergencyCases(response.data.result);
         }
       } catch (err) {
-        console.log(err);
       } finally {
         setLoading(false); // hide skeleton
       }
@@ -97,7 +96,6 @@ function MainEmergencyCases({ t }) {
       subject: sub,
       description: disc,
     };
-    console.log(payload);
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/emergencies/make_emerg?isMobile=0`,
@@ -109,7 +107,6 @@ function MainEmergencyCases({ t }) {
         }
       );
       if (response.status === 200) {
-        console.log(JSON.stringify(response.data));
         toast.success(t('developmentGoals.submitted'));
         // reset form
         setName("");
@@ -118,7 +115,6 @@ function MainEmergencyCases({ t }) {
         setEmail("");
       }
     } catch (err) {
-      console.log(err);
       toast.error("Faild to submit");
     }
   };

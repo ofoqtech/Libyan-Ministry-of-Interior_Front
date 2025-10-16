@@ -45,7 +45,6 @@ function OverviewDetalis({ t }) {
           setAbout(response.data.result);
         }
       } catch (err) {
-        console.log(err);
       } finally {
         setLoading(false);
       }

@@ -76,7 +76,6 @@ function CriminalReports() {
             );
 
             const result = response.data;
-            console.log("Response:", result);
 
             if (result.status === "success") {
                 toast.success(t("Criminal-Reports.submissionSuccess"), {

@@ -45,11 +45,9 @@ function BreakingNewsDetails() {
                     const detailItem = allNews.find(
                         (item) => item.id.toString() === id.toString()
                     );
-                    // console.log(detailItem);
                     setDetail(detailItem);
                 }
             } catch (err) {
-                console.log(err);
             } finally {
                 setLoading(false);
             }

@@ -49,7 +49,6 @@ function Hero({ t }) {
         setTimeout(() => {
           try {
             swiperInstance.autoplay.start();
-            console.log('Manual autoplay restart successful');
           } catch (error) {
             console.error('Error starting autoplay after restart:', error);
             // Force restart swiper if autoplay fails
@@ -84,7 +83,6 @@ function Hero({ t }) {
             if (swiperInstance && response.data.result.length > 1) {
               try {
                 swiperInstance.autoplay.start();
-                console.log('Autoplay started after data fetch');
               } catch (error) {
                 console.error('Error starting autoplay after data fetch:', error);
               }
@@ -108,11 +106,9 @@ function Hero({ t }) {
   // Restart autoplay when data changes
   useEffect(() => {
     if (swiperInstance && heroSections && heroSections.length > 1) {
-      console.log('Starting autoplay for Hero Swiper with', heroSections.length, 'items');
       try {
         if (swiperInstance.autoplay && typeof swiperInstance.autoplay.start === 'function') {
           swiperInstance.autoplay.start();
-          console.log('Autoplay started successfully from useEffect');
         } else {
           console.warn('Autoplay module not available on Hero Swiper');
         }
@@ -129,7 +125,6 @@ function Hero({ t }) {
   // Debug: Log when data changes
   useEffect(() => {
     if (heroSections) {
-      console.log('Hero sections loaded:', heroSections.length, 'items');
       // If we already have a swiper instance, restart autoplay
       if (swiperInstance && heroSections.length > 1) {
         setTimeout(restartAutoplay, 500);
@@ -143,7 +138,6 @@ function Hero({ t }) {
       if (swiperInstance && heroSections && heroSections.length > 1) {
         try {
           if (swiperInstance.autoplay && !swiperInstance.autoplay.running) {
-            console.log('Autoplay stopped, restarting...');
             swiperInstance.autoplay.start();
           }
         } catch (error) {
@@ -179,7 +173,6 @@ function Hero({ t }) {
           loop={true}
           speed={800}
           onSlideChange={() => {
-            console.log("Hero slide change");
             // Ensure autoplay continues after slide change
             if (swiperInstance && swiperInstance.autoplay && heroSections && heroSections.length > 1) {
               setTimeout(() => {
@@ -196,7 +189,6 @@ function Hero({ t }) {
             }
           }}
           onSwiper={(swiper) => {
-            console.log('Hero Swiper initialized:', swiper);
             setSwiperInstance(swiper);
             
             // Wait a bit for swiper to be fully ready
@@ -205,14 +197,12 @@ function Hero({ t }) {
               if (heroSections && heroSections.length > 1) {
                 try {
                   swiper.autoplay.start();
-                  console.log('Autoplay started successfully from onSwiper');
                 } catch (error) {
                   console.error('Error starting autoplay from onSwiper:', error);
                   // Fallback: try to start autoplay after a short delay
                   setTimeout(() => {
                     try {
                       swiper.autoplay.start();
-                      console.log('Autoplay started with fallback from onSwiper');
                     } catch (fallbackError) {
                       console.error('Fallback autoplay failed from onSwiper:', fallbackError);
                       // Force swiper update as last resort
@@ -365,7 +355,6 @@ function CommonNews({ t }) {
         swiperInstance.autoplay.stop();
         setTimeout(() => {
           swiperInstance.autoplay.start();
-          console.log('CommonNews manual autoplay restart successful');
         }, 100);
       } catch (error) {
         console.error('CommonNews manual autoplay restart failed:', error);
@@ -398,7 +387,6 @@ function CommonNews({ t }) {
   // Restart autoplay when data changes
   useEffect(() => {
     if (swiperInstance && common && common.length > 1) {
-      console.log('Starting autoplay for CommonNews Swiper with', common.length, 'items');
       try {
         if (swiperInstance.autoplay && typeof swiperInstance.autoplay.start === 'function') {
           swiperInstance.autoplay.start();
@@ -414,7 +402,6 @@ function CommonNews({ t }) {
   // Debug: Log when data changes
   useEffect(() => {
     if (common) {
-      console.log('Common news loaded:', common.length, 'items');
       // If we already have a swiper instance, restart autoplay
       if (swiperInstance && common.length > 1) {
         setTimeout(restartAutoplay, 500);
@@ -459,7 +446,6 @@ function CommonNews({ t }) {
           grabCursor={true}
           effect="slide"
           onSlideChange={() => {
-            console.log("CommonNews slide change");
             // Ensure autoplay continues after slide change
             if (swiperInstance && swiperInstance.autoplay && common && common.length > 1) {
               setTimeout(() => {
@@ -472,13 +458,11 @@ function CommonNews({ t }) {
             }
           }}
           onSwiper={(swiper) => {
-            console.log('CommonNews Swiper initialized:', swiper);
             setSwiperInstance(swiper);
             // Start autoplay immediately if we have data
             if (common && common.length > 1) {
               try {
                 swiper.autoplay.start();
-                console.log('CommonNews autoplay started successfully');
               } catch (error) {
                 console.error('Error starting CommonNews autoplay:', error);
                 // Fallback: try to start autoplay after a short delay
@@ -1287,11 +1271,13 @@ function DesitionsAndPhotos({ t }) {
                 className="mb-3" 
                 key={index} 
                 onClick={() => openModal(desition)}
+                style={{ cursor: "pointer" }}
               >
                 <NewBoxContent
                   type={t("decisions.category_1")}
                   title={`${desition.text.slice(0, 80)}...`}
                   time={`${desition.created_at.slice(0, 10)}`}
+                  medias={desition?.medias}
                 />
               </div>
             ))}
@@ -1379,7 +1365,7 @@ function DesitionsAndPhotos({ t }) {
             aria-hidden="true"
             onClick={closeModal}
           >
-            <div className="modal-dialog" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-dialog modal-lg" onClick={(e) => e.stopPropagation()}>
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title" id="exampleModalLabel">
@@ -1394,11 +1380,43 @@ function DesitionsAndPhotos({ t }) {
                   ></button>
                 </div>
                 <div className="modal-body">
+                  {/* Decision Images Swiper */}
+                  {selectedDesicion?.medias && selectedDesicion.medias.length > 0 && (
+                    <div className="decision-images-swiper mb-4">
+                      <Swiper
+                        modules={[Navigation, Pagination, Autoplay]}
+                        spaceBetween={30}
+                        slidesPerView={1}
+                        navigation
+                        pagination={{ clickable: true }}
+                        autoplay={{
+                          delay: 3000,
+                          disableOnInteraction: false,
+                        }}
+                        className="decision-swiper"
+                      >
+                        {selectedDesicion.medias.map((media, index) => (
+                          <SwiperSlide key={media.id || index}>
+                            <div className="swiper-image-container">
+                              <img
+                                src={media.file_url}
+                                alt={selectedDesicion.text}
+                                className="swiper-image"
+                                onError={(e) => {
+                                  e.target.style.display = 'none';
+                                }}
+                              />
+                            </div>
+                          </SwiperSlide>
+                        ))}
+                      </Swiper>
+                    </div>
+                  )}
+                  
                   <h6 style={{ lineHeight: "2.3" }}>{selectedDesicion?.text}</h6>
-                  <p style={{ lineHeight: "1.7" }}>{selectedDesicion?.description}</p>
-                  <p>
-                    {t("decisionsPage.createdAt")}: {selectedDesicion?.date}
-                  </p>
+                  {selectedDesicion?.description && (
+                    <p style={{ lineHeight: "1.7" }}>{selectedDesicion?.description}</p>
+                  )}
                 </div>
                 <div className="modal-footer">
                   <button type="button" className="btn btn-secondary" onClick={closeModal}>

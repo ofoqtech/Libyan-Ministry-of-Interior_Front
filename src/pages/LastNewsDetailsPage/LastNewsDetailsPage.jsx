@@ -39,7 +39,6 @@ function LastNews() {
             setHeroSection(response.data.result);
           }
         } catch (err) {
-          console.log(err);
         }
       };
   
@@ -50,7 +49,6 @@ function LastNews() {
     const isLoading = !heroSection;
 const selectedHero = heroSection?.find(hero => String(hero.id) === id) || null;
 
-  console.log(selectedHero)
 
 
     if (!selectedHero) return <p className="text-center my-5">{t('loading')}...</p>;

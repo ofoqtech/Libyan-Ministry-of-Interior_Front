@@ -35,10 +35,8 @@ function MainFAQ() {
         });
         if(response.status === 200) {
           setFaqs(response.data.result);
-          console.log(response.data.result);
         }
       } catch (err) {
-        console.log(err);
       }
       finally {
         setLoading(false);

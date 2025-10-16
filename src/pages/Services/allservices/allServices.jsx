@@ -230,7 +230,6 @@ function AllServicesDetails() {
         }
       );
 
-      console.log("Response:", data);
 
       if (data.status === "success") {
         toast.success(t("Criminal-Reports.submissionSuccess"), {
@@ -271,7 +270,6 @@ function AllServicesDetails() {
         }
       );
 
-      console.log("Drone submission response:", data);
 
       if (data.status === "success") {
         toast.success(t("droneSucessMessage"), {

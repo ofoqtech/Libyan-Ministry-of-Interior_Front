@@ -68,7 +68,6 @@ const Vertification = () => {
                 }
             );
     
-            console.log("Resend response:", response.data);
     
             if (response.status === 200) {
                 toast.success(t("codeResent"));

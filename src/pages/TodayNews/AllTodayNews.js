@@ -40,11 +40,9 @@ function MainAllTodayNews() {
           }
         );
         if (response.status === 200) {
-          console.log(response.data.data);
           setAllTodayNews(response.data.data);
         }
       } catch (err) {
-        console.log(err);
       } finally {
         setLoading(false); // hide skeleton
       }

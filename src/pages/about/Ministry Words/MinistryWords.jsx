@@ -56,7 +56,6 @@ function MainWords({ t }) {
           setMinistryWord(response.data.result);
         }
       } catch (err) {
-        console.log(err);
       } finally {
         setLoading(false);
       }

@@ -5,6 +5,11 @@ import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 export default function Desicions() {
   const [t] = useTranslation("global");
@@ -131,6 +136,42 @@ function DesicionsInformations({ t }) {
                   onClick={() => openModal(desicion)} // Open modal on card click
                 >
                   <div className="card p-4 text-center h-100">
+                    {/* Decision Images Swiper */}
+                    {desicion?.medias && desicion.medias.length > 0 && (
+                      <div className="card-swiper-container mb-3">
+                        <Swiper
+                          modules={[Navigation, Pagination, Autoplay]}
+                          spaceBetween={10}
+                          slidesPerView={1}
+                          navigation={desicion.medias.length > 1}
+                          pagination={{ 
+                            clickable: true,
+                            dynamicBullets: true
+                          }}
+                          autoplay={{
+                            delay: 2500,
+                            disableOnInteraction: false,
+                          }}
+                          className="card-swiper"
+                        >
+                          {desicion.medias.map((media, index) => (
+                            <SwiperSlide key={media.id || index}>
+                              <div className="card-image-container">
+                                <img
+                                  src={media.file_url}
+                                  alt={desicion.text}
+                                  className="card-image"
+                                  onError={(e) => {
+                                    e.target.style.display = 'none';
+                                  }}
+                                />
+                              </div>
+                            </SwiperSlide>
+                          ))}
+                        </Swiper>
+                      </div>
+                    )}
+                    
                     <span className="type mx-auto d-block">
                       {t("decisions.category_1")}
                     </span>
@@ -192,7 +233,7 @@ function DesicionsInformations({ t }) {
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
         >
-          <div className="modal-dialog">
+          <div className="modal-dialog modal-lg">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLabel">
@@ -207,9 +248,43 @@ function DesicionsInformations({ t }) {
                 ></button>
               </div>
               <div className="modal-body">
+                {/* Decision Images Swiper */}
+                {selectedDesicion?.medias && selectedDesicion.medias.length > 0 && (
+                  <div className="decision-images-swiper mb-4">
+                    <Swiper
+                      modules={[Navigation, Pagination, Autoplay]}
+                      spaceBetween={30}
+                      slidesPerView={1}
+                      navigation
+                      pagination={{ clickable: true }}
+                      autoplay={{
+                        delay: 3000,
+                        disableOnInteraction: false,
+                      }}
+                      className="decision-swiper"
+                    >
+                      {selectedDesicion.medias.map((media, index) => (
+                        <SwiperSlide key={media.id || index}>
+                          <div className="swiper-image-container">
+                            <img
+                              src={media.file_url}
+                              alt={selectedDesicion.text}
+                              className="swiper-image"
+                              onError={(e) => {
+                                e.target.style.display = 'none';
+                              }}
+                            />
+                          </div>
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
+                  </div>
+                )}
+                
                 <h6 style={{lineHeight : '2.0'}}>{selectedDesicion.text}</h6>
-                <p>{selectedDesicion.description}</p>
-                <p>{t("decisionsPage.createdAt")}: {selectedDesicion.date}</p>
+                {selectedDesicion.description && (
+                  <p>{selectedDesicion.description}</p>
+                )}
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" onClick={closeModal}>

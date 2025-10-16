@@ -110,7 +110,6 @@ function TopNav({ t, onBreakingNewsChange }) {
           );
           if (response.status === 200) {
             setBreakingNews(response.data.result.data);
-            console.log(response.data.result.data);
           }
         } catch (err) {
           toast.error(t("noData") || err?.response?.data?.message || "Something went wrong");

@@ -67,7 +67,6 @@ const email = localStorage.getItem("emailLibyan") || "";
                 }
             );
     
-            console.log("Resend response:", response.data);
     
             if (response.status === 200) {
                 toast.success(t("codeResent"));

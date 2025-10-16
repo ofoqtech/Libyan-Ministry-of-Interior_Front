@@ -49,7 +49,6 @@ function MainDevelopmentGoals() {
           setDevelopmentGoals(response.data.result);
         }
       } catch (err) {
-        console.log(err);
       } finally {
         setLoading(false); // hide skeleton
       }

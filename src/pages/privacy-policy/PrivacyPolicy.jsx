@@ -55,9 +55,9 @@ export function PrivacyPolicy() {
             <div className={styles['loading-container']}>
               <div className={styles['loading-spinner']}></div>
               <p className={styles['loading-text']}>{t("privacyPolicy.loading")}</p>
-            </div>
-          </div>
         </div>
+      </div>
+    </div>
       </>
     );
   }
