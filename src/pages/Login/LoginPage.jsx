@@ -114,8 +114,8 @@ const LoginPage = () => {
                                 </button>
                             </form>
                             <div className="d-flex justify-content-between align-items-center mt-3 mb-1">
-                                <Link to={'/forget-password'} className="my-3 d-block">نسيت كلمه المرور؟</Link>
-                                <Link to={'/active-account'} className="my-3 text-black d-block">تفعيل حسابك</Link>
+                                <Link to={'/forget-password'} className="my-3 d-block">{i18n.language === "ar" ? "هل نسيت كلمة المرور؟":"Forgot Your Password"}</Link>
+                                <Link to={'/active-account'} className="my-3 text-black d-block">{i18n.language === "ar" ? "تفعيل حسابك":"Activate Your Account"}</Link>
                             </div>
 
                             <div className="d-flex justify-content-center align-items-center mt-3 mb-1">

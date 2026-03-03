@@ -12,10 +12,10 @@
     "programsNews": "البرامج",
     "program1": "برنامج 1",
     "program2": "برنامج 2",
-    "DirectoratesNews" : "اخبار المديريات",
+    "DirectoratesNews": "اخبار المديريات",
     "contactTheMinistry": "تواصل مع الوزارة",
     "contacTheDirectorate": "تواصل مع المديريات",
-    "filterBy" : "فرز بواسطه",
+    "filterBy": "فرز بواسطه",
     "decisions": "القرارات",
     "emergencyCases": "ارقام الطواري",
     "developmentGoals": "اهداف التنميه",
@@ -39,22 +39,22 @@
     "ar": "العربية",
     "language": "اللغة"
   },
-  "filterBy" : "فرز بواسطه",
-  "more" : "المزيد",
-"another" : "صور اخري",
-    "related" : "مقالات ذات صلة",
+  "filterBy": "فرز بواسطه",
+  "more": "المزيد",
+  "another": "صور اخري",
+  "related": "مقالات ذات صلة",
 
-  "chooseDirectorates" : "اختر المديرية" ,
-"showVideo" : "عرض الفيديو",
-  "programsNewsPage":{
-    "pageTitle":"البرامج",
-    "breadcrumb":"الرئيسية - البرامج",
-    "breadcrumb1":"الرئيسية - البرامج -  تفاصيل البرنامج",
+  "chooseDirectorates": "اختر المديرية",
+  "showVideo": "عرض الفيديو",
+  "programsNewsPage": {
+    "pageTitle": "البرامج",
+    "breadcrumb": "الرئيسية - البرامج",
+    "breadcrumb1": "الرئيسية - البرامج -  تفاصيل البرنامج",
     "searchPlaceholder": "ابحث في البرامج...",
 
-    "view":"عرض",
-    "lorem":"هذا نص تجريبي يستخدم لملء الفراغات في التصاميم والمشاريع المختلفة حيث يتم إنشاء نص شكلي بدون معنى محدد لتوضيح الشكل العام.",
-    "programName":"اسم البرنامج"
+    "view": "عرض",
+    "lorem": "هذا نص تجريبي يستخدم لملء الفراغات في التصاميم والمشاريع المختلفة حيث يتم إنشاء نص شكلي بدون معنى محدد لتوضيح الشكل العام.",
+    "programName": "اسم البرنامج"
   },
   "loading": "جار التحميل",
   "error": "حدث خطأ ما، يرجى المحاولة لاحقًا",
@@ -64,40 +64,27 @@
     "email": "البريد الإلكتروني",
     "emailPlaceholder": "ادخل البريد الإلكتروني",
     "password": "كلمة المرور",
-    "password2": "اعاده كلمه المرور",
+    "password2": "اعاده كلمة المرور",
     "passwordPlaceholder": "ادخل الرقم السري",
     "loginBtn": "تسجيل الدخول",
     "noAccount": "ليس لديك حساب؟",
-    "error" : "حدث خطأ أثناء تسجيل الدخول",
+    "error": "حدث خطأ أثناء تسجيل الدخول",
     "registerNow": "سجّل الآن!"
   },
   "account_deleted": "تم حذف الحساب بنجاح",
   "account_deleted_failed": "فشل حذف الحساب",
-  "passwordMatch" : "كلمه المرور غير متطابقه في الحقول ",
-  "forget" : {
-    "header1" : "ادخل البريد الالكتروني لاعاده تعيين كلمه المرور",
+  "passwordMatch": "كلمة المرور غير متطابقه في الحقول ",
+  "forget": {
+    "header1": "ادخل البريد الالكتروني لاعاده تعيين كلمة المرور",
     "header2": "ارسال",
-    "successMessage" : "تم ارسال الرمز بنجاح",
-    "errorMessage" : "فشل في ارسال الرمز"
-    
+    "successMessage": "تم ارسال الرمز بنجاح",
+    "errorMessage": "فشل في ارسال الرمز"
   },
   "createAccount": {
     "whoAreYou": "من أنت ؟",
     "chooseOption": "برجاء اختيار الاختيار المناسب لك",
     "mediaProfessional": "إعلامي",
     "mediaOrganization": "منظمة إعلامية"
-  },
-  "mediaRegistration": {
-    "title": "سجل بياناتك",
-    "basicInfo": "البيانات الاساسية",
-    "profileImage": "صورة الشخصية",
-    "fullName": "الاسم الكامل",
-    "namePlaceholder": "الاسم",
-    "whoYou": "صفه العميل",
-    "phone": "رقم التواصل",
-    "phonePlaceholder": "+9665085858585",
-    "email": "البريد الالكتروني",
-    "emailPlaceholder": "mmmmmmmm@gmail.com"
   },
   "videoLibrary": {
     "title": "مكتبة الفيديوهات",
@@ -114,10 +101,10 @@
     "watchVideo": "مشاهدة الفيديو",
     "noInstructions": "لا توجد فيديوهات إرشادية متاحة حالياً"
   },
-  "droneSucessMessage" : "تم ارسال طلب تصريح الدرون بنجاح",
-  "droneFailedMessage" : "فشل في ارسال طلب تصريح الدرون",
-  "cameraFailedMessage" : "فشل في ارسال طلب تصريح الكاميرا",
-  "cameraSucessMessage" : "تم  ارسال طلب تصريح الكاميرا",
+  "droneSucessMessage": "تم ارسال طلب تصريح الدرون بنجاح",
+  "droneFailedMessage": "فشل في ارسال طلب تصريح الدرون",
+  "cameraFailedMessage": "فشل في ارسال طلب تصريح الكاميرا",
+  "cameraSucessMessage": "تم  ارسال طلب تصريح الكاميرا",
   "verificationOk": "تم التحقق من الحساب بنجاح",
   "verificationFailed": "فشل التحقق من الحساب",
   "send": "إرسال",
@@ -129,7 +116,7 @@
   "resendFailed": "فشل في إعادة إرسال الكود",
   "login.enterEmailFirst": "الرجاء إدخال البريد الإلكتروني أولاً",
   "vertification": "ادخل كود التحقق من اجل تفعيل الحساب ",
-  "vertification2": "ادخل كود التحقق من اجل تغيير كلمه المرور ",
+  "vertification2": "ادخل كود التحقق من اجل تغيير كلمة المرور ",
   "verificationCode": "كود التحقق",
   "orgRegistration": {
     "title": "سجل بياناتك",
@@ -147,10 +134,10 @@
     "cancel": "الغاء",
     "create": "انشاء"
   },
-  "acctiveAccount" : "ادخل بريدك الالكتروني وسيتم ارسال كود التحقق لتفعيل حسابك",
-  "change1" : "تم تغيير كلمه المرور بنجاح",
-  "change2" : "فشل تغيير كلمه المرور",
-  "change4" : "ادخل كلمه المرور الجديده لكي تتمكن من الدخول لحسابك",
+  "acctiveAccount": "ادخل بريدك الالكتروني وسيتم ارسال كود التحقق لتفعيل حسابك",
+  "change1": "تم تغيير كلمة المرور بنجاح",
+  "change2": "فشل تغيير كلمة المرور",
+  "change4": "ادخل كلمة المرور الجديده لكي تتمكن من الدخول لحسابك",
   "profile": {
     "header1": "الملف الشخصي",
     "header2": "الرئيسيه   - حسابي - الملف الشخصي",
@@ -194,12 +181,12 @@
     "category_1": "حديث",
     "internal_meeting": "اجتماع موسع لمناقشة الأوضاع الأمنية",
     "read_more": "إقرأ المزيد",
-    "no_news":"لا يوجد أخبار",
+    "no_news": "لا يوجد أخبار",
     "two_days_ago": "منذ يومين"
   },
-  "networkError" : "حدث خطا في الاتصال بالشبكه",
-  "commnNews" : {
-    "header1" : "الاخبار الشائعه"
+  "networkError": "حدث خطا في الاتصال بالشبكه",
+  "commnNews": {
+    "header1": "الاخبار الشائعه"
   },
   "decisions": {
     "title": "القرارات",
@@ -470,14 +457,14 @@
     "searchButton": "بحث",
     "closeButton": "إغلاق"
   },
-  
-  "lastnews" : "اخر الاخبار",
+
+  "lastnews": "اخر الاخبار",
 
   "allNews": {
     "mainHeader": "الأخبار الرئيسية",
-    "DirectoratesNews" : "اخبار المديريات",
-    "searchPlaceholder" : "ابحث عن خبر",
-    "DirectoratesNews2" :"الرئيسية - المكتب الاعلامي - اخبار المديريات",
+    "DirectoratesNews": "اخبار المديريات",
+    "searchPlaceholder": "ابحث عن خبر",
+    "DirectoratesNews2": "الرئيسية - المكتب الاعلامي - اخبار المديريات",
     "breadcrumb": "الرئيسية - المكتب الاعلامي - الأخبار الرئيسية",
     "newsTitle": "وزير الداخلية يُقرر دمج عدد من مديريات الأمن التابعة للحكومة الليبية",
     "newsDescription": "قدَ معالي وزير الداخلية، اللواء “عصام أبوزريبة”، اليوم الخميس، اجتماعًا موسعًا مع القيادات الأمنية في مديرية أمن الشاطئ، بحضور رئيس جهاز البحث الجنائي اللواء “أحمد الشامخ”، ورئيس جهاز مكافحة الهجرة غير شرعية، اللواء “صلاح الخفيفي”، مع مدير الأمن، اللواء “وهبي الرخ”، ومدراء الفروع والإدارات الأمنية، إضافة إلى رؤساء المراكز والأقسام التابعة للمديرية. وأكد معاليه خلال الاجتماع .....",
@@ -603,7 +590,7 @@
 
   "new_request": "طلب جديد",
   "request_history": "سجل الطلبات",
-  
+
   "privacyPolicy": {
     "title": "سياسة الخصوصية",
     "breadcrumb": "الرئيسية - سياسة الخصوصية",
@@ -677,5 +664,36 @@
       "ministryContact": "قسم الشؤون القانونية - وزارة الداخلية"
     }
   },
-  "privacyPolicy.loading": "جاري تحميل سياسة الخصوصية..."
+  "privacyPolicy.loading": "جاري تحميل سياسة الخصوصية...",
+  "mediaRegistration": {
+    "title": "تسجيل الإعلاميين",
+    "basicInfo": "المعلومات الأساسية",
+    "profileImage": "صورة الملف الشخصي",
+    "fullName": "الاسم الكامل",
+    "namePlaceholder": "أدخل اسمك الكامل",
+    "phone": "رقم الهاتف",
+    "phonePlaceholder": "أدخل رقم هاتفك",
+    "whoYou": "من أنت؟",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "أدخل بريدك الإلكتروني",
+    "password": "كلمة المرور",
+    "idNumber": "الرقم القومي",
+    "idPlaceholder": "أدخل رقمك القومي",
+    "nationality": "الجنسية",
+    "selectNationality": "اختر جنسيتك",
+    "nationalities": {
+      "egyptian": "مصري",
+      "saudi": "سعودي",
+      "jordanian": "أردني",
+      "syrian": "سوري",
+      "palestinian": "فلسطيني",
+      "sudanese": "سوداني",
+      "moroccan": "مغربي",
+      "other": "أخرى"
+    },
+    "orgName": "اسم المؤسسة",
+    "orgType": "نوع المؤسسة",
+    "cancel": "إلغاء",
+    "createAccount": "إنشاء حساب"
+  }
 }
